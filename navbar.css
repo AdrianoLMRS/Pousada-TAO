@@ -1,69 +1,44 @@
-*{
-
-  margin: 0;
-  padding: 0;
-
-}
-body{
-
-  min-height: 100vh;
-  background-image: url(img/Pousada/fachada\ da\ pousada.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  font-family: Arial, sans-serif;
-  
-}
-
 nav{
-
   background-color: #C7F9CC;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
-
 }
-
 nav ul{
-
   width: 100%;
   list-style: none;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  
 }
-
 nav li{
-
   height: 50px;
-
 }
-
 nav a{
-
   height: 100%;
   padding: 0 30px;
   text-decoration: none;
   display: flex;
   align-items: center;
   color: black;
-
+  text-decoration: none;
+  background-color: transparent; 
+  transition: background-color 0.5s ease, font-size 1s ease, font-weight 0.3s ease;
+  font-size: 16px;
 }
-
 nav a:hover{
-  background-color: chartreuse;
+  background-color: #80ED99;
+  font-size: 17.6px;
+  
 }
-
 nav li:first-child{
   margin-right: auto;
 }
-
 .sidebar{
   position: fixed;
   top: 0; 
   right: 0;
   height: 100vh;
   width: 250px;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.10);
   backdrop-filter: blur(12px);
   box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
   list-style: none;
