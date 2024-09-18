@@ -1,6 +1,7 @@
 nav{
-  background-color: #C7F9CC;
+  background-color: #7b658b;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+  font-family: 'Caviar-Dreams', sans-serif;
 }
 nav ul{
   width: 100%;
@@ -18,19 +19,30 @@ nav a{
   text-decoration: none;
   display: flex;
   align-items: center;
-  color: black;
-  text-decoration: none;
+  color: #debc47;
   background-color: transparent; 
-  transition: background-color 0.5s ease, font-size 1s ease, font-weight 0.3s ease;
+  transition: background-color 1s ease, font-size 1s ease, font-weight 0.3s ease;
   font-size: 16px;
+  
 }
 nav a:hover{
-  background-color: #80ED99;
+  background-color: #9b6bbe;
   font-size: 17.6px;
+  /* -webkit-text-fill-color:transparent; */
+  -webkit-text-stroke:0.5px;
+  
   
 }
 nav li:first-child{
   margin-right: auto;
+  letter-spacing: 5px;
+  font-family: 'Speeling-night', sans-serif;
+  pointer-events: none;
+}
+nav li:first-child a:hover {
+  background-color: initial;
+  font-size: initial;
+  -webkit-text-stroke: initial;
 }
 .sidebar{
   position: fixed;
@@ -39,7 +51,7 @@ nav li:first-child{
   height: 100vh;
   width: 250px;
   background-color: rgba(255, 255, 255, 0.10);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(10px);
   box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
   list-style: none;
   display: none;
@@ -49,6 +61,7 @@ nav li:first-child{
 }
 .sidebar li{
   width: 100%;
+  -webkit-text-stroke:0.5px;
 }
 .sidebar a{
   width: 100%;
