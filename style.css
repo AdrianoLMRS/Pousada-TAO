@@ -18,18 +18,19 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   min-height: 100vh;
-  background-size: 150%, 150%;
-  /* background-image: 
-    linear-gradient(45deg, #7b658b, #debb47); */
+  line-height: 1.5;
+  background-size: 150% auto;
+  background-image: 
+    linear-gradient(315deg, #7b658b, #debb47);
   animation: color-back 7s ease-in-out infinite;
   background-repeat: no-repeat;
-  background-image: url(img/gradiente3.fw.png);
+  /* background-image: url(img/gradiente3.fw.png); */
   background-position: center;
-  background-color: #c4e5ed;
 }
   
 @keyframes color-back {
@@ -42,9 +43,6 @@ body {
   100% {
     background-position: 50% 0%;
   }
-  /* 100% {
-    background-position: 50% 0%;
-  } */
 }
 
 
@@ -55,7 +53,7 @@ body {
   background-color: white;
   color: black;
   display: flex;
-  justify-content: center;  /* Centraliza o texto horizontalmente */
-  align-items: center;      /* Centraliza o texto verticalmente */
-  border: 1px solid #ccc;   /* Adiciona uma borda para visualização */
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc; 
 }
