@@ -24,36 +24,57 @@
 body {
   min-height: 100vh;
   line-height: 1.5;
-  background-size: 150% auto;
-  background-image: 
-    linear-gradient(315deg, #7b658b, #debb47);
-  animation: color-back 7s ease-in-out infinite;
-  background-repeat: no-repeat;
-  /* background-image: url(img/gradiente3.fw.png); */
-  background-position: center;
+  position: relative;
+  z-index: -1;
+  /* overflow: auto; */
+  /* background-image: url(img/gradiente3.fw.png);  */
+}
+.body-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: cover;
+  background-image: linear-gradient(315deg, #7b658b, #debb47);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  animation: color-back 20s ease-in-out infinite;
+  z-index: -5;
 }
   
 @keyframes color-back {
   0% {
     background-position: 50% 100%;
   }
-  50%{
+  25% {
     background-position: 100% 50%;
   }
-  100% {
+  50% {
     background-position: 50% 0%;
+  }
+  75% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 50% 100%;
   }
 }
 
+.content {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* color: white; */
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2; 
+}
 
 
 .box-branca {
   width: 500px;
   height: 500px;
-  background-color: white;
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #ccc; 
+  opacity: 0;
 }

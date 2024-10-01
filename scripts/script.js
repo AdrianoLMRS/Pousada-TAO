@@ -24,7 +24,7 @@ function loadFile(file_name, element_id) {
 
 // Chama a função para carregar a navbar no elemento <nav> com id="navbar"
 document.addEventListener('DOMContentLoaded', function() {
-  loadFile('navbar.html', 'navbar');
-  loadFile('footer.html', 'footer');
-  loadFile('main.hmtl', 'main')
+  loadFile('sections/navbar.html', 'navbar');
+  loadFile('sections/footer.html', 'footer');
+  loadFile('sections/main.html', 'main')
 });

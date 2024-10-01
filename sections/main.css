@@ -1,0 +1,93 @@
+.ba-img {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh; 
+  /* background-image: url(../img/Pousada/fachada-da-pousada.png); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: -1; 
+  animation: ba-change 65s linear infinite;
+}
+@keyframes ba-change {
+  0% { background-image: url(../img/Pousada/fachada-da-pousada.png); }
+  10% { background-image: url(../img/Pousada/fachada-da-pousada.png); }
+  20% { background-image: url(../img/Pousada/6617f1302729d_7salaconjugada940x788.png); }
+  30% { background-image: url(../img/Pousada/6617f1302729d_7salaconjugada940x788.png); }
+  40% { background-image: url(../img/Pousada/6617f251dd019_2fachadalocao.jpg); }
+  50% { background-image: url(../img/Pousada/6617f251dd019_2fachadalocao.jpg); }
+  60% { background-image: url(../img/Pousada/6617f180b79ab_16banheiro2940x788.png); }
+  70% { background-image: url(../img/Pousada/6617f180b79ab_16banheiro2940x788.png); }
+  80% { background-image: url(../img/Pousada/6617f1be33c11_12quarto1940x788.png); }
+  90% { background-image: url(../img/Pousada/6617f1be33c11_12quarto1940x788.png); }
+  100% { background-image: url(../img/Pousada/fachada-da-pousada.png); }
+}
+
+
+.overlay {
+  /* Não sei pq mas só funfa assim ... Arrumar depois */
+}
+
+.overlay {
+  
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay h1{
+  margin: 0;
+  font-size: 3.5rem;
+  margin-bottom: 0px;
+  font-family: 'Speeling-night', sans-serif;
+  color: #7dceef;
+  animation: float 10s ease-in-out infinite;
+}
+
+.overlay h1 span{
+  color: #debc47;
+  padding-left: 10px;
+}
+
+.overlay p{
+  font-weight: bolder;
+  color: #107d9a;
+  margin-top: 1.5rem; /* Espaço entre o h1 e o p */
+  font-size: 1rem; /* Tamanho do parágrafo */
+  font-family: 'Caviar-Dreams', sans-serif;
+  text-shadow: 
+        1px 1px 0 black, /* Sombra à direita e abaixo */
+        -1px -1px 0 black, /* Sombra à esquerda e acima */
+        1px -1px 0 black, /* Sombra à direita e acima */
+        -1px 1px 0 black; /* Sombra à esquerda e abaixo */
+}
+
+.overlay button {
+  margin-top: 1.5rem; /* Espaço entre o parágrafo e o botão */
+
+  opacity: 1;
+  z-index: 2;
+  cursor: pointer;
+};
+.btn {  font-family: Arial, Helvetica, sans-serif;  text-transform: uppercase;}  .btn:hover .btn-slide-show-text1 {  margin-left: 65px;}  .btn-layered-3d > ::before {  box-sizing: border-box;}  .btn-layered-3d {  width: 180px;  position: relative;  display: inline-block;  cursor: pointer;  outline: none;  border: 0px;  vertical-align: middle;  text-decoration: none;  font-size: inherit;  font-family: inherit;  font-weight: 600;  text-transform: uppercase;  padding: 1.15em 2em;  border-radius: 0.75em;  transform-style: preserve-3d;  transition: transform 0.15s ease-out, background 0.15s ease-out;}  .btn-layered-3d::before {  position: absolute;  content: "";  width: 100%;  height: 100%;  inset: 0px;  border-radius: inherit;  transform: translate3d(0px, 0.75em, -1em);  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;}  .btn-layered-3d:hover {  transform: translateY(0.25em);}  .btn-layered-3d:hover::before {  transform: translate3d(0px, 0.5em, -1em);}  .btn-layered-3d--purple {  color: rgb(62, 53, 141);  background: rgb(213, 211, 238);  border: 2px solid rgb(62, 53, 141);}  .btn-layered-3d--purple::before {  background: rgb(144, 137, 210);  box-shadow: rgb(62, 53, 141) 0px 0px 0px 2px;}   
+
+@keyframes float {
+  0% {
+      transform: translateY(0); /* Posição inicial */
+  }
+  50% {
+      transform: translateY(-10px); /* Move para cima */
+  }
+  100% {
+      transform: translateY(0); /* Volta para a posição inicial */
+  }
+}

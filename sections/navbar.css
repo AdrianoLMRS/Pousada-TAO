@@ -2,6 +2,7 @@ nav{
   background-color: #7b658b;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
   font-family: 'Caviar-Dreams', sans-serif;
+  z-index: 1;
 }
 nav ul{
   width: 100%;

@@ -1,5 +1,6 @@
 footer{
 	background-color:transparent;
+	z-index: 1;
 }
 .footerContainer{
 	width: 100%;
