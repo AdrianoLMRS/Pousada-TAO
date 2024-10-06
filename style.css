@@ -14,32 +14,45 @@
   font-weight: normal;
   font-style: normal;
 }
-
-* {
+html, body{
+  height: 100%;        
+  margin: 0;
+  scroll-behavior: smooth;
+}
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  list-style-type: none;
+}
+:root {
+
 }
 
 body {
   min-height: 100vh;
-  line-height: 1.5;
+  flex-direction: column;
+  /* line-height: 1.5; */
   position: relative;
   z-index: -1;
-  /* overflow: auto; */
-  /* background-image: url(img/gradiente3.fw.png);  */
+  /* user-select: none; */
+  display: flex
 }
 .body-img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  height: auto;
+  backdrop-filter: blur(10px);
   height: cover;
   background-image: linear-gradient(315deg, #7b658b, #debb47);
   background-size: 200% 200%;
   background-position: 0% 50%;
   animation: color-back 20s ease-in-out infinite;
-  z-index: -5;
+  z-index: -50;
 }
   
 @keyframes color-back {
@@ -70,11 +83,16 @@ body {
   flex-direction: column;
   align-items: center;
   z-index: 2; 
+  flex: 1;
 }
 
+.hide{
+  display: none;
+  opacity: 0;
+}
 
 .box-branca {
-  width: 500px;
-  height: 500px;
+  width: 1000px;
+  height: 1500px;
   opacity: 0;
 }

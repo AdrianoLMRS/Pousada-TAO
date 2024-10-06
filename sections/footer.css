@@ -1,6 +1,8 @@
 footer{
+	margin-top: auto;
 	background-color:transparent;
 	z-index: 1;
+	
 }
 .footerContainer{
 	width: 100%;
