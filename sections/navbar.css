@@ -26,12 +26,11 @@ nav a{
   
 }
 nav a:hover{
-  background-color: #9b6bbe;
+  background-color: #7b658b;
+  color: #debc47;
   font-size: 17.6px;
   /* -webkit-text-fill-color:transparent; */
   -webkit-text-stroke:0.5px;
-  
-  
 }
 .desktop li:first-child{
   margin-right: auto;
@@ -49,13 +48,14 @@ nav a:hover{
   height: 100vh;
   width: 250px;
   background-color: rgba(255, 255, 255, 0.10);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
   box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
   list-style: none;
   display: none;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  z-index: 10;
 }
 .sidebar li{
   width: 100%;
