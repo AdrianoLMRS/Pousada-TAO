@@ -18,7 +18,10 @@ html, body{
   height: 100%;        
   margin: 0;
   scroll-behavior: smooth;
+<<<<<<< HEAD
   overflow-x: hidden;
+=======
+>>>>>>> 1c0b75138998ec00f3e39be193fc8e3ed034ef98
 }
 *,
 *::before,
