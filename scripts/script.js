@@ -1,109 +1,149 @@
-document.addEventListener('DOMContentLoaded', function() {
-  var slider = tns({
-      container: '.my-slider',
-      items: 1,
-      gutter: 10,
-      mode: 'gallery',
-      slideBy: "page",
-      mouseDrag: true,
-      viewportMax: true,
-      speed: 400,
-      autoplay: true,
-      autoplayTimeout: 4500,
-      controlsText: ["&#10094;", "&#10095"],
-      controlsPosition: 'bottom',
-      nav: false,
-      center: true,
-  });
-
-  // Função para centralizar as imagens
-  function centerImages() {
-      const items = document.querySelectorAll('.item img');
-      items.forEach(img => {
-          // Ajusta a imagem para preencher o espaço disponível sem esticar
-          img.style.maxWidth = '100%';
-          img.style.maxHeight = '100%';
-          img.style.objectFit = 'contain'; // Para manter a proporção
-          img.style.display = 'block'; // Para evitar espaços em branco abaixo da imagem
-          img.style.margin = 'auto'; // Para centralizar a imagem
-      });
-  }
-
-  // Chama a função ao carregar e ao redimensionar a janela
-  centerImages();
-  window.addEventListener('resize', centerImages);
-});
-
-
 document.addEventListener('DOMContentLoaded', () => {
-  // Seleciona o innerchild
-const innerChild = document.querySelector('.item');
-// Seleciona o elemento que deseja ajustar
-const cont = document.querySelector('.controls');
-
-// Pega o valor do 'top' do innerchild
-const innerChildStyle = getComputedStyle(innerChild);
-const innerChildTop = parseInt(innerChildStyle.top, 10);
-
-// Ajusta o 'top' do outerElement
-cont.style.top = `${innerChildTop - 1000}px`;
-
+  initializeSlider();
+  adjustControlsPosition();
+  hideFirstButton();
+  window.addEventListener('scroll', scrollHide);
+  loadSections();
+  moveDivToEndAfterDelay();
+  addTitleToElement('.tns-controls button[data-controls="prev"]', 'Anterior')
+  addTitleToElement('.tns-controls button[data-controls="next"]', 'Próximo')
+  addTooltipWithDelay('about-button', '2000')
 });
-document.addEventListener('DOMContentLoaded', function() {
-  // Seleciona o primeiro botão dentro do contêiner #tns1-ow
-  var firstButton = document.querySelector('#tns1-ow button:first-child');
-  
-  // Verifica se o botão foi encontrado e aplica o estilo display: none
-  if (firstButton) {
-    firstButton.style.display = 'none';
+
+// Função para adicionar um título a um elemento pelo seletor
+function addTitleToElement(selector, titleText) {
+  // Obtém o elemento usando um seletor CSS
+  const element = document.querySelector(selector);
+
+  // Verifica se o elemento existe
+  if (element) {
+    // Adiciona o atributo title com o texto fornecido
+    element.title = titleText;
+    console.log(`Título adicionado ao elemento com seletor "${selector}": "${titleText}"`);
+  } else {
+    console.error(`Elemento com seletor "${selector}" não encontrado.`);
   }
-});
-
-
-function jquery(){
-  $(document).ready(function() {
-    console.log("jQuery está funcionando!");
-});
 }
-function isMobile() {
-  return /Mobi|Android/i.test(navigator.userAgent);
-}
-function scrollHide() {
-  window.addEventListener('scroll', function() {
-      if (isMobile()) {
-          hideSidebar();
-      
-      }
+
+function addTooltipWithDelay(elementId, delay) {
+  const button = document.getElementById(elementId);
+
+  if (!button) {
+    console.error(`Elemento com ID "${elementId}" não encontrado.`);
+    return;
+  }
+
+  let tooltipTimeout;
+
+  // Define o texto do tooltip
+  button.setAttribute('data-tooltip', elementId === 'prevButton' ? 'Anterior' : 'Próximo');
+
+  button.addEventListener('mouseenter', () => {
+    tooltipTimeout = setTimeout(() => {
+      button.classList.add('show-tooltip'); // Adiciona a classe para mostrar o tooltip
+    }, delay); // Usa o tempo de delay fornecido
+  });
+
+  button.addEventListener('mouseleave', () => {
+    clearTimeout(tooltipTimeout); // Limpa o timeout se o mouse sair
+    button.classList.remove('show-tooltip'); // Remove a classe para esconder o tooltip
   });
 }
-function showSidebar(){
-  const sidebar = document.querySelector('.sidebar')
-  sidebar.style.display = 'flex'
-}
-function hideSidebar(){
-  const sidebar = document.querySelector('.sidebar')
-  sidebar.style.display = 'none'
+
+// Initialize slider
+function initializeSlider() {
+  console.log('criando slider');
+  slider = tns({
+    container: '.my-slider',
+    items: 1,
+    mode: 'gallery',
+    axis: 'vertical',
+    slideBy: "page",
+    arrowKeys: true,
+    viewportMax: true,
+    speed: 800,
+    autoplay: true,
+    autoplayTimeout: 4500,
+    controlsText: ["&#10094;", "&#10095"],
+    controlsPosition: 'bottom',
+    nav: false,
+    center: true,
+  });
 }
 
-// Função para carregar conteúdo de outro arquivo HTML
+// Adjust controls position
+function adjustControlsPosition() {
+  const controls = document.querySelector('.controls');
+  const innerChild = document.querySelector('.item');
+
+  if (controls && innerChild) {
+    const innerChildTop = parseInt(getComputedStyle(innerChild).top, 10);
+    controls.style.top = `${innerChildTop - 1000}px`;
+  }
+}
+
+// Hide the first button of the container
+function hideFirstButton() {
+  const firstButton = document.querySelector('#tns1-ow button:first-child');
+  if (firstButton) firstButton.style.display = 'none';
+}
+
+// Detect mobile devices
+const isMobile = () => /Mobi|Android/i.test(navigator.userAgent);
+
+// Hide sidebar on scroll
+const sidebar = document.querySelector('.sidebar');
+const hideSidebar = () => {
+  if (sidebar) {
+    sidebar.style.display = 'none';
+  }
+};
+
+const scrollHide = () => {
+  if (isMobile()) hideSidebar();
+};
+
+// Load content from another HTML file
 function loadFile(file_name, element_id) {
-  fetch(file_name)  // Carrega o arquivo HTML
+  fetch(file_name)
     .then(response => {
-      if (!response.ok) {
-        throw new Error('Erro ao carregar o arquivo: ' + response.statusText);
-      }
-      return response.text(); // Converte o conteúdo em texto
+      if (!response.ok) throw new Error('Erro ao carregar o arquivo: ' + response.statusText);
+      return response.text();
     })
     .then(data => {
-      document.getElementById(element_id).innerHTML = data; // Insere o conteúdo na tag específica
+      const element = document.getElementById(element_id);
+      if (element) {
+        element.innerHTML = data;
+      }
     })
     .catch(error => console.error('Erro ao carregar arquivo:', error));
 }
 
-// Chama a função para carregar a navbar no elemento <nav> com id="navbar"
-document.addEventListener('DOMContentLoaded', function() {
-  scrollHide();
-  loadFile('sections/navbar.html', 'navbar');
-  loadFile('sections/footer.html', 'footer');
-  loadFile('sections/main.html', 'main')
-});
+// Load sections
+function loadSections() {
+  ['navbar', 'footer', 'main'].forEach(section => loadFile(`sections/${section}.html`, section));
+}
+
+// Move a div to the end of another div
+function moveDivToEnd(sourceDivId, targetDivId) {
+  const sourceDiv = document.getElementById(sourceDivId);
+  const targetDiv = document.getElementById(targetDivId);
+
+  console.log("sourceDiv:", sourceDiv);
+  console.log("targetDiv:", targetDiv);
+
+  if (sourceDiv && targetDiv) {
+    targetDiv.appendChild(sourceDiv);
+    console.log("Div movido com sucesso!");
+  } else {
+    console.error('Um ou ambos os divs não foram encontrados.');
+  }
+}
+
+// Move div after delay
+function moveDivToEndAfterDelay() {
+  console.log("DOM totalmente carregado!");
+  setTimeout(() => {
+    moveDivToEnd('tns1-ow', 'sobre-container');
+  }, 1000);
+}

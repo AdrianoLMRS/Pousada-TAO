@@ -1,28 +1,39 @@
 @font-face {
   font-family: 'Speeling-night';
-  src: url('fonts/Spelling_Night/SpellingNight.woff2') format('woff2'),
-       url('fonts/Spelling_Night/SpellingNight.woff') format('woff'),
+ src: /* url('fonts/Spelling_Night/SpellingNight.woff2') format('woff2'), */
+       /* url('fonts/Spelling_Night/SpellingNight.woff') format('woff'), */
        url('fonts/Spelling_Night/SpellingNight.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Caviar-Dreams';
-  src: url('fonts/caviar_dreams/CaviarDreams.woff2') format('woff2'),
-       url('fonts/caviar_dreams/CaviarDreams.woff') format('woff'),
+  src: /* url('fonts/Spelling_Night/CaviarDreams.woff2') format('woff2'), */
+  /* url('fonts/Spelling_Night/CaviarDreams.woff') format('woff'), */
        url('fonts/caviar_dreams/CaviarDreams.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
-html, body{
-  height: 100%;        
+
+/** Paleta de cores nova **/
+
+:root {
+  --cor-azul-escuro: #107d9a;
+  --cor-azul-claro: #7dceef;
+  --cor-branco: #c4e5ed;
+  --cor-roxo: #7b658b;
+  --cor-lilas: #deb6fb;
+  --cor-laranja: #debc47;
+}
+
+html, body {
+  height: 100%;
   margin: 0;
   scroll-behavior: smooth;
-<<<<<<< HEAD
   overflow-x: hidden;
-=======
->>>>>>> 1c0b75138998ec00f3e39be193fc8e3ed034ef98
 }
+
 *,
 *::before,
 *::after {
@@ -31,19 +42,15 @@ html, body{
   box-sizing: border-box;
   list-style-type: none;
 }
-:root {
-
-}
 
 body {
   min-height: 100vh;
+  display: flex;
   flex-direction: column;
-  /* line-height: 1.5; */
   position: relative;
   z-index: -1;
-  /* user-select: none; */
-  display: flex
 }
+
 .body-img {
   position: absolute;
   top: 0;
@@ -51,46 +58,33 @@ body {
   width: 100%;
   height: auto;
   backdrop-filter: blur(10px);
-  height: cover;
   background-image: linear-gradient(315deg, #7b658b, #debb47);
   background-size: 200% 200%;
   background-position: 0% 50%;
   animation: color-back 20s ease-in-out infinite;
   z-index: -50;
 }
-  
+
 @keyframes color-back {
-  0% {
-    background-position: 50% 100%;
-  }
-  25% {
-    background-position: 100% 50%;
-  }
-  50% {
-    background-position: 50% 0%;
-  }
-  75% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 50% 100%;
-  }
+  0% { background-position: 50% 100%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 50% 0%; }
+  75% { background-position: 0% 50%; }
+  100% { background-position: 50% 100%; }
 }
 
 .content {
   position: relative;
   width: 100%;
   height: 100vh;
-  /* color: white; */
-  justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 2; 
-  flex: 1;
+  justify-content: center;
+  z-index: 2;
 }
 
-.hide{
+.hide {
   display: none;
   opacity: 0;
 }

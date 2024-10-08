@@ -1,90 +1,194 @@
 .sobre {
   position: relative;
   width: 100%;
-  height: 100dvh;
-  max-height: 100dvh;
-  background-image: linear-gradient(315deg, #c4e5ed, #107d9a);
+  height: 100vh; 
+  background-image: linear-gradient(315deg, var(--cor-branco), var(--cor-roxo));
   animation: color-back 10s ease-in-out infinite;
   background-size: 150% 200%;
   backdrop-filter: blur(10px);
   display: flex;
-  align-items: center; 
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
-.sobre section {
+.sobre h1 {
+  font-size: 5vw;
+  margin-bottom: 15%;
+  font-family: 'Speeling-Night', sans-serif;
+}
+
+.sobre p {
+  font-size: 2.8vw;
+  margin-bottom: 10%;
+  font-family: 'Caviar Dreams', sans-serif;
+}
+
+.sobre section,
+.sobre-container {
   width: 45%;
-  max-height: 100dvh;
-  overflow: hidden;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   text-align: left;
 }
 
-.sobre h1{
-  font-size: 3rem;
+.sobre-container {
+  height: 85vh;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 2%;
 }
 
-.sobre p{
-  font-size: 1.5rem;
-}
-.container{
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+  .sobre {
+    flex-direction: column; 
+    justify-content: center;
+    height: 220vh;
+  }
 
+  .sobre section,
+  .sobre-container {
+    width: 90%; 
+    margin: 0 auto 30%;
+  }
+
+  .tns-outer {
+    margin-bottom: 35%;
+  }
+
+  .sobre section {
+    margin-top: 50%;
+  }
+
+  .sobre h1 {
+    font-size: 8.5vw; 
+    text-align: center;
+  }
+
+  .sobre p {
+    font-size: 6vw; 
+    text-align: center;
+  }
+  .item{
+    min-width: 75vh;
+  }
 }
+
+@media (max-width: 520px) {
+  .sobre {
+    flex-direction: column; 
+    justify-content: center;
+    height: 220vh;
+  }
+
+  .sobre section,
+  .sobre-container {
+    width: 80%; 
+    margin: 0 auto 30%;
+  }
+
+  .tns-outer {
+    margin-bottom: 15%;
+  }
+
+  .sobre section {
+    margin-top: 50%;
+  }
+
+  .sobre h1 {
+    font-size: 9vw; 
+    text-align: center;
+  }
+
+  .sobre p {
+    font-size: 7.5vw; 
+    text-align: center;
+  }
+  .item{
+    min-width: 60vh;
+    margin-top: -8%;
+  }
+  .tns-controls{
+    margin-top: 15%;
+  }
+}
+
+@media (max-width: 415px) {
+  .item{
+    min-width: 50vh;
+    margin-top: -22%;
+  }
+}
+
+@media (max-width: 345px) {
+  .item{
+    min-width: 30vh;
+    margin-top: -35%;
+  }
+}
+
+/** SLIDER **/
 .my-slider {
-  width: 100vw; /* Faz o slider ocupar toda a largura do contêiner pai */
-  height: 100%; /* Faz o slider ocupar toda a altura do contêiner pai */
-  margin: 0 auto; /* Centraliza o slider na página */
-  display: flex; /* Usando flexbox para manipulação de layout */
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
+  margin-bottom: 10%;
+  width: 100%; 
+  height: 100%; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
 }
 
 #tns1-iw {
-  display: flex; /* Usando flexbox para manipulação de layout */
-  justify-content: space-between; /* Distribui os itens uniformemente */
-  align-items: center; /* Centraliza verticalmente */
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
   width: 100%;
-  height: 45vh; /* Define uma altura fixa para o contêiner */
-  overflow: hidden; /* Esconde partes da imagem que ultrapassam o contêiner */
+  height: 45vh; 
+  margin-top: 40%;
 }
 
 .item {
-  flex: 0 0 33%; /* Cada item ocupa 33% da largura do contêiner (ajuste conforme necessário) */
-  height: 100%; /* Faz o item ocupar toda a altura do contêiner pai */
-  display: flex; /* Usando flexbox para manipulação de layout */
-  justify-content: center; /* Centraliza a imagem horizontalmente */
-  align-items: center; /* Centraliza a imagem verticalmente */
+  max-width: 80vh; 
+  width: 100%; 
+  height: 100%; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  position: relative; 
 }
 
 .item img {
-  max-width: 100%; /* Faz a imagem ocupar a largura máxima do item sem esticar */
-  max-height: 100%; /* Faz a imagem ocupar a altura máxima do item sem esticar */
-  object-fit: contain; /* Mantém a proporção da imagem sem cortá-la */
+  margin-top: -22%;
+  width: 100%; 
+  height: 65vh; 
+  object-fit: cover; 
+  aspect-ratio: 1 / 1; 
+  border-radius: 10%; 
 }
 
-/* Outros estilos permanecem os mesmos */
 .tns-outer {
-  overflow: hidden; /* Esconde qualquer parte da imagem que ultrapasse o contêiner */
+  overflow: visible;
 }
 
 .tns-controls {
   position: relative;
   display: flex;
-  gap: 200px;
-  justify-content: center; /* Distribui os botões nos lados */
-  z-index: 10; /* Coloca os botões acima das imagens */
+  gap: 200px; 
+  justify-content: center; 
+  z-index: 10; 
 }
 
 .tns-controls button {
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
+  background-color: transparent; 
+  border: none; 
   padding: 20px;
   cursor: pointer;
-  font-size: 20px; /* Tamanho do ícone */
-  transition: transform 0.4s; /* Transição suave para o fundo */
+  font-size: 20px; 
+  transition: transform 0.4s; 
 }
 
 .tns-controls button:hover {
-  transform: scale(1.5);
+  transform: scale(1.5); 
 }
-
