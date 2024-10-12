@@ -15,7 +15,8 @@
     <!-- tiny slider -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
 </head>
-<body>
+<body id="body">
+    
     <div class="body-img">
         <nav id="navbar"></nav>
 
@@ -28,7 +29,6 @@
         </div>
 
         <!-- Slider -->
-        <div class="container">
           <div class="my-slider">
             <div class="item">
                 <img src="img/Pousada/6617f1490e017_8cozinhaconjugada940x788.png" alt="Cozinha Conjugada" />
@@ -40,7 +40,6 @@
                 <img src="img/Pousada/6617f20f5b52f_13quartotriplo940x788.png" alt="Mais um Item" />
             </div>
           </div>
-        <div>
 
         <footer id="footer"></footer>
     </div>
@@ -48,6 +47,37 @@
 <!-- *SCRIPTS* -->
 <script src="scripts/script.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
+<!-- <script>document.addEventListener('DOMContentLoaded', function () {
+    const stickyElement = document.querySelector('.logo');
+    const container = stickyElement.parentElement; // O pai direto da logo
+    const containerHeight = container.offsetHeight; // Altura do contêiner
+    const stickyElementHeight = stickyElement.offsetHeight; // Altura do elemento logo
+
+    // Função para ajustar a posição da logo
+    function adjustLogoPosition() {
+        const scrollY = window.scrollY; // Posição do scroll vertical
+        const containerRect = container.getBoundingClientRect(); // Obtém a posição do contêiner
+
+        // Verifica se a logo está no contêiner e calcula a nova posição
+        if (scrollY > containerRect.top && scrollY < containerRect.bottom - stickyElementHeight) {
+            stickyElement.style.position = 'fixed';
+            stickyElement.style.top = `${(containerHeight - stickyElementHeight) / 2}px`; // Centraliza a logo verticalmente
+        } else if (scrollY < containerRect.top) {
+            stickyElement.style.position = 'absolute';
+            stickyElement.style.top = '0'; // Para o topo do contêiner
+        } else {
+            stickyElement.style.position = 'absolute';
+            stickyElement.style.bottom = '0'; // Para o fundo do contêiner
+        }
+    }
+
+    // Chama a função ao rolar a página
+    window.addEventListener('scroll', adjustLogoPosition);
+    adjustLogoPosition(); // Chama a função uma vez no carregamento
+});
+
+
+</script> -->
 
 </body>
 </html>

@@ -7,8 +7,37 @@ document.addEventListener('DOMContentLoaded', () => {
   moveDivToEndAfterDelay();
   addTitleToElement('.tns-controls button[data-controls="prev"]', 'Anterior')
   addTitleToElement('.tns-controls button[data-controls="next"]', 'Próximo')
-  addTooltipWithDelay('about-button', '2000')
+  applyBorderToImagesInDivs('.item img');
+  scrollAction(() => setOpacity(1, '.sobre h1', '.sobre p', '.sobre-container'), 350);
+  scrollAction(() => setOpacity(0, '.container-logo'), 2000);
 });
+
+
+function abc() { container_logo = document.querySelector('.container-logo') }
+
+function scrollAction(f, n) {
+  const body = document.getElementById('body'); // Referência ao elemento body
+  const onScroll = () => {
+    if (body.scrollTop > n) {
+      f();
+      body.removeEventListener('scroll', onScroll);
+      console.log(`função "${f}" feita com sucesso`)
+    }
+  };
+
+  body.addEventListener('scroll', onScroll); // Adiciona o listener
+}
+
+function setOpacity(opacityValue, ...selectors) {
+  // Itera sobre cada seletor fornecido
+  selectors.forEach(selector => {
+      const elements = document.querySelectorAll(selector); // Seleciona todos os elementos que correspondem ao seletor
+
+      elements.forEach(element => {
+          element.style.opacity = opacityValue; // Define a opacidade do elemento
+      });
+  });
+}
 
 // Função para adicionar um título a um elemento pelo seletor
 function addTitleToElement(selector, titleText) {
@@ -25,30 +54,17 @@ function addTitleToElement(selector, titleText) {
   }
 }
 
-function addTooltipWithDelay(elementId, delay) {
-  const button = document.getElementById(elementId);
+function applyBorderToImagesInDivs(div) {
+  // Seleciona todas as divs com a classe 'item' e as imagens dentro delas
+  const images = document.querySelectorAll(div);
 
-  if (!button) {
-    console.error(`Elemento com ID "${elementId}" não encontrado.`);
-    return;
-  }
-
-  let tooltipTimeout;
-
-  // Define o texto do tooltip
-  button.setAttribute('data-tooltip', elementId === 'prevButton' ? 'Anterior' : 'Próximo');
-
-  button.addEventListener('mouseenter', () => {
-    tooltipTimeout = setTimeout(() => {
-      button.classList.add('show-tooltip'); // Adiciona a classe para mostrar o tooltip
-    }, delay); // Usa o tempo de delay fornecido
-  });
-
-  button.addEventListener('mouseleave', () => {
-    clearTimeout(tooltipTimeout); // Limpa o timeout se o mouse sair
-    button.classList.remove('show-tooltip'); // Remove a classe para esconder o tooltip
+  // Itera sobre todas as imagens e aplica uma borda ou qualquer outro estilo
+  images.forEach(image => {
+    image.style.border = '4px solid white'; // Aqui você pode modificar a borda ou aplicar outras estilizações
   });
 }
+
+
 
 // Initialize slider
 function initializeSlider() {
