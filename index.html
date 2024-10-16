@@ -15,69 +15,130 @@
     <!-- tiny slider -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
 </head>
-<body id="body">
+<body id="body" style="min-height: 1000vh;">
+    <div class="content" style="min-height: 1000vh;">
     
-    <div class="body-img">
-        <nav id="navbar"></nav>
+        <nav id="navbar">
+            <ul class="sidebar">
+                <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#pousada">Pousada</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#loc">Localização</a></li>
+                <li><a href="#contato">Contato</a></li>
+                <li><a href="#politicas">Políticas</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+              </ul>
+              
+              <ul class="desktop">
+                <li><a href="#">Nome da Pousada</a></li>
+                <li class="hideOnMobile"><a href="#home">Home</a></li>
+                <li class="hideOnMobile"><a href="#pousada">Pousada</a></li>
+                <li class="hideOnMobile"><a href="#sobre">Sobre</a></li>
+                <li class="hideOnMobile"><a href="#loc">Localização</a></li>
+                <li class="hideOnMobile"><a href="#contato">Contato</a></li>
+                <li class="hideOnMobile"><a href="#politicas">Políticas</a></li>
+                <li class="hideOnMobile"><a href="#depoimentos">Depoimentos</a></li>
+                <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
+              </ul>
+        </nav>
+    
 
-        <div class="content">
-            <main id="main"></main>
-        </div>
-
-        <div class="box-branca">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi cum quas nisi? Iure magnam ut officia, officiis praesentium fugit qui animi aliquam voluptates? Libero necessitatibus, voluptate officiis blanditiis fugit vel.
-        </div>
+        <main id="main">
+            
+                <div class="ba-img" id="ba-img">
+                
+                    <!-- Background Image-slider -->
+                    <div class="overlay">
+                
+                    <h1>Nome&nbsp;&nbsp;&nbsp;&nbsp;<span>Pousada</span></h1>
+                    <p> Esse será um texto descritivo sobre a pousada ou hostel </p>
+                    <button id="about-button" title="Pressione" onclick="jquery()" class="btn btn-layered-3d btn-layered-3d--purple">Saiba mais</button>
+                
+                    </div>
+                
+                </div>
+                
+                <div class="sobre" id="sobre">
+                
+                    <section>
+                    <h1>&nbsp;&nbsp;Nome&nbsp;&nbsp;&nbsp;Da&nbsp;&nbsp;&nbsp;Pousada</h1>
+                    <br>
+                    <p>
+                        <strong>IA: </strong>A <strong>Nome Da Pousada</strong>, em Campos do Jordão, oferece conforto e charme em um ambiente acolhedor.<br>    
+                        Com arquitetura típica e decoração cuidadosa, é o refúgio perfeito para relaxar e aproveitar a natureza.<br>    
+                        Ideal para casais e famílias, com café da manhã caseiro e uma estadia inesquecível!
+                    </p>
+                    </section>
+                    <div id="sobre-container" class="sobre-container"></div>
+                </div>                 
+        </main>
 
         <!-- Slider -->
-          <div class="my-slider">
+        <div class="my-slider">
             <div class="item">
-                <img src="img/Pousada/6617f1490e017_8cozinhaconjugada940x788.png" alt="Cozinha Conjugada" />
+                <img src="img/Pousada/6617f1490e017_8cozinhaconjugada940x788.png" alt="Cozinha conjugada" />
             </div>
             <div class="item">
-                <img src="img/Pousada/6617f251dd019_2fachadalocao.jpg" alt="Descrição do Outro Item" />
+                <img src="img/Pousada/6617f251dd019_2fachadalocao.jpg" alt="Fachada" />
             </div>
             <div class="item">
-                <img src="img/Pousada/6617f20f5b52f_13quartotriplo940x788.png" alt="Mais um Item" />
+                <img src="img/Pousada/6617f20f5b52f_13quartotriplo940x788.png" alt="Quarto triplo" />
             </div>
-          </div>
+        </div>
 
-        <footer id="footer"></footer>
+        
+        <footer>
+            <div class="footerContainer">
+                <div class="socialIcons">
+                    <a href="https://www.facebook.com/" target="_blank" title="https://www.facebook.com/">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank" title="https://www.instagram.com/">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://twitter.com/" target="_blank" title="https://twitter.com/">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a href="https://www.youtube.com/" target="_blank" title="https://www.youtube.com/">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="#contato" target="_blank" title="contato">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>		
+                    <div class="footerNav">
+                            <ul><li><a href="#home">Home</a></li>
+                                    <li><a href="#pousada">Pousada</a></li>
+                                    <li><a href="#sobre">Sobre</a></li>
+                                    <li><a href="#depoimentos">Depoimentos</a></li>
+                                    <li><a href="#contato">Contato</a></li>
+                                    <li><a href="#politicas">Políticas</a></li>
+                            </ul>
+                    </div>
+                    
+            </div>
+            <div class="footerBottom">
+                    <p>Copyright &copy;2024; Designed by <span class="designer">Adriano</span></p>
+            </div>
+        </footer>
+        
     </div>
 
 <!-- *SCRIPTS* -->
 <script src="scripts/script.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
-<!-- <script>document.addEventListener('DOMContentLoaded', function () {
-    const stickyElement = document.querySelector('.logo');
-    const container = stickyElement.parentElement; // O pai direto da logo
-    const containerHeight = container.offsetHeight; // Altura do contêiner
-    const stickyElementHeight = stickyElement.offsetHeight; // Altura do elemento logo
-
-    // Função para ajustar a posição da logo
-    function adjustLogoPosition() {
-        const scrollY = window.scrollY; // Posição do scroll vertical
-        const containerRect = container.getBoundingClientRect(); // Obtém a posição do contêiner
-
-        // Verifica se a logo está no contêiner e calcula a nova posição
-        if (scrollY > containerRect.top && scrollY < containerRect.bottom - stickyElementHeight) {
-            stickyElement.style.position = 'fixed';
-            stickyElement.style.top = `${(containerHeight - stickyElementHeight) / 2}px`; // Centraliza a logo verticalmente
-        } else if (scrollY < containerRect.top) {
-            stickyElement.style.position = 'absolute';
-            stickyElement.style.top = '0'; // Para o topo do contêiner
-        } else {
-            stickyElement.style.position = 'absolute';
-            stickyElement.style.bottom = '0'; // Para o fundo do contêiner
-        }
-    }
-
-    // Chama a função ao rolar a página
-    window.addEventListener('scroll', adjustLogoPosition);
-    adjustLogoPosition(); // Chama a função uma vez no carregamento
-});
-
-
-</script> -->
-
+<script>
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("navbar").style.top = "0";
+  } else {
+    document.getElementById("navbar").style.top = "-50px";
+  }
+  prevScrollpos = currentScrollPos;
+}    
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js" defer></script>
 </body>
 </html>

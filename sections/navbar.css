@@ -1,8 +1,12 @@
 nav {
-  background-color: var(--cor-roxo);
+  position: fixed;
+  width: 100%;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
   font-family: 'Caviar-Dreams', sans-serif;
-  z-index: 1;
+  z-index: 9;
+  top: 0;
+  left: auto;
+  transition: top 0.3s ease-in, background-color 0.5s ease-in-out
 }
 
 nav ul {
@@ -11,6 +15,7 @@ nav ul {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  direction: ltr;
 }
 
 nav li {
@@ -29,8 +34,6 @@ nav a {
 }
 
 nav a:hover {
-  background-color: var(--cor-roxo);
-  color: var(--cor-laranja);
   font-size: 17.6px;
   -webkit-text-stroke: 0.5px;
 }
@@ -43,7 +46,7 @@ nav a:hover {
 }
 
 .desktop a {
-  color: var(--cor-laranja);
+  color: var(--cor-azul-claro);
 }
 
 .sidebar {
@@ -51,13 +54,13 @@ nav a:hover {
   top: 0;
   right: 0;
   height: 100vh;
-  width: 250px;
-  background-color: rgba(255, 255, 255, 0.10);
+  width: 100%;
+  background-color: rgba(103, 103, 103, 0.294);
   backdrop-filter: blur(15px);
   box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
   display: none;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   z-index: 10;
 }
@@ -66,15 +69,21 @@ nav a:hover {
   width: 100%;
   letter-spacing: 3px;
   -webkit-text-stroke: 2px;
+
 }
 
 .sidebar a {
-  color: var(--cor-azul-escuro);
+  color: black;
   width: 100%;
+}
+.sidebar li:first-child{
+  display: block;
+  top: 0;
 }
 
 .menu-button {
   display: none;
+  filter: invert(100%) sepia(100%) saturate(500%) hue-rotate(180deg); 
 }
 
 @media(max-width: 800px) {
@@ -82,12 +91,6 @@ nav a:hover {
     display: none;
   }
   .menu-button {
-    display: block;
-  }
-}
-
-@media(max-width: 400px) {
-  .sidebar {
-    width: 100%;
+    display: flex;
   }
 }

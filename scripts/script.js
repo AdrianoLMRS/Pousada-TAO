@@ -3,30 +3,45 @@ document.addEventListener('DOMContentLoaded', () => {
   adjustControlsPosition();
   hideFirstButton();
   window.addEventListener('scroll', scrollHide);
-  loadSections();
+  // loadSections();
   moveDivToEndAfterDelay();
   addTitleToElement('.tns-controls button[data-controls="prev"]', 'Anterior')
   addTitleToElement('.tns-controls button[data-controls="next"]', 'Próximo')
   applyBorderToImagesInDivs('.item img');
-  scrollAction(() => setOpacity(1, '.sobre h1', '.sobre p', '.sobre-container'), 350);
-  scrollAction(() => setOpacity(0, '.container-logo'), 2000);
+  scrollAction(() => setOpacity(1, '.sobre h1', '.sobre p', '.sobre-container'), 500);
+  scrollActionReverse(() => nav.style.backgroundColor = 'black', () => nav.style.backgroundColor = '', 550);
 });
 
+
+const nav = document.getElementById('navbar');
 
 function abc() { container_logo = document.querySelector('.container-logo') }
 
 function scrollAction(f, n) {
-  const body = document.getElementById('body'); // Referência ao elemento body
   const onScroll = () => {
-    if (body.scrollTop > n) {
+    if (document.documentElement.scrollTop > n) {
       f();
-      body.removeEventListener('scroll', onScroll);
-      console.log(`função "${f}" feita com sucesso`)
+      window.removeEventListener('scroll', onScroll); // Remove o listener ao acionar a função
+      console.log(`Função "${f.name}" executada com sucesso`);
     }
   };
 
-  body.addEventListener('scroll', onScroll); // Adiciona o listener
+  window.addEventListener('scroll', onScroll); // Adiciona o listener no scroll da janela
 }
+
+
+function scrollActionReverse(f, reverseF, n) {
+  const onScroll = () => {
+    if (document.documentElement.scrollTop > n) {
+      f(); // Chama a função original
+    } else {
+      reverseF(); // Chama a função reversa
+    }
+  };
+
+  window.addEventListener('scroll', onScroll); // Listener no scroll da janela
+}
+
 
 function setOpacity(opacityValue, ...selectors) {
   // Itera sobre cada seletor fornecido
@@ -107,13 +122,15 @@ function hideFirstButton() {
 // Detect mobile devices
 const isMobile = () => /Mobi|Android/i.test(navigator.userAgent);
 
-// Hide sidebar on scroll
-const sidebar = document.querySelector('.sidebar');
-const hideSidebar = () => {
-  if (sidebar) {
-    sidebar.style.display = 'none';
-  }
+const showSidebar = () => {
+  document.querySelector('.sidebar').style.display = 'flex'; // ou 'flex', conforme necessário
 };
+
+const hideSidebar = () => {
+  document.querySelector('.sidebar').style.display = 'none';
+};
+
+
 
 const scrollHide = () => {
   if (isMobile()) hideSidebar();
@@ -136,9 +153,9 @@ function loadFile(file_name, element_id) {
 }
 
 // Load sections
-function loadSections() {
-  ['navbar', 'footer', 'main'].forEach(section => loadFile(`sections/${section}.html`, section));
-}
+// function loadSections() {
+//   ['navbar', 'footer', 'main'].forEach(section => loadFile(`sections/${section}.html`, section));
+// }
 
 // Move a div to the end of another div
 function moveDivToEnd(sourceDivId, targetDivId) {
@@ -161,5 +178,5 @@ function moveDivToEndAfterDelay() {
   console.log("DOM totalmente carregado!");
   setTimeout(() => {
     moveDivToEnd('tns1-ow', 'sobre-container');
-  }, 1000);
+  }, 100);
 }

@@ -1,66 +1,3 @@
-.main-div{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding-bottom: 7vh; /* Altere para um valor que funcione para você */
-}
-
-.msg-div {
-  position: relative;
-  width: 100%;
-  height: 300vh;
-  max-height: 200vh;
-}
-
-.msg-div::before, 
-.msg-div::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 7vh; /* Altura da sombra */
-}
-
-.msg-div::before {
-  top: 0; /* Mantém a sombra na parte superior */
-  background: linear-gradient(to bottom, black, var(--cor-azul-claro));
-}
-
-.msg-div::after {
-  bottom: 0; /* Posiciona a sombra na parte inferior */
-  background: linear-gradient(to top, black, var(--cor-azul-claro));
-}
-
-.container-logo {
-  overflow: visible;
-  height: 300vh;  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo {
-  position: sticky !important;
-  position: -webkit-sticky !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60%;
-  height: 60vh;
-  margin-top: -45%;
-  top: 50%; /* Faz com que o topo do elemento logo comece a grudar ao atingir 50% da tela */
-  transform: translateY(-50%); /* Centraliza verticalmente o elemento logo */
-  background-color: pink;
-}
-
-.logo img {
-  height: 10vh;
-  width: auto; /* Mantém a proporção da imagem */
-}
-
-
-
 /** Sobre DIV **/
 .sobre {
 
@@ -74,26 +11,6 @@
   overflow: hidden;
   width: 100%; /* Garante que a seção ocupe toda a largura */
   max-width: 100vw; /* Limita a largura máxima da seção */
-}
-
-
-/* Adicionando sombras com gradiente nas partes superior e inferior */
-.sobre::before, .sobre::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 7vh; /* Altura da sombra */
-}
-
-.sobre::before {
-  top: 0;
-  background: linear-gradient(to top, #b48ed1ac, var(--cor-roxo));
-}
-
-.sobre::after {
-  bottom: 0; /* Posiciona a sombra na parte inferior */
-  background: linear-gradient(to bottom, #b48ed1ac, var(--cor-roxo));
 }
 
 .sobre h1,
@@ -120,7 +37,7 @@
 }
 
 .sobre p strong {
-  color: var(--cor-azul-claro);
+  color: lime;
 }
 
 .sobre section,

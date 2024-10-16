@@ -1,7 +1,10 @@
 footer {
+	position: absolute;
+	width: 100%;
 	margin-top: auto;
 	background-color: transparent;
 	z-index: 1;
+	bottom: 0;
 }
 
 .footerContainer {
