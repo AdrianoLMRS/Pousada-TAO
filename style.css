@@ -49,10 +49,15 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+  /* transform: scale(0.99); */
   max-width: 100vw;
   z-index: -1;
   background-color: var(--cor-azul-claro);
 }
+/* body::-webkit-scrollbar{
+  display: none;
+} */
+
 
 .content {
   position: relative;
@@ -67,8 +72,20 @@ body {
   opacity: 0;
 }
 
+.overlay-full{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999; /* Para garantir que o overlay fique acima de todo o conteúdo */
+  display: none; /* Escondido inicialmente */
+}
+
 .box-branca {
   width: 1000px;
   height: 5000px;
   opacity: 0;
 }
+

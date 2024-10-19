@@ -65,7 +65,7 @@
   .sobre {
     flex-direction: column; 
     justify-content: center;
-    height: 230vh;
+    height: 200vh;
   }
 
   .sobre section,
@@ -93,12 +93,13 @@
   }
   .item{
     min-width: 75vh;
+    margin-top: -45%;
   }
 }
 
 @media (max-width: 520px) {
   .sobre{
-    height: 240vh;
+    height: 220vh;
   }
   .sobre section,
   .sobre-container {
@@ -124,7 +125,7 @@
   }
   .item{
     min-width: 60vh;
-    margin-top: -8%;
+    margin-top: -20%;
   }
   .tns-controls{
     margin-top: 15%;
@@ -133,92 +134,22 @@
 
 @media (max-width: 415px) {
   .sobre{
-    height: 220vh;
+    height: 200vh;
   }
 
   .item{
     min-width: 50vh;
-    margin-top: -22%;
+    margin-top: -40%;
   }
 }
 
 @media (max-width: 345px) {
   .sobre{
-    height: 215vh;
+    height: 185vh;
   }
 
   .item{
     min-width: 30vh;
-    margin-top: -35%;
+    margin-top: -45%;
   }
 }
-
-/** SLIDER **/
-.my-slider {
-  margin-bottom: 10%;
-  width: 100%; 
-  height: 100%; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-}
-
-#tns1-iw {
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
-  width: 100%;
-  height: 45vh; 
-  margin-top: 40%;
-}
-
-.item {
-  max-width: 80vh; 
-  width: 100%; 
-  height: 100%; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  position: relative; 
-  box-shadow: 5vh 10vh 5vh rgba(255, 255, 255, 0.163);
-  border-radius: 10%; 
-  transition: box-shadow 0.3s ease;
-}
-
-.item img {
-  margin-top: -22%;
-  width: 100%; 
-  height: 65vh; 
-  object-fit: cover; 
-  aspect-ratio: 1 / 1; 
-  border-radius: 10%; 
-  
-}
-
-.tns-outer {
-  overflow: visible;
-}
-
-.tns-controls {
-  position: relative;
-  display: flex;
-  gap: 200px; 
-  justify-content: center; 
-  z-index: 10; 
-}
-
-.tns-controls button {
-  background-color: transparent; 
-  border: none; 
-  padding: 20px;
-  cursor: pointer;
-  font-size: 20px; 
-  color: black;
-  transition: transform 0.4s; 
-}
-
-.tns-controls button:hover {
-  transform: scale(1.5); 
-}
-
-
