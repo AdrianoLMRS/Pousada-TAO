@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "react-awesome-button": "^7.0.5",
     "tiny-slider": "^2.9.4"
   }
 }

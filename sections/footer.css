@@ -5,6 +5,7 @@ footer {
 	background-color: transparent;
 	z-index: 1;
 	bottom: 0;
+	overflow: hidden;
 }
 
 .footerContainer {

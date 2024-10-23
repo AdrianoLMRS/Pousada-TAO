@@ -5,13 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', scrollHide);
   moveDivToEndAfterDelay('#tns1-ow', '#sobre-container', 100);
   moveDivToEndAfterDelay('#fullscreen', '.tns-controls', 100);
-  addTitleToElement('.tns-controls button[data-controls="prev"]', 'Anterior')
-  addTitleToElement('.tns-controls button[data-controls="next"]', 'Próximo')
-  addTitleToElement('#fullscreen', 'Tela Cheia')
+  addTitleToElement('.tns-controls button[data-controls="prev"]', 'Anterior');
+  addTitleToElement('.tns-controls button[data-controls="next"]', 'Próximo');
+  addTitleToElement('#fullscreen', 'Tela Cheia');
   applyBorderToImagesInDivs('.item img');
-  scrollAction(() => setOpacity(1, '.sobre h1', '.sobre p', '.sobre-container'), 500);
-  scrollActionReverse(() => nav.style.backgroundColor = 'black', () => nav.style.backgroundColor = '', 550);
+  scrollAction(() => setOpacity(1, '.sobre h1', '.sobre h2', '.sobre p', '.sobre-container'), 500);
+  scrollActionReverse(() => nav.style.backgroundColor = 'var(--cor-txt)', () => nav.style.backgroundColor = '', 550);
+  // window.addEventListener('resize', escalarElemento('.sobre button', 100, 100))
 });
+
 
 
 const nav = document.getElementById('navbar');
@@ -140,4 +142,82 @@ function moveDivToEndAfterDelay(d1, d2, delay) {
 function changeSvgSize(svgElement, newWidth, newHeight) {
   svgElement.setAttribute('width', newWidth);
   svgElement.setAttribute('height', newHeight);
+}
+
+// function executeEveryXPixels(x, y, f) {
+//   let lastWidth = window.innerWidth;
+
+//   function checkExecution() {
+//       const currentWidth = window.innerWidth;
+
+//       if (x < 0)
+//         if (currentWidth <= y) {
+//             if ((x > 0 && currentWidth >= lastWidth + x) || (x < 0 && currentWidth <= lastWidth + x)) {
+//                 f();
+//                 lastWidth = currentWidth;
+//             }
+//         }
+//       if (x >= 0)
+//         if (currentWidth >= y) {
+//             if ((x > 0 && currentWidth >= lastWidth + x) || (x < 0 && currentWidth <= lastWidth + x)) {
+//                 f();
+//                 lastWidth = currentWidth;
+//             }
+//         }
+//   }
+
+//   window.addEventListener('resize', checkExecution);
+// }
+
+// function applyMediaQueryStyles(selector, media, change) {
+//   const element = document.querySelector(selector);
+
+//   // Crie uma media query
+//   const mediaQuery = window.matchMedia(media);
+
+//   function handleMediaChange(e) {
+//       if (e.matches) {
+//           change(element)
+//       } else {
+//           return;
+//       }
+//   }
+
+//   handleMediaChange(mediaQuery);
+
+//   mediaQuery.addEventListener('change', handleMediaChange);
+// }
+
+function preventDefault(e) {
+  e.preventDefault();
+}
+
+// Chama essa função para desativar o scroll
+function disableScroll() {
+  window.addEventListener('wheel', preventDefault, { passive: false });
+  window.addEventListener('touchmove', preventDefault, { passive: false });
+}
+
+// Chama essa função para ativar o scroll
+function enableScroll() {
+  window.removeEventListener('wheel', preventDefault);
+  window.removeEventListener('touchmove', preventDefault);
+}
+
+function escalarElemento(seletor, escalaLarguraPercent, escalaAlturaPercent) {
+  const elemento = document.querySelector(seletor);
+  if (elemento) {
+      // Obtém as dimensões da tela do usuário
+      const larguraTela = window.innerWidth;
+      const alturaTela = window.innerHeight;
+
+      // Calcula a escala com base nas porcentagens fornecidas
+      const escalaLargura = escalaLarguraPercent / 100;
+      const escalaAltura = escalaAlturaPercent / 100;
+
+      // Aplica a transformação de escala ao elemento
+      elemento.style.transform = `scale(${escalaLargura}, ${escalaAltura})`;
+  } else {
+      console.error('Elemento não encontrado:', seletor);
+  }
 }

@@ -20,7 +20,7 @@
   bottom: 0;
   height: 7dvh; /* Altura da sombra */
   z-index: 10;
-  background: linear-gradient(to bottom, black, #51889e, var(--cor-azul-claro));
+  background: linear-gradient(to bottom, black, var(--cor-branco), var(--cor-branco));
 }
 
 /* Animação da mudança de imagem de fundo */
@@ -73,70 +73,6 @@
     -1px -1px 0 black,
     1px -1px 0 black,
     -1px 1px 0 black;
-}
-
-/* Estilo do botão */
-.overlay button {
-  margin-top: 1.5rem;
-  opacity: 1;
-  z-index: 2;
-  cursor: pointer;
-}
-
-/* Estilo dos botões */
-.btn {
-  font-family: Arial, Helvetica, sans-serif;
-  text-transform: uppercase;
-}
-
-/* Estilo do botão em 3D */
-.btn-layered-3d {
-  width: 180px;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  outline: none;
-  border: 0;
-  vertical-align: middle;
-  text-decoration: none;
-  font-size: inherit;
-  font-family: inherit;
-  font-weight: 600;
-  text-transform: uppercase;
-  padding: 1.15em 2em;
-  border-radius: 0.75em;
-  transform-style: preserve-3d;
-  transition: transform 0.15s ease-out, background 0.15s ease-out;
-}
-
-.btn-layered-3d::before {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  inset: 0;
-  border-radius: inherit;
-  transform: translate3d(0px, 0.75em, -1em);
-  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
-}
-
-.btn-layered-3d:hover {
-  transform: translateY(0.25em);
-}
-
-.btn-layered-3d:hover::before {
-  transform: translate3d(0px, 0.5em, -1em);
-}
-
-.btn-layered-3d--purple {
-  color: rgb(62, 53, 141);
-  background: rgb(213, 211, 238);
-  border: 2px solid rgb(62, 53, 141);
-}
-
-.btn-layered-3d--purple::before {
-  background: rgb(144, 137, 210);
-  box-shadow: rgb(62, 53, 141) 0 0 0 2px;
 }
 
 /* Animação de flutuação */

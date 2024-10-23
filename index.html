@@ -6,17 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nome da Pousada</title>
     <!-- *STYLES* -->
+    <link rel="stylesheet" href="sections/variables.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="sections/navbar.css">
     <link rel="stylesheet" href="sections/footer.css">
     <link rel="stylesheet" href="sections/main.css">
     <link rel="stylesheet" href="sections/slider-img.css">
     <link rel="stylesheet" href="sections/slides.css">
+    <link rel="stylesheet" href="sections/buttons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- tiny slider -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
 </head>
 <body id="body" style="min-height: 1000vh;">
+    <div id="home"></div>
     <div class="overlay-full" id="overlayFull"></div>
     <div class="content" style="min-height: 1000vh;">
     
@@ -24,8 +27,8 @@
             <ul class="sidebar">
                 <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#pousada">Pousada</a></li>
-                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#sobre">Pousada</a></li>
+                <li><a href="#reserva">Reserva</a></li>
                 <li><a href="#loc">Localização</a></li>
                 <li><a href="#contato">Contato</a></li>
                 <li><a href="#politicas">Políticas</a></li>
@@ -35,13 +38,13 @@
               <ul class="desktop">
                 <li><a href="#">Nome da Pousada</a></li>
                 <li class="hideOnMobile"><a href="#home">Home</a></li>
-                <li class="hideOnMobile"><a href="#pousada">Pousada</a></li>
-                <li class="hideOnMobile"><a href="#sobre">Sobre</a></li>
+                <li class="hideOnMobile"><a href="#sobre">Pousada</a></li>
+                <li class="hideOnMobile"><a href="#reserva">Reserva</a></li>
                 <li class="hideOnMobile"><a href="#loc">Localização</a></li>
                 <li class="hideOnMobile"><a href="#contato">Contato</a></li>
                 <li class="hideOnMobile"><a href="#politicas">Políticas</a></li>
                 <li class="hideOnMobile"><a href="#depoimentos">Depoimentos</a></li>
-                <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
+                <li class="menu-button" onclick=showSidebar()><a href="javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
               </ul>
         </nav>
     
@@ -64,14 +67,21 @@
                 <div class="sobre" id="sobre">
                 
                     <section>
-                    <h1>&nbsp;&nbsp;Nome&nbsp;&nbsp;&nbsp;Da&nbsp;&nbsp;&nbsp;Pousada</h1>
-                    <br>
-                    <p>
-                        <strong>IA: </strong>A <strong>Nome Da Pousada</strong>, em Campos do Jordão, oferece conforto e charme em um ambiente acolhedor.<br>    
-                        Com arquitetura típica e decoração cuidadosa, é o refúgio perfeito para relaxar e aproveitar a natureza.<br>    
-                        Ideal para casais e famílias, com café da manhã caseiro e uma estadia inesquecível!
-                    </p>
+                        <h1>&nbsp;&nbsp;Nome&nbsp;&nbsp;&nbsp;Da&nbsp;&nbsp;&nbsp;Pousada</h1>
+                        <h2>Venha conhecer</h2>
+                        <br>
+                        <p style="text-align: center;">
+                            IA: A <a href="#home"><strong>Nome Da Pousada</strong></a>, em Campos do Jordão, oferece conforto e charme em um ambiente acolhedor.<br>    
+                            Com arquitetura típica e decoração cuidadosa, é o refúgio perfeito para relaxar e aproveitar a natureza.<br>    
+                            Ideal para casais e famílias, com café da manhã caseiro e uma estadia inesquecível!
+                        </p>
+                        <a href="#reserva" class="button6">
+                            Reserve Já &nbsp;<img src="/img/noun-thunderbolt-1939242.png" style="width: 3vw; height: 4.5vh;"></img>
+                        </a>
+                        
+
                     </section>
+
                     <div id="sobre-container" class="sobre-container">
                         <svg id="fullscreen" version="1.1" viewBox="0 0 14 14" width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><desc/><defs/><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#000000" id="Core" transform="translate(-215.000000, -257.000000)"><g id="fullscreen" transform="translate(215.000000, 257.000000)"><path d="M2,9 L0,9 L0,14 L5,14 L5,12 L2,12 L2,9 L2,9 Z M0,5 L2,5 L2,2 L5,2 L5,0 L0,0 L0,5 L0,5 Z M12,12 L9,12 L9,14 L14,14 L14,9 L12,9 L12,12 L12,12 Z M9,0 L9,2 L12,2 L12,5 L14,5 L14,0 L9,0 L9,0 Z" id="Shape" alt="Tela cheia"/></g></g></g></svg>
                     </div>

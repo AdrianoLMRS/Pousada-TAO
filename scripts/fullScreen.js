@@ -9,8 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function fullscreen() {
       if (img) {
         enterFullscreen()
+        disableScroll()
         moveDivToEnd('.sobre-container', img.classList.toggle('fullscreen') ? '#body' : '.sobre');
-        img.classList.contains('fullscreen') ? (applyFullStyles(), overlay.style.display = 'block') : (revFullStyles(), exitFullscreen(), overlay.style.display = 'none');
+        img.classList.contains('fullscreen') ? (applyFullStyles(), overlay.style.display = 'block') : (revFullStyles(), enableScroll(), exitFullscreen(), overlay.style.display = 'none');
       } else {
         console.error('Elemento img não encontrado');
       }
@@ -101,17 +102,13 @@ function exitFullscreen() {
 function checkDim(minWidth = 0, minHeight = 0) {
   window.addEventListener('resize', () => {
     if (window.innerWidth < minWidth || window.innerHeight < minHeight) {
-      console.log('Dimensões fora dos limites.');
       return false;
     }
-    console.log('Dimensões dentro dos limites.');
     return true;
   });
 
   if (window.innerWidth < minWidth || window.innerHeight < minHeight) {
-    console.log('Dimensões fora dos limites.');
     return false;
   }
-  console.log('Dimensões dentro dos limites.');
   return true;
 }
