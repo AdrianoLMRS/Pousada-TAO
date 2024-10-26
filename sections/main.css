@@ -151,28 +151,33 @@
 }
 
 .depo-slider {
+  position: relative;
   display: flex;
   height: 75vh;
+  width: 80vw;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
   gap: 2vw;
 }
 
 .item-depo{
   background-color: var(--cor-azul-escuro );
-  opacity: 0.7;
-  background-image: linear-gradient(var(--cor-azul-claro) 0.8px, transparent 0.8px), linear-gradient(to right, var(--cor-azul-claro) 0.8px, var(--cor-azul-escuro) 0.8px);
   background-size: 16px 16px;
   color: var(--cor-laranja);
-  display: flex;
+  display: none;
+  flex: 0 0 26.6%; /* Cada item ocupa 33.33% do container, resultando em 3 itens visíveis */
   justify-content: center;
   align-items: center;
   border: 5px outset var(--cor-txt);
   border-radius: 10px;
   height: 40vh;
-  width: 20vw;
+  /* width: 100%; */
 }
 
+.item-depo.active {
+  display: flex;
+}
 
 
 
