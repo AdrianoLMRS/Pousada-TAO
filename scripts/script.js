@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
   addTitleToElement('#fullscreen', 'Tela Cheia');
   applyBorderToImagesInDivs('.item img');
   scrollAction(() => setOpacity(1, '.sobre h1', '.sobre h2', '.sobre p', '.sobre-container'), 500);
+  scrollAction(() => setOpacity(0.3, '.sobre-ba svg'), 500);
   scrollActionReverse(() => nav.style.backgroundColor = 'var(--cor-txt)', () => nav.style.backgroundColor = '', 550);
+  multiplyContent('.sobre-ba', '.sobre-ba', 5)
   // window.addEventListener('resize', escalarElemento('.sobre button', 100, 100))
 });
 
@@ -219,5 +221,23 @@ function escalarElemento(seletor, escalaLarguraPercent, escalaAlturaPercent) {
       elemento.style.transform = `scale(${escalaLargura}, ${escalaAltura})`;
   } else {
       console.error('Elemento não encontrado:', seletor);
+  }
+}
+
+function multiplyContent(sourceDivSelector, targetDivSelector, times) {
+  const sourceDiv = document.querySelector(sourceDivSelector);
+  const targetDiv = document.querySelector(targetDivSelector);
+  
+  if (sourceDiv && targetDiv && times > 0) {
+      const content = sourceDiv.innerHTML;
+      let multipliedContent = '';
+
+      for (let i = 0; i < times; i++) {
+          multipliedContent += content;
+      }
+
+      targetDiv.innerHTML = multipliedContent;
+  } else {
+      console.error('Verifique se os seletores estão corretos e se o número de vezes é maior que zero.');
   }
 }
