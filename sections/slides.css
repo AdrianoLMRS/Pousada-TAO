@@ -61,7 +61,7 @@
   cursor: pointer;
   font-size: 20px; 
   color: black;
-  transition: transform 0.4s; 
+  transition: transform 200ms; 
   text-shadow: 
   -1px -1px 0 var(--cor-laranja),  
   1px -1px 0 var(--cor-laranja),
@@ -91,7 +91,7 @@
   margin-right: 5%;
   margin-top: -5%;
   cursor: pointer;
-  transition: transform 0.2s;  
+  transition: transform 200ms;  
 }
 
 #fullscreen path {
