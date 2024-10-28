@@ -134,28 +134,12 @@
   gap: 1vh;
 }
 
-.hide-ba {
-  position: relative; /* Adiciona posição relativa ao elemento pai */
-}
-
-.hide-ba::before {
-  content: '';
-  position: absolute;
-  top: 0; 
-  left: 0; 
-  width: 100%;
-  height: 100%; 
-  opacity: 1;
-  background-color: var(--cor-branco);
-  z-index: -1;
-}
-
 .depo-slider {
   position: relative;
   display: flex;
   height: 75vh;
   width: 80vw;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   overflow: hidden;
   gap: 2vw;
@@ -165,19 +149,18 @@
   background-color: var(--cor-azul-escuro );
   background-size: 16px 16px;
   color: var(--cor-laranja);
-  display: none;
-  flex: 0 0 26.6%; /* Cada item ocupa 33.33% do container, resultando em 3 itens visíveis */
+  display: flex;
+  flex: 0 0 31.6%; /* Cada item ocupa 26.6% do container, resultando em 3 itens visíveis */
   justify-content: center;
   align-items: center;
   border: 5px outset var(--cor-txt);
   border-radius: 10px;
   height: 40vh;
-  /* width: 100%; */
+  transition: transform 200ms ;
 }
 
-.item-depo.active {
-  display: flex;
-}
+
+
 
 
 
