@@ -15,7 +15,7 @@ function updateVariables() {
     percentValue = 105.2
     maxCount = items.length - 2;
   } else { // Tela pequena
-    percentValue = 102.5
+    percentValue = 102.4
     maxCount = items.length - 1;
   }
 

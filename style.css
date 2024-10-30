@@ -92,3 +92,39 @@ body > * {
   background-color: var(--cor-branco);
   z-index: -1;
 }
+
+:root {
+  --size-content-1: 100px; /* Largura do conteúdo - você pode ajustar conforme necessário */
+  --ratio-widescreen: 16 / 9; /* Proporção - pode não ser necessário se você não estiver usando aspect-ratio */
+  --size-2: 5px; /* Tamanho da borda - ajuste para se adequar ao seu design */
+  --radius-4: 10px; /* Raio da borda arredondada - ajuste para suas preferências */
+  --surface-1: var(--cor-azul-escuro); /* Cor de fundo do item-depo */
+  --gradient-1: linear-gradient(45deg, #b45ef2, var(--cor-laranja)); /* Gradiente da borda - ajuste as cores conforme necessário */
+}
+
+
+@import "https://unpkg.com/open-props" layer(design.system);
+@import "https://unpkg.com/open-props/normalize.min.css" layer(demo.support);
+
+@layer demo {
+  .rounded-border-gradient {
+    inline-size: var(--size-content-1);
+    aspect-ratio: var(--ratio-widescreen);
+    border: solid var(--size-2) transparent;
+    border-radius: var(--radius-4);
+    background: 
+      linear-gradient(var(--surface-1), var(--surface-1)) padding-box, 
+      var(--gradient-1) border-box;
+  }
+}
+
+.rounded-border-gradient {
+  inline-size: var(--size-content-1);
+  aspect-ratio: var(--ratio-widescreen);
+  border: solid var(--size-2) transparent;
+  border-radius: var(--radius-4);
+  background: 
+    linear-gradient(var(--surface-1), var(--surface-1)) padding-box, 
+    var(--gradient-1) border-box; /* Aplicando a borda com gradiente */
+}
+

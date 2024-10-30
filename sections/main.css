@@ -146,25 +146,48 @@ main > *:not(:first-child) {
   display: flex;
   height: 75vh;
   width: 80vw;
-  /* justify-content: center; */
   align-items: center;
   overflow: hidden;
   gap: 2vw;
 }
 
-.item-depo:not(.slider-control){
-  background-color: var(--cor-azul-escuro );
-  background-size: 16px 16px;
-  color: var(--cor-laranja);
+.item-depo {
+  background-color: var(--surface-1); /* Mantendo a cor de fundo */
   display: flex;
   flex: 0 0 31.5%; /* Cada item ocupa 31.6% do container, resultando em 3 itens visíveis */
-  justify-content: center;
+  justify-content: baseline;
+  flex-direction: column;
   align-items: center;
-  border: 5px outset var(--cor-txt);
-  border-radius: 10px;
+  text-align: center;
   height: 40vh;
-  transition: transform 300ms ;
+  transition: .300ms, transform 300ms;
+  overflow: hidden;
 }
+
+
+
+.item-depo p {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  font-size: larger;
+
+}
+
+.item-depo img:nth-last-of-type(1) {
+  margin-top: 2%;
+  align-self: baseline , center;
+}
+
+.item-depo img:nth-of-type(2) {
+  transform: rotate(180deg);
+
+  margin-left: 2%;
+}
+
+.item-depo img:nth-of-type(3) {
+  margin-right: 2%;
+}
+
 
 @media (max-width: 850px) {  .item-depo:not(.slider-control) {  flex: 0 0 48.8%;  }  }
 @media (max-width: 650px) {  .item-depo:not(.slider-control) {  flex: 0 0 100%;  } }
