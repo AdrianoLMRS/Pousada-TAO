@@ -11,18 +11,6 @@
   animation: ba-change 65s linear infinite;
   z-index: 0;
 }
-
-.ba-img::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 7dvh; /* Altura da sombra */
-  z-index: 10;
-  background: linear-gradient(to bottom, black, var(--cor-branco), var(--cor-branco));
-}
-
 /* Animação da mudança de imagem de fundo */
 @keyframes ba-change {
   0%, 10% { background-image: url(../img/Pousada/fachada-da-pousada.png); }
