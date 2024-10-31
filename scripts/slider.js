@@ -83,28 +83,8 @@ function prevItem() {
   }
 }
 
-// function startAutoplay() {
-//   autoplayInterval = setInterval(() => {
-//     if (iterationCount === maxCount) {
-//       // Se chegar ao final, remove a transformação e redefine o contador
-//       items.forEach((item) => {
-//         item.style.transform = ''; // Remove a transformação
-//       });
-//       iterationCount = 0; // Reinicia o contador
-//       updateButtonVisibility();
-//       updateVariables();
-//     } else {
-//       nextItem(); // Avança para o próximo item
-//       updateButtonVisibility();
-//       updateVariables();
-//     }
-//   }, 4000); // Intervalo de 4000 ms
-// }
-
-
 updateButtonVisibility();
 updateVariables();
-startAutoplay();
 window.addEventListener('resize', () => {
   // Chama applyTranslateX para cada item, passando '0%' para cada um
   items.forEach((item) => {

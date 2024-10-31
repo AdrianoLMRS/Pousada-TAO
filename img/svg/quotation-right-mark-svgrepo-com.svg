@@ -5,8 +5,8 @@
      width="800px" height="800px" viewBox="0 0 349.078 349.078" xml:space="preserve">
   <defs>
     <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ff53bb; stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#00f8d3; stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#b45ef2; stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#debc47; stop-opacity:1" />
     </linearGradient>
   </defs>
   <g>

@@ -152,6 +152,7 @@ main > *:not(:first-child) {
 }
 
 .item-depo {
+  position: relative;
   background-color: var(--surface-1); /* Mantendo a cor de fundo */
   display: flex;
   flex: 0 0 31.5%; /* Cada item ocupa 31.6% do container, resultando em 3 itens visíveis */
@@ -162,15 +163,42 @@ main > *:not(:first-child) {
   height: 40vh;
   transition: .300ms, transform 300ms;
   overflow: hidden;
+
+  --size-content-1: 100px; /* Largura do conteúdo - você pode ajustar conforme necessário */
+  --ratio-widescreen: 16 / 9; /* Proporção - pode não ser necessário se você não estiver usando aspect-ratio */
+  --size-2: 5px; /* Tamanho da borda - ajuste para se adequar ao seu design */
+  --radius-4: 10px; /* Raio da borda arredondada - ajuste para suas preferências */
+  --surface-1: var(--cor-azul-escuro); /* Cor de fundo do item-depo */
+  --gradient-1: linear-gradient(45deg, #b45ef2, var(--cor-laranja)); /* Gradiente da borda - ajuste as cores conforme necessário */
+
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.8);
 }
 
+.item-depo > * {
+  z-index: 2;
+}
+
+.item-depo::after {
+  content: ''; /* Necessário para exibir o pseudo-elemento */
+  position: absolute;
+  top: 0; /* Posiciona o pseudo-elemento no topo do item */
+  left: 0; /* Posiciona o pseudo-elemento à esquerda */
+  right: 0; /* Expande o pseudo-elemento até a borda direita */
+  bottom: 0; /* Expande o pseudo-elemento até a borda inferior */
+  background-color: #7b658b;
+  opacity: 1;
+  background-image: radial-gradient(circle at center center, #deb6fb, #7b658b), repeating-radial-gradient(circle at center center, #deb6fb, #deb6fb, 7px, transparent 14px, transparent 7px);
+  background-blend-mode: multiply;
+
+  z-index: 1; /* Coloca o pseudo-elemento atrás do conteúdo do item */
+}
 
 
 .item-depo p {
   margin-top: 4%;
   margin-bottom: 4%;
   font-size: larger;
-
+  color: var(--cor-atencao);
 }
 
 .item-depo img:nth-last-of-type(1) {
@@ -180,11 +208,12 @@ main > *:not(:first-child) {
 
 .item-depo img:nth-of-type(2) {
   transform: rotate(180deg);
-
   margin-left: 2%;
+  user-select: none;
 }
 
 .item-depo img:nth-of-type(3) {
+  user-select: none;
   margin-right: 2%;
 }
 
@@ -216,6 +245,45 @@ main > *:not(:first-child) {
 }
 
 
+
+
+/**  RESERVA  **/
+
+.reserva {
+  position: relative;
+  height: 100vh;
+  /* background-image: url(../img/Pousada/6617f22ad6613_14quarto3940x788.png); */
+  overflow: hidden;
+  
+}
+
+/* background do .reserva */
+.ba-reserva {
+  display: flex;
+  height: 100%;
+  position: relative;
+  z-index: 2; 
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 5px;
+  align-items: center;
+  background-image: linear-gradient(to bottom, #b45ef2, var(--cor-laranja));
+}
+
+.ba-reserva img {
+  flex: 1 1 49%;
+  object-fit: fill;
+  width: 100vw;
+  height: 98vh;
+}
+
+.overlay2 {
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
 
 
