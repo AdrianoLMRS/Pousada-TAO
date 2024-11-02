@@ -55,6 +55,11 @@ body > * {
   margin: 0 auto;
 }
 
+::selection {
+  color: var(--cor-atencao);
+  background: var(--cor-txt);
+}
+
 .content {
   position: relative;
   width: 100%;
