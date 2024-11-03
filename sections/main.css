@@ -144,7 +144,7 @@ main > *:not(:first-child) {
 
 .item-depo {
   position: relative;
-  background-color: var(--surface-1); /* Mantendo a cor de fundo */
+  background-color: var(--surface-1);
   display: flex;
   flex: 0 0 31.5%; /* Cada item ocupa 31.6% do container, resultando em 3 itens visíveis */
   justify-content: baseline;
@@ -152,6 +152,7 @@ main > *:not(:first-child) {
   align-items: center;
   text-align: center;
   height: 40vh;
+  max-height: 450px;
   transition: .300ms, transform 300ms;
   overflow: hidden;
 
@@ -186,8 +187,10 @@ main > *:not(:first-child) {
 
 
 .item-depo p {
-  margin-top: 4%;
-  margin-bottom: 4%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: larger;
   color: var(--cor-atencao);
 }
@@ -198,14 +201,18 @@ main > *:not(:first-child) {
 }
 
 .item-depo img:nth-of-type(2) {
-  transform: rotate(180deg);
-  margin-left: 2%;
   user-select: none;
+  position: absolute;
+  margin-left: 16%;
+  top: 25%;  
+  transform: translate(-50%, -50%) rotate(180deg);
 }
 
 .item-depo img:nth-of-type(3) {
   user-select: none;
-  margin-right: 2%;
+  position: absolute;
+  margin-right: 10%;
+  top: 65%;
 }
 
 
@@ -244,7 +251,10 @@ main > *:not(:first-child) {
   position: relative;
   height: 100vh;
   overflow: hidden;
+  border-top: 3px groove black;  /* Borda superior */
+  border-bottom: 3px groove black; /* Borda inferior */
 }
+
 
 /* background do .reserva */
 .ba-reserva {
@@ -259,7 +269,6 @@ main > *:not(:first-child) {
   height: 100%;
   gap: 0.5vw;
   padding: 5px;
-  align-items: center;
   background-image: linear-gradient(to bottom, #b45ef2, var(--cor-laranja));
   z-index: -2;
 }
@@ -302,11 +311,7 @@ main > *:not(:first-child) {
 }
 
 /* media queries for .whatsapp-button */
-@media (max-width: 700px) {  
-  .reserva-content a {
-      --size-content-1: 38vw;
-  } 
-}
+@media (max-width: 700px) {  .reserva-content a {  --size-content-1: 38vw;  }  }
 
 @media (max-width: 635px) {  
   .reserva-content a {
@@ -317,17 +322,9 @@ main > *:not(:first-child) {
   }
 }
 
-@media (max-width: 500px) {  
-  .reserva-content a {
-   --size-content-1: 50vw;
-  } 
-}
+@media (max-width: 500px) {  .reserva-content a {  --size-content-1: 50vw;  }  }
 
-@media (max-width: 470px) {  
-  .reserva-content a {
-   --size-content-1: 60vw;
-  } 
-}
+@media (max-width: 470px) {  .reserva-content a {  --size-content-1: 60vw;  }  }
 
 @media (max-width: 390px) {  
   .reserva-content a {
@@ -423,18 +420,27 @@ main > *:not(:first-child) {
   z-index: -1;
 }
 
-.whatsapp-button:hover::after {
-  opacity: 1;
-  background-color: #237c95;
+.whatsapp-button:hover::after {  opacity: 1;  background-color: #237c95;  }
+
+
+
+
+/**  LOCALIZACAO  **/
+
+.localizacao {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
 }
 
-/* @keyframes test{
-  from{
-    --surface-1: #25D366;
-  }
-  to{
-    --surface-1: #128C7E;
-  }
-} */
+.localizacao h1 + div {
+  height: 70vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
 
 

@@ -26,13 +26,14 @@
         <nav id="navbar" style="max-width: 3500px;">
             <ul class="sidebar">
                 <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#sobre">Pousada</a></li>
-                <li><a href="#depoimentos">Depoimentos</a></li>
-                <li><a href="#reserva">Reserva</a></li>
-                <li><a href="#loc">Localização</a></li>
-                <li><a href="#contato">Contato</a></li>
-                <li><a href="#politicas">Políticas</a></li>
+                <li onclick=hideSidebar()><a href="#home">Home</a></li>
+                <li onclick=hideSidebar()><a href="#sobre">Pousada</a></li>
+                <li onclick=hideSidebar()><a href="#depoimentos">Depoimentos</a></li>
+                <li onclick=hideSidebar()><a href="#localizacao">Localização</a></li>
+                <li onclick=hideSidebar()><a href="#contato">Contato</a></li>
+                <li onclick=hideSidebar()><a href="#politicas">Políticas</a></li>
+                <li onclick=hideSidebar() id="nav-reserva" style="border-radius: 0; margin-top: 20%;">
+                    <a style="-webkit-text-stroke: 1.5px;" href="#reserva">Reservar</a></li>
               </ul>
               
               <ul class="desktop">
@@ -40,10 +41,10 @@
                 <li class="hideOnMobile"><a href="#home">Home</a></li>
                 <li class="hideOnMobile"><a href="#sobre">Pousada</a></li>
                 <li class="hideOnMobile"><a href="#depoimentos">Depoimentos</a></li>
-                <li class="hideOnMobile"><a href="#reserva">Reserva</a></li>
-                <li class="hideOnMobile"><a href="#loc">Localização</a></li>
+                <li class="hideOnMobile"><a href="#localizacao">Localização</a></li>
                 <li class="hideOnMobile"><a href="#contato">Contato</a></li>
                 <li class="hideOnMobile"><a href="#politicas">Políticas</a></li>
+                <li id="nav-reserva" class="hideOnMobile"><a href="#reserva">Reservar</a></li>
                 <li class="menu-button" onclick=showSidebar()><a href="javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
               </ul>
         </nav>
@@ -160,11 +161,11 @@
 
                     <div class="reserva-content">
 
-                        <a href="https://wa.me/5511991369956" class="whatsapp-button rounded-border-gradient" target="_blank">Conversar no WhatsApp 
+                        <a href="https://wa.me/5511991369956?text=Para%20entrar%20em%20*contato*%20pressione%20o%20bot%C3%A3o%20*Iniciar%20conversa*" class="whatsapp-button rounded-border-gradient" target="_blank">Conversar no WhatsApp 
                             <img style="width: 20px; position: absolute; right: 10px;" src="img/svg/whatsapp-svgrepo-com.svg"></img></a>
                         
                         <div>
-                            
+
                             <section>
                                 <h2>Descubra Campos do Jordão!</h2>
                                 <p>Venha relaxar nas montanhas e aproveite a localização privilegiada do nosso hostel. Conforto e um ambiente amigável esperam por você!</p>
@@ -179,6 +180,22 @@
                         
                     </div>
                     
+                </div>
+
+                <div style="background-color: chartreuse;" class="localizacao" id="localizacao">
+                
+                    <h1>Localização</h1>
+                    
+                    <div style="background-color: blueviolet;">
+                        
+                        <section style="width: 30%; height: 100%; background-color: aliceblue;">TEXTO SOBRE A LOCALIZAÇÃO DO HOSTEL</section>
+
+                        <div style="width: 70%; height: 100%; background-color: aqua;">GOOGLE MAPS DIV</div>
+
+                    </div>
+
+                    <BUTTON>SEE ON GOOGLE MAPS</BUTTON>
+
                 </div>
             
         </main>
