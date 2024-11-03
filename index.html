@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome da Pousada</title>
+    <title>Pousada</title>
     <!-- *STYLES* -->
     <link rel="stylesheet" href="sections/variables.css">
     <link rel="stylesheet" href="style.css">
@@ -182,19 +182,44 @@
                     
                 </div>
 
-                <div style="background-color: chartreuse;" class="localizacao" id="localizacao">
+                <div style="background-color: lightblue;" class="localizacao" id="localizacao">
                 
-                    <h1>Localização</h1>
+                    <h1 style="font-size: calc(2rem + 1vw)">Localização</h1>
                     
                     <div style="background-color: blueviolet;">
                         
-                        <section style="width: 30%; height: 100%; background-color: aliceblue;">TEXTO SOBRE A LOCALIZAÇÃO DO HOSTEL</section>
+                        <section style="width: 30%; height: 100%; background-color: aliceblue;">
 
-                        <div style="width: 70%; height: 100%; background-color: aqua;">GOOGLE MAPS DIV</div>
+                            <h2>Pontos Positivos</h2>
+                            <ul>
+                                <li><strong>Localização ideal</strong> para turistas.</li>
+                                <li><strong>Fácil acesso</strong> a restaurantes e cafés.</li>
+                                <li>Proximidade de <strong>atrações</strong> populares.</li>
+                                <li>Próximo a <strong>trilhas</strong> e <strong>parques</strong>.</li>
+                                <li>Perfeito para quem busca <strong>natureza</strong> e <strong>aventura</strong>.</li>
+                                <li>Conforto e <strong>conveniência</strong> ao explorar a cidade.</li>
+                                <li>Imersão no <strong>charme serrano</strong>.</li>
+                            </ul>
+
+                        </section>
+                                       
+
+                        <div style="width: 70%; height: 100%;">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58877.98351088576!2d-45.62733042895653!3d-22.73292530509197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cc89cbf10d10bf%3A0x42ed1a032c8ae78f!2sCampos%20do%20Jord%C3%A3o%2C%20SP%2C%2012460-000!5e0!3m2!1spt-BR!2sbr!4v1730671444444!5m2!1spt-BR!2sbr" 
+                                style="width: 95%; height: 95%; border: 2px solid var(--cor-laranja); border-radius: 20px;" 
+                                allowfullscreen
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        
+                        
 
                     </div>
 
-                    <BUTTON>SEE ON GOOGLE MAPS</BUTTON>
+                    <button onclick="toggleFullscreen()">FULL SCREEN GOOGLE MAPS</button>
+                    <a target="_blank" href="https://maps.app.goo.gl/nxX9GBn5Miyp4j7TA">VER NO GOOGLE MAPS</a>
 
                 </div>
             
@@ -251,7 +276,18 @@ var currentScrollPos = window.pageYOffset;
   prevScrollpos = currentScrollPos;
 }   
 
-
+function toggleFullscreen() {
+        const iframe = document.querySelector('iframe');
+        if (iframe.requestFullscreen) {
+            iframe.requestFullscreen();
+        } else if (iframe.mozRequestFullScreen) { // Firefox
+            iframe.mozRequestFullScreen();
+        } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari e Opera
+            iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) { // IE/Edge
+            iframe.msRequestFullscreen();
+        }
+    }
 </script>
 <script src="scripts/fullScreen.js" defer></script>
 <script src="scripts/tinySlider.js" defer></script>

@@ -443,4 +443,72 @@ main > *:not(:first-child) {
   flex-direction: row;
 }
 
+.localizacao h1 + div section {
+  font-size: calc(0.5rem + 1vw);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: auto;
+  gap: 10px;
+}
+
+/* TODO: FIX ::SELECTION ON GRADIENT TEXTS */
+.localizacao h1 {
+  background-image: linear-gradient(to right, var(--cor-roxo), var(--cor-laranja)); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+}
+
+.localizacao h1 + div section h2{
+  color: var(--cor-roxo);
+}
+
+.localizacao h1 + div section ul {
+  color: var(--cor-txt);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style-type: disc;
+}
+
+.localizacao h1 + div section li {
+  background-color: #f0f8ff; /* Fundo claro para os itens */
+  width: 90%;
+  border: 1px solid #cce7ff; /* Borda suave */
+  border-radius: 5px; /* Bordas arredondadas */
+  padding: 5px; /* Espaçamento interno */
+  margin-bottom: 5%; /* Espaçamento entre itens */
+  transition: background-color 300ms; /* Transição suave para hover */
+  font-size: calc(0.5rem + 0.8vw);;
+}
+
+.localizacao h1 + div section li:hover {
+  background-color: #cce7ff; /* Muda a cor de fundo ao passar o mouse */
+}
+
+.localizacao h1 + div section strong {
+  color: var(--cor-atencao); /* Cor para o texto em negrito */
+  -webkit-text-stroke: 0.3px;
+}
+
+
+@media (min-width: 768px) {
+  .localizacao h1 + div section li::before {
+    content: '\2022'; /* Código Unicode para o bullet point */
+    font-size: 4.5vw; /* Tamanho do marcador */
+    position: absolute; /* Permite posicionar o marcador */
+    left: 0; /* Alinha o marcador à esquerda do item */
+    margin-top: -1.5%;
+    color: black; /* Cor do marcador */
+  }
+}
+
+.localizacao h1 + div section + div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
