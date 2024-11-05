@@ -59,6 +59,19 @@ body > * {
   background: var(--cor-txt);
 }
 
+.gradient-txt {
+  background-image: linear-gradient(var(--direction), var(--cor-1), var(--cor-2)); /* DEFINE THE VARIABLE IN THE HTML TAG */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  --cor-1: black; /* IF THE USER DONT DEFINE THE VARIABLE; BLACK BY DEFAULT */
+  --cor-2: black; /* IF THE USER DONT DEFINE THE VARIABLE; BLACK BY DEFAULT */
+  --direction: to right; /* IF THE USER DONT DEFINE THE VARIABLE; "TO RIGHT" BY DEFAULT */
+}
+
+.gradient-txt::selection {
+  background: rgba(0, 123, 255, 0.4); /* Default color with - opacity */
+}
+
 .content {
   position: relative;
   width: 100%;

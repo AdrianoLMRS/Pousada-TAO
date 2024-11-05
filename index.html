@@ -32,7 +32,7 @@
                 <li onclick=hideSidebar()><a href="#localizacao">Localização</a></li>
                 <li onclick=hideSidebar()><a href="#contato">Contato</a></li>
                 <li onclick=hideSidebar()><a href="#politicas">Políticas</a></li>
-                <li onclick=hideSidebar() id="nav-reserva" style="border-radius: 0; margin-top: 20%;">
+                <li onclick=hideSidebar() id="nav-reserva" style="border-radius: 0; margin-top: 50px;">
                     <a style="-webkit-text-stroke: 1.5px;" href="#reserva">Reservar</a></li>
               </ul>
               
@@ -182,13 +182,14 @@
                     
                 </div>
 
-                <div style="background-color: lightblue;" class="localizacao" id="localizacao">
+                <div class="localizacao" id="localizacao">
                 
-                    <h1 style="font-size: calc(2rem + 1vw)">Localização</h1>
+                    <h1 class="gradient-txt" style="font-size: calc(2rem + 1vw);   --cor-1: var(--cor-roxo);
+                    --cor-2: var(--cor-laranja);">Localização</h1>
                     
-                    <div style="background-color: blueviolet;">
+                    <div>
                         
-                        <section style="width: 30%; height: 100%; background-color: aliceblue;">
+                        <section>
 
                             <h2>Pontos Positivos</h2>
                             <ul>
@@ -204,21 +205,47 @@
                         </section>
                                        
 
-                        <div style="width: 70%; height: 100%;">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58877.98351088576!2d-45.62733042895653!3d-22.73292530509197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cc89cbf10d10bf%3A0x42ed1a032c8ae78f!2sCampos%20do%20Jord%C3%A3o%2C%20SP%2C%2012460-000!5e0!3m2!1spt-BR!2sbr!4v1730671444444!5m2!1spt-BR!2sbr" 
-                                style="width: 95%; height: 95%; border: 2px solid var(--cor-laranja); border-radius: 20px;" 
-                                allowfullscreen
-                                loading="lazy" 
-                                referrerpolicy="no-referrer-when-downgrade">
-                            </iframe>
+                        <div style="width: 70%; height: 85vh; display: flex; flex-direction: column; margin-top: -4.5%;">
+
+                            <div style="display: flex; flex-direction: row; justify-content: flex-end; width: 100%; gap: 0.5vw;">
+
+                                <button onclick="toggleMap('google')" style="border: none; background: none; padding: 0; cursor: pointer;">
+                                    <img style="width: 3vw; height: auto;" src="img/svg/icons8-google-maps-novo.svg" alt="Icone Google Maps">
+                                </button>
+
+                                <button onclick="toggleMap('waze')" style="border: none; background: none; padding: 0; margin-right: 1%; cursor: pointer;">
+                                    <img style="width: 3vw; height: auto;" src="img/svg/waze-icon.svg" alt="Icone Waze">
+                                </button>
+                                
+                            </div>
+
+                            <div style="width: 100%; height: 70vh;">
+                                <!-- GOOGLE MAPS IFRAME -->
+                                <iframe 
+                                        id="googleMap" 
+                                        class="map-iframe"
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58877.98351088576!2d-45.62733042895653!3d-22.73292530509197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cc89cbf10d10bf%3A0x42ed1a032c8ae78f!2sCampos%20do%20Jord%C3%A3o%2C%20SP%2C%2012460-000!5e0!3m2!1spt-BR!2sbr!4v1730671444444!5m2!1spt-BR!2sbr" 
+                                        allowfullscreen
+                                        loading="lazy" 
+                                        referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+
+                                <!-- WAZE IFRAME -->
+                                <iframe 
+                                        id="wazeMap" 
+                                        class="map-iframe"
+                                        src="https://embed.waze.com/iframe?zoom=16&lat=-22.740846&lon=-45.594391&ct=livemap" 
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+
                         </div>
                         
                         
 
                     </div>
 
-                    <button onclick="toggleFullscreen()">FULL SCREEN GOOGLE MAPS</button>
+                    <button onclick="toggleFullscreen()">Tela Cheia</button>
                     <a target="_blank" href="https://maps.app.goo.gl/nxX9GBn5Miyp4j7TA">VER NO GOOGLE MAPS</a>
 
                 </div>
@@ -275,23 +302,11 @@ var currentScrollPos = window.pageYOffset;
   }
   prevScrollpos = currentScrollPos;
 }   
-
-function toggleFullscreen() {
-        const iframe = document.querySelector('iframe');
-        if (iframe.requestFullscreen) {
-            iframe.requestFullscreen();
-        } else if (iframe.mozRequestFullScreen) { // Firefox
-            iframe.mozRequestFullScreen();
-        } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari e Opera
-            iframe.webkitRequestFullscreen();
-        } else if (iframe.msRequestFullscreen) { // IE/Edge
-            iframe.msRequestFullscreen();
-        }
-    }
 </script>
 <script src="scripts/fullScreen.js" defer></script>
 <script src="scripts/tinySlider.js" defer></script>
 <script src="scripts/slider.js" defer></script>
+<script src="scripts/iframe.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js" defer></script>
 </body>
 </html>
