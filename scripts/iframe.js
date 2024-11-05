@@ -34,4 +34,4 @@ function toggleFullscreen() {
     }
 }
 
-toggleMap('google') //  GOOGLE MAPS BY DEFAULT
+document.querySelector('.iframe-buttons > :first-child ').click() //  GOOGLE MAPS BY DEFAULT
