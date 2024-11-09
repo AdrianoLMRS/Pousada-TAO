@@ -440,7 +440,6 @@ main > *:not(:first-child) {
   font-size: calc(2rem + 1vw);   
   --cor-1: var(--cor-roxo);     
   --cor-2: var(--cor-laranja);
-
 }
 
 .localizacao h1 + div {
@@ -463,6 +462,7 @@ main > *:not(:first-child) {
 
 .localizacao h1 + div section h2{
   color: var(--cor-roxo);
+  -webkit-text-stroke: 0.5px;
 }
 
 .localizacao h1 + div section ul {
@@ -472,37 +472,32 @@ main > *:not(:first-child) {
   justify-content: center;
   align-items: center;
   list-style-type: disc;
+  -webkit-text-stroke: 0.3px;
 }
 
 .localizacao h1 + div section li {
-  background-color: #f0f8ff; /* Fundo claro para os itens */
   width: 90%;
-  border: 1px solid #cce7ff; /* Borda suave */
-  border-radius: 5px; /* Bordas arredondadas */
-  padding: 5px; /* Espaçamento interno */
-  margin-bottom: 5%; /* Espaçamento entre itens */
-  transition: background-color 300ms; /* Transição suave para hover */
+  border-radius: 5px; 
+  padding: 5px; 
+  margin-bottom: 5%; 
+  transition: background-color 300ms;
   font-size: calc(0.5rem + 0.8vw);;
 }
 
-.localizacao h1 + div section li:hover {
-  background-color: #cce7ff; /* Muda a cor de fundo ao passar o mouse */
-}
-
 .localizacao h1 + div section strong {
-  color: var(--cor-atencao); /* Cor para o texto em negrito */
-  -webkit-text-stroke: 0.3px;
+  color: var(--cor-atencao); 
+  -webkit-text-stroke: 0.5px;
 }
 
 
 @media (min-width: 768px) {
   .localizacao h1 + div section li::before {
-    content: '\2022'; /* Código Unicode para o bullet point */
-    font-size: 4.5vw; /* Tamanho do marcador */
-    position: absolute; /* Permite posicionar o marcador */
-    left: 0; /* Alinha o marcador à esquerda do item */
+    content: '\2022';
+    font-size: 4.5vw; 
+    position: absolute; 
+    left: 0; 
     margin-top: -1.5%;
-    color: black; /* Cor do marcador */
+    color: black; 
   }
 }
 
@@ -524,12 +519,14 @@ main > *:not(:first-child) {
   gap: 0.5vw;
 }
 
-.iframe-buttons button{
+.iframe-buttons button {
   border: none; background: none; padding: 0.2%; 
   cursor: pointer;
   border-radius: 10px;
   transition: background 200ms;
 }
+
+.iframe-buttons button img {  width: 3vw;  height: auto;  }
 
 .iframe-buttons button.active {
   background: #237c95;
@@ -546,4 +543,32 @@ main > *:not(:first-child) {
 
 #iframeFS:hover {
   transform: scale(1.8);
+}
+
+#iframe-div {
+  width: 70%; 
+  height: 85vh; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start;
+}
+
+@media (max-width : 768px) {
+  .localizacao  {  height: auto; gap: 6vh; }
+  .localizacao h1 {  font-size: calc(1rem + 10vw);  }
+  .localizacao h1 + div {
+    flex-direction: column;
+    height: auto;
+    gap: 7vh;
+  }
+  .localizacao h1 + div section {
+    font-size: calc(0.5rem + 3.5vw);
+    gap: 3vh;
+  }
+  .localizacao h1 + div section + div {  width: 100%;  }
+  .localizacao h1 + div section li {  font-size: calc(0.5rem + 2vw);  }
+  #iframe-div {  width: 100%;  }
+  .iframe-buttons button img {
+    width: 8vw;
+  }
 }

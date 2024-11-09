@@ -68,7 +68,8 @@ body > * {
   --direction: to right; /* IF THE USER DONT DEFINE THE VARIABLE; "TO RIGHT" BY DEFAULT */
 }
 
-.gradient-txt::selection {
+.no-selection::selection {
+  color: default;
   background: rgba(0, 123, 255, 0.4); /* Default color with - opacity */
 }
 
