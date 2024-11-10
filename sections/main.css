@@ -5,6 +5,9 @@ main > *:not(:first-child) {
   margin-bottom: 100px;
 }
 
+/* @media (max-height: 400px) {}; */
+
+/* TODO: Resctructure responsive in .sobre */
 /** SOBRE **/
 .sobre {
   position: relative;
@@ -137,6 +140,7 @@ main > *:not(:first-child) {
   display: flex;
   height: 75vh;
   width: 80vw;
+  max-width: 3300px;
   align-items: center;
   overflow: hidden;
   gap: 2vw;
@@ -235,6 +239,7 @@ main > *:not(:first-child) {
   cursor: pointer;
   transform: scale(1.5);
   padding: 10px;
+  font-size: calc(0.5rem + 1vw);
   transition: transform 200ms;
 }
 
@@ -437,7 +442,7 @@ main > *:not(:first-child) {
 }
 
 .localizacao h1 {
-  font-size: calc(2rem + 1vw);   
+  font-size: calc(2rem + 3vw);   
   --cor-1: var(--cor-roxo);     
   --cor-2: var(--cor-laranja);
 }
@@ -450,20 +455,17 @@ main > *:not(:first-child) {
 }
 
 .localizacao h1 + div section {
-  font-size: calc(0.5rem + 1vw);
+  font-size: calc(1rem + 1vw);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  overflow: auto;
+  overflow: hidden;
   gap: 10px;
 }
 
-.localizacao h1 + div section h2{
-  color: var(--cor-roxo);
-  -webkit-text-stroke: 0.5px;
-}
+.localizacao h1 + div section h2 {  color: var(--cor-roxo);  -webkit-text-stroke: 0.5px;  }
 
 .localizacao h1 + div section ul {
   color: var(--cor-txt);
@@ -472,7 +474,7 @@ main > *:not(:first-child) {
   justify-content: center;
   align-items: center;
   list-style-type: disc;
-  -webkit-text-stroke: 0.3px;
+  -webkit-text-stroke: 1px;
 }
 
 .localizacao h1 + div section li {
@@ -484,11 +486,7 @@ main > *:not(:first-child) {
   font-size: calc(0.5rem + 0.8vw);;
 }
 
-.localizacao h1 + div section strong {
-  color: var(--cor-atencao); 
-  -webkit-text-stroke: 0.5px;
-}
-
+.localizacao h1 + div section strong {  color: var(--cor-laranja);  -webkit-text-stroke: 1.5px;  }
 
 @media (min-width: 768px) {
   .localizacao h1 + div section li::before {
@@ -528,9 +526,7 @@ main > *:not(:first-child) {
 
 .iframe-buttons button img {  width: 3vw;  height: auto;  }
 
-.iframe-buttons button.active {
-  background: #237c95;
-}
+.iframe-buttons button.active {  background: #237c95;  }
 
 #iframeFS {
   position: absolute;
@@ -541,9 +537,7 @@ main > *:not(:first-child) {
   transition: transform 300ms;
 }
 
-#iframeFS:hover {
-  transform: scale(1.8);
-}
+#iframeFS:hover {  transform: scale(1.8);  }
 
 #iframe-div {
   width: 70%; 
@@ -568,7 +562,45 @@ main > *:not(:first-child) {
   .localizacao h1 + div section + div {  width: 100%;  }
   .localizacao h1 + div section li {  font-size: calc(0.5rem + 2vw);  }
   #iframe-div {  width: 100%;  }
+  #iframeFS {  right: 4.7%;  }
   .iframe-buttons button img {
     width: 8vw;
   }
 }
+
+
+
+/**  CONTATO  **/
+
+.contato {
+  background-color: #9500ff; /* temp */
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2%;
+}
+
+.contato > * { padding: 10px; }
+
+@media (max-width: 768px) {  
+  .contato { flex-direction: column; height: 100vh; }  
+  .contato > section { width: 80% !important; }
+  #contato-form { width: 100% !important; }
+}
+
+.contato > section {
+  height: 80%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  background-color: #25D366; /* temp */
+}
+
+#contato-form {
+  height: 80%;
+  width: 68%;
+  background-color: #E0D8DE; /* temp */
+}
+

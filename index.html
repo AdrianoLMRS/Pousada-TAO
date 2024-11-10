@@ -18,22 +18,22 @@
     <!-- tiny slider -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
 </head>
-<body id="body" style="min-height: 1000vh;">
-    <div id="home"></div>
+<body id="body" style="height: auto;">
+    <div id="home"></div>   <!--    for navbar    -->
     <div class="overlay-full" id="overlayFull"></div>
-    <div class="content" style=" min-height: 1000vh;">
+    <div class="content" style="">
     
         <nav id="navbar" style="max-width: 3500px;">
             <ul class="sidebar">
                 <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
+                <li onclick=hideSidebar() id="nav-reserva" style="border-radius: 0; margin-bottom: 4vh; margin-top: 4vh;">
+                    <a style="-webkit-text-stroke: 1.5px;" href="#reserva">Reservar</a></li>
                 <li onclick=hideSidebar()><a href="#home">Home</a></li>
                 <li onclick=hideSidebar()><a href="#sobre">Pousada</a></li>
                 <li onclick=hideSidebar()><a href="#depoimentos">Depoimentos</a></li>
                 <li onclick=hideSidebar()><a href="#localizacao">Localização</a></li>
                 <li onclick=hideSidebar()><a href="#contato">Contato</a></li>
                 <li onclick=hideSidebar()><a href="#politicas">Políticas</a></li>
-                <li onclick=hideSidebar() id="nav-reserva" style="border-radius: 0; margin-top: 50px;">
-                    <a style="-webkit-text-stroke: 1.5px;" href="#reserva">Reservar</a></li>
               </ul>
               
               <ul class="desktop">
@@ -209,11 +209,11 @@
                             <div class="iframe-buttons">
 
                                 <button onclick="toggleMap('google'), setActiveButton(this)">
-                                    <img style="" src="img/svg/icons8-google-maps-novo.svg" alt="Icone Google Maps">
+                                    <img src="img/svg/icons8-google-maps-novo.svg" alt="Icone Google Maps">
                                 </button>
 
                                 <button onclick="toggleMap('waze'), setActiveButton(this)" style="margin-right: 1%;">
-                                    <img style="" src="img/svg/waze-icon.svg" alt="Icone Waze">
+                                    <img src="img/svg/waze-icon.svg" alt="Icone Waze">
                                 </button>
                                 
                             </div>
@@ -245,6 +245,18 @@
 
                     </div>
 
+                </div>
+
+                <div class="contato">
+
+                    <section>
+                        SEÇÃO ONDE TERÁ TELEFONE, INSTAGRAM, WHATSAPP ETC.
+                    </section>
+
+                    <div id="contato-form">
+                        FORMULÁRIO DE PERGUNTAS (FAQ)
+                    </div>
+                    
                 </div>
             
         </main>
