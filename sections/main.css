@@ -582,12 +582,12 @@ main > *:not(:first-child) {
   gap: 2%;
 }
 
-.contato > * { padding: 10px; }
+  .contato > * { padding: 10px; }
 
 @media (max-width: 768px) {  
-  .contato { flex-direction: column; height: 100vh; }  
-  .contato > section { width: 80% !important; }
-  #contato-form { width: 100% !important; }
+  .contato { flex-direction: column; height: 150vh; }  
+  .contato > section { width: 80% !important; height: 60% !important; }
+  #contato-form { width: 99% !important; }
 }
 
 .contato > section {
