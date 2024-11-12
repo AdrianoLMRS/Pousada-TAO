@@ -253,16 +253,41 @@
                         SEÇÃO ONDE TERÁ TELEFONE, INSTAGRAM, WHATSAPP ETC.
                     </section>
 
-                    <div id="contato-form">
-                        <h2>FORMULÁRIO DE DÚVIDAS (FAQ)</h2>
+                    <div id="contato-form-div">
+                        <h2>NOS ENVIE UMA MENSAGEM</h2>
 
                         <!-- Formsubmit.co API -->
-                        <form action="https://formsubmit.co/adriano.limarossi@gmail.com" method="POST" onsubmit="sessionStorage.setItem('formSent', 'true')">
+                        <form class="contato-form" action="https://formsubmit.co/adriano.limarossi@gmail.com" method="POST" onsubmit="sessionStorage.setItem('formSent', 'true')">
+                            
                             <input type="hidden" name="_next" id="next-url"> <!--  Dinamic URL VALUE -->
-                            <input type="text" name="name" placeholder="Nome" required>
-                            <input type="email" name="email" placeholder="Email" required>
-                            <input type="text" name="message" placeholder="Mensagem" required>
-                            <button type="submit">Send</button>
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_autoresponse" value="Sua mensagem foi enviada!  Aguarde de 30min à 6 horas que iremos te retornar">
+                            <input type="hidden" name="_template" value="box">
+                            <input type="hidden" name="_captcha" value="false">
+
+                            <div class="input-data">
+                                <input type="text" name="name" required>
+                                <label for="">Nome</label>
+                                <div class="underline"></div>
+                            </div>
+                            <div class="input-data">
+                                <input type="email" name="email" required>
+                                <label for="">Email</label>
+                                <div class="underline"></div>
+                            </div>
+                            <div class="input-data">
+                                <input type="text" name="_subject" required>
+                                <label for="">Assunto</label>
+                                <div class="underline"></div>
+                            </div>
+                            <div class="input-data textarea">
+                                <textarea rows="8" cols="80" type="text" name="message" required></textarea>
+                                <label for="">Mensagem</label>
+                                <div class="underline"></div>
+                            </div>
+                        
+                            <button type="submit">Enviar</button>
+                            
                         </form>
 
                     </div>                    
@@ -341,7 +366,10 @@ function setActiveButton(button) {
         sessionStorage.removeItem('formSent');
     }
     // Define _next to the actual URL
-    document.getElementById('next-url').value = window.location.href;
+    document.getElementById('next-url').value = (window.location.href + '#contato');
+    
+    const email = 'adriano.limarossi@gmail.com'
+    document.getElementById("contact-form").action = `https://formsubmit.co/${email}`;
 </script>
 <script src="scripts/fullScreen.js" defer></script>
 <script src="scripts/tinySlider.js" defer></script>

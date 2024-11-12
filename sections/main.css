@@ -573,8 +573,7 @@ main > *:not(:first-child) {
 /**  CONTATO  **/
 
 .contato {
-  background-color: #9500ff; /* temp */
-  height: 80vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -598,9 +597,105 @@ main > *:not(:first-child) {
   background-color: #25D366; /* temp */
 }
 
-#contato-form {
+#contato-form-div {
   height: 80%;
   width: 68%;
-  background-color: #E0D8DE; /* temp */
+  overflow: hidden;
+
+}
+
+.contato-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80%;
+  overflow: hidden;
+  margin-top: 2%;
+  padding: 10px;
+  gap: 10px;
+
+  --font-size: calc(0.5rem + 1vw)
+}
+
+.contato-form .input-data input {  height: 10vh;  }
+
+.contato-form .input-data input,
+.contato-form .input-data textarea {
+  position: relative;
+  width: 100%;
+  /* height: 100%; */
+  resize: none;
+  font-size: var(--font-size);
+  border-radius: 4px;
+  border: none;
+  outline: none;
+}
+
+.input-data {  
+  position: relative; 
+  height: 10vh;  
+}
+
+.contato-form .input-data .underline {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background-color: black;
+}
+
+.input-data input,
+.textarea textarea{
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.input-data input:focus ~ label, .textarea textarea:focus ~ label,
+.input-data input:valid ~ label, .textarea textarea:valid ~ label{
+  transform: translateY(calc((var(--font-size) + 1vh)* -1)) translateX(-5px);
+  font-size: calc(var(--font-size) - 0.5vw);
+  color: #3498db;
+}
+.textarea textarea{
+  padding-top: 5.5vh;
+  min-height: 100%;
+}
+.input-data label{
+  position: absolute;
+  pointer-events: none;
+  bottom: 30%;
+  left: 1.5%;
+  transition: all 0.3s ease;
+}
+.textarea label{
+  width: 100%;
+}
+.textarea {
+  height: 10vh !important;
+  margin-top: 2%;
+}
+.input-data .underline{
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+}
+.input-data .underline:before{
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 100%;
+  background: #3498db;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+.input-data input:focus ~ .underline:before,
+.input-data input:valid ~ .underline:before,
+.textarea textarea:focus ~ .underline:before,
+.textarea textarea:valid ~ .underline:before{
+  transform: scale(1);
 }
 
