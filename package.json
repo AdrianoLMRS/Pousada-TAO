@@ -1,6 +1,17 @@
 {
   "dependencies": {
+    "express": "^4.21.1",
     "react-awesome-button": "^7.0.5",
     "tiny-slider": "^2.9.4"
-  }
+  },
+  "name": "website",
+  "version": "1.0.0",
+  "description": "**DEMO**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

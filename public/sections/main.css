@@ -659,7 +659,7 @@ main > *:not(:first-child) {
   color: #3498db;
 }
 .textarea textarea{
-  padding-top: 5.5vh;
+  padding-top: 4vh;
   min-height: 100%;
 }
 .input-data label{

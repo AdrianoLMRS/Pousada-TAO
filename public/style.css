@@ -80,9 +80,8 @@ body > * {
   max-width: 3500px;
   z-index: 2;
   box-shadow: 12px 0 8px rgba(0, 0, 0, 0.4), -12px 0 8px rgba(0, 0, 0, 0.4);
-  background-color: rgba(196, 229, 237, 0.7);
-  background-image: linear-gradient(rgba(125, 206, 239, 0.7) 1.5px, transparent 1.5px), linear-gradient(to right, rgba(125, 206, 239, 0.7) 1.5px, rgba(196, 229, 237, 0.7) 1.5px);
-  background-size: 30px 30px;
+  background-color: rgba(196, 229, 237, 1);
+
 }
 
 .overlay-full{
