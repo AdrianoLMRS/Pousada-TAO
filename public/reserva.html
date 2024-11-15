@@ -11,11 +11,12 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script>
       const TEST_KEY = 'pk_test_51QL7dYH40HYEkt7KrSCog4qpidBop00Nj8wYTSk8HIlPvoSWonn5FebisZkqCYn8QjYvCoDAgqQIMzQdHF3huyqr00kYLsDV9B';
+      const BASE_URL = 'http://localhost:5000'
       const stripe = Stripe(TEST_KEY);
     
       document.getElementById("checkout-button").addEventListener("click", async () => {
         try {
-          const response = await fetch("http://localhost:3000/create-checkout-session", { // URL corrigida
+          const response = await fetch(`${BASE_URL}/create-checkout-session`, { 
             method: "POST",
             headers: {
               "Content-Type": "application/json",

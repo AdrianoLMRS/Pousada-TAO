@@ -1,5 +1,7 @@
 const express = require('express');
 require('dotenv').config(); // Require .env
+console.log(process.env.PORT)
+console.log(process.env.BASE_URL)
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const router = express.Router();
@@ -17,14 +19,14 @@ router.post('/create-checkout-session', async (req, res) => {
                         product_data: {
                             name: 'Produto de Teste',
                         },
-                        unit_amount: 5000, 
+                        unit_amount: 50000, // Centavos
                     },
                     quantity: 1,
                 },
             ],
             mode: 'payment',
-            success_url: 'http://localhost:3000/success.html',
-            cancel_url: 'http://localhost:3000/cancel.html',
+            success_url: `${process.env.BASE_URL}/success.html`, // TODO: Create and style
+            cancel_url: `${process.env.BASE_URL}/cancel.html`, // TODO: Create and style
         });
         
         res.json({ id: session.id });
@@ -33,4 +35,4 @@ router.post('/create-checkout-session', async (req, res) => {
     }
 });
 
-module.exports = router; // Exporta as rotas para o index.js
+module.exports = router;
