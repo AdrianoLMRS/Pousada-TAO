@@ -1,0 +1,116 @@
+nav {
+  position: fixed;
+  width: 100%;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+  font-family: 'Caviar-Dreams', sans-serif;
+  z-index: 90;
+  top: 0;
+  left: auto;
+  transition: top 0.3s ease-in, background-color 0.5s ease-in-out
+}
+
+nav ul {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  direction: ltr;
+}
+
+nav li {
+  height: 50px;
+}
+
+nav a {
+  height: 100%;
+  padding: 0 30px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  transition: background-color 1s ease, font-size 1s ease, font-weight 0.3s ease;
+  font-size: 16px;
+}
+
+nav .desktop a:hover {
+  font-size: 17.6px;
+  -webkit-text-stroke: 0.5px;
+}
+
+nav .sidebar a:hover {
+  font-size: 17.6px;
+  -webkit-text-stroke: 2px;
+}
+
+.desktop li:first-child {
+  margin-right: auto;
+  letter-spacing: 5px;
+  font-family: 'Speeling-night', sans-serif;
+  pointer-events: none;
+}
+
+.desktop a {
+  color: var(--cor-azul-claro);
+}
+
+#nav-reserva {
+  background-color: var(--cor-atencao);
+  border-radius: 30px;
+}
+
+#nav-reserva a {
+  color: var(--cor-txt);
+  -webkit-text-stroke: 0.5px;
+  font-weight: 900;
+}
+
+#nav-reserva a:hover {
+  -webkit-text-stroke: 0.8px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(103, 103, 103, 0.294);
+  backdrop-filter: blur(15px);
+  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 10;
+}
+
+.sidebar li {
+  width: 100%;
+  letter-spacing: 3px;
+  -webkit-text-stroke: 2px;
+
+}
+
+.sidebar a {
+  color: black;
+  width: 100%;
+}
+.sidebar li:first-child{
+  display: block;
+  top: 0;
+}
+
+.menu-button {
+  display: none;
+  filter: invert(100%) sepia(100%) saturate(500%) hue-rotate(180deg); 
+}
+
+@media(max-width: 1000px) {
+  .hideOnMobile {
+    display: none;
+  }
+  .menu-button {
+    display: flex;
+  }
+}
