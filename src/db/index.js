@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
 require('dotenv').config(); // Require .env
+const mongoose = require('mongoose');
 
 // MongoDB Atlas connection string
-const mongoURI = process.env.MONGO_URI;
+const mongoURI = String(process.env.MONGO_URI);
 
 // Conect MongoDB
 const connectDB = async () => {
@@ -16,6 +16,8 @@ const connectDB = async () => {
 };
 
 connectDB();
+
+console.log("Mongo URI: ", process.env.MONGO_URI); // Verifique se o valor está correto
 
 module.exports = mongoose; 
 module.exports = connectDB; 
