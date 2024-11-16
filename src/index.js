@@ -17,7 +17,7 @@ app.get('*', (req, res) => {
 
 
 // Conect Database MongoDB
-const connectDB = require('../db');
+const connectDB = require('./db');
 connectDB();
 
 app.use(cors({
