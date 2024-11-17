@@ -1,14 +1,32 @@
 const mongoose = require('mongoose');
 
-// Definindo o Schema
-const roomSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  description: { type: String, required: true },
-  price: { type: Number, required: true },
-  available: { type: Boolean, default: true }
-});
+const reservationSchema = new mongoose.Schema({
+    checkinDate: Date,
+    checkoutDate: Date,
+    adults: {
+        type: Number,
+        min: 0, 
+        validate: {
+            validator: Number.isInteger,
+            message: '{VALUE} não é um número inteiro',
+        },
+    },
+    children: {
+        type: Number,
+        min: 0, 
+        validate: {
+            validator: Number.isInteger,
+            message: '{VALUE} não é um número inteiro',
+        },
+    },
+    sessionId: String,
+    paymentStatus: String,
+    totalPrice: {
+        type: Number, // Float Number
+        min: 0, 
+    },
+}, { timestamps: true });
 
-// Criando o modelo
-const Room = mongoose.model('Room', roomSchema);
+const Reservation = mongoose.model('Reservation', reservationSchema);
 
-module.exports = Room;
+module.exports = Reservation;

@@ -1,12 +1,15 @@
 const express = require('express');
 require('dotenv').config(); // Carregar variáveis de ambiente
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const Reservation = require('../db/models/db_model'); // Modelo de reserva
 
 const router = express.Router();
+const reservationCache = {}; // Cache para dados de reserva temporários
 
 // Rota de criação da sessão de checkout
 router.post('/create-checkout-session', async (req, res) => {
-    const { checkinDate, checkoutDate, adults, children } = req.body;
+    const { checkinDate, checkoutDate, adults, children, sessionId } = req.body;
+    reservationCache[sessionId] = { checkinDate, checkoutDate, adults, children };
 
     // Validação dos dados recebidos
     if (!checkinDate || !checkoutDate || !adults || !children) {
@@ -50,6 +53,39 @@ router.post('/create-checkout-session', async (req, res) => {
         res.json({ id: session.id });
     } catch (error) {
         console.error('Erro ao criar a sessão do Stripe:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Rota para verificar o pagamento
+router.post('/verify-payment', async (req, res) => {
+    const { sessionId } = req.body;
+
+    try {
+        const session = await stripe.checkout.sessions.retrieve(sessionId);
+        if (session.payment_status === 'paid') {
+            const reservationData = reservationCache[sessionId];
+            if (reservationData) {
+                const reservation = new Reservation({
+                    checkinDate: reservationData.checkinDate,
+                    checkoutDate: reservationData.checkoutDate,
+                    adults: reservationData.adults,
+                    children: reservationData.children,
+                    sessionId: sessionId,
+                    paymentStatus: 'paid',
+                    totalPrice: session.amount_total,
+                });
+                await reservation.save();
+                delete reservationCache[sessionId];
+                res.json({ success: true });
+            } else {
+                res.status(404).json({ error: 'Dados da reserva não encontrados no cache.' });
+            }
+        } else {
+            res.status(400).json({ error: 'Pagamento não confirmado.' });
+        }
+    } catch (error) {
+        console.error('Erro ao verificar pagamento:', error);
         res.status(500).json({ error: error.message });
     }
 });
