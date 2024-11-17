@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// RESERVATION SCHEMA AFTER THE PAYMENT CONFIRMATION
 const reservationSchema = new mongoose.Schema({
     checkinDate: Date,
     checkoutDate: Date,
@@ -27,6 +28,20 @@ const reservationSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
-const Reservation = mongoose.model('Reservation', reservationSchema);
+// CACHE SCHEMA IF THE USER DON'T/SKIP PAYMENT
+const cacheSchema = new mongoose.Schema({
+    checkinDate: Date,
+    checkoutDate: Date,
+    adults: Number,
+    children: Number,
+    sessionId: String,
+    status: { type: String, default: 'incomplete' },
+    createdAt: { type: Date, default: Date.now, expires: '1h' }, // TTL
+});
 
-module.exports = Reservation;
+// CONSTANTS FOR module.exports
+const Reservation = mongoose.model('Reservation', reservationSchema);
+const Cache = mongoose.model('Cache', cacheSchema);
+
+// Export models
+module.exports = { Reservation, Cache };

@@ -1,19 +1,37 @@
-const express = require('express');
-const router = express.Router();
-const Room = require('./models/Room');
+const { client } = require('./index'); // Importa o cliente de conexão
+const { ObjectId } = require('mongodb'); // Opcional, se precisar usar ObjectId
 
-// Rota para adicionar um quarto
-router.post('/rooms', async (req, res) => {
-  const { name, description, price } = req.body;
-
-  const newRoom = new Room({ name, description, price });
-
+const insertDocument = async () => {
   try {
-    await newRoom.save();
-    res.status(201).send('Quarto adicionado com sucesso!');
-  } catch (err) {
-    res.status(500).send('Erro ao adicionar quarto: ' + err);
-  }
-});
+    // Conectar ao banco de dados
+    await client.connect();
 
-module.exports = router;
+    // Acessar o banco de dados e a collection desejada
+    const db = client.db('Hostel'); // Substitua pelo nome do seu banco de dados
+    const collection = db.collection('Cache'); // Substitua pelo nome da sua collection
+
+    // O documento que será inserido
+    const doc = {
+      checkinDate: new Date('2024-12-01T14:00:00Z'), // Data de check-in
+      checkoutDate: new Date('2024-12-07T10:00:00Z'), // Data de check-out
+      adults: 2, // Número de adultos
+      children: 1, // Número de crianças
+      sessionId: 'abc123xyz', // ID da sessão
+      status: 'incomplete', // Status (padrão: 'incomplete')
+      createdAt: new Date(), // Data de criação
+    };
+
+    // Inserir o documento na collection
+    const result = await collection.insertOne(doc);
+
+    console.log(`Document inserted with _id: ${result.insertedId}`);
+  } catch (error) {
+    console.error('Error inserting document:', error);
+  } finally {
+    // Fechar a conexão com o banco de dados
+    await client.close();
+  }
+};
+
+// Chama a função para realizar o insert
+insertDocument();

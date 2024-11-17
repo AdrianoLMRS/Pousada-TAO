@@ -1,23 +1,28 @@
-require('dotenv').config(); // Require .env
-const mongoose = require('mongoose');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+require('dotenv').config({ path: '../.env' });
+const uri = process.env.MONGO_URI
 
-// MongoDB Atlas connection string
-const mongoURI = String(process.env.MONGO_URI);
-
-// Conect MongoDB
-const connectDB = async () => {
-  try {
-    await mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
-    console.log('Conexão com MongoDB estabelecida com sucesso!');
-  } catch (err) {
-    console.error('Erro ao conectar ao MongoDB:', err);
-    process.exit(1); // Fail: Close process
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
   }
-};
+});
 
-connectDB();
+const connectDB = async function run() {
+  try {
+    // Connect the client to the server	(optional starting in v4.7)
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
 
-console.log("Mongo URI: ", process.env.MONGO_URI); // Verifique se o valor está correto
 
-module.exports = mongoose; 
-module.exports = connectDB; 
+module.exports = { connectDB, client }; // Exporta a função connectDB e o mongoose

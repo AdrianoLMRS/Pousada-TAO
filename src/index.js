@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors'); // Enable CORS
 const path = require('path');
 const stripe = require('./routes/stripe'); // Import Stripe Check routes
-const apiRoutes = require('./routes/apiRoutes');  // Com a extensão .js já implícita
+const apiRoutes = require('./routes/apiRoutes');  // Import apiRoutes
 const app = express();
 const reservationCache = {}; // Cache em memória
 require('dotenv').config();
@@ -23,8 +23,8 @@ app.get('*', (req, res) => {
 });
 
 // Conect Database MongoDB
-const connectDB = require('./db');
-connectDB();
+const { connectDB } = require('./db'); // Models
+connectDB().catch(console.dir);
 
 
 const router = express.Router();
@@ -40,8 +40,9 @@ router.get('/reservation-data/:sessionId', (req, res) => {
 });
 
 // FOR DEBUG :
-router.get('/debug', (req, res) => {
-  res.json(reservationCache);
+router.get('/debug-cache', async (req, res) => {
+  const cacheData = await Cache.find({});
+  res.json(cacheData);
 });
 
 app.use(router)
