@@ -1,14 +1,12 @@
-# WIP
+# #WIP
 
 
 **DEMO**
 
-link (No longer works):
+link : 
 https://adrianolmrs.github.io/Website/
 
 *Teste*
 
 
-./reserva.html
-Preço por adulto = 100R$
-Preço por criança = 50R$
+<sub>[Reserva](./reserva.html)<br>Preço por adulto: 100R$<br>Preço por criança: 50R$</sub>
