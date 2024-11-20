@@ -60,13 +60,16 @@ body > * {
 }
 
 .gradient-txt {
-  background-image: linear-gradient(var(--direction), var(--cor-1), var(--cor-2)); /* DEFINE THE VARIABLE IN THE HTML TAG */
+  background-image: linear-gradient(var(--direction, to right), var(--cor-1, black), var(--cor-2, black), var(--cor-3, black), var(--cor-4, black)); /* Define variáveis com fallback */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; 
-  --cor-1: black; /* IF THE USER DONT DEFINE THE VARIABLE; BLACK BY DEFAULT */
-  --cor-2: black; /* IF THE USER DONT DEFINE THE VARIABLE; BLACK BY DEFAULT */
-  --direction: to right; /* IF THE USER DONT DEFINE THE VARIABLE; "TO RIGHT" BY DEFAULT */
+  --cor-1: black; /* Default color if not defined by the user */
+  --cor-2: black; /* Default color if not defined by the user */
+  --cor-3: black; /* Will not have an effect if not defined */
+  --cor-4: black; /* Will not have an effect if not defined */
+  --direction: to right; /* Default direction if not defined */
 }
+
 
 .no-selection::selection {
   color: default;

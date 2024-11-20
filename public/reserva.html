@@ -61,11 +61,11 @@
             throw new Error("Falha ao criar sessão de checkout");
           }
 
-          const { id } = await response.json();
+          const { sessionId } = await response.json();
 
           // Redireciona o usuário para o Stripe Checkout
           const result = await stripe.redirectToCheckout({
-            sessionId: id,
+            sessionId: sessionId,
           });
 
           if (result.error) {
@@ -75,6 +75,9 @@
           console.error("Erro durante o redirecionamento:", error);
         }
       });
+      // console.log("Response:", response);
+      // const data = await response.json();
+      // console.log("Session ID:", data.sessionId);
     </script>
 </body>
 </html>

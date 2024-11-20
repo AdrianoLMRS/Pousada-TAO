@@ -1,47 +1,17 @@
-// import { Schema, model } from 'mongoose';
+const mongoose = require('mongoose');
 
-// // RESERVATION SCHEMA AFTER THE PAYMENT CONFIRMATION
-// const reservationSchema = new Schema({
-//     checkinDate: Date,
-//     checkoutDate: Date,
-//     adults: {
-//         type: Number,
-//         min: 0, 
-//         validate: {
-//             validator: Number.isInteger,
-//             message: '{VALUE} não é um número inteiro',
-//         },
-//     },
-//     children: {
-//         type: Number,
-//         min: 0, 
-//         validate: {
-//             validator: Number.isInteger,
-//             message: '{VALUE} não é um número inteiro',
-//         },
-//     },
-//     sessionId: String,
-//     paymentStatus: String,
-//     totalPrice: {
-//         type: Number, // Float Number
-//         min: 0, 
-//     },
-// }, { timestamps: true });
+const userSchema = new mongoose.Schema({
+  auth0Id: {
+    type: String,
+    required: true,
+    unique: true, // O ID do Auth0 será único para cada usuário
+  },
+  name: String,
+  email: String,
+  picture: String,
+  // Outros dados do usuário que você deseja armazenar
+});
 
-// // CACHE SCHEMA IF THE USER DON'T/SKIP PAYMENT
-// const cacheSchema = new Schema({
-//     checkinDate: Date,
-//     checkoutDate: Date,
-//     adults: Number,
-//     children: Number,
-//     sessionId: String,
-//     status: { type: String, default: 'incomplete' },
-//     createdAt: { type: Date, default: Date.now, expires: '1h' }, // TTL
-// });
+const User = mongoose.model('User', userSchema, 'Users');
 
-// // CONSTANTS FOR module.exports
-// const Reservation = model('Reservation', reservationSchema);
-// const Cache = model('Cache', cacheSchema);
-
-// // Export models
-// export default { Reservation, Cache };
+module.exports = User;

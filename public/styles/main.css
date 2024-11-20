@@ -444,7 +444,9 @@ main > *:not(:first-child) {
 .localizacao h1 {
   font-size: calc(2rem + 3vw);   
   --cor-1: var(--cor-roxo);     
-  --cor-2: var(--cor-laranja);
+  --cor-2: var(--cor-roxo);     
+  --cor-3: var(--cor-laranja);
+  --cor-4: var(--cor-laranja);
 }
 
 .localizacao h1 + div {

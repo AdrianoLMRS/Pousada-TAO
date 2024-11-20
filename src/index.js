@@ -1,14 +1,27 @@
 const express = require('express');
 const cors = require('cors'); // Enable CORS
 const path = require('path');
-const stripe = require('./routes/stripe'); // Import Stripe Check routes
-const apiRoutes = require('./routes/0auth');  // Import apiRoutes
-const { auth } = require('express-openid-connect');
-const config = require('./routes/0auth'); // Import 0auth config
+require('dotenv').config();
+
+// STRIPE
+  const stripe = require('./routes/stripe'); // Import Stripe Check routes
+
+// 0Auth  
+const { auth, requiresAuth } = require('express-openid-connect');
+  const config = {
+    authRequired: false,
+    auth0Logout: true,
+    secret: process.env.SECRET_HASH,
+    baseURL: process.env.BASE_URL,
+    clientID: 'r5sNxjj44fHqDYlWY7JM5hjLVojvLPJz',
+    issuerBaseURL: 'https://adrianoo.us.auth0.com'
+  };
+
 const app = express();
 const router = express.Router();
+
 const reservationCache = {}; // Cache em memória
-require('dotenv').config();
+
 
 app.use(express.json());
 
@@ -18,6 +31,21 @@ app.use(cors({
   credentials: true, // cookies/credentials
 }));
 
+// *0Auth
+app.use(auth(config));
+
+// req.isAuthenticated is provided from the auth router
+app.get('/', (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+});
+
+// Returns profile JSON
+app.get('/profile', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user));
+});
+
+console.log(config);
+
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Route for finding (Reloads frontend)
@@ -25,9 +53,13 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 //   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 // });
 
-// Conect Database MongoDB
-const { connectDB } = require('./db'); // Models
-connectDB().catch(console.dir);
+// *Conect Database MongoDB
+  const { db, routerDB } = require('./db/index'); // index.js in Database folder
+  db.on('error:', (error) => console.log(error))
+  db.once('open:', () => console.log('Connected to database!!!'))
+
+  app.use(routerDB);
+
 
 router.get('/reservation-data/:sessionId', (req, res) => {
   const { sessionId } = req.params;
@@ -39,31 +71,15 @@ router.get('/reservation-data/:sessionId', (req, res) => {
   }
 });
 
-// FOR DEBUG :
-router.get('/debug-cache', async (req, res) => {
-  const cacheData = await Cache.find({});
-  res.json(cacheData);
-});
-
-app.use(router)
+app.use(router);
 
 // API routes backend
-// router.use(apiRoutes); 
-// router.use(stripe); // routes/stripe.js
+  router.use(stripe); // routes/stripe.js
 
 // Initialize server
 app.listen(process.env.PORT, '0.0.0.0', () => {
   console.log(`Servidor rodando em ${process.env.BASE_URL}`);
 });
 
-// req.isAuthenticated is provided from the auth router
-app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-});
-
-
-console.log(config)
-// auth router attaches /login, /logout, and /callback routes to the baseURL
-app.use(auth(config));
 
 // module.exports = app;

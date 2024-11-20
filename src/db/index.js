@@ -1,28 +1,50 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
 require('dotenv').config({ path: '../.env' });
-const uri = process.env.MONGO_URI
+const { requiresAuth } = require('express-openid-connect');
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
+// *MongoDB
+  const { MongoClient, ServerApiVersion } = require('mongodb');
+  const mongoose = require('mongoose');
+  const URI = process.env.MONGO_URI
+  const User = require('./models/db_model'); // Import user model Auth0
+
+// *Express
+  const express = require('express');
+  const routerDB = express.Router();
+
+
+mongoose.connect(URI, {
+  useNewUrlParser: true
+})
+
+const db = mongoose.connection;
+
+
+routerDB.get('/profile', requiresAuth(), async (req, res) => {
+  try {
+    // A informação do usuário vem da propriedade `req.oidc.user`
+    const { sub, name, email, picture } = req.oidc.user;
+
+    // Verifica se o usuário já existe no banco de dados
+    let user = await User.findOne({ auth0Id: sub });
+
+    if (!user) {
+      // Se o usuário não existe, cria um novo
+      user = new User({
+        auth0Id: sub,
+        name,
+        email,
+        picture,
+      });
+      await user.save(); // Salva o usuário no MongoDB
+      console.log('Usuário salvo no banco de dados');
+    }
+
+    res.json(req.oidc.user); // Retorna os dados do usuário
+  } catch (error) {
+    console.error('Erro ao salvar usuário:', error);
+    res.status(500).send('Erro ao salvar usuário no banco de dados');
   }
 });
 
-const connectDB = async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
 
-
-module.exports = { connectDB, client }; // Exporta a função connectDB e o mongoose
+module.exports = { db, routerDB }; // Exporta a função connectDB e o mongoose
