@@ -5,18 +5,26 @@ const { requiresAuth } = require('express-openid-connect');
   const { MongoClient, ServerApiVersion } = require('mongodb');
   const mongoose = require('mongoose');
   const URI = process.env.MONGO_URI
-  const User = require('./models/db_model'); // Import user model Auth0
+  const User = require('./models/user'); // Import user model Auth0
 
 // *Express
   const express = require('express');
   const routerDB = express.Router();
 
+const connectDB = async () => {
+  try {
 
-mongoose.connect(URI, {
-  useNewUrlParser: true
-})
+    const db = await mongoose.connect(URI, {
+      useNewUrlParser: true, // Ensures you are using the new URL parser
+      useUnifiedTopology: true, // Uses the new unified topology engine
+    });
 
-const db = mongoose.connection;
+    console.log('MongoDB connected:', db.connection.host);
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error).message;
+    process.exit(1); // Exit failure
+  }
+};
 
 
 routerDB.get('/profile', requiresAuth(), async (req, res) => {
@@ -47,4 +55,4 @@ routerDB.get('/profile', requiresAuth(), async (req, res) => {
 });
 
 
-module.exports = { db, routerDB }; // Exporta a função connectDB e o mongoose
+module.exports = { connectDB, routerDB }; // Exporta a função connectDB e o mongoose

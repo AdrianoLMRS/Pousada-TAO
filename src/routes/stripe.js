@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
 const { requiresAuth } = require('express-openid-connect');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
+
 
 if (!process.env.STRIPE_SECRET_KEY) {
     throw new Error('A variável STRIPE_SECRET_KEY não está definida no arquivo .env');

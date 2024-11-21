@@ -3,10 +3,18 @@ const cors = require('cors'); // Enable CORS
 const path = require('path');
 require('dotenv').config();
 
-// STRIPE
+// *ROUTES
   const stripe = require('./routes/stripe'); // Import Stripe Check routes
+  const userRoutes = require('./routes/userRoutes'); // userRoutes
 
-// 0Auth  
+// *MIDDLEWARES
+  const saveUser = require('./middlewares/saveUser');
+
+const app = express();
+const router = express.Router();
+
+
+// *Auth0   
 const { auth, requiresAuth } = require('express-openid-connect');
   const config = {
     authRequired: false,
@@ -17,8 +25,6 @@ const { auth, requiresAuth } = require('express-openid-connect');
     issuerBaseURL: 'https://adrianoo.us.auth0.com'
   };
 
-const app = express();
-const router = express.Router();
 
 const reservationCache = {}; // Cache em memória
 
@@ -40,13 +46,17 @@ app.get('/', (req, res) => {
 });
 
 // Returns profile JSON
-app.get('/profile', requiresAuth(), (req, res) => {
-  res.send(JSON.stringify(req.oidc.user));
-});
+// app.get('/profile', requiresAuth(), (req, res) => {
+//   res.send(JSON.stringify(req.oidc.user));
+// });
 
 console.log(config);
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
+
+// *Configurar o motor de template EJS
+  app.set('view engine', 'ejs');
+  app.set('views', path.join(__dirname, 'views'));
 
 // Route for finding (Reloads frontend)
 // app.get('*', (req, res) => {
@@ -54,29 +64,21 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 // });
 
 // *Conect Database MongoDB
-  const { db, routerDB } = require('./db/index'); // index.js in Database folder
-  db.on('error:', (error) => console.log(error))
-  db.once('open:', () => console.log('Connected to database!!!'))
-
-  app.use(routerDB);
-
-
-router.get('/reservation-data/:sessionId', (req, res) => {
-  const { sessionId } = req.params;
-  const cachedData = reservationCache[sessionId];
-  if (cachedData) {
-      res.json(cachedData);
-  } else {
-      res.status(404).json({ error: 'Dados não encontrados no cache.' });
-  }
-});
+  const { connectDB, routerDB } = require('./db/index'); // index.js in Database folder
+  
+  connectDB()
+  app.use('/db', routerDB);
 
 app.use(router);
 
-// API routes backend
-  router.use(stripe); // routes/stripe.js
+// *Routes uses
+  router.use('/stripe', stripe); // routes/stripe.js
+  app.use(userRoutes); //routes/userRoutes.js
 
-// Initialize server
+// *Middleware uses
+  app.use(saveUser);    // Aplica o middleware após o Auth0
+
+// Initialize server log
 app.listen(process.env.PORT, '0.0.0.0', () => {
   console.log(`Servidor rodando em ${process.env.BASE_URL}`);
 });
