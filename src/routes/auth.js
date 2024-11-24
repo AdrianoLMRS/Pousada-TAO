@@ -1,7 +1,10 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const User = require('./models/User');
-const router = express.Router();
+// *Dependecies
+  const express = require('express');
+  const jwt = require('jsonwebtoken');
+  const User = require('../db/models/User');
+
+// *Constants  
+  const router = express.Router();
 
 // Registro de usuário
 router.post('/register', async (req, res) => {

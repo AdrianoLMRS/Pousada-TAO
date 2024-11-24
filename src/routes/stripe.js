@@ -1,18 +1,14 @@
-const express = require('express');
-const router = express.Router();
-const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
-const { requiresAuth } = require('express-openid-connect');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-
-
-
-if (!process.env.STRIPE_SECRET_KEY) {
-    throw new Error('A variável STRIPE_SECRET_KEY não está definida no arquivo .env');
-}
+// *Dependecies
+    const path = require('path');
+    require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
+    const express = require('express');
+    const router = express.Router();
+    
+// *Constants    
+    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 // Checkout Stripe route
-router.post('/create-checkout-session', requiresAuth(), async (req, res) => {
+router.post('/create-checkout-session', async (req, res) => {
     console.log('Dados recebidos no Stripe:', req.body);
     const { checkinDate, checkoutDate, adults, children } = req.body;
 
