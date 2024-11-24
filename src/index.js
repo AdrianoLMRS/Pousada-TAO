@@ -5,38 +5,33 @@
   const app = express(); // Aplication
   const cors = require('cors'); // Enable CORS
   const { connectDB } = require('./db/index'); // Conect Database MongoDB
+  const cookieParser = require('cookie-parser');
 
 // *ROUTES
   const stripeRoutes = require('./routes/stripe'); // Import Stripe Check routes
-  const authRoutes = require('./routes/auth'); // userRoutes
+  const authRoutes = require('./routes/auth'); //  Import Authentication routes
+  const userRoutes = require('./routes/userRoutes'); // Import User Routes
 
 // *CONSTANTS
-
+  // none for now
 
 // *GLOBAL MIDDLEWARES
   app.use(express.json()); // JSON GLOBAL MIDDLEWARE
   app.use(cors()); // CORS GLOBAL MIDDLEWARE
+  app.use(cookieParser());
   app.use(express.static(path.join(__dirname, '..', 'public'))); // SET PUBLIC FOLDER STATIC
-  // app.use((req, res, next) => { // logs
-  //   console.log(`\n\nNova request: \nREQ METHOD : ${req.method} \nREQ URL : ${req.url} \nREQ/USER IP : ${req.ip} \n\n`);
-  //   next(); 
-  // }); 
-
-// *NODE.JS METHODS
-
-  // Set motor to .EJS files in /view folder
-    app.set('view engine', 'ejs');
-    app.set('views', path.join(__dirname, 'views'));
-    
-  // Set motor to .HTML files in /view folder
-    app.use(express.static(path.join(__dirname, 'views')));
-
+  app.use((req, res, next) => { // logs
+    console.log(`\n\nNova request: \nREQ METHOD : ${req.method} \nREQ URL : ${req.url} \nREQ/USER IP : ${req.ip} \n\n`);
+    next(); 
+  }); 
+  
 // *FUNCTIONS
   connectDB();
 
 // *Routes uses
   app.use('/stripe', stripeRoutes); // routes/stripe.js
   app.use('/auth', authRoutes); // routes/auth.js
+  app.use('/profile', userRoutes); //routes/userRoutes.js
 
 
 // Initialize server log
