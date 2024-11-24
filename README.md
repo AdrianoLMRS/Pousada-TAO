@@ -4,7 +4,7 @@
 **DEMO**
 
 link : 
-https://adrianolmrs.github.io/Website/
+https://adrianolmrs.github.io/Website/public
 
 *Teste*
 

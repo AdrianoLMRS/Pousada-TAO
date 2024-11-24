@@ -23,16 +23,20 @@
   // }); 
 
 // *NODE.JS METHODS
+
   // Set motor to .EJS files in /view folder
     app.set('view engine', 'ejs');
     app.set('views', path.join(__dirname, 'views'));
+    
+  // Set motor to .HTML files in /view folder
+    app.use(express.static(path.join(__dirname, 'views')));
 
 // *FUNCTIONS
   connectDB();
 
 // *Routes uses
   app.use('/stripe', stripeRoutes); // routes/stripe.js
-  app.use('/auth', authRoutes); // routes/stripe.js
+  app.use('/auth', authRoutes); // routes/auth.js
 
 
 // Initialize server log
