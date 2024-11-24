@@ -4,7 +4,6 @@
   const express = require('express');
   const app = express(); // Aplication
   const cors = require('cors'); // Enable CORS
-  const { auth } = require('express-openid-connect'); // Auth0   
   const { connectDB } = require('./db/index'); // Conect Database MongoDB
 
 // *ROUTES
@@ -12,20 +11,11 @@
   const userRoutes = require('./routes/userRoutes'); // userRoutes
 
 // *CONSTANTS
-const config = {
-  authRequired: false,
-  auth0Logout: true,
-  secret: process.env.SECRET_HASH,
-  baseURL: process.env.BASE_URL,
-  clientID: 'r5sNxjj44fHqDYlWY7JM5hjLVojvLPJz',
-  issuerBaseURL: 'https://adrianoo.us.auth0.com'
-  // returnTo: '/create-user', // Redirect after login to POST create user in the DB
-};
+
 
 // *GLOBAL MIDDLEWARES
   app.use(express.json()); // JSON GLOBAL MIDDLEWARE
   app.use(cors()); // CORS GLOBAL MIDDLEWARE
-  app.use(auth(config)); // AUTH0 GLOBAL MIDDLEWARE
   app.use(express.static(path.join(__dirname, '..', 'public'))); // SET PUBLIC FOLDER STATIC
   app.use((req, res, next) => { // logs
     console.log(`\n\nNova request: \nREQ METHOD : ${req.method} \nREQ URL : ${req.url} \nREQ/USER IP : ${req.ip} \n\n`);
@@ -42,7 +32,7 @@ const config = {
 // *FUNCTIONS
   connectDB();
 
-// *Routes
+// *Routes uses
   app.use('/stripe', stripe); // routes/stripe.js
   app.use(userRoutes); //routes/userRoutes.js
 

@@ -1,5 +1,4 @@
 const express = require('express');
-const { requiresAuth } = require('express-openid-connect');
 
 // *Controllers
   const profileController = require('../controllers/profileController');
@@ -10,7 +9,7 @@ const { requiresAuth } = require('express-openid-connect');
 const router = express.Router();
 
 // Login Route
-router.get('/login', requiresAuth(), (req, res) => {
+router.get('/login', (req, res) => {
   res.redirect('/save-user');  // POST save user in the DB
 });
 
@@ -21,11 +20,11 @@ router.get('/logout', (req, res) => {
 });
 
 // Save user in the DB route (/save-user)
-router.post('/create-user', requiresAuth(), saveUser, (req, res) => {
+router.post('/create-user', saveUser, (req, res) => {
   res.redirect('/profile'); // Redirect to the /profile
 });
 
 // Profile route
-router.get('/profile', requiresAuth(), profileController.getProfile);
+router.get('/profile', profileController.getProfile);
 
 module.exports = router;
