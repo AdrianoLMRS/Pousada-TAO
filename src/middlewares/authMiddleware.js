@@ -3,28 +3,21 @@
   require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
   const jwt = require('jsonwebtoken');
 
-exports.authenticate = (req, res, next) => {
-  const token = req.header('Authorization')?.replace('Bearer ', '');
-  if (!token) return res.status(401).json({ message: 'Access denied' });
+exports.authMiddleware = (req, res, next) => {
+  // Verifica o token nos cookies ou no cabeçalho Authorization
+  const token =
+    req.cookies?.token || // Prioriza o token nos cookies
+    req.header('Authorization')?.replace('Bearer ', ''); // Ou busca no cabeçalho Authorization
+
+  if (!token) {
+    return res.status(401).json({ message: 'Access denied, no token provided' });
+  }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    next();
+    req.user = decoded; // Anexa as informações do usuário à requisição
+    next(); // Continua para o próximo middleware
   } catch (err) {
     return res.status(401).json({ message: 'Invalid token' });
-  }
-};
-
-exports.authMiddleware = (req, res, next) => {
-  const token = req.cookies.token; // Extract token from cookies
-  if (!token) return res.status(401).json({ message: 'Authorization denied, no token' });
-
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // Attach user data to the request
-    next();
-  } catch (err) {
-    res.status(401).json({ message: 'Invalid token' });
   }
 };

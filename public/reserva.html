@@ -49,7 +49,7 @@
 
         try {
           // Enviar os dados da reserva para o servidor
-          const response = await fetch(`/create-checkout-session`, {
+          const response = await fetch(`/reserva/checkout`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
