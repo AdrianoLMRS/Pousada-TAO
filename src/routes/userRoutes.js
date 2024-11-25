@@ -13,13 +13,6 @@
   });
 
   // Serve profile data as JSON
-  router.get('/data', authMiddleware, getProfile, (req, res) => {
-    const user = req.user; // AuthMiddleware user request
-    res.json({
-      id: user.id, // MongoDB Object ID
-      name: user.name,
-      email: user.email,
-    });
-  });
+  router.get('/data', authMiddleware, getProfile);
 
 module.exports = router;
