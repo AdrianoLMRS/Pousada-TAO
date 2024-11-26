@@ -8,7 +8,8 @@
   const cookieParser = require('cookie-parser');
 
 // *ROUTES
-  const stripeRoutes = require('./routes/reservaRoutes'); // Import Stripe Check routes
+const stripeRoutes = require('./routes/reservaRoutes'); // Import Stripe Check routes
+const stripeWebhook = require('./routes/stripeWebhook'); // Import Stripe Webhook
   const authRoutes = require('./routes/authRoutes'); //  Import Authentication routes
   const userRoutes = require('./routes/userRoutes'); // Import User Routes
 
@@ -32,6 +33,7 @@
   app.use('/reserva', stripeRoutes); // routes/stripe.js
   app.use('/auth', authRoutes); // routes/auth.js
   app.use('/profile', userRoutes); //routes/userRoutes.js
+  app.use('/webhooks', stripeWebhook); //routes/userRoutes.js
 
 
 // Initialize server log
