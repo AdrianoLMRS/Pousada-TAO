@@ -3,7 +3,6 @@
     require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
     const express = require('express');
     const { createCheckoutSession } = require('../controllers/reservaController');
-    const { authMiddleware } = require('../middlewares/authMiddleware');
     const router = express.Router();
 
 // *Routes
@@ -13,6 +12,6 @@
       });
 
     // Checkout Stripe route
-    router.post('/checkout', authMiddleware, createCheckoutSession);
+    router.post('/checkout', createCheckoutSession);
 
 module.exports = router;

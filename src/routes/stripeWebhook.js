@@ -6,7 +6,6 @@
   const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET; // Stripe endpoint secret key
 
   const Reserva = require('../db/models/reservaModel');
-  const User = require('../db/models/User');
 
   const express = require('express');
 
@@ -36,17 +35,54 @@ router.post('/stripe',
 
     // Handle the event
     switch (event.type) {
-      case 'payment_intent.succeeded':
-        const paymentIntent = event.data.object;
-        console.log(`PaymentIntent for ${paymentIntent.amount} was successful!`);
-        // Then define and call a method to handle the successful payment intent.
-        // handlePaymentIntentSucceeded(paymentIntent);
+
+      case 'checkout.session.completed':
+        case 'payment_intent.succeeded':
+        const paymentIntent = event.data.object; // contém os detalhes do pagamento
+        console.log('Pagamento confirmado:', paymentIntent);
+        // Criando o documento para a coleção "reservas"
+
+        const novaReserva = new Reserva({
+          cliente: {
+            id: paymentIntent.customer,
+            email: paymentIntent.metadata.user_email, // Assumindo que o e-mail foi salvo nos metadados
+          },
+          pagamento: {
+            id: paymentIntent.id,
+            status: paymentIntent.status,
+            amount: paymentIntent.amount,
+            currency: paymentIntent.currency,
+            description: paymentIntent.description,
+            payment_method: paymentIntent.payment_method,
+            payment_method_details: paymentIntent.payment_method_details,
+            charges: paymentIntent.charges.data.map(charge => ({
+              charge_id: charge.id,
+              amount: charge.amount,
+              currency: charge.currency,
+              status: charge.status,
+              receipt_url: charge.receipt_url
+            })),
+            metadata: paymentIntent.metadata,
+          }
+        });
+      
+        // Salvando no MongoDB
+        await novaReserva.save();
+        console.log('Reserva salva com sucesso:', novaReserva);         
+
         break;
+      case 'payment_intent.failed':
+        const paymentFailedIntent = event.data.object;
+        console.log('Pagamento falhou:', paymentFailedIntent);
+        // Lidar com falha no pagamento
+        break;
+
       case 'payment_method.attached':
         const paymentMethod = event.data.object;
         // Then define and call a method to handle the successful attachment of a PaymentMethod.
         // handlePaymentMethodAttached(paymentMethod);
         break;
+
       default:
         // Unexpected event type
         console.log(`Unhandled event type ${event.type}.`);

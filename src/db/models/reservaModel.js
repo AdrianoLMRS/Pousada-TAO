@@ -1,44 +1,43 @@
 const mongoose = require('mongoose');
+const { Schema, model } = mongoose;
 
-const reservaSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId, // _id in users colection
-    ref: 'Users', // Users collection
-    required: true,
-  },  
-  checkinDate: {
-        type: Date,
-        required: true,
+// Definindo o schema para a reserva
+const reservaSchema = new Schema({
+  cliente: {
+    id: String,
+    email: String
+  },
+  pagamento: {
+    id: String,
+    status: String,
+    amount: Number,
+    currency: String,
+    description: String,
+    payment_method: String,
+    payment_method_details: {
+      type: String, // Cartão, boleto, etc.
+      card: {
+        brand: String,
+        last4: String,
+        exp_month: Number,
+        exp_year: Number
+      }
     },
-    checkoutDate: {
-        type: Date,
-        required: true,
-    },
-    adults: {
-        type: Number,
-        required: true,
-        min: 1,
-    },
-    children: {
-        type: Number,
-        required: true,
-        min: 0,
-    },
-    totalPrice: {
-        type: Number, // em centavos
-        required: true,
-        min: 0,
-    },
-    stripeSessionId: {
-        type: String,
-        required: true,
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },
+    charges: [{
+      charge_id: String,
+      amount: Number,
+      currency: String,
+      status: String,
+      receipt_url: String
+    }],
+    metadata: {
+      order_id: String
+    }
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
-const Reserva = mongoose.model('Reserva', reservaSchema);
-
-module.exports = Reserva;
+const Reserva = model('Reserva', reservaSchema);
