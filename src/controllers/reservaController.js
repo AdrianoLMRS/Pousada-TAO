@@ -46,6 +46,7 @@ const createCheckoutSession = async (req, res) => {
                 adultos: adults,
                 criancas: children,
             },
+            customer_creation: 'always', // For CustomerId
         });
 
         res.status(200).json({ sessionId: session.id });
