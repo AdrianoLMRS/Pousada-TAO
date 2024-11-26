@@ -9,14 +9,14 @@
 
 // *ROUTES
   const reservaRoutes = require('./routes/reservaRoutes'); // Import Stripe Check routes
-  const stripeWebhook = require('./routes/stripeWebhook'); // Import Stripe Webhook
+  const webhookRoutes = require('./routes/webhookRoutes'); // Import Stripe Webhook
   const userRoutes = require('./routes/userRoutes'); // Import User Routes
 
 // *CONSTANTS
   // none for now
 
 // *GLOBAL MIDDLEWARES
-  app.use(express.json()); // JSON GLOBAL MIDDLEWARE
+  // app.use(express.json()); // JSON GLOBAL MIDDLEWARE
   app.use(cors()); // CORS GLOBAL MIDDLEWARE
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, '..', 'public'))); // SET PUBLIC FOLDER STATIC
@@ -29,9 +29,9 @@
   connectDB();
 
 // *Routes uses
-  app.use('/reserva', reservaRoutes); // routes/stripe.js
-  app.use('/profile', userRoutes); //routes/userRoutes.js
-  app.use('/webhooks', stripeWebhook); //routes/userRoutes.js
+  app.use('/reserva', express.json(), reservaRoutes); // routes/stripe.js
+  app.use('/profile', express.json(), userRoutes); //routes/userRoutes.js
+  app.use('/webhooks', express.raw({ type: 'application/json' }), webhookRoutes); // Use express.raw for webhook
 
 
 // Initialize server log
