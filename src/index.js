@@ -34,6 +34,9 @@
 
     next(); 
   }); 
+  app.set('view engine', 'ejs'); // Define o EJS como motor de templates
+  app.set('views', path.join(__dirname, 'views')); // Pasta onde os templates serão armazenados
+
   
 // *FUNCTIONS
   connectDB();

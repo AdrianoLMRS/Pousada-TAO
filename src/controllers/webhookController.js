@@ -8,8 +8,7 @@
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     const axios = require('axios'); // Only import once
     // Utils
-        const { setJWTCookie } = require('../utils/cookieUtils'); // Utility function to set JWT in cookie
-        const { createOrUpdateUser, saveReservation, generateJWTToken } = require('../utils/dbUtils');
+        const { createOrUpdateUser, saveReservation, saveCacheData } = require('../utils/dbUtils');
 
 // Secret key for validating Stripe webhook signature
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -34,6 +33,7 @@ const handleStripeWebhook = async (req, res) => {
     }
 
     switch (event.type) {
+        
         case 'customer.created':
             // Handle customer.created event
             try {
@@ -41,15 +41,9 @@ const handleStripeWebhook = async (req, res) => {
         
                 // Create or update the user in the database
                 await createOrUpdateUser(customer);
-        
-                // Generate JWT token
-                const token = generateJWTToken(customer.id);
-        
-                // Set JWT token in the cookie for the response
-                setJWTCookie(res, token);
 
-                // Optionally, call the frontend service to set the cookie in the browser
-                await axios.post(`${BASE_URL}/api/set-cookie`, { token });
+                // Call the /api/set-cookies route to set the JWT cookie
+                await axios.post(`${BASE_URL}/api/set-cookies`, { customerId: customer.id });
                 
                 console.log('JWT token set for customer.created event.');
             } catch (err) {
@@ -61,6 +55,9 @@ const handleStripeWebhook = async (req, res) => {
         case 'checkout.session.completed':
             // Handle checkout.session.completed event
             const session = event.data.object;
+
+            await saveCacheData(session.customer, session.id);  // Save in collection "cache"
+
             await saveReservation(session);
 
             // Create or update user if session includes customer details

@@ -60,22 +60,32 @@ const saveReservation = async (session) => {
   }
 };
 
-// Utility function to generate a JWT token
-const generateJWTToken = (s) => {
+
+const mongoose = require('mongoose');
+
+const CacheSchema = new mongoose.Schema({
+    customerId: { type: String, required: true },
+    sessionId: { type: String, required: true },
+}, { timestamps: true }); // Timestamps no formato correto
+
+// Modelo baseado no esquema
+const Cache = mongoose.model('Cache', CacheSchema);
+
+// Função para salvar ou atualizar os dados na coleção "cache"
+const saveCacheData = async (customerId, sessionId) => {
     try {
-        const token = jwt.sign({ s }, process.env.JWT_SECRET, {
-            expiresIn: '1h', // 1 hour expiration
-        });
-        console.log('Generated JWT token:', token); // Log the token for debugging
-        return token;
+        const newCache = new Cache({ customerId, sessionId });
+        await newCache.save();
+
+        console.log('Cache data saved/updated.');
     } catch (err) {
-        console.error('Error generating JWT token:', err);
-        throw new Error('Failed to generate JWT token.');
+        console.error('Error saving cache data:', err.message);
     }
 };
 
 module.exports = {
   createOrUpdateUser,
   saveReservation,
-  generateJWTToken,
+  saveCacheData,
+  Cache,
 }

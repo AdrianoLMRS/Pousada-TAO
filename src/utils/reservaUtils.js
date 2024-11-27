@@ -41,7 +41,7 @@ const createStripeSession = async (totalPrice, checkin, checkout, adults, childr
           },
       ],
       mode: 'payment',
-      success_url: `${process.env.BASE_URL}/profile/reservas`,
+      success_url: `${process.env.BASE_URL}/api/set-cookies?cs={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.BASE_URL}/reserva/canceled`,
       metadata: {
           checkIn: checkin.toLocaleDateString('pt-BR'),

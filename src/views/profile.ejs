@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        table th {
+            background-color: #f4f4f9;
+        }
+        .profile-info {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Profile</h1>
+
+        <div class="profile-info">
+            <p><strong>Name:</strong> <%= user.name %></p>
+            <p><strong>Email:</strong> <%= user.email %></p>
+            <p><strong>Phone:</strong> <%= user.phone %></p>
+            <p><strong>Customer ID:</strong> <%= user.customerId %></p>
+            <p><strong>Address:</strong> <%= user.address || 'N/A' %></p>
+        </div>
+
+        <h2>Your Reservations</h2>
+        <% if (reservations.length > 0) { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Check-In</th>
+                        <th>Check-Out</th>
+                        <th>Adults</th>
+                        <th>Children</th>
+                        <th>Total Amount</th>
+                        <th>Payment Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% reservations.forEach(reservation => { %>
+                        <tr>
+                            <td><%= reservation.checkIn %></td>
+                            <td><%= reservation.checkOut %></td>
+                            <td><%= reservation.adults %></td>
+                            <td><%= reservation.children %></td>
+                            <td>$<%= reservation.totalAmount.toFixed(2) %></td>
+                            <td><%= reservation.paymentStatus %></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p>No reservations found.</p>
+        <% } %>
+    </div>
+</body>
+</html>
