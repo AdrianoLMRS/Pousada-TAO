@@ -1,5 +1,5 @@
 // *Dependecies
-    const path = require('path');
+    const path = require('path'); // Path for folders
     require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
     const express = require('express');
     const { createCheckoutSession } = require('../controllers/reservaController');

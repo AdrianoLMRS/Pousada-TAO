@@ -1,24 +1,31 @@
-// *Dependecies
-  const path = require('path'); // Path for folders
-  require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
-  const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
+const User = require('../db/models/User');
 
-const authorization = (req, res, next) => {
-    const token = req.cookies.token; // Takes the cookie in token
+const authorization = async (req, res, next) => {
+    const token = req.cookies.token;
 
     if (!token) {
-        return res.status(403).json({ error: 'Access denied, no token provided' });
+        return res.status(401).json({ error: 'Authentication token not found' });
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET); // Decode JWT using secret
-        req.user = decoded; // Add user info to request object
-        next(); // Proceed to next middleware or route handler
+        // Verify the JWT token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        // Find the user associated with the customerId in the token
+        const user = await User.findOne({ customerId: decoded.customerId });
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        // Attach user data to the request object for further use
+        req.user = user;
+        next();
     } catch (err) {
-        console.error('Invalid token:', err);
-        return res.status(400).json({ error: 'Invalid token' });
+        console.error('Error verifying token:', err);
+        return res.status(401).json({ error: 'Invalid or expired token' });
     }
 };
 
 module.exports = { authorization };
-  

@@ -1,14 +1,21 @@
 /*
-
-* ALL STRIPE WEBHOOKS : https://docs.stripe.com/api/events/types?shell=true&api=true
-
+* ALL STRIPE WEBHOOKS : https://docs.stripe.com/api/events/types?shell=false&api=true
 */
 
-// *Dependecies
-  const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-  const {  createOrUpdateUser, saveReservation,  } = require('../utils/dbUtils')
+// *Dependencies
+    const path = require('path'); // Path for folders
+    require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
+    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+    const axios = require('axios'); // Only import once
+    // Utils
+        const { setJWTCookie } = require('../utils/cookieUtils'); // Utility function to set JWT in cookie
+        const { createOrUpdateUser, saveReservation, generateJWTToken } = require('../utils/dbUtils');
 
-  
+// Secret key for validating Stripe webhook signature
+const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+const BASE_URL = process.env.BASE_URL
+
 // Handler for Stripe webhook events
 const handleStripeWebhook = async (req, res) => {
     const sig = req.headers['stripe-signature'];
@@ -19,7 +26,7 @@ const handleStripeWebhook = async (req, res) => {
         event = stripe.webhooks.constructEvent(
             req.body, // Raw body from Stripe
             sig,
-            process.env.STRIPE_WEBHOOK_SECRET
+            webhookSecret
         );
     } catch (err) {
         console.error('Error validating webhook:', err.message);
@@ -29,7 +36,26 @@ const handleStripeWebhook = async (req, res) => {
     switch (event.type) {
         case 'customer.created':
             // Handle customer.created event
-            await createOrUpdateUser(event.data.object);
+            try {
+                const customer = event.data.object; // Customer data
+        
+                // Create or update the user in the database
+                await createOrUpdateUser(customer);
+        
+                // Generate JWT token
+                const token = generateJWTToken(customer.id);
+        
+                // Set JWT token in the cookie for the response
+                setJWTCookie(res, token);
+
+                // Optionally, call the frontend service to set the cookie in the browser
+                await axios.post(`${BASE_URL}/api/set-cookie`, { token });
+                
+                console.log('JWT token set for customer.created event.');
+            } catch (err) {
+                console.error('Error handling customer.created:', err.message);
+                return res.status(500).send('Error handling customer.created event.');
+            }
             break;
 
         case 'checkout.session.completed':
@@ -57,5 +83,5 @@ const handleStripeWebhook = async (req, res) => {
 
     res.status(200).json({ received: true });
 };
-  
+
 module.exports = { handleStripeWebhook };

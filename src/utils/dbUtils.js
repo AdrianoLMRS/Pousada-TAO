@@ -1,6 +1,9 @@
 // *Dependecies
-  const Reservation = require('../db/models/reservaModel'); // Imports Reservation Model
-  const User = require('../db/models/User'); // Imports User model
+    const path = require('path'); // Path for folders
+    require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
+    const Reservation = require('../db/models/reservaModel'); // Imports Reservation Model
+    const User = require('../db/models/User'); // Imports User model
+    const jwt = require('jsonwebtoken');
 
 // Utility function to create or update a user in the database
 const createOrUpdateUser = async (customer) => {
@@ -26,8 +29,11 @@ const createOrUpdateUser = async (customer) => {
       }
 
       await user.save();
+      console.log('User saved or updated successfully:', user);
+
   } catch (err) {
       console.error('Error saving user to MongoDB:', err);
+      throw new Error('User creation or update failed');
   }
 };
 
@@ -54,7 +60,22 @@ const saveReservation = async (session) => {
   }
 };
 
+// Utility function to generate a JWT token
+const generateJWTToken = (s) => {
+    try {
+        const token = jwt.sign({ s }, process.env.JWT_SECRET, {
+            expiresIn: '1h', // 1 hour expiration
+        });
+        console.log('Generated JWT token:', token); // Log the token for debugging
+        return token;
+    } catch (err) {
+        console.error('Error generating JWT token:', err);
+        throw new Error('Failed to generate JWT token.');
+    }
+};
+
 module.exports = {
   createOrUpdateUser,
   saveReservation,
+  generateJWTToken,
 }

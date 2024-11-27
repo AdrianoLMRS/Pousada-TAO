@@ -8,6 +8,7 @@
   const cookieParser = require('cookie-parser');
 
 // *ROUTES
+  const apiRoutes = require('./routes/apiRoutes'); // Import Stripe Check routes
   const reservaRoutes = require('./routes/reservaRoutes'); // Import Stripe Check routes
   const webhookRoutes = require('./routes/webhookRoutes'); // Import Stripe Webhook
   const userRoutes = require('./routes/userRoutes'); // Import User Routes
@@ -18,10 +19,19 @@
 // *GLOBAL MIDDLEWARES
   // app.use(express.json()); // JSON GLOBAL MIDDLEWARE
   app.use(cors()); // CORS GLOBAL MIDDLEWARE
-  app.use(cookieParser());
+  app.use(cookieParser()); // COOKIES GLOBAL MIDDLEWARE
   app.use(express.static(path.join(__dirname, '..', 'public'))); // SET PUBLIC FOLDER STATIC
   app.use((req, res, next) => { // logs
-    console.log(`\n\nNova request: \nREQ METHOD : ${req.method} \nREQ URL : ${req.url} \nREQ/USER IP : ${req.ip} \n\n`);
+    console.log(`\n\nNova request: \n
+    REQ METHOD : ${req.method} \n
+    REQ URL : ${req.url} \n
+    REQ/USER IP : ${req.ip} \n\n`);
+
+    // Interceptando a finalização da resposta para logar os headers
+    // res.on('finish', () => {
+    //   console.log(`\nResponse Headers: \n`, res.getHeaders());
+    // });
+
     next(); 
   }); 
   
@@ -29,6 +39,7 @@
   connectDB();
 
 // *Routes uses
+  app.use('/api', express.json(), apiRoutes); // routes/stripe.js
   app.use('/reserva', express.json(), reservaRoutes); // routes/stripe.js
   app.use('/profile', express.json(), userRoutes); //routes/userRoutes.js
   app.use('/webhooks', express.raw({ type: 'application/json' }), webhookRoutes); // Use express.raw for webhook

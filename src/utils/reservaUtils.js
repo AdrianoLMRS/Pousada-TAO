@@ -1,6 +1,6 @@
 // *Dependecies
-  const path = require('path');
-  require('dotenv').config({ path: path.join(__dirname, '../.env') });
+  const path = require('path'); // Path for folders
+  require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
   const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 // Calculate total price for the reservation
