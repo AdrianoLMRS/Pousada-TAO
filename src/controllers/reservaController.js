@@ -47,6 +47,9 @@ const createCheckoutSession = async (req, res) => {
                 criancas: children,
             },
             customer_creation: 'always', // For CustomerId
+            phone_number_collection: {
+                enabled: true, // Phone Number required
+            },
         });
 
         res.status(200).json({ sessionId: session.id });

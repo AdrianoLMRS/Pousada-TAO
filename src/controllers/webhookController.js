@@ -1,6 +1,13 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const Reservation = require('../db/models/reservaModel');
-const User = require('../db/models/User'); // Imports User model
+/*
+
+* ALL STRIPE WEBHOOKS : https://docs.stripe.com/api/events/types?shell=true&api=true
+
+*/
+
+// *Dependecies
+  const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+  const Reservation = require('../db/models/reservaModel');
+  const User = require('../db/models/User'); // Imports User model
 
 const handleStripeWebhook = async (req, res) => {
     const sig = req.headers['stripe-signature'];
@@ -18,6 +25,35 @@ const handleStripeWebhook = async (req, res) => {
         return res.status(400).send(`Webhook Error: ${err.message}`);
     }
 
+    // Handle customer.created event
+    if (event.type === 'customer.created') {
+      const customer = event.data.object;
+
+      try {
+          // Check if user already exists in the database
+          let user = await User.findOne({ customerId: customer.id });
+
+          if (!user) {
+              // Create a new user in the database
+              user = new User({
+                  email: customer.email,
+                  name: customer.name || '', // Optional, Stripe may not always provide this
+                  phone: customer.phone || '', // Optional, but its required in checkout
+                  address: '', // Address is not provided in customer.created
+                  customerId: customer.id, // Save Stripe Customer ID
+              });
+
+              await user.save();
+              console.log('User successfully created in the database:', user);
+          } else {
+              console.log('User already exists in the database:', user);
+          }
+      } catch (err) {
+          console.error('Error saving user to MongoDB:', err);
+      }
+    }
+
+    // Handle checkout.session.completed event.  Doc : 
     if (event.type === 'checkout.session.completed') {
 
         const session = event.data.object; // session data for reservas collection
