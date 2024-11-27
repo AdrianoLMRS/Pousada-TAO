@@ -1,18 +1,26 @@
-const User = require('../db/models/User');
-const Reserva = require('../db/models/reservaModel');
+// *Dependecies
+    const User = require('../db/models/User');
+    const Reserva = require('../db/models/reservaModel');
 
-// Retrieve user profile
-exports.getProfile = async (req, res) => {
+const getProfile = async (req, res) => {
     try {
-        const userId = req.user.id; // Decoded from JWT middleware
-        const user = await User.findById(userId).select('-password'); // Exclude password field
-        if (!user) return res.status(404).json({ message: 'User not found' });
+        // Get user details from the database using the customerId from JWT
+        const user = await User.findOne({ customerId: req.user.customerId });
 
-        // Fetch user reservations
-        const reservas = await Reserva.find({ userId }).sort({ createdAt: -1 });
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
 
-        res.status(200).json({ user, reservas });
+        res.status(200).json({
+            email: user.email,
+            name: user.name,
+            phone: user.phone,
+            address: user.address,
+        });
     } catch (err) {
-        res.status(500).json({ message: 'Error fetching profile', error: err });
+        console.error('Error retrieving user profile:', err);
+        res.status(500).json({ error: 'Server error' });
     }
 };
+
+module.exports = { getProfile };

@@ -34,7 +34,17 @@
   app.use('/webhooks', express.raw({ type: 'application/json' }), webhookRoutes); // Use express.raw for webhook
 
 
-// Initialize server log
-app.listen(process.env.PORT, '0.0.0.0', () => {
-  console.log(`Servidor rodando em ${process.env.BASE_URL}`);
-});
+
+const start = (port) => {
+  try {
+    app.listen(port, () => {
+      console.log(`Api up and running at: http://localhost:${port}`);
+    });
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
+};
+
+// Initialize server + log
+start(process.env.PORT);
