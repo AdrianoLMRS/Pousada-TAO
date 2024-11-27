@@ -6,119 +6,56 @@
 
 // *Dependecies
   const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-  const Reservation = require('../db/models/reservaModel');
-  const User = require('../db/models/User'); // Imports User model
+  const {  createOrUpdateUser, saveReservation,  } = require('../utils/dbUtils')
 
+  
+// Handler for Stripe webhook events
 const handleStripeWebhook = async (req, res) => {
     const sig = req.headers['stripe-signature'];
-
     let event;
 
     try {
+        // Validate the incoming webhook request
         event = stripe.webhooks.constructEvent(
-            req.body, // Stripe raw body
+            req.body, // Raw body from Stripe
             sig,
-            process.env.STRIPE_WEBHOOK_SECRET // Webhook secret Key
+            process.env.STRIPE_WEBHOOK_SECRET
         );
     } catch (err) {
-        console.error('Erro ao validar webhook:', err.message);
+        console.error('Error validating webhook:', err.message);
         return res.status(400).send(`Webhook Error: ${err.message}`);
     }
 
-    // Handle customer.created event
-    if (event.type === 'customer.created') {
-      const customer = event.data.object;
+    switch (event.type) {
+        case 'customer.created':
+            // Handle customer.created event
+            await createOrUpdateUser(event.data.object);
+            break;
 
-      try {
-          // Check if user already exists in the database
-          let user = await User.findOne({ customerId: customer.id });
+        case 'checkout.session.completed':
+            // Handle checkout.session.completed event
+            const session = event.data.object;
+            await saveReservation(session);
 
-          if (!user) {
-              // Create a new user in the database
-              user = new User({
-                  email: customer.email,
-                  name: customer.name || '', // Optional, Stripe may not always provide this
-                  phone: customer.phone || '', // Optional, but its required in checkout
-                  address: '', // Address is not provided in customer.created
-                  customerId: customer.id, // Save Stripe Customer ID
-              });
-
-              await user.save();
-              console.log('User successfully created in the database:', user);
-          } else {
-              console.log('User already exists in the database:', user);
-          }
-      } catch (err) {
-          console.error('Error saving user to MongoDB:', err);
-      }
-    }
-
-    // Handle checkout.session.completed event.  Doc : 
-    if (event.type === 'checkout.session.completed') {
-
-        const session = event.data.object; // session data for reservas collection
-        const customer = session.customer_details; // Customer data for users collection
-
-        console.log("SESSION :\n", session) // For debug
-        console.log('Session customer ID: ', session.customer); // For debug
-        console.log("CUSTOMER :\n", customer) // For debug
-
-        // Verify if session customer is valid
-        if (!session.customer) {
-          console.error('Erro: session.customer não foi encontrado.');
-          return res.status(400).send('Erro: session.customer não foi encontrado.');
-        }
-
-        // Session data
-        const reservationData = {
-          checkIn: session.metadata.checkIn,
-          checkOut: session.metadata.checkOut,
-          adults: parseInt(session.metadata.adultos, 10),
-          children: parseInt(session.metadata.criancas, 10),
-          totalAmount: session.amount_total / 100, // Value in BRL ( reais )
-          stripeSessionId: session.id, // Stripe session ID
-          customerId: session.customer, // Stripe customer ID
-          paymentStatus: session.payment_status,
-        };
-
-        // Define userData based on customer data
-        const userData = {
-          email: customer.email,
-          name: customer.name,
-          phone: customer.phone,
-          address: customer.address ? `${customer.address.line1}, ${customer.address.city}, ${customer.address.country}` : '',
-          customerId: session.customer, // Stripe customer ID
-        };
-
-        try {
-            
-            const reservation = new Reservation(reservationData) // Save session data in reservations collection
-            await reservation.save();
-
-            console.log('Reserva salva com sucesso:', reservation);
-
-            let user = await User.findOne({ customerId: session.customer }); // CustomerId is unique
-
-            if (!user) {
-              // Create new user if not exist
-              user = new User(userData);
-            } else {
-                // Update existing user
-                user.email = customer.email,
-                user.name = customer.name;
-                user.phone = customer.phone;
-                user.address = customer.address ? `${customer.address.line1}, ${customer.address.city}, ${customer.address.country}` : '';
+            // Create or update user if session includes customer details
+            if (session.customer_details) {
+                await createOrUpdateUser({
+                    id: session.customer,
+                    email: session.customer_details.email,
+                    name: session.customer_details.name,
+                    phone: session.customer_details.phone,
+                    address: session.customer_details.address
+                        ? `${session.customer_details.address.line1}, ${session.customer_details.address.city}, ${session.customer_details.address.country}`
+                        : '',
+                });
             }
+            break;
 
-            await user.save();
-            console.log('Usuário salvo ou atualizado com sucesso:', user);
-
-        } catch (err) {
-            console.error('Erro ao salvar reserva no MongoDB:', err);
-        }
+        default:
+            console.log(`Unhandled event type: ${event.type}`);
     }
 
     res.status(200).json({ received: true });
 };
-
+  
 module.exports = { handleStripeWebhook };
