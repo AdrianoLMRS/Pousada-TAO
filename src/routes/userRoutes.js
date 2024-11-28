@@ -1,34 +1,14 @@
-const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const User = require('../db/models/User'); // Modelo da coleção users
-const Reservation = require('../db/models/reservaModel'); // Modelo da coleção reservations
-const router = express.Router();
-
-const JWT_SECRET = process.env.JWT_SECRET;
-
-// Middleware para autenticar e extrair o customerId do token
-const authenticateUser = (req, res, next) => {
-    const token = req.cookies.authToken; // Pega o authToken do cookie
-
-    if (!token) {
-        return res.status(401).json({ message: 'Acesso negado. Token não encontrado.' });
-    }
-
-    try {
-        // Verificar e decodificar o token JWT
-        const decoded = jwt.verify(token, JWT_SECRET);
-        req.customerId = decoded.customerId; // Adiciona o customerId ao objeto req
-        next();
-    } catch (error) {
-        console.error('Erro ao autenticar o token:', error.message);
-        return res.status(403).json({ message: 'Token inválido ou expirado.' });
-    }
-};
+// *Dependecies
+    const path = require('path');
+    require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
+    const express = require('express');
+    const User = require('../db/models/User'); // User model
+    const Reservation = require('../db/models/reservaModel'); // reservaModel
+    const auth = require('../middlewares/authMiddleware') // Authentication middleware with JWT 
+    const router = express.Router();
 
 // Rota para renderizar a página de perfil
-router.get('/', authenticateUser, async (req, res) => {
+router.get('/', auth, async (req, res) => {
     const { customerId } = req;
 
     try {
@@ -53,7 +33,7 @@ router.get('/', authenticateUser, async (req, res) => {
 });
 
 // Rota para retornar os dados do perfil
-router.get('/data', authenticateUser, async (req, res) => {
+router.get('/data', auth, async (req, res) => {
     const { customerId } = req;
 
     try {

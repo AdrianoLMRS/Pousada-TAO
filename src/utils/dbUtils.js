@@ -1,9 +1,6 @@
 // *Dependecies
-    const path = require('path'); // Path for folders
-    require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
     const Reservation = require('../db/models/reservaModel'); // Imports Reservation Model
     const User = require('../db/models/User'); // Imports User model
-    const jwt = require('jsonwebtoken');
 
 // Utility function to create or update a user in the database
 const createOrUpdateUser = async (customer) => {
@@ -49,6 +46,7 @@ const saveReservation = async (session) => {
           stripeSessionId: session.id,
           customerId: session.customer,
           paymentStatus: session.payment_status,
+          paymentId: session.payment_intent,
       };
 
       const reservation = new Reservation(reservationData);

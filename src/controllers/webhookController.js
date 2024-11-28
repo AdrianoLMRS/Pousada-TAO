@@ -6,14 +6,11 @@
     const path = require('path'); // Path for folders
     require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-    const axios = require('axios'); // Only import once
     // Utils
         const { createOrUpdateUser, saveReservation, saveCacheData } = require('../utils/dbUtils');
 
 // Secret key for validating Stripe webhook signature
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
-
-const BASE_URL = process.env.BASE_URL
 
 // Handler for Stripe webhook events
 const handleStripeWebhook = async (req, res) => {
@@ -42,10 +39,7 @@ const handleStripeWebhook = async (req, res) => {
                 // Create or update the user in the database
                 await createOrUpdateUser(customer);
 
-                // Call the /api/set-cookies route to set the JWT cookie
-                await axios.post(`${BASE_URL}/api/set-cookies`, { customerId: customer.id });
-                
-                console.log('JWT token set for customer.created event.');
+                console.log('User created')
             } catch (err) {
                 console.error('Error handling customer.created:', err.message);
                 return res.status(500).send('Error handling customer.created event.');

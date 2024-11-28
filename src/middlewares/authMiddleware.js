@@ -1,42 +1,28 @@
-const path = require('path'); // Path for folders
-require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
-const JWT_SECRET = process.env.JWT_SECRET;
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+// *Dependecies
+    const path = require('path'); // Path for folders
+    require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
+    const JWT_SECRET = process.env.JWT_SECRET;
+    const jwt = require('jsonwebtoken');
 
-const jwt = require('jsonwebtoken');
-const User = require('../db/models/User');
-
-// Middleware para autenticar o usuário com o JWT e obter o `cs`
-const authorization = async (req, res, next) => {
-    const token = req.cookies.authToken; // Pega o authToken do cookie
+// Middleware to authenticate and extract the customerId from the token
+const auth = (req, res, next) => {
+    const token = req.cookies.authToken; // Get the authToken from the cookie
 
     if (!token) {
-        return res.status(401).json({ message: 'Acesso negado. Token não encontrado.' });
+        // If no token, redirect user to /login page
+        return res.redirect('/login');
     }
 
     try {
-        // Verificar e decodificar o token JWT
+        // Verify and decode the JWT token
         const decoded = jwt.verify(token, JWT_SECRET);
-        const cs = decoded.cs; // Obtem o `cs` do payload do JWT
-
-        if (!cs) {
-            return res.status(400).json({ message: 'Checkout session ID (cs) não encontrado no token.' });
-        }
-
-        // Usar o Stripe para obter os detalhes da sessão de checkout
-        const session = await stripe.checkout.sessions.retrieve(cs);
-
-        if (!session) {
-            return res.status(404).json({ message: 'Sessão de checkout não encontrada.' });
-        }
-
-        // Adicionar o customerId ao request
-        req.customerId = session.customer;
+        req.customerId = decoded.customerId; // Add the customerId to the req object
         next();
     } catch (error) {
-        console.error('Erro ao autenticar o token ou recuperar sessão:', error.message);
-        return res.status(403).json({ message: 'Token inválido ou sessão inválida.' });
+        console.error('Error authenticating token:', error.message);
+        // If token is invalid or expired, redirect to /login page
+        return res.redirect('/login');
     }
 };
 
-module.exports = { authorization };
+module.exports = auth;

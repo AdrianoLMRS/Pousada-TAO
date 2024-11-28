@@ -12,6 +12,10 @@ const ReservationSchema = new mongoose.Schema({
       required: true,
     }, // Stripe customer ID
     paymentStatus: String,
+    paymentId: { 
+      type: String, 
+      required: true, // Ensure paymentId is always included
+    }, 
 }, { timestamps: true });
 
 module.exports = mongoose.model('Reservation', ReservationSchema);

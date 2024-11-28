@@ -9,9 +9,9 @@ const setJWTCookie = (res, token) => {
     // Create cookie
     const cookieOptions = {
     httpOnly: true, // No Frontend via JS
-    // secure: process.env.NODE_ENV === 'production', // Apenas cookies HTTPS em produção
+    secure: process.env.NODE_ENV === 'production', // Apenas cookies HTTPS em produção
     secure: false, // testing
-    sameSite: 'lax',
+    sameSite: 'strict',
     maxAge: 3600000, // 1 hour duration
     };
 
