@@ -18,7 +18,7 @@
         <!-- tiny slider -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
 
-    <link rel="preload" href="https://res.cloudinary.com/dycnoic1s/image/upload/v1732895300/natal-de-campos-do-jordao-capa_LE_upscale_balanced_x4_bum5iw_1_cxwt4r.jpg" as="image">    
+    <link rel="preload" href="https://res.cloudinary.com/dycnoic1s/image/upload/w_4500,h_2500,c_crop/natal-de-campos-do-jordao-capa_LE_upscale_balanced_x4_bum5iw_1_cxwt4r.jpg" as="image">    
 </head>
 <body id="body" style="height: auto;">
     <div id="home"></div>   <!--    for navbar    -->
@@ -26,29 +26,36 @@
     <div class="content">
     
         <nav id="navbar" style="max-width: 3500px;">
-            <ul class="sidebar">
-                <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
-                <li onclick=hideSidebar() id="nav-reserva" style="border-radius: 0; margin-bottom: 4vh; margin-top: 4vh;">
-                    <a style="-webkit-text-stroke: 1.5px;" href="#reserva">Reservar</a></li>
-                <li onclick=hideSidebar()><a href="#home">Home</a></li>
-                <li onclick=hideSidebar()><a href="#sobre">Pousada</a></li>
-                <li onclick=hideSidebar()><a href="#depoimentos">Depoimentos</a></li>
-                <li onclick=hideSidebar()><a href="#localizacao">Localização</a></li>
-                <li onclick=hideSidebar()><a href="#contato">Contato</a></li>
-                <li onclick=hideSidebar()><a href="#politicas">Políticas</a></li>
-              </ul>
-              
-              <ul class="desktop">
-                <li><a href="#">Nome da Pousada</a></li>
-                <li class="hideOnMobile"><a href="#home">Home</a></li>
-                <li class="hideOnMobile"><a href="#sobre">Pousada</a></li>
-                <li class="hideOnMobile"><a href="#depoimentos">Depoimentos</a></li>
-                <li class="hideOnMobile"><a href="#localizacao">Localização</a></li>
-                <li class="hideOnMobile"><a href="#contato">Contato</a></li>
-                <li class="hideOnMobile"><a href="#politicas">Políticas</a></li>
-                <li id="nav-reserva" class="hideOnMobile"><a href="#reserva">Reservar</a></li>
-                <li class="menu-button" onclick=showSidebar()><a href="javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
-              </ul>
+            <div class="main-nav">
+                
+            </div>
+            <div class="sub-nav">
+
+                <section class="lang">
+                    <i>🇧🇷</i>
+                    <i>🇺🇸</i>
+                </section>
+
+                <section class="social">
+                    <button>
+                        <i class="fa-brands fa-whatsapp" style="width: 20px; color: green;"></i>
+                        <p><u><strong>(012) 9999-9999</strong></u></p>
+                    </button>
+                    <a href="https://www.instagram.com/yourprofile" target="_blank">
+                        <i class="fab fa-instagram" ></i>
+                    </a>                      
+                </section>
+
+                <section class="links">
+                    <a href=""><em><strong>Pousada</strong></em></a>
+                    <a href=""><em><strong>História</strong></em></a>
+                    <a href=""><em><strong>Fotos</strong></em></a>
+                    <a href=""><em><strong>Mais</strong></em></a>
+                </section>
+
+                <div style="flex-grow: 1;" ></div>
+
+            </div>
         </nav>
     
 
@@ -347,7 +354,7 @@ var currentScrollPos = window.pageYOffset;
   if (prevScrollpos > currentScrollPos) {
     document.getElementById("navbar").style.top = "0";
   } else {
-    document.getElementById("navbar").style.top = "-50px";
+    document.getElementById("navbar").style.top = "-15.5vh";
   }
   prevScrollpos = currentScrollPos;
 }   

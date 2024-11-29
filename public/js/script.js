@@ -80,23 +80,6 @@ function applyBorderToImagesInDivs(div) {
   });
 }
 
-// Detect mobile devices
-const isMobile = () => /Mobi|Android/i.test(navigator.userAgent);
-
-const showSidebar = () => {
-  document.querySelector('.sidebar').style.display = 'flex'; // ou 'flex', conforme necessário
-};
-
-const hideSidebar = () => {
-  document.querySelector('.sidebar').style.display = 'none';
-};
-
-
-
-const scrollHide = () => {
-  if (isMobile()) hideSidebar();
-};
-
 // Load content from another HTML file
 function loadFile(file_name, element_id) {
   fetch(file_name)

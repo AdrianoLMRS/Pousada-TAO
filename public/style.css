@@ -3,7 +3,7 @@
   font-family: 'Speeling-night';
  src: /* url('fonts/Spelling_Night/SpellingNight.woff2') format('woff2'), */
        /* url('fonts/Spelling_Night/SpellingNight.woff') format('woff'), */
-       url('fonts/Spelling_Night/SpellingNight.ttf') format('truetype');
+       url('assets/fonts/Spelling_Night/SpellingNight.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -12,7 +12,7 @@
   font-family: 'Caviar-Dreams';
   src: /* url('fonts/Spelling_Night/CaviarDreams.woff2') format('woff2'), */
   /* url('fonts/Spelling_Night/CaviarDreams.woff') format('woff'), */
-       url('fonts/caviar_dreams/CaviarDreams.ttf') format('truetype');
+       url('assets/fonts/caviar_dreams/CaviarDreams.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -21,7 +21,7 @@
 html, body {
   height: 100%;
   margin: 0;
-  scroll-behavior: smooth;
+  scroll-behavior: smooth !important;
   /* scrollbar-gutter: stable; */
   overflow-x: hidden;
   width: 100%;
