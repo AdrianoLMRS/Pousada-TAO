@@ -1,27 +1,20 @@
-// Set the JWT token in the HTTP-only cookie
-const setJWTCookie = (res, token) => {
+const jwt = require('jsonwebtoken'); // JWT lib
 
-    if (typeof token !== 'string') {
-    console.error('O token não é uma string:', token);
-    throw new Error('O token JWT deve ser uma string.');
+// Function to decode the JWT token from the cookie and return the decoded data
+function decodeJWT(req, JWT) {
+    const token = req.cookies[JWT]; // Get the authToken from the cookie
+
+    if (!token) {
+        throw new Error('No token found');
     }
 
-    // Create cookie
-    const cookieOptions = {
-    httpOnly: true, // No Frontend via JS
-    secure: process.env.NODE_ENV === 'production', // Apenas cookies HTTPS em produção
-    secure: false, // testing
-    sameSite: 'strict',
-    maxAge: 3600000, // 1 hour duration
-    };
+    try {
+        // Decode the JWT token using your JWT_SECRET
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        return decoded; // Return the decoded data
+    } catch (error) {
+        throw new Error('Error decoding token: ' + error.message);
+    }
+}
 
-    // Configura o cookie com o nome "token" e o JWT gerado
-    res.cookie('token', token, cookieOptions);
-
-    console.log('\ncookieUtils :\n')
-    console.log(`Token : ${token}\ncookieOptions ${cookieOptions}`)
-    console.log('Cookie JWT set successfully!\n');
-
-};
-
-module.exports = { setJWTCookie };
+module.exports = { decodeJWT };

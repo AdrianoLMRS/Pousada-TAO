@@ -14,7 +14,7 @@
   const userRoutes = require('./routes/userRoutes'); // Import User Routes
 
 // *CONSTANTS
-  // none for now
+  require('./logSetup') // For logs (optional)
 
 // *GLOBAL MIDDLEWARES
   // app.use(express.json()); // JSON GLOBAL MIDDLEWARE
