@@ -3,40 +3,77 @@ nav {
   display: flex;
   flex-direction: column;
   width: 99.99999%;
-  height: 15vh;
+  height: 17vh;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
   font-family: 'Caviar-Dreams', sans-serif;
   z-index: 69;
   top: 0;
   left: auto;
   overflow: hidden;
+  transition: top 300ms;
+
+  --_gap: 5%;
+  --_mainHeight: 65%;
+  --_width: 90%;
+  --_grid: 17;
 }
+
+.logo {
+  position: absolute;
+  height: 18.5vh;
+}
+
+.nav-grid {
+  display: grid; 
+  grid-template-columns: repeat(20, 1fr); 
+}
+
+/* MAIN-NAV */
 
 nav .main-nav {
   background: linear-gradient(to right, var(--cor-roxo),  #a08357);
-  height: 75%;
+  height: var(--_mainHeight);
 }
+
+nav .main-nav > div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  height: 100%;
+  grid-column: span var(--_grid);
+}
+
+nav .main-nav > div > h1 {
+  font-size: calc(1rem + 3.5vw);
+  font-weight: bolder;
+}
+
+nav .main-nav > div .nav-loc {
+  margin-right: 5%;
+  font-size: calc(0.5rem + 2vw);
+}
+
+
+/* SUB-NAV */
 
 nav .sub-nav {
   background-color: var(--cor-laranja);
-  display: flex;
-  flex-direction: row-reverse;
-  height: 25%;
-  gap: 5%;
+  height: calc(100% - var(--_mainHeight));
 }
 
-/* nav .sub-nav > * {
-  margin-left: 1%;
-  margin-right: 1%;
-} */
+nav .sub-nav > div { 
+  flex-grow: 1; 
+  grid-column: span var(--_grid);
+}
 
 /* SOCIAL */
 
 nav .sub-nav .social {
   display: flex;
   flex-direction: row;
-  width: 23%;
-  justify-content: space-between;
+  grid-column: span 7;
+  justify-content: center;
 }
 
 nav .sub-nav .social button {
@@ -44,28 +81,37 @@ nav .sub-nav .social button {
   cursor: pointer; 
   display: flex;
   flex-direction: row;
-  flex-grow: 1;
+  width: 70%;
   align-items: center;
-  justify-content: space-between;
   white-space: nowrap;
+
 }
 
-nav .sub-nav .social button p { font-size: 150%; }
+nav .sub-nav .social button p { font-size: calc(0.5rem + 1.5vw); margin-left: 5%; }
 
 nav .sub-nav .social a {
-  width: 25%;
+  width: 30%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 nav .sub-nav .social i {
-  font-size: 200%;
+  position: relative;
+  left: 0;
+  font-size: calc(0.5rem + 2vw);
 }
 
 /* FLAGS */
 
-nav .sub-nav .lang { margin-right: 1%; }
+nav .sub-nav .lang { 
+  margin-right: 1%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+  grid-column: span 2;
+}
 
 nav .sub-nav .lang i  {
   font-size: 200%;
@@ -78,11 +124,12 @@ nav .sub-nav .links {
   display: flex;
   width: auto;
   overflow: hidden;
-  gap: 5%;
-  width: 35%;
+  gap: var(--_gap);
+  grid-column: span 11;
+  align-items: center;
 }
 
 nav .sub-nav .links a {
   text-decoration: none;
-  font-size: 200%;
+  font-size: calc(0.5rem + 2vw);
 }

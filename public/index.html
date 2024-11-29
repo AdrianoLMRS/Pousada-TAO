@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pousada</title>
+    <title>Pousada TAO</title>
     <!-- *STYLES* -->
         <link rel="stylesheet" href="styles/variables.css">
         <link rel="stylesheet" href="style.css">
@@ -18,6 +18,10 @@
         <!-- tiny slider -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Croissant+One&display=swap" rel="stylesheet">
+        
     <link rel="preload" href="https://res.cloudinary.com/dycnoic1s/image/upload/w_4500,h_2500,c_crop/natal-de-campos-do-jordao-capa_LE_upscale_balanced_x4_bum5iw_1_cxwt4r.jpg" as="image">    
 </head>
 <body id="body" style="height: auto;">
@@ -26,34 +30,53 @@
     <div class="content">
     
         <nav id="navbar" style="max-width: 3500px;">
-            <div class="main-nav">
+            <img class="logo" loading="eager" src="https://res.cloudinary.com/dycnoic1s/image/upload/w_180,h_170/v1732903554/elemento_flor.fw_2_wr5wtf.png" alt="Pousada TAO logotipo">
+
+            <div class="main-nav nav-grid">
                 
+                <div style="  grid-column: span calc(20 - var(--_grid));"></div> <!-- PLACEHOLDER -->
+
+                <div>
+                    <h1 class="croissant-one-regular">POUSADA TAO</h1>
+                    
+                    <section class="nav-loc">
+
+                        <i class="fas fa-map-marker-alt"></i>
+                        <a href=""><strong>Campos do Jordão</strong></a>
+
+                    </section>
+                </div>
+
             </div>
-            <div class="sub-nav">
 
-                <section class="lang">
-                    <i>🇧🇷</i>
-                    <i>🇺🇸</i>
-                </section>
+            <div class="sub-nav nav-grid">
 
-                <section class="social">
-                    <button>
-                        <i class="fa-brands fa-whatsapp" style="width: 20px; color: green;"></i>
-                        <p><u><strong>(012) 9999-9999</strong></u></p>
-                    </button>
-                    <a href="https://www.instagram.com/yourprofile" target="_blank">
-                        <i class="fab fa-instagram" ></i>
-                    </a>                      
-                </section>
+                <div style="  grid-column: span calc(20 - var(--_grid));"></div> <!-- PLACEHOLDER -->
 
-                <section class="links">
-                    <a href=""><em><strong>Pousada</strong></em></a>
-                    <a href=""><em><strong>História</strong></em></a>
-                    <a href=""><em><strong>Fotos</strong></em></a>
-                    <a href=""><em><strong>Mais</strong></em></a>
-                </section>
+                <div class="nav-grid">
+                    
+                    <section class="links">
+                        <a href=""><em><strong>Pousada</strong></em></a>
+                        <a href=""><em><strong>História</strong></em></a>
+                        <a href=""><em><strong>Fotos</strong></em></a>
+                        <a href=""><em><strong>Mais</strong></em></a>
+                    </section>
+                    
+                    <section class="social">
+                        <button>
+                            <i class="fa-brands fa-whatsapp" style="width: 20px; color: green;"></i>
+                            <p><u><strong>(012) 9999-9999</strong></u></p>
+                        </button>
+                        <a href="https://www.instagram.com/yourprofile" target="_blank">
+                            <i class="fab fa-instagram" ></i>
+                        </a>                      
+                    </section>
 
-                <div style="flex-grow: 1;" ></div>
+                    <section class="lang">
+                        <i>🇧🇷</i>
+                        <i>🇺🇸</i>
+                    </section>
+                </div>
 
             </div>
         </nav>
@@ -354,7 +377,7 @@ var currentScrollPos = window.pageYOffset;
   if (prevScrollpos > currentScrollPos) {
     document.getElementById("navbar").style.top = "0";
   } else {
-    document.getElementById("navbar").style.top = "-15.5vh";
+    document.getElementById("navbar").style.top = "-17vh";
   }
   prevScrollpos = currentScrollPos;
 }   
