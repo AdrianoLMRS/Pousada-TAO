@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   applyBorderToImagesInDivs('.item img');
   scrollAction(() => setOpacity(1, '.sobre h1', '.sobre h2', '.sobre p', '.sobre-container'), 500);
   scrollAction(() => setOpacity(0.3, '.sobre-ba svg'), 500);
-  scrollActionReverse(() => nav.style.backgroundColor = 'var(--cor-txt)', () => nav.style.backgroundColor = '', 550);
+  scrollActionReverse(() => nav.style.backgroundColor = 'var(--cor-txt)', () => nav.style.backgroundColor = '', 900);
 });
 
 
@@ -79,6 +79,23 @@ function applyBorderToImagesInDivs(div) {
     image.style.border = '4px solid white'; // Aqui você pode modificar a borda ou aplicar outras estilizações
   });
 }
+
+// Detect mobile devices
+const isMobile = () => /Mobi|Android/i.test(navigator.userAgent);
+
+const showSidebar = () => {
+  document.querySelector('.sidebar').style.display = 'flex'; // ou 'flex', conforme necessário
+};
+
+const hideSidebar = () => {
+  document.querySelector('.sidebar').style.display = 'none';
+};
+
+
+
+const scrollHide = () => {
+  if (isMobile()) hideSidebar();
+};
 
 // Load content from another HTML file
 function loadFile(file_name, element_id) {
