@@ -13,17 +13,55 @@ nav {
   transition: top 300ms;
 
   --_gap: 5%;
-  --_mainHeight: 65%;
+  --_mainHeight: 75%;
   --_width: 90%;
   --_grid: 17;
+  --_sub-grid: var(--_grid, 17);
+  --_font-size: calc(0.5rem + 1vw);
+  --_max-width-mobile: 670px;
 }
 
-.logo {
+@media (max-width: var(--_max-width-mobile)) {
+  .hide-mobile { display: none; }
+}
+
+@media (max-width: 1800px) {
+  nav {--_grid: 16}
+}
+@media (max-width: 1000px) {
+  nav {--_grid: 15}
+}
+@media (max-width: 800px) {
+  nav {--_grid: 14}
+}
+@media (max-width: 670px) {
+  nav {--_grid: 12}
+  nav {--_sub-grid: 20}
+  nav { --_font-size: calc(var(--_font-size) + 0.5rem) }
+  .logo { height: 14vh !important; }
+  nav .sub-nav .links .more { display: flex !important; }
+}
+@media (max-width: 500px) {
+  nav {--_grid: 10}
+}
+
+nav .more {
+  display: none;
+  overflow-y: visible;
+  position: absolute;
+}
+
+nav #nav-placeholder {
+  grid-column: span calc(20 - var(--_grid));
+}
+
+nav .logo {
   position: absolute;
   height: 18.5vh;
+  width: clamp( 200px, 14vw , 500px );
 }
 
-.nav-grid {
+nav .nav-grid {
   display: grid; 
   grid-template-columns: repeat(20, 1fr); 
 }
@@ -39,6 +77,7 @@ nav .main-nav > div{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  text-align: center;
   flex-grow: 1;
   height: 100%;
   grid-column: span var(--_grid);
@@ -60,11 +99,16 @@ nav .main-nav > div .nav-loc {
 nav .sub-nav {
   background-color: var(--cor-laranja);
   height: calc(100% - var(--_mainHeight));
+  font-size: var(--_font-size);
+}
+
+nav .sub-nav i {
+  font-size: calc(var(--_font-size) + 0.5vw);
 }
 
 nav .sub-nav > div { 
   flex-grow: 1; 
-  grid-column: span var(--_grid);
+  grid-column: span var(--_sub-grid);
 }
 
 /* SOCIAL */
@@ -81,16 +125,16 @@ nav .sub-nav .social button {
   cursor: pointer; 
   display: flex;
   flex-direction: row;
-  width: 70%;
+  
   align-items: center;
   white-space: nowrap;
 
 }
 
-nav .sub-nav .social button p { font-size: calc(0.5rem + 1.5vw); margin-left: 5%; }
+nav .sub-nav .social button p { margin-left: 5%; font-size: calc(var(--_font-size) - 0.5rem); }
 
 nav .sub-nav .social a {
-  width: 30%;
+  width: 15%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,7 +143,6 @@ nav .sub-nav .social a {
 nav .sub-nav .social i {
   position: relative;
   left: 0;
-  font-size: calc(0.5rem + 2vw);
 }
 
 /* FLAGS */
@@ -114,7 +157,6 @@ nav .sub-nav .lang {
 }
 
 nav .sub-nav .lang i  {
-  font-size: 200%;
   cursor: pointer;
 }
 
@@ -131,5 +173,4 @@ nav .sub-nav .links {
 
 nav .sub-nav .links a {
   text-decoration: none;
-  font-size: calc(0.5rem + 2vw);
 }

@@ -30,16 +30,16 @@
     <div class="content">
     
         <nav id="navbar" style="max-width: 3500px;">
-            <img class="logo" loading="eager" src="https://res.cloudinary.com/dycnoic1s/image/upload/w_180,h_170/v1732903554/elemento_flor.fw_2_wr5wtf.png" alt="Pousada TAO logotipo">
+            <img class="logo" loading="eager" src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732903554/elemento_flor.fw_2_wr5wtf.png" alt="Pousada TAO logotipo">
 
             <div class="main-nav nav-grid">
                 
-                <div style="  grid-column: span calc(20 - var(--_grid));"></div> <!-- PLACEHOLDER -->
+                <div id="nav-placeholder"></div> <!-- PLACEHOLDER -->
 
                 <div>
                     <h1 class="croissant-one-regular">POUSADA TAO</h1>
                     
-                    <section class="nav-loc">
+                    <section class="nav-loc hide-mobile">
 
                         <i class="fas fa-map-marker-alt"></i>
                         <a href=""><strong>Campos do Jordão</strong></a>
@@ -51,15 +51,20 @@
 
             <div class="sub-nav nav-grid">
 
-                <div style="  grid-column: span calc(20 - var(--_grid));"></div> <!-- PLACEHOLDER -->
+                <div class="hide-mobile" id="nav-placeholder"></div> <!-- PLACEHOLDER -->
 
                 <div class="nav-grid">
                     
                     <section class="links">
-                        <a href=""><em><strong>Pousada</strong></em></a>
-                        <a href=""><em><strong>História</strong></em></a>
-                        <a href=""><em><strong>Fotos</strong></em></a>
-                        <a href=""><em><strong>Mais</strong></em></a>
+                        <a class="hide-mobile" href=""><em><strong>Pousada</strong></em></a>
+                        <a class="hide-mobile" href=""><em><strong>História</strong></em></a>
+                        <a class="hide-mobile" href=""><em><strong>Fotos</strong></em></a>
+                        <details class="more">
+                            <summary><em><strong>Mais</strong></em></summary>
+                            <a href=""><em><strong>Contato</strong></em></a>
+                            <a href=""><em><strong>Localização</strong></em></a>
+                            <a href=""><em><strong>Reservas</strong></em></a>
+                        </details>
                     </section>
                     
                     <section class="social">
