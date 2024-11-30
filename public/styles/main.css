@@ -1,6 +1,6 @@
 main > *:not(:first-child) {
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 200px;
+  margin-bottom: 200px;
 }
 
 /** SOBRE **/
@@ -380,50 +380,6 @@ main > *:not(:first-child) {
   flex-direction: row;
 }
 
-.localizacao h1 + div section {
-  font-size: calc(1rem + 1vw);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  overflow: hidden;
-  gap: 10px;
-}
-
-.localizacao h1 + div section h2 {  color: var(--cor-roxo);  -webkit-text-stroke: 0.5px;  }
-
-.localizacao h1 + div section ul {
-  color: var(--cor-txt);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  list-style-type: disc;
-  -webkit-text-stroke: 1px;
-}
-
-.localizacao h1 + div section li {
-  width: 90%;
-  border-radius: 5px; 
-  padding: 5px; 
-  margin-bottom: 5%; 
-  transition: background-color 300ms;
-  font-size: calc(0.5rem + 0.8vw);;
-}
-
-.localizacao h1 + div section strong {  color: var(--cor-laranja);  -webkit-text-stroke: 1.5px;  }
-
-@media (min-width: 768px) {
-  .localizacao h1 + div section li::before {
-    content: '\2022';
-    font-size: 4.5vw; 
-    position: absolute; 
-    left: 0; 
-    margin-top: -1.5%;
-    color: black; 
-  }
-}
 
 .map-iframe {
   width: 100%; 
@@ -466,7 +422,7 @@ main > *:not(:first-child) {
 #iframeFS:hover {  transform: scale(1.8);  }
 
 #iframe-div {
-  width: 70%; 
+  width: 80%; 
   height: 85vh; 
   display: flex; 
   flex-direction: column; 
