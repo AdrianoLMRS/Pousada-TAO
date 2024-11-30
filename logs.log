@@ -1,0 +1,161 @@
+2024-11-29T14:16:30.452Z - Api up and running at: http://localhost:3000
+2024-11-29T14:16:30.907Z - MongoDB connected: website-cluster-shard-00-02.peqkv.mongodb.net
+2024-11-29T14:16:36.490Z - 
+
+Nova request: 
+
+    REQ METHOD : GET 
+
+    REQ URL : /reserva 
+
+    REQ/USER IP : ::ffff:127.0.0.1 
+
+
+2024-11-29T14:16:40.037Z - 
+
+Nova request: 
+
+    REQ METHOD : GET 
+
+    REQ URL : /reserva 
+
+    REQ/USER IP : ::ffff:127.0.0.1 
+
+
+2024-11-29T14:18:23.644Z - Api up and running at: http://localhost:3000
+2024-11-29T14:18:24.663Z - Api up and running at: http://localhost:3000
+2024-11-29T14:18:24.950Z - MongoDB connected: website-cluster-shard-00-02.peqkv.mongodb.net
+2024-11-29T14:18:27.135Z - Api up and running at: http://localhost:3000
+2024-11-29T14:18:27.467Z - MongoDB connected: website-cluster-shard-00-01.peqkv.mongodb.net
+2024-11-29T14:18:33.125Z - Api up and running at: http://localhost:3000
+2024-11-29T14:18:33.414Z - MongoDB connected: website-cluster-shard-00-02.peqkv.mongodb.net
+2024-11-29T14:18:35.239Z - Api up and running at: http://localhost:3000
+2024-11-29T14:18:35.555Z - MongoDB connected: website-cluster-shard-00-02.peqkv.mongodb.net
+2024-11-29T14:18:37.793Z - Api up and running at: http://localhost:3000
+2024-11-29T14:18:38.129Z - MongoDB connected: website-cluster-shard-00-00.peqkv.mongodb.net
+2024-11-29T14:18:45.804Z - Api up and running at: http://localhost:3000
+2024-11-29T14:18:46.207Z - MongoDB connected: website-cluster-shard-00-02.peqkv.mongodb.net
+2024-11-29T14:18:59.611Z - Api up and running at: http://localhost:3000
+2024-11-29T14:19:00.883Z - Api up and running at: http://localhost:3000
+2024-11-29T14:19:01.221Z - MongoDB connected: website-cluster-shard-00-00.peqkv.mongodb.net
+2024-11-29T14:19:03.181Z - Api up and running at: http://localhost:3000
+2024-11-29T14:19:03.504Z - MongoDB connected: website-cluster-shard-00-01.peqkv.mongodb.net
+[2024-11-29 14:19:24] Api up and running at: http://localhost:3000
+[2024-11-29 14:19:24] MongoDB connected: website-cluster-shard-00-00.peqkv.mongodb.net
+[2024-11-29 14:19:32] 
+
+Nova request: 
+
+    REQ METHOD : GET 
+
+    REQ URL : /reserva 
+
+    REQ/USER IP : ::ffff:127.0.0.1 
+
+
+[2024-11-29 14:19:38] 
+
+Nova request: 
+
+    REQ METHOD : GET 
+
+    REQ URL : /reserva 
+
+    REQ/USER IP : ::ffff:127.0.0.1 
+
+
+[2024-11-29 14:21:05] Api up and running at: http://localhost:3000
+[2024-11-29 14:21:05] MongoDB connected: website-cluster-shard-00-01.peqkv.mongodb.net
+[2024-11-29 14:21:10] 
+
+Nova request: 
+
+    REQ METHOD : GET 
+
+    REQ URL : /reserva 
+
+    REQ/USER IP : ::ffff:127.0.0.1 
+
+
+[2024-11-29 14:21:21] Api up and running at: http://localhost:3000
+[2024-11-29 14:21:21] MongoDB connected: website-cluster-shard-00-02.peqkv.mongodb.net
+[32m[INFO][0m [90m[2024-11-29 14:23:38] Api up and running at: http://localhost:3000[0m
+[32m[INFO][0m [90m[2024-11-29 14:23:39] MongoDB connected: website-cluster-shard-00-01.peqkv.mongodb.net[0m
+[32m[INFO][0m [90m[2024-11-29 14:23:41] Api up and running at: http://localhost:3000[0m
+[32m[INFO][0m [90m[2024-11-29 14:23:41] MongoDB connected: website-cluster-shard-00-02.peqkv.mongodb.net[0m
+[32m[INFO][0m [90m[2024-11-29 14:23:42] Api up and running at: http://localhost:3000[0m
+[32m[INFO][0m [90m[2024-11-29 14:23:43] MongoDB connected: website-cluster-shard-00-00.peqkv.mongodb.net[0m
+[32m[INFO][0m [90m[2024-11-29 14:24:01] 
+
+Nova request: 
+
+    REQ METHOD : GET 
+
+    REQ URL : /reserva 
+
+    REQ/USER IP : ::ffff:127.0.0.1 
+
+[0m
+[2024-11-29 14:24:54] Api up and running at: http://localhost:3000
+[2024-11-29 14:24:55] MongoDB connected: website-cluster-shard-00-00.peqkv.mongodb.net
+[2024-11-29 14:25:00] Api up and running at: http://localhost:3000
+[2024-11-29 14:25:01] MongoDB connected: website-cluster-shard-00-01.peqkv.mongodb.net
+[2024-11-29 14:25:04] Api up and running at: http://localhost:3000
+[2024-11-29 14:25:05] MongoDB connected: website-cluster-shard-00-00.peqkv.mongodb.net
+[2024-11-29 14:25:10] Api up and running at: http://localhost:3000
+[2024-11-29 14:25:10] MongoDB connected: website-cluster-shard-00-00.peqkv.mongodb.net
+[2024-11-29 14:25:12] Api up and running at: http://localhost:3000
+[2024-11-29 14:25:12] MongoDB connected: website-cluster-shard-00-01.peqkv.mongodb.net
+[2024-11-29 14:25:14] Api up and running at: http://localhost:3000
+[2024-11-29 14:25:15] MongoDB connected: website-cluster-shard-00-01.peqkv.mongodb.net
+[2024-11-29 14:25:18] Api up and running at: http://localhost:3000
+[2024-11-29 14:25:18] MongoDB connected: website-cluster-shard-00-01.peqkv.mongodb.net
+[2024-11-29 14:25:20] Api up and running at: http://localhost:3000
+[2024-11-29 14:25:20] MongoDB connected: website-cluster-shard-00-01.peqkv.mongodb.net
+[2024-11-29 14:25:23] Api up and running at: http://localhost:3000
+[2024-11-29 14:25:23] MongoDB connected: website-cluster-shard-00-01.peqkv.mongodb.net
+[2024-11-29 14:25:43] Api up and running at: http://localhost:3000
+[2024-11-29 14:25:43] MongoDB connected: website-cluster-shard-00-00.peqkv.mongodb.net
+[2024-11-29 14:25:45] Api up and running at: http://localhost:3000
+[2024-11-29 14:25:45] MongoDB connected: website-cluster-shard-00-00.peqkv.mongodb.net
+[2024-11-29 14:25:48] Api up and running at: http://localhost:3000
+[2024-11-29 14:25:48] MongoDB connected: website-cluster-shard-00-02.peqkv.mongodb.net
+[2024-11-29 14:25:50] Api up and running at: http://localhost:3000
+[2024-11-29 14:25:52] Api up and running at: http://localhost:3000
+[2024-11-29 14:25:52] MongoDB connected: website-cluster-shard-00-02.peqkv.mongodb.net
+[2024-11-29 14:25:58] Api up and running at: http://localhost:3000
+[2024-11-29 14:25:59] MongoDB connected: website-cluster-shard-00-02.peqkv.mongodb.net
+[2024-11-29 14:26:08] Api up and running at: http://localhost:3000
+[2024-11-29 14:26:08] MongoDB connected: website-cluster-shard-00-00.peqkv.mongodb.net
+[2024-11-29 14:26:18] Api up and running at: http://localhost:3000
+[2024-11-29 14:26:18] MongoDB connected: website-cluster-shard-00-01.peqkv.mongodb.net
+[2024-11-29 14:26:20] Api up and running at: http://localhost:3000
+[2024-11-29 14:26:20] MongoDB connected: website-cluster-shard-00-02.peqkv.mongodb.net
+[2024-11-29 14:26:23] Api up and running at: http://localhost:3000
+[2024-11-29 14:26:23] MongoDB connected: website-cluster-shard-00-01.peqkv.mongodb.net
+[2024-11-29 14:27:07] Api up and running at: http://localhost:3000
+[2024-11-29 14:27:08] MongoDB connected: website-cluster-shard-00-00.peqkv.mongodb.net
+[2024-11-29 14:28:15] 
+
+Nova request: 
+
+    REQ METHOD : GET 
+
+    REQ URL : /profile/data 
+
+    REQ/USER IP : ::ffff:127.0.0.1 
+
+
+[2024-11-29 14:28:15] 
+
+Nova request: 
+
+    REQ METHOD : GET 
+
+    REQ URL : /login 
+
+    REQ/USER IP : ::ffff:127.0.0.1 
+
+
+[2024-11-29 14:40:57] Api up and running at: http://localhost:3000
+[2024-11-29 14:40:57] MongoDB connected: website-cluster-shard-00-00.peqkv.mongodb.net
