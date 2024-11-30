@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   applyBorderToImagesInDivs('.item img');
   scrollAction(() => setOpacity(1, '.sobre h1', '.sobre h2', '.sobre p', '.sobre-container'), 500);
   scrollAction(() => setOpacity(0.3, '.sobre-ba svg'), 500);
-  scrollActionReverse(() => nav.style.backgroundColor = 'var(--cor-txt)', () => nav.style.backgroundColor = '', 900);
+  scrollActionReverse(() => nav.style.backgroundColor = 'var(--cor-txt)', () => nav.style.backgroundColor = '', 100);
 });
 
 

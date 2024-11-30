@@ -9,8 +9,18 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-image: url(https://res.cloudinary.com/dycnoic1s/image/upload/w_4500,h_2500,c_crop/natal-de-campos-do-jordao-capa_LE_upscale_balanced_x4_bum5iw_1_cxwt4r.jpg) ;
+  animation: ba-change 65s linear infinite;
   z-index: 0;
+}
+
+/* Animação da mudança de imagem de fundo */
+@keyframes ba-change {
+  0%, 10% { background-image: url(https://res.cloudinary.com/dycnoic1s/image/upload/w_2000,h_1200,q_100/v1732990766/img-0461-largejpg_LE_upscale_balanced_x4_zalao8.jpg);  }
+  20%, 30% { background-image: url(https://res.cloudinary.com/dycnoic1s/image/upload/w_2000,h_1200,q_100/v1732901670/fachada-da-pousada_r0hpto.png);  }
+  40%, 50% { background-image: url(https://res.cloudinary.com/dycnoic1s/image/upload/w_2000,h_1200,q_100/v1732901669/661d7dd5e13df_ruaphoto940x788_pspyjw.png); }
+  60%, 70% { background-image: url(https://res.cloudinary.com/dycnoic1s/image/upload/w_2000,h_1200,q_100/v1732989576/20170831_164121-EFFECTS-1_tnn20j.jpg); }
+  80%, 90% { background-image: url(https://res.cloudinary.com/dycnoic1s/image/upload/w_2000,h_1200,q_100/v1732901658/6617f1490e017_8cozinhaconjugada940x788_i5llgz.png);  }
+  100% { background-image: url(https://res.cloudinary.com/dycnoic1s/image/upload/w_2000,h_1200,q_100/v1732989576/img-0461-largejpg_k2skk6.jpg); }
 }
 
 /* Estilo do overlay */
