@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  initializeSlider();
-  adjustControlsPosition();
-  hideFirstButton();
+  // initializeSlider();
+  // adjustControlsPosition();
+  // hideFirstButton();
   window.addEventListener('scroll', scrollHide);
   moveDivToEndAfterDelay('#fullscreen', '.tns-controls', 100);
   addTitleToElement('.tns-controls button[data-controls="prev"]', 'Anterior');

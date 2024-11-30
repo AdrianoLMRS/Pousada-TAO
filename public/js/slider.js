@@ -18,4 +18,4 @@ nextBtn.addEventListener('click', () => {
 function updateSlider() {
   const width = slider.clientWidth;
   slider.style.transform = `translateX(-${currentIndex * width}px)`;
-}
+};
