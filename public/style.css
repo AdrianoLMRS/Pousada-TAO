@@ -49,9 +49,6 @@ body {
   position: relative;
   max-width: 100vw;
   z-index: -1;
-  background-color: rgba(196, 229, 237, 0.7);
-  background-image: linear-gradient(0deg, rgba(196, 229, 237, 0.7) 50%, rgba(125, 206, 239, 0.7) 50%);
-  background-size: 24px 24px;
   font-family: 'Caviar-Dreams', sans-serif;
 }
 
@@ -89,7 +86,7 @@ body > * {
   max-width: 3500px;
   z-index: 2;
   box-shadow: 12px 0 8px rgba(0, 0, 0, 0.4), -12px 0 8px rgba(0, 0, 0, 0.4);
-  background-color: rgba(196, 229, 237, 1);
+  background-color: var(--cor-branco);
 
 }
 
