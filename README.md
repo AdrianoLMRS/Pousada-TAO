@@ -3,7 +3,7 @@
 ---
 
 ## 🚀 Demo  
-[View the live demo here!](https://adrianolmrs.github.io/Website/public)  
+[View the live demo here!](https://adrianolmrs.github.io/Website/app/public/)  
 
 ---
 
