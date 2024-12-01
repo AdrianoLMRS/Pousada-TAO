@@ -3,10 +3,10 @@ const { handleStripeWebhook } = require('../controllers/webhookController');
 
 const router = express.Router();
 
-// Middleware para capturar eventos brutos do Stripe
+// Stripe middleware
 router.post(
-    '/', // A URL correta
-    express.raw({ type: 'application/json' }), // Captura o raw body necessário para validação
+    '/', 
+    express.raw({ type: 'application/json' }), // Raw body json
     handleStripeWebhook
 );
 

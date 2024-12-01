@@ -6,7 +6,7 @@
 
 const originalLog = console.log; // Save the original console.log function
 
-const logFilePath = path.join(__dirname, '../logs.log'); // Path for .log file
+const logFilePath = path.join(__dirname, '../../logs.log'); // Path for .log file
 
 const logStream = fs.createWriteStream(logFilePath, { flags: 'a' }); // append logs
 

@@ -16,8 +16,8 @@
 ## 🛠️ Improvements To-Do  
 
 ### 📈 Enhance Performance Metrics  
-Working to improve the website's **Lighthouse results**:  <br><br>
-![Lighthouse results](image.png)  
+Working to improve the website's **Lighthouse results**: <br><br>
+![Lighthouse results](misc/image.png)  
 
 ### 🎯 Upcoming Tasks  
 - Optimize assets and reduce page load time.  
