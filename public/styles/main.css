@@ -114,7 +114,7 @@ main > *:not(:first-child) {
   width: 100%;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
   .acomodacoes { flex-direction: column; }
 }
 
@@ -126,6 +126,7 @@ main > *:not(:first-child) {
   overflow: hidden;
   transform: translateY(0);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
 
   --_primary: var(--cor-azul-escuro, #107d9a);
 }
