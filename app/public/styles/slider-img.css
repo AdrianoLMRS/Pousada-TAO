@@ -23,6 +23,19 @@
   100% { background-image: url(https://res.cloudinary.com/dycnoic1s/image/upload/w_2000,h_1200,q_100/v1732989576/img-0461-largejpg_k2skk6.jpg); }
 }
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 0.95;
+    transform: scale(0.95);
+  }
+}
+
+.overlay .animated { animation: slideIn 1s forwards ease-in; }
+
 /* Estilo do overlay */
 .overlay {
   width: 100%;
@@ -32,21 +45,17 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   text-align: center;
   background-color: rgba(0, 0, 0, 0.5);
   gap: 2.5%;
-
-  --_margin-left: 100px;
 }
 
-/* Título do overlay */
 .overlay h1 {
-  margin-top: -10%;
-  margin-left: var(--_margin-left);
   white-space: nowrap;
-  letter-spacing: 5px;
-  font-size: calc(3rem + 1vw);
+  letter-spacing: 2px;
+  font-size: calc(1rem + 0.5vw);
+  --_font-weight: 700;
   font-family: 'Speeling-night', sans-serif;
   animation: float 10s ease-in-out infinite;
   --cor-1: #b0802f;     
@@ -56,7 +65,6 @@
 }
 
 .overlay h1 span {
-  margin-left: 5%;
   --cor-1: #b0802f;     
   --cor-2: var(--cor-laranja);
   --cor-3: var(--cor-laranja);
@@ -64,28 +72,30 @@
   padding-left: 10px;
 }
 
-@media (max-width: 450px) {  
-  .overlay h1 {  white-space: normal;  }
-  .overlay {  --_margin-left: 0; align-items: center;  }
+@media (max-width: 550px) {  
+  .overlay h1 {  white-space: normal; --_margin-left-after: 0;  }
+  .overlay {  align-items: center;  }
 }
 
-/* Parágrafo do overlay */
+/* Overlay <p> */
 .overlay .subtitle {
+  --_margin-left-before: -50px;
+  --_margin-left-after: 10px;
+  --_font-weight: 700;
   width: 80%;
+  text-align: center;
   line-height: 1.5;
   letter-spacing: 2px;
-  margin-left: calc(var(--_margin-left) - 50px);
   color: var(--cor-branco);
   margin-top: 2rem;
-  font-size: calc(1rem + 1vw);
+  font-size: calc(2rem + 1vw);
+}
 
-  text-align: left;
-  font-family: 'Caviar-Dreams', sans-serif;
-  text-shadow: 
-    1px 1px 0 black, 
-    -1px -1px 0 black,
-    1px -1px 0 black,
-    -1px 1px 0 black;
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Animação de flutuação */
@@ -96,4 +106,38 @@
   50% {
     transform: translateY(-10px);
   }
+}
+
+.text-with-lines.overlayh1 {
+  --_line-width : 20%;
+  --_line-height: 2.5px;
+  --_line-left: -20%;
+  --_line-right: -20%;
+}
+
+.text-with-lines {
+  font-size: var(--_font-size, 2em);
+  font-weight: var(--_font-weight, bold);
+  color: var(--_font-color, var(--cor-laranja));
+  position: relative;
+  display: inline-block;
+  padding: 0 20px;
+}
+
+.text-with-lines::before, .text-with-lines::after {
+  content: "";
+  position: absolute;
+  width: var(--_line-width, 35%);
+  height: var(--_line-height, 2px);
+  background-color: var(--_line-color, var(--cor-laranja));
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.text-with-lines::before {
+  left: var(--_line-left, -40%);
+}
+
+.text-with-lines::after {
+  right: var(--_line-right, -40%);
 }
