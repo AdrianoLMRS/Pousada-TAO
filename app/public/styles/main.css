@@ -3,6 +3,10 @@ main > *:not(:first-child):not(.booking-form) {
   margin-bottom: 200px;
 }
 
+.flex {
+  display: flex;
+}
+
 /** SOBRE **/
 .sobre-section {
   display: flex;
@@ -108,7 +112,23 @@ main > *:not(:first-child):not(.booking-form) {
 /** Acomodações **/
 
 .acomodacoes {
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 100px;
+}
+
+.acomodacoes > p {
+  width: 50%;
+  text-align: center;
+  font-size: large;
+  line-height: 1.5;
+}
+
+.acomodacoes > h2 {
+  font-size: xx-large;
+  text-align: center;
 }
 
 .acomodacoes .flex {
@@ -128,9 +148,9 @@ main > *:not(:first-child):not(.booking-form) {
 .card {
   background-color: var(--cor-branco);
   width: 300px;
+  min-height: var(--card-height, 500px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -155,6 +175,9 @@ main > *:not(:first-child):not(.booking-form) {
 
 .card-content {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .card-title {
@@ -191,13 +214,32 @@ main > *:not(:first-child):not(.booking-form) {
 .great {
   width: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 65px;
+
+  --img-height: 200px;
+  --img-width: 50%;
+}
+
+.great > h2 {
+  font-size: xx-large;
+}
+
+.great .flex {
+  width: 100%;
   justify-content: center;
   align-items: stretch;
   flex-wrap: wrap;
   gap: 20px;
+}
 
-  --img-height: 100px;
-  --img-width: 50%;
+.great .card .img-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .great .card {

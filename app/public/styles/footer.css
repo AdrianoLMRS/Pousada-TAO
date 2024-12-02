@@ -109,15 +109,15 @@
 	position: relative;
 }
 
-.footer-bottom-links a::after {
+.footer-bottom-links a:not(:last-of-type)::after {
+	
 	content: '';
 	position: absolute;
 	right: -25%; 
-  top: 0;
+	top: 0;
 	display: block;
 	width: 1px;
 	height: 100%;
-	color: var(--cor-branco);
 	background-color: var(--cor-branco);
 }
 
