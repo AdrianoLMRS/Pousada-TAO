@@ -1,6 +1,6 @@
 .footer {
 	background-color: #1a1f2b;
-	color: white;
+	color: var(--cor-branco);
 	padding: 50px 0 20px;
 	font-family: Arial, sans-serif;
 }
@@ -25,7 +25,7 @@
 	.footer-content::not(.brand-section p) { text-align: center; }
 }
 .brand-section h2 {
-	color: white;
+	color: var(--cor-branco);
 	cursor: pointer;
 	font-size: 32px;
 	margin-bottom: 20px;
@@ -58,7 +58,7 @@
 }
 
 .footer ul li a {
-	color: white;
+	color: var(--cor-branco);
 	text-decoration: none;
 }
 
@@ -71,7 +71,7 @@
 	width: 35px;
 	height: 35px;
 	border-radius: 50%;
-	border: 1px solid white;
+	border: 1px solid var(--cor-branco);
 	text-align: center;
 	line-height: 35px;
 	margin-right: 10px;
@@ -103,7 +103,7 @@
 @media (max-width: 805px) { .footer-bottom-links { margin-top: 15px; justify-content: start; } }
 
 .footer-bottom-links a {
-	color: white;
+	color: var(--cor-branco);
 	text-decoration: none;
 	margin-left: 20px;
 	position: relative;
@@ -117,14 +117,14 @@
 	display: block;
 	width: 1px;
 	height: 100%;
-	color: #fff;
+	color: var(--cor-branco);
 	background-color: var(--cor-branco);
 }
 
 /* Hover animation for social icons */
 .social-icons a:hover {
 	background-color: #ffa726;
-	color: white;
+	color: var(--cor-branco);
 	transform: scale(1.2);
 	box-shadow: 0px 4px 15px rgba(255, 167, 38, 0.5);
 }
@@ -132,7 +132,7 @@
 /* Hover animation for brand section title */
 .brand-section h2:hover {
 	background-color: #f99e15;
-	color: #fff;
+	color: var(--cor-branco);
 	transform: scale(1.05);
 	box-shadow: 0px 6px 20px rgba(154, 38, 255, 0.5);
 }
@@ -141,7 +141,7 @@
 .contact-section h3:hover,
 .company-section h3:hover,
 .services-section h3:hover {
-	color: white;
+	color: var(--cor-branco);
 	text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.5);
 	transform: translateY(-5px);
 }

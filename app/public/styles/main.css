@@ -10,7 +10,7 @@ main > *:not(:first-child):not(.booking-form) {
   align-items: flex-start;
   padding: 20px;
   gap: 20px;
-  background-color: #ffffff;
+  background-color: var(--cor-branco);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   max-width: 1200px;
@@ -82,7 +82,7 @@ main > *:not(:first-child):not(.booking-form) {
 
 .content-container p {
   color: #333333;
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.5;
 }
 
@@ -108,6 +108,10 @@ main > *:not(:first-child):not(.booking-form) {
 /** Acomodações **/
 
 .acomodacoes {
+  
+}
+
+.acomodacoes .flex {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -122,8 +126,12 @@ main > *:not(:first-child):not(.booking-form) {
 }
 
 .card {
-  background-color: #fff;
+  background-color: var(--cor-branco);
   width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -140,8 +148,8 @@ main > *:not(:first-child):not(.booking-form) {
 }
 
 .card-image {
-  width: 100%;
-  height: 200px;
+  width: var(--img-width, 100%);
+  height: var(--img-height, 200px);
   object-fit: cover;
 }
 
@@ -178,185 +186,32 @@ main > *:not(:first-child):not(.booking-form) {
   background-color: #0056b3;
 }
 
-/**  RESERVA  **/
+/**  GREAT  **/
 
-.reserva {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-  border-top: 3px groove black;  /* Borda superior */
-  border-bottom: 3px groove black; /* Borda inferior */
-}
-
-
-/* background do .reserva */
-.ba-reserva {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  user-select: none;
-  display: flex;
-  flex-wrap: wrap;
-  height: 100%;
-  gap: 0.5vw;
-  padding: 5px;
-  background-image: linear-gradient(to bottom, #b45ef2, var(--cor-laranja));
-  z-index: -2;
-}
-
-@media (max-width: 660px) {
-  #hideable {  display: none; }
-}
-
-.ba-reserva img {
-  flex: 1 1 49.2%;
-  object-fit: fill;
-  height: 98vh;
-  overflow: hidden;
-  --size-content-1: 20vw;
-  --size-2: 3px;
-  --radius-4: 5px;
-  --surface-1: #25d36500; 
-  --gradient-1: linear-gradient(45deg, var(--cor-branco), var(--cor-azul-claro));
-}
-
-.reserva-content {
-  position: absolute;
+.great {
   width: 100%;
-  height: 100%;
-  z-index: 4;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  gap: 17%;
-}
-
-.reserva-content a {
-  margin-bottom: 10%;
-  font-size: 0.95rem;
-}
-
-.reserva-content a img {
-  position: absolute;
-  top: 50%; right: 10%;  transform: translate(-50%, -50%);
-}
-
-/* media queries for .whatsapp-button */
-@media (max-width: 700px) {  .reserva-content a {  --size-content-1: 38vw;  }  }
-
-@media (max-width: 635px) {  
-  .reserva-content a {
-      --size-content-1: 33vw;
-  } 
-  .reserva-content a + div section {
-    font-size: calc(1rem + 0.5vw); 
-  }
-}
-
-@media (max-width: 500px) {  .reserva-content a {  --size-content-1: 50vw;  }  }
-
-@media (max-width: 470px) {  .reserva-content a {  --size-content-1: 60vw;  }  }
-
-@media (max-width: 390px) {  
-  .reserva-content a {
-   --size-content-1: 65vw;
-  } 
-  .reserva-content a + div section {
-    font-size: calc(0.8rem + 0.5vw); 
-  }
-}
-
-@media (max-width: 360px) {  
-  .reserva-content a {
-      font-size: 0;  
-      height: 8vh;
-      width: 2vw;
-      border-radius: 100%;
-  } 
-  .reserva-content a img {
-    position: absolute;
-    top: 50%; left: 50%;  transform: translate(-50%, -50%);
-  }
-}
-
-@media (min-width: 1200px) {
-  .reserva-content a {
-    --size-content-1: clamp(13%, 13%, 14%);
-    transform: scale(1.4);
-  } 
-  .reserva-content a:hover {  transform: scale(1.5); }
-  .reserva-content a:active {  transform: scale(1.3); }
-}
-
-.reserva-content a + div {
   display: flex;
   justify-content: center;
-  gap: 4%;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  --img-height: 100px;
+  --img-width: 50%;
 }
 
-.reserva-content section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.great .card {
+  min-height: 475px;
+}
+
+.great .card img {
+  width: 100px;
+  height: 100px;
+}
+
+.great .card .card-content h2 {
   text-align: center;
-  gap: 3%;
-  width: 40%;
-  height: 50vh;
-  color: #E0D8DE;
-  font-size: calc(1rem + 1vw); 
-  overflow: hidden;
 }
-
-
-.whatsapp-button {
-  position: relative;
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #25D366; 
-  color: #4B3B47; 
-  text-decoration: none;
-  border-radius: 5px; 
-  font-size: 16px;
-  font-weight: bolder;
-
-  transition: transform 300ms, color 300ms, filter 300ms;
-
-
-  --size-content-1: 22vw;
-  --ratio-widescreen: 10 / 1;
-  --size-2: 3px;
-  --surface-1: #25D366; 
-  --gradient-1: linear-gradient(to right, #b45ef2, var(--cor-laranja));
-}
-
-.whatsapp-button:hover {  transform: scale(1.05); color: #E0D8DE;  --gradient-1: linear-gradient(to right, #9500ff, var(--cor-atencao)); }
-
-.whatsapp-button:active {  transform: scale(0.98);  }
-
-.whatsapp-button:hover img {  filter: invert(92%) sepia(7%) saturate(125%) hue-rotate(295deg) brightness(94%) contrast(90%);  }
-
-.whatsapp-button img {  transition: all 300ms; filter: invert(19%) sepia(14%) saturate(431%) hue-rotate(300deg) brightness(92%) contrast(93%); }
-
-.whatsapp-button::after {
-  content: '';
-  position: absolute;
-  top: 0; 
-  left: 0; 
-  right: 0;
-  bottom: 0;
-  background-color: #25D366;
-  opacity: 0;
-  transition: opacity 300ms; 
-  z-index: -1;
-}
-
-.whatsapp-button:hover::after {  opacity: 1;  background-color: #237c95;  }
-
-
-
 
 /**  LOCALIZACAO  **/
 
@@ -369,8 +224,8 @@ main > *:not(:first-child):not(.booking-form) {
   gap: 25px;
 }
 
-.localizacao h1 {
-  font-size: calc(2rem + 3vw);   
+.localizacao h2 {
+  font-size: calc(2rem + 2vw);   
   --cor-1: var(--cor-roxo);     
   --cor-2: var(--cor-roxo);     
   --cor-3: var(--cor-laranja);

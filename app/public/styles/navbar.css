@@ -10,6 +10,11 @@ nav {
   transition: top 0.3s ease-in, background-color 0.5s ease-in-out
 }
 
+nav .logo {
+  width: 100px;
+  height: 80px;
+}
+
 nav .fixed {
   position: fixed;
 }
@@ -60,18 +65,18 @@ nav .sidebar a:hover {
 }
 
 #nav-reserva {
-  background-color: var(--cor-atencao);
+  background-color: #FF9A00;
   border-radius: 30px;
 }
 
 #nav-reserva a {
-  color: var(--cor-txt);
+  color: var(--cor-branco);
   -webkit-text-stroke: 0.5px;
   font-weight: 900;
 }
 
 #nav-reserva a:hover {
-  -webkit-text-stroke: 0.8px;
+  -webkit-text-stroke: 0.2px;
 }
 
 .sidebar {
