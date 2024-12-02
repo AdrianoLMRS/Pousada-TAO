@@ -32,7 +32,7 @@
 </head>
 <body id="body" style="height: auto;">
     <div id="home"></div>   <!--    for navbar    -->
-    <div class="overlay-full" id="overlayFull"></div>
+
     <div class="content">
     
         <nav id="navbar" style="max-width: 3500px;">
@@ -89,19 +89,56 @@
                     <input type="date" id="check-in" placeholder="Check in" />
                     <input type="date" id="check-out" placeholder="Check out" />
                     
-                    <select id="adults">
-                        <option value="1">Adultos</option>
-                        <option value="2">2 Adultoss</option>
-                        <option value="3">3 Adultoss</option>
-                        <option value="4">4 Adultoss</option>
-                    </select>
+                    <label class="mobile-label" style="display: none;" for="adultos"><strong><em>Adultos</em></strong>: 13 anos ou mais (Paga inteira)</label>
+                    <div class="adult">
+                        <select id="adultos">
+                            <option value="1">Adultos</option>
+                            <optgroup label="Adultos">
+                                <option value="2">2 Adultos</option>
+                                <option value="3">3 Adultos</option>
+                                <option value="4">4 Adultos</option>
+                                <option value="4">5 Adultos</option>
+                                <option value="4">6 Adultos</option>
+                            </optgroup>
+                            <option value="custom">Outro</option>
+                        </select>
+                        <label class="desktop-label" onclick="showDialog('adults-dialog')" for="adultos"><u>Adultos <span>&#9432;</span></u></label>
+                    </div>
                     
-                    <select id="children">
-                        <option value="0">Crianças</option>
-                        <option value="1">1 Crianças</option>
-                        <option value="2">2 Crianças</option>
-                        <option value="3">3 Crianças</option>
-                    </select>
+                    <label class="mobile-label" style="display: none;" for="children"><strong><em>Crianças</em></strong>: menores de 13 anos (50% de desconto)<br><br><strong><em>Bebês</em></strong>: menores de 3 anos (100% de desconto)</label>
+                    <div class="children">
+                        <select name="Menores" id="children">
+                            <option value="0" selected>Menores</option>
+                            <option value="custom" selected>Outro</option>
+                            <optgroup label="Crianças">
+                                <option value="1">1 Criança</option>
+                                <option value="2">2 Crianças</option>
+                                <option value="3">3 Crianças</option>
+                                <option value="4">4 Crianças</option>
+                                <option value="5">5 Crianças</option>
+                            </optgroup>
+                            <optgroup label="Bebês">
+                                <option value="1">1 Bebê</option>
+                                <option value="2">2 Bebês</option>
+                                <option value="3">3 Bebês</option>
+                                <option value="4">4 Bebês</option>
+                            </optgroup>
+                        </select>
+                        <label class="desktop-label" onclick="showDialog('minors')" for="children"><u>Menores <span>&#9432;</span></u></label>
+                    </div>
+
+                    <script defer>
+                        // For </dialogs> customer need to know
+                        function showDialog(id) {
+                            const minorsDialog = document.getElementById(id);
+                            minorsDialog.showModal(); // Open
+                        }
+                        
+                        function closeDialog(id) {
+                            const minorsDialog = document.getElementById(id);
+                            minorsDialog.close(); // Close
+                        }
+                    </script>
                     
                     <button onclick="submitForm()">ENVIAR</button>
                 </div>
@@ -351,6 +388,15 @@
         </footer>
         
     </div>
+
+    <dialog class="booking-dialog" id="minors">
+        <button onclick="closeDialog('minors')">❌</button>
+        <p><strong><em>Crianças</em></strong>: menores de 13 anos (50% de desconto)<br><br><strong><em>Bebês</em></strong>: menores de 3 anos (100% de desconto)</p>
+    </dialog>
+    <dialog class="booking-dialog" id="adults-dialog">
+        <button onclick="closeDialog('adults-dialog')">❌</button>
+        <p><strong><em>Adultos</em></strong>: 13 anos ou mais (Paga inteira)</p>
+    </dialog>
 
 <!-- *SCRIPTS* -->
 <script src="js/script.js" defer></script>

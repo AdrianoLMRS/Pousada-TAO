@@ -153,17 +153,80 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   gap: 10px;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
   margin-top: -7dvh;
 }
 
 .booking-form * { cursor: pointer; }
 
+.children, .adult {
+  position: relative;
+}
+
+.children .desktop-label, .adult .desktop-label {
+  position: absolute;
+  bottom: -25px;
+  left: 17px;
+  white-space: nowrap;
+  font-size: 16px;
+}
+
+.children .desktop-label > span, .adult .desktop-label > span {
+  color: blue;
+}
+
+.children .desktop-label::after { content: "Crianças: menores de 13 anos (50% de desconto)\A\A Bebês: menores de 3 anos (100% de desconto)"; }
+.adult .desktop-label::after { content: "Adultos: 13 anos ou mais (Paga inteira)"; --_bottom: -55px; }
+
+.children .desktop-label::after, .adult .desktop-label::after {
+  position: absolute;
+  white-space: pre-wrap;
+  bottom: var(--_bottom, -75px); /* Espaçamento abaixo do .desktop-label */
+  left: -100%; /* Alinhamento com o .desktop-label */
+  width: max-content;
+  background-color: #333; /* Cor de fundo da tooltip */
+  color: #fff; /* Cor do texto */
+  padding: 5px 8px; /* Espaçamento interno */
+  border-radius: 4px; /* Cantos arredondados */
+  font-size: 14px; /* Tamanho do texto */
+  opacity: 0; /* Invisível por padrão */
+  pointer-events: none; /* Tooltip não interativa */
+  transition: opacity 0.3s; /* Suaviza a aparição/desaparição */
+}
+
+.children .desktop-label:hover::after,
+.adult .desktop-label:hover::after {
+  opacity: 1; /* Torna a tooltip visível ao hover */
+}
+
+.booking-dialog {
+  top: 50%;
+  left: 0;
+  height: 15vw;
+  width: 20vw;
+  min-width: 200px;
+  min-height: 150px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: var(--cor-branco);
+  background-color: var(--cor-txt);
+}
+.booking-dialog > p { width: 50%; text-align: center; }
+.booking-dialog > button { position: absolute; top: 5%; right: 5%; background-color: var(--cor-branco); 
+  width: 15%; display: flex; justify-content: center; align-items: center;}
+
 @media (max-width: 760px) {
   .booking-form { flex-direction: column; }
   .booking-form * { width: 100%; }
+  .children label, .adult label { display: none; }
+  .booking-form .mobile-label { display: block !important; }
 }
+
+.booking-form .mobile-label { text-align: center; }
 
 input, select {
   padding: 10px;
@@ -177,7 +240,7 @@ button {
   padding: 10px 20px;
   background-color: #FF9A00;
   border: none;
-  color: white;
+  color: var(--cor-branco);
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
