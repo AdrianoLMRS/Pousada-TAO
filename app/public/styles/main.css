@@ -120,7 +120,7 @@ main > *:not(:first-child):not(.booking-form) {
 }
 
 .acomodacoes > p {
-  width: 50%;
+  width: 90%;
   text-align: center;
   font-size: large;
   line-height: 1.5;

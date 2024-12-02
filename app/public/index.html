@@ -102,7 +102,7 @@
                             </optgroup>
                             <option value="custom">Outro</option>
                         </select>
-                        <label class="desktop-label" onclick="showDialog('adults-dialog')" for="adultos"><u>Adultos <span>&#9432;</span></u></label>
+                        
                     </div>
                     
                     <label class="mobile-label" style="display: none;" for="children"><strong><em>Crianças</em></strong>: menores de 13 anos (50% de desconto)<br><br><strong><em>Bebês</em></strong>: menores de 3 anos (100% de desconto)</label>
@@ -124,8 +124,16 @@
                                 <option value="4">4 Bebês</option>
                             </optgroup>
                         </select>
-                        <label class="desktop-label" onclick="showDialog('minors')" for="children"><u>Menores <span>&#9432;</span></u></label>
+                        
                     </div>
+
+                    <details class="hide-mobile">
+                        <summary>&#9432;</summary>
+                        <div class="details-content">
+                            <label class="desktop-label" onclick="showDialog('minors')" for="children"><u>Menores <span>&#9432;</span></u></label>
+                            <label id="adult-label" class="desktop-label" onclick="showDialog('adults-dialog')" for="adultos"><u>Adultos <span>&#9432;</span></u></label>
+                        </div>
+                    </details>
 
                     <script defer>
                         // For </dialogs> customer need to know
