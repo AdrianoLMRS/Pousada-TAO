@@ -1,118 +1,162 @@
-footer {
-	position: relative;
-	width: 100%;
-	margin-top: auto;
-	background-color: transparent;
-	z-index: 1;
-	bottom: 0;
-	overflow: hidden;
-}
-
-.footerContainer {
-	width: 100%;
-	padding: 70px 30px 20px;
-}
-
-.socialIcons {
-	display: flex;
-	justify-content: center;
-}
-
-.socialIcons a {
-	text-decoration: none;
-	padding: 10px;
-	background-color: white;
-	margin: 10px;
-	border-radius: 50%;
-}
-
-.socialIcons a i {
-	font-size: 2em;
-	color: black;
-	opacity: 0.9;
-}
-
-.socialIcons a:hover {
-	background-color: #000;
-	transition: 0.5s;
-}
-
-.socialIcons a:hover i {
+.footer {
+	background-color: #1a1f2b;
 	color: white;
-	transition: 0.5s;
+	padding: 50px 0 20px;
+	font-family: Arial, sans-serif;
 }
 
-.footerNav {
-	margin: 30px 0;
+.footer-content {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr 1fr;
+	gap: 30px;
+	padding: 0 20px;
 }
 
-.footerNav ul {
-	display: flex;
-	justify-content: center;
-	list-style-type: none;
+@media (max-width: 768px) {
+	.footer-content {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		row-gap: 50px;
+	}
+	.footer-content::not(.brand-section p) { text-align: center; }
 }
-
-.footerNav ul li a {
+.brand-section h2 {
 	color: white;
-	margin: 20px;
-	text-decoration: none;
-	font-size: 1.3em;
-	opacity: 0.7;
-	transition: 0.5s;
-}
-
-.footerNav ul li a::after {
-	content: "";
-	position: absolute;
-	bottom: -5px;
-	height: 1px;
-	width: 100%;
-	left: 0;
-	background-color: #000;
-	transition: 0.3s;
-	transform: scaleX(0);
-}
-
-.footerNav ul li a:hover {
-	opacity: 1;
-	-webkit-text-stroke: 0.5px;
-}
-
-.footerNav ul li a:hover::after {
-	transform: scaleX(1);
-}
-
-.footerBottom {
-	background-color: #000;
-	padding: 20px;
+	cursor: pointer;
+	font-size: 32px;
+	margin-bottom: 20px;
+	white-space: nowrap;
 	text-align: center;
+	background-color: #ffa726;
+	padding: 20px;
+	max-width: 300px;
+	transition: transform 0.4s ease, background-color 0.3s ease;
 }
 
-.footerBottom p {
+.contact-section h3,
+.company-section h3,
+.services-section h3 {
+	color: #ffa726;
+	margin-bottom: 20px;
+	font-size: 18px;
+	position: relative;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+
+.footer ul {
+	list-style: none;
+	padding: 0;
+}
+
+.footer ul li {
+	margin-bottom: 10px;
+}
+
+.footer ul li a {
 	color: white;
+	text-decoration: none;
 }
 
-.designer {
-	opacity: 0.7;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	font-weight: 400;
-	margin: 0 5px;
+.social-icons {
+	margin-top: 20px;
 }
 
-@media (max-width: 700px) {
-	.footerNav ul {
-			flex-direction: column;
-	}
+.social-icons a {
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	border: 1px solid white;
+	text-align: center;
+	line-height: 35px;
+	margin-right: 10px;
+	color: #9a26ff;
+	transition: all 0.3s ease-in-out;
+}
 
-	.footerNav ul li {
-			width: 100%;
-			text-align: center;
-			margin: 10px;
-	}
+.footer-bottom {
+	border-top: 1px solid rgba(255,255,255,0.1);
+	margin-top: 30px;
+	padding-top: 20px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	max-width: 1200px;
+	margin: 30px auto 0;
+	padding: 20px;
+}
 
-	.socialIcons a {
-			padding: 8px;
-			margin: 4px;
-	}
+.footer-bottom a { text-decoration: none; }
+
+.footer-bottom-links {
+	flex-grow: 0.7;
+	display: flex;
+	justify-content: end;
+	align-items: center;
+}
+
+@media (max-width: 805px) { .footer-bottom-links { margin-top: 15px; justify-content: start; } }
+
+.footer-bottom-links a {
+	color: white;
+	text-decoration: none;
+	margin-left: 20px;
+	position: relative;
+}
+
+.footer-bottom-links a::after {
+	content: '';
+	position: absolute;
+	right: -25%; 
+  top: 0;
+	display: block;
+	width: 1px;
+	height: 100%;
+	color: #fff;
+	background-color: var(--cor-branco);
+}
+
+/* Hover animation for social icons */
+.social-icons a:hover {
+	background-color: #ffa726;
+	color: white;
+	transform: scale(1.2);
+	box-shadow: 0px 4px 15px rgba(255, 167, 38, 0.5);
+}
+
+/* Hover animation for brand section title */
+.brand-section h2:hover {
+	background-color: #f99e15;
+	color: #fff;
+	transform: scale(1.05);
+	box-shadow: 0px 6px 20px rgba(154, 38, 255, 0.5);
+}
+
+/* Hover animation for section titles */
+.contact-section h3:hover,
+.company-section h3:hover,
+.services-section h3:hover {
+	color: white;
+	text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.5);
+	transform: translateY(-5px);
+}
+
+/* Hover animation for footer links */
+.footer ul li a:hover {
+	color: #ffa726;
+	text-decoration: underline;
+	transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+	text-shadow: 0px 2px 10px rgba(255, 167, 38, 0.7);
+}
+
+/* Footer bottom links hover effect */
+.footer-bottom-links a:hover {
+	color: #ffa726;
+	border-bottom: 1px solid #ffa726;
+	transition: all 0.3s ease;
 }

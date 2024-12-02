@@ -111,11 +111,14 @@ main > *:not(:first-child):not(.booking-form) {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-content: center;
+  flex-wrap: wrap;
   width: 100%;
+  gap: 20px;
 }
 
-@media (max-width: 1200px) {
-  .acomodacoes { flex-direction: column; }
+@media (max-width: 645px) {
+  .card { flex-grow: 0.2; }
 }
 
 .card {

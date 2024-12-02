@@ -66,8 +66,8 @@ body > * {
 }
 
 ::selection {
-  color: var(--cor-atencao);
-  background: var(--cor-txt);
+  color: var(--cor-azul-escuro);
+  background: var(--cor-azul-claro);
 }
 
 .gradient-txt {
