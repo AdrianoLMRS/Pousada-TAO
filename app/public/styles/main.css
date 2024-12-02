@@ -1,4 +1,4 @@
-main > *:not(:first-child) {
+main > *:not(:first-child):not(.booking-form) {
   margin-top: 200px;
   margin-bottom: 200px;
 }
@@ -89,7 +89,7 @@ main > *:not(:first-child) {
 .btn-reserve {
   display: inline-block;
   background-color: var(--_primary);
-  color: #ffffff;
+  color: var(--cor-branco);
   font-size: 1rem;
   padding: 10px 20px;
   margin-top: 20px;
