@@ -15,8 +15,6 @@
         <link rel="stylesheet" href="styles/slides.css">
         <link rel="stylesheet" href="styles/buttons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <!-- tiny slider -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,24 +41,24 @@
                 <li onclick=hideSidebar()><a href="#home">Home</a></li>
                 <li onclick=hideSidebar()><a href="#sobre">A Pousada</a></li>
                 <li onclick=hideSidebar()><a href="#depoimentos">Acomodações</a></li>
-                <li onclick=hideSidebar()><a href="#politicas">Fotos</a></li>
+                <li onclick=hideSidebar()><a href="#fotos">Fotos</a></li>
                 <li onclick=hideSidebar()><a href="#localizacao">Localização</a></li>
                 <li onclick=hideSidebar()><a href="#contato">Contato</a></li>
-              </ul>
-              
-              <ul class="desktop">
+            </ul>
+            
+            <ul class="desktop">
                 <li style="left: 0; cursor: pointer;" class="fixed"><a href="#">
                     <img style="margin-top: 20%;" class="logo" loading="eager" src="https://res.cloudinary.com/dycnoic1s/image/upload/w_150,h_120,q_100/v1732903554/elemento_flor.fw_2_wr5wtf.png" alt="Logotipo Pousada TAO">
                 </a></li>
                 <li class="hideOnMobile"><a href="#home">Home</a></li>
                 <li class="hideOnMobile"><a href="#sobre">A Pousada</a></li>
                 <li class="hideOnMobile"><a href="#acomodacoes">Acomodações</a></li>
-                <li class="hideOnMobile"><a href="#politicas">Fotos</a></li>
+                <li class="hideOnMobile"><a href="#fotos">Fotos</a></li>
                 <li class="hideOnMobile"><a href="#localizacao">Localização</a></li>
                 <li class="hideOnMobile"><a href="#contato">Contato</a></li>
-                <li id="nav-reserva" class="hideOnMobile fixed"><a href="#reserva">Reservar</a></li>
+                <li style="border-radius: 0; border-bottom-left-radius: 15px;" id="nav-reserva" class="hideOnMobile fixed gradient gradient-golden"><a href="#reserva">Reservar</a></li>
                 <li class="menu-button" onclick=showSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
-              </ul>
+            </ul>
         </nav>
     
 
@@ -72,8 +70,8 @@
                     <div class="overlay">
                         
                         <div class="animated flex-center">
-                            <h1 class="gradient-txt no-selection animated montserrat-text text-with-lines overlayh1">Pousada
-                                <span class="gradient-txt no-selection">TAO</span></h1>
+                            <h1 class="gradient-txt gradient-golden no-selection animated montserrat-text text-with-lines overlayh1">Pousada
+                                <span class="gradient-txt gradient-golden no-selection">TAO</span></h1>
                             <p class="subtitle animated montserrat-text">
                                 Festas em família? <br> A Pousada Tao é a pousada em Campos do Jordão <br> perfeita para viver a magia do Natal <br>
                                 e criar memórias inesquecíveis. <strong>Reserve já!</strong>
@@ -89,7 +87,6 @@
                     <input type="date" id="check-in" placeholder="Check in" />
                     <input type="date" id="check-out" placeholder="Check out" />
                     
-                    <label class="mobile-label" style="display: none;" for="adultos"><strong><em>Adultos</em></strong>: 13 anos ou mais (Paga inteira)</label>
                     <div class="adult">
                         <select id="adultos">
                             <option value="1">Adultos</option>
@@ -105,7 +102,6 @@
                         
                     </div>
                     
-                    <label class="mobile-label" style="display: none;" for="children"><strong><em>Crianças</em></strong>: menores de 13 anos (50% de desconto)<br><br><strong><em>Bebês</em></strong>: menores de 3 anos (100% de desconto)</label>
                     <div class="children">
                         <select name="Menores" id="children">
                             <option value="0" selected>Menores</option>
@@ -148,7 +144,7 @@
                         }
                     </script>
                     
-                    <button onclick="submitForm()">ENVIAR</button>
+                    <button class="gradient gradient-golden" onclick="submitForm()">ENVIAR</button>
                 </div>
                 
                 <div class="sobre" id="sobre">
@@ -246,17 +242,6 @@
                                 </p>
                             </div>
                         </div>
-                        
-
-                        <div class="card">
-                            <img src="https://res.cloudinary.com/dycnoic1s/image/upload/w_300,h_300,q_100/v1732901660/6617f1d5d810b_11quartoduploromeiros940x788_lytmiv.png" alt="Quarto duplo perfeito para casais" class="card-image">
-                            <div class="card-content">
-                                <h2 class="card-title">Dupla/Casal</h2>
-                                <p class="card-description">
-                                    Duas camas de solteiro que podem se transformar em uma cama grande de casal em um quarto espaçoso.
-                                </p>
-                            </div>
-                        </div>
 
                         <div class="card">
                             <img src="https://res.cloudinary.com/dycnoic1s/image/upload/w_300,h_300,q_100/v1732901659/6617f1be33c11_12quarto1940x788_gyvfeu.png" alt="Quarto com beliche" class="card-image">
@@ -264,6 +249,16 @@
                                 <h2 class="card-title">Dupla Beliche</h2>
                                 <p class="card-description">
                                     Um quarto com beliche, perfeito para grupos menores.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <img src="https://res.cloudinary.com/dycnoic1s/image/upload/w_300,h_300,q_100/v1732901660/6617f1d5d810b_11quartoduploromeiros940x788_lytmiv.png" alt="Quarto duplo perfeito para casais" class="card-image">
+                            <div class="card-content">
+                                <h2 class="card-title">Dupla/Casal</h2>
+                                <p class="card-description">
+                                    Duas camas de solteiro que podem se transformar em uma cama grande de casal em um quarto espaçoso.
                                 </p>
                             </div>
                         </div>
@@ -284,6 +279,45 @@
                     </p>
 
                 </div>
+
+                <section id="fotos" class="gallery">
+                    <header>
+                        <h2>Galeria de Fotos</h2>
+                        <ul>
+                            <li><button>Todas</button></li>
+                            <li><button>Pousada</button></li>
+                            <li><button>Acomodações</button></li>
+                            <li><button>Campos do Jordão</button></li>
+                        </ul>
+                    </header>
+                    <section class="img-gallery">
+                        <img src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901662/6617f20f5b52f_13quartotriplo940x788_sil8mw.png" alt="Foto 1" class="gallery-item">
+                        <img src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901662/6617f20f5b52f_13quartotriplo940x788_sil8mw.png" alt="Foto 2" class="gallery-item">
+                        <img src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901662/6617f20f5b52f_13quartotriplo940x788_sil8mw.png" alt="Foto 3" class="gallery-item">
+                        <img src="https://res.cloudinary.com/dycnoic1s/image/upload/w_2000,h_1200,q_100/v1732901658/6617f1490e017_8cozinhaconjugada940x788_i5llgz.png" alt="Foto 4" class="gallery-item">
+                        <img src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901662/6617f20f5b52f_13quartotriplo940x788_sil8mw.png" alt="Foto 1" class="gallery-item">
+                        <img src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901662/6617f20f5b52f_13quartotriplo940x788_sil8mw.png" alt="Foto 2" class="gallery-item">
+                        <img src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901662/6617f20f5b52f_13quartotriplo940x788_sil8mw.png" alt="Foto 3" class="gallery-item">
+                        <img src="https://res.cloudinary.com/dycnoic1s/image/upload/w_2000,h_1200,q_100/v1732901658/6617f1490e017_8cozinhaconjugada940x788_i5llgz.png" alt="Foto 4" class="gallery-item">
+                        <img src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901662/6617f20f5b52f_13quartotriplo940x788_sil8mw.png" alt="Foto 1" class="gallery-item">
+                        <img src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901662/6617f20f5b52f_13quartotriplo940x788_sil8mw.png" alt="Foto 2" class="gallery-item">
+                        <img src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901662/6617f20f5b52f_13quartotriplo940x788_sil8mw.png" alt="Foto 3" class="gallery-item">
+                        <img src="https://res.cloudinary.com/dycnoic1s/image/upload/w_2000,h_1200,q_100/v1732901658/6617f1490e017_8cozinhaconjugada940x788_i5llgz.png" alt="Foto 4" class="gallery-item">
+                        <img src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901662/6617f20f5b52f_13quartotriplo940x788_sil8mw.png" alt="Foto 1" class="gallery-item">
+                        <img src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901662/6617f20f5b52f_13quartotriplo940x788_sil8mw.png" alt="Foto 2" class="gallery-item">
+                        <img src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901662/6617f20f5b52f_13quartotriplo940x788_sil8mw.png" alt="Foto 3" class="gallery-item">
+                        <img src="https://res.cloudinary.com/dycnoic1s/image/upload/w_2000,h_1200,q_100/v1732901658/6617f1490e017_8cozinhaconjugada940x788_i5llgz.png" alt="Foto 4" class="gallery-item">
+                    </section>
+                    
+                    <div class="popup">
+                        <div class="slider">
+                            <span class="close">&times;</span>
+                            <button class="prev">&#10094;</button>
+                            <img id="slider-img" src="" alt="Slider Image">
+                            <button class="next">&#10095;</button>
+                        </div>
+                    </div>
+                </section>
 
                 <div class="localizacao" id="localizacao">
                 
@@ -398,11 +432,11 @@
     </div>
 
     <dialog class="booking-dialog" id="minors">
-        <button onclick="closeDialog('minors')">❌</button>
+        <button onclick="closeDialog('minors')">&times;</button>
         <p><strong><em>Crianças</em></strong>: menores de 13 anos (50% de desconto)<br><br><strong><em>Bebês</em></strong>: menores de 3 anos (100% de desconto)</p>
     </dialog>
     <dialog class="booking-dialog" id="adults-dialog">
-        <button onclick="closeDialog('adults-dialog')">❌</button>
+        <button onclick="closeDialog('adults-dialog')">&times;</button>
         <p><strong><em>Adultos</em></strong>: 13 anos ou mais (Paga inteira)</p>
     </dialog>
 
@@ -457,6 +491,5 @@ function setActiveButton(button) {
 <script src="js/tinySlider.js" defer></script>
 <script src="js/slider.js" defer></script>
 <script src="js/iframe.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js" defer></script>
 </body>
 </html>

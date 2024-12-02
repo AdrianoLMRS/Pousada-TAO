@@ -36,7 +36,7 @@ html, body {
   height: 100%;
   margin: 0;
   scroll-behavior: smooth !important;
-  /* scrollbar-gutter: stable; */
+  scrollbar-gutter: stable;
   overflow-x: hidden;
   width: 100%;
   zoom: 100%;
@@ -79,6 +79,22 @@ body > * {
   --cor-3: black; /* Will not have an effect if not defined */
   --cor-4: black; /* Will not have an effect if not defined */
   --direction: to right; /* Default direction if not defined */
+}
+
+.gradient {
+  background-image: linear-gradient(var(--direction, to right), var(--cor-1, black), var(--cor-2, black), var(--cor-3, black), var(--cor-4, black)); /* Variables with fallback */
+  --cor-1: black; /* Default color if not defined by the user */
+  --cor-2: black; /* Default color if not defined by the user */
+  --cor-3: black; /* Will not have an effect if not defined */
+  --cor-4: black; /* Will not have an effect if not defined */
+  --direction: to right; /* Default direction if not defined */
+}
+
+.gradient.gradient-golden, .gradient-txt.gradient-golden {
+  --cor-1: #b0802f;     
+  --cor-2: var(--cor-laranja);
+  --cor-3: var(--cor-laranja);
+  --cor-4: #b0802f;  
 }
 
 
