@@ -160,11 +160,11 @@
   font-size: 12px;
   color: #333;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  cursor: pointer;
+  cursor: help;
   transition: background-color 300ms;
 }
 
-.booking-form details summary { display: inline-block; width: 100%; }
+.booking-form details summary { display: inline-block; width: 100%; cursor: inherit !important; }
 
 .booking-form details .details-content {
   display: flex;

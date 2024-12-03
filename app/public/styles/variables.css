@@ -2,13 +2,14 @@
 :root {
   --cor-azul-escuro: #107d9a;
   --cor-azul-claro: #7dceef;
-  --cor-branco: #FFFAFA;
+  --cor-branco: snow;
   --cor-roxo: #7b658b;
   --cor-lilas: #deb6fb;
   --cor-laranja: #debc47;
-  --cor-atencao: #FFD700;
+  --cor-atencao: gold;
   --cor-txt: #191516;
   --gradient-1: linear-gradient(to right, var(var(--cor-azul-escuro)), var(--cor-branco));
   --gradient-2: linear-gradient(to right, var(var(--cor-roxo)), var(--cor-branco));
   --gradient-3: linear-gradient(to right, var(var(--cor-roxo)), var(--cor-laranja));
+  --header-font-size: clamp(1.8rem, 2.5vw + 1rem, 2.5rem);
 }
