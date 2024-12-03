@@ -257,16 +257,6 @@ main > *:not(:first-child):not(.booking-form) {
 
 /**  GALLERY  **/
 
-.hidden {
-  display: none !important;
-}
-
-/* .gallery {
-  max-height: 150vh;
-  overflow-y: auto;
-  overflow-x: visible;
-} */
-
 .gallery, .gallery header {
   display: flex;
   flex-direction: column;
@@ -305,18 +295,40 @@ main > *:not(:first-child):not(.booking-form) {
   background-color: gainsboro;
 }
 
-.gallery-Btn.active {
+.gallery .img-gallery::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
 
+.gallery .img-gallery::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.015); /* Light background color of the track */
+  border-radius: 10px;
+}
+
+.gallery .img-gallery::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #b0802f, var(--cor-laranja, orange), var(--cor-laranja, orange), var(--cor-laranja, orange), var(--cor-laranja, orange), var(--cor-laranja, orange), var(--cor-laranja, orange), var(--cor-laranja, orange), var(--cor-laranja, orange), #b0802f); /* Gradient thumb */
+  border-radius: 10px;
+}
+
+.gallery .img-gallery::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, hsl(46, 70%, 15%), hsl(46, 70%, 40%), hsl(46, 70%, 40%), hsl(46, 70%, 40%), hsl(46, 70%, 40%), hsl(46, 70%, 40%), hsl(46, 70%, 40%), hsl(46, 70%, 40%), hsl(46, 70%, 40%), hsl(46, 70%, 15%)); /* Inverted gradient on hover */
 }
 
 .gallery .img-gallery {
-    display: flex;
-    max-height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  display: flex;
+  background-color: hsl(0, 0%, 96%);
+  max-width: 90%;
+  max-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+
+  /* scrollbar-color: var(--cor-atencao, orange) #f0f0f0;
+  scrollbar-width: thin; */
+  direction: rtl;
 }
 
 .gallery .img-gallery img {
@@ -344,6 +356,65 @@ main > *:not(:first-child):not(.booking-form) {
     align-items: center;
 }
 
+@media only screen and (orientation: portrait) and (max-width: 500px) {  .gallery .popup aside {  display: flex !important; } }
+
+.gallery .popup aside {
+  color: var(--cor-branco, white);
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  top: 15%;
+  width: 100%;
+}
+
+.gallery .popup aside img {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  max-width: 80px;
+  max-height: 80px;
+}
+
+.gallery .popup aside > p + div > div {
+  position: absolute;
+  overflow: visible;
+  top: -10vh;
+  left: 45vw;
+  transform: translate(-50%);
+  min-width: 40px;
+  min-height: 40px;
+  cursor: pointer;
+
+  animation: rotate 5s cubic-bezier(0.9, 0, 0.1, 1) 200ms infinite;
+}
+
+.gallery .popup aside > p + div > div img {
+  position: absolute;
+  width: 100%;
+  height: auto; 
+  object-fit: contain;
+  top: 0;
+  left: 0;
+}
+
+.gallery .popup aside > p + div > div img:first-of-type {
+  margin-left: +15%;
+  margin-top: -30%;
+}
+
+.gallery .popup aside > p + div > div img:last-of-type {
+  transform: rotate(180deg);
+  margin-left: -15%;
+  margin-top: +30%;
+}
+
+@keyframes rotate{
+  0%, 100% { transform: rotate(var(--_deg, 0)); }
+  50% { transform: rotate(var(--_final-deg , 90deg)); }
+  80% { transform: rotate(var(--_deg, 0)); }
+}
+
 .gallery .slider {
     position: relative;
     width: 80%;
@@ -351,24 +422,30 @@ main > *:not(:first-child):not(.booking-form) {
 }
 
 #slider-img {
-    width: 100%;
-    border-radius: 10px;
+  width: 100%;
+  border-radius: 10px;
 }
 
 .gallery .close {
-  top: 10px;
-  right: 20px;
+  top: clamp(-100px, -20%, -200px);
+  right: 0;
+  font-size: 4rem !important;
 }
+
+.gallery .close:hover {
+  font-size: 5rem !important;
+}
+
 .gallery .prev, .next {
   top: 50%;
   position: absolute;
   transform: translateY(-50%);
 }
 .gallery .prev {
-  left: 10px;
+  left: -10%;
 }
 .gallery .next {
-  right: 10px;
+  right: -10%;
 }
 
 .gallery .close, .gallery .prev, .gallery .next  {
@@ -380,7 +457,7 @@ main > *:not(:first-child):not(.booking-form) {
   border: none;
   transition: all 200ms;
 }
-.gallery .close:hover, .gallery .prev:hover, .gallery .next:hover {
+.gallery .prev:hover, .gallery .next:hover {
   font-size: 2.5em;
 }
 
@@ -396,14 +473,14 @@ main > *:not(:first-child):not(.booking-form) {
 }
 
 .localizacao h2 {
-  font-size: calc(2rem + 2vw);   
+  font-size: var(--header-font-size, calc(2rem + 2vw));   
   --cor-1: var(--cor-roxo);     
   --cor-2: var(--cor-roxo);     
   --cor-3: var(--cor-laranja);
   --cor-4: var(--cor-laranja);
 }
 
-.localizacao h1 + div {
+.localizacao h2 + div {
   height: 70vh;
   width: 100%;
   display: flex;

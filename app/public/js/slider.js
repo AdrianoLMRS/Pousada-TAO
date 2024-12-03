@@ -1,4 +1,6 @@
 // *.sobre img-slider
+
+// *CONSTANTS
     const slider = document.querySelector('.slider');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
@@ -20,29 +22,56 @@ function updateSlider() {
     slider.style.transform = `translateX(-${currentIndex * width}px)`;
 };
 
-
-
 // *Img-gallery
-const prevBtnGallery = document.querySelector('.prev');
-const nextBtnGallery = document.querySelector('.next');
-const closeBtn = document.querySelector('.close');
-const popup = document.querySelector('.popup');
-const sliderImg = document.getElementById('slider-img');
-const galleryItems = document.querySelectorAll('.gallery-item');
 
-let currentIndexGallery = 0;
+// *CONSTANTS
+    const prevBtnGallery = document.querySelector('.prev');
+    const nextBtnGallery = document.querySelector('.next');
+    const closeBtn = document.querySelector('.close');
+    const popup = document.querySelector('.popup');
+    const sliderImg = document.getElementById('slider-img');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+// *Golbal variable for popup 
+let currentIndexGallery = 0; //! Do not change/delete
+
+// function toggleFullscreenPopup (enter) {
+//     if (enter) {
+//         // Fullscreen mode ( F11 )
+//         if (popup.requestFullscreen) {
+//                 popup.requestFullscreen();
+//             } else if (popup.webkitRequestFullscreen) { // WebKit browsers
+//                 popup.webkitRequestFullscreen();
+//             } else if (popup.msRequestFullscreen) { // For IE/Edge
+//                 popup.msRequestFullscreen();
+//             }
+//     }
+//     else if (!enter) {
+//         if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+//             if (document.exitFullscreen) {
+//                 document.exitFullscreen();
+//             } else if (document.webkitExitFullscreen) { // WebKit Browsers
+//                 document.webkitExitFullscreen();
+//             } else if (document.msExitFullscreen) { // For IE/Edge
+//                 document.msExitFullscreen();
+//             }
+//         }
+//     }
+//     else { console.log('Specify Action') }
+// }
 
 function showPopup(index) {
     // Filter imgs != .hidden
     const visibleImages = Array.from(galleryItems).filter(image => !image.classList.contains('hidden'));
 
-    if (visibleImages.length > 0) {
-        // Adjust index
-        index = (index + visibleImages.length) % visibleImages.length;  // Valid index
+    const visibleIndex = visibleImages.indexOf(galleryItems[index]); // Correct index
 
-        currentIndexGallery = index;
-        sliderImg.src = visibleImages[index].src;
+    if (visibleImages.length > 0 && visibleIndex !== -1) {
+        // Adjust index
+        currentIndexGallery = visibleIndex;
+        sliderImg.src = visibleImages[visibleIndex].src;
         popup.style.display = 'flex';
+        // toggleFullscreenPopup(true);
     } else {
         console.error('Não há imagens visíveis.');
     }
@@ -50,6 +79,7 @@ function showPopup(index) {
 
 function closePopup() {
     popup.style.display = 'none';
+    // toggleFullscreenPopup(false)
 }
 
 function showNext() {
@@ -73,11 +103,6 @@ function showPrev() {
 galleryItems.forEach((item, index) => {
     item.addEventListener('click', () => showPopup(index));
 });
-
-// Already in HTML
-/* closeBtn.addEventListener('click', closePopup);
-   nextBtnGallery.addEventListener('click', showNext);
-   prevBtnGallery.addEventListener('click', showPrev); */
 
 popup.addEventListener('click', (e) => {
     if (e.target === popup) closePopup();
@@ -108,4 +133,28 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+});
+
+
+// * Keyboard : ESC closes popup + arrowKeys move the slider *
+document.addEventListener('keydown', (e) => {
+    if (popup.style.display === 'flex') {  // Only if popup is visible
+        try {
+            // Esc key
+            if (e.key === 'Escape') {
+                // toggleFullscreenPopup(false)
+                closePopup();
+            }
+    
+            // Arrows
+            if (e.key === 'ArrowRight') {
+                showNext();
+            }
+            if (e.key === 'ArrowLeft') {
+                showPrev();
+            }
+        } catch (err) {
+            console.log('error : ', err)
+        }
+    }
 });

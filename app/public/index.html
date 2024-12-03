@@ -290,7 +290,7 @@
                             <li><button class="gallery-Btn" data-category="campos-do-jordaoImg">Campos do Jordão</button></li>
                         </ul>
                     </header>
-                    <section class="img-gallery">
+                    <section id="img-gallery0" class="img-gallery">
                         <img class="gallery-item pousadaImg" src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901670/fachada-da-pousada_r0hpto.png" alt="Fachada da Pousada TAO">
                         <img class="gallery-item pousadaImg" src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901662/6617f251dd019_2fachadalocao_q5kdtk.jpg" alt="Local fachada Pousada TAO">
                         <img class="gallery-item pousadaImg" src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901663/6617f2890836e_3Varandaromeiros940x788_wkzdfe.png" alt="Varanda Pousada TAO">
@@ -317,6 +317,32 @@
                     </section>
                     
                     <div class="popup">
+                        <aside style="display: none;">
+                            <p>Gire a tela do celular para uma melhor experiência</p>
+                            <div>
+                                <div id="orientationDiv">
+                                    <img src="./assets/svg/arrow.svg" alt="Arrow image (svg) top">
+                                    <img src="./assets/svg/cellphone-svgrepo-com.svg" alt="Cellphone image (svg) portraint">
+                                    <img src="./assets/svg/arrow.svg" alt="Arrow image (svg) bottom">
+                                </div>
+                            </div>
+                            <script defer>
+                                document.getElementById('orientationDiv').addEventListener('click', async () => {
+                                    try {
+                                        // Lock the screen orientation to landscape
+                                        if (screen.orientation && screen.orientation.lock) {
+                                            await screen.orientation.lock('landscape');
+                                            alert('Screen orientation changed to landscape!');
+                                        } else {
+                                            alert('Screen orientation API is not supported on this device.');
+                                        }
+                                    } catch (error) {
+                                        console.error('Failed to change screen orientation:', error);
+                                        alert('Unable to change screen orientation. Please enable fullscreen mode.');
+                                    }
+                                });
+                            </script>
+                        </aside>
                         <div class="slider">
                             <span onclick="closePopup()" class="close">&times;</span>
                             <button onclick="showPrev()" class="prev">&#10094;</button>
@@ -329,7 +355,7 @@
 
                 <div class="localizacao" id="localizacao">
                 
-                    <h2 style="margin-bottom: 3%;" class="gradient-txt no-selection">Localização</h2>
+                    <h2 style="margin-bottom: 3%;">Localização</h2>
                     
                                        
 
@@ -379,7 +405,7 @@
         <footer class="footer">
             <div class="footer-content">
                 <div class="brand-section">
-                    <h2>Pousada TAO</h2>
+                    <h2 class="gradient gradient-golden" style="border-radius: 5px;" >Pousada TAO</h2>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                         Autem quasi distinctio consectetur temporibus molestiae, 

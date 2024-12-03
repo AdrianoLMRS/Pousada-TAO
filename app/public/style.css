@@ -36,9 +36,8 @@ html, body {
   height: 100%;
   margin: 0;
   scroll-behavior: smooth !important;
-  scrollbar-gutter: stable;
   overflow-x: hidden;
-  width: 100%;
+  width: 100% ;
   zoom: 100%;
 }
 
@@ -62,7 +61,6 @@ body {
 
 body > * {
   max-width: 2000px;
-  margin: 0 auto;
 }
 
 ::selection {
@@ -149,19 +147,6 @@ body > * {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-
-@import "https://unpkg.com/open-props" layer(design.system);
-@import "https://unpkg.com/open-props/normalize.min.css" layer(demo.support);
-
-@layer demo {
-  .rounded-border-gradient {
-    inline-size: var(--size-content-1);
-    aspect-ratio: var(--ratio-widescreen);
-    border: solid var(--size-2) transparent;
-    border-radius: var(--radius-4);
-    background: 
-      linear-gradient(var(--surface-1), var(--surface-1)) padding-box, 
-      var(--gradient-1) border-box;
-  }
+.hidden {
+  display: none !important;
 }
-
