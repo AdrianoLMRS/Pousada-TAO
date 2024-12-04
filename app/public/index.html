@@ -84,46 +84,52 @@
                 </header>
 
                 <div class="booking-form">
-                    <input type="date" id="check-in" placeholder="Check in" />
-                    <input type="date" id="check-out" placeholder="Check out" />
-                    
+                    <label style="display: none;" for="check-in">Check-in :</label>
+                    <input onclick="showPicker()" class="custom-btn" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="check-in" placeholder="Check-in &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📆" style="user-select: none; max-width: 175px;" />
+                    <label style="display: none;" for="check-out">Check-out :</label>
+                    <input onclick="showPicker()" class="custom-btn" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="check-out" placeholder="Check-out &nbsp;&nbsp;&nbsp;📆" style="user-select: none; max-width: 175px;" />                 
+
                     <div class="adult">
-                        <select id="adultos">
+                        <select class="custom-btn" id="adultos">
                             <option value="1">Adultos</option>
-                            <optgroup label="Adultos">
-                                <option value="2">2 Adultos</option>
-                                <option value="3">3 Adultos</option>
-                                <option value="4">4 Adultos</option>
-                                <option value="4">5 Adultos</option>
-                                <option value="4">6 Adultos</option>
-                            </optgroup>
+                            <option value="2">2 Adultos</option>
+                            <option value="3">3 Adultos</option>
+                            <option value="4">4 Adultos</option>
+                            <option value="4">5 Adultos</option>
+                            <option value="4">6 Adultos</option>
                             <option value="custom">Outro</option>
                         </select>
-                        
                     </div>
                     
                     <div class="children">
-                        <select name="Menores" id="children">
-                            <option value="0" selected>Menores</option>
-                            <option value="custom" selected>Outro</option>
-                            <optgroup label="Crianças">
-                                <option value="1">1 Criança</option>
-                                <option value="2">2 Crianças</option>
-                                <option value="3">3 Crianças</option>
-                                <option value="4">4 Crianças</option>
-                                <option value="5">5 Crianças</option>
-                            </optgroup>
-                            <optgroup label="Bebês">
-                                <option value="1">1 Bebê</option>
-                                <option value="2">2 Bebês</option>
-                                <option value="3">3 Bebês</option>
-                                <option value="4">4 Bebês</option>
-                            </optgroup>
-                        </select>
-                        
+                        <details class="custom-btn" class="select">
+                            <summary class="summary-complete">Menores </summary>
+                            <div style="margin-top: 10%;" >
+                                <label style="display: none;" for="children-select">Crianças:</label>
+                                <select style="max-width: 90px;" name="children" id="children-select">
+                                    <option value="0">Crianças</option>
+                                    <option value="1">1 Criança</option>
+                                    <option value="2">2 Crianças</option>
+                                    <option value="3">3 Crianças</option>
+                                    <option value="4">4 Crianças</option>
+                                    <option value="5">5 Crianças</option>
+                                </select>
+                            </div>
+                            <div style="margin-top: 10%;" >
+                                <label style="display: none;" for="baby-select">Bebês:</label>
+                                <select style="max-width: 90px;" name="baby" id="baby-select">
+                                    <option value="0">Bebês</option>
+                                    <option value="1">1 Bebê</option>
+                                    <option value="2">2 Bebês</option>
+                                    <option value="3">3 Bebês</option>
+                                    <option value="4">4 Bebês</option>
+                                </select>
+                            </div>
+                        </details>
                     </div>
+                    
 
-                    <details class="hide-mobile">
+                    <details class="hide-mobile help">
                         <summary>&#9432;</summary>
                         <div class="details-content">
                             <label class="desktop-label" onclick="showDialog('minors')" for="children"><u>Menores <span>&#9432;</span></u></label>
@@ -284,10 +290,10 @@
                     <header>
                         <h2>Galeria de Fotos</h2>
                         <ul>
-                            <li><button class="gallery-Btn active gradient gradient-golden" data-category="all">Todas</button></li>
-                            <li><button class="gallery-Btn" data-category="pousadaImg">Pousada</button></li>
-                            <li><button class="gallery-Btn" data-category="acomodacoesImg">Acomodações</button></li>
-                            <li><button class="gallery-Btn" data-category="campos-do-jordaoImg">Campos do Jordão</button></li>
+                            <li><button class="gallery-Btn custom-btn active gradient gradient-golden" data-category="all">Todas</button></li>
+                            <li><button class="gallery-Btn custom-btn" data-category="pousadaImg">Pousada</button></li>
+                            <li><button class="gallery-Btn custom-btn" data-category="acomodacoesImg">Acomodações</button></li>
+                            <li><button class="gallery-Btn custom-btn" data-category="campos-do-jordaoImg">Campos do Jordão</button></li>
                         </ul>
                     </header>
                     <section id="img-gallery0" class="img-gallery">
@@ -522,6 +528,7 @@ function setActiveButton(button) {
     document.getElementById("contact-form").action = `https://formsubmit.co/${email}`;
 </script>
 <script src="js/fullScreen.js" defer></script>
+<script src="js/booking.js" defer></script>
 <script src="js/tinySlider.js" defer></script>
 <script src="js/slider.js" defer></script>
 <script src="js/iframe.js" defer></script>

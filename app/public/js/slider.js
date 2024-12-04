@@ -35,31 +35,6 @@ function updateSlider() {
 // *Golbal variable for popup 
 let currentIndexGallery = 0; //! Do not change/delete
 
-// function toggleFullscreenPopup (enter) {
-//     if (enter) {
-//         // Fullscreen mode ( F11 )
-//         if (popup.requestFullscreen) {
-//                 popup.requestFullscreen();
-//             } else if (popup.webkitRequestFullscreen) { // WebKit browsers
-//                 popup.webkitRequestFullscreen();
-//             } else if (popup.msRequestFullscreen) { // For IE/Edge
-//                 popup.msRequestFullscreen();
-//             }
-//     }
-//     else if (!enter) {
-//         if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
-//             if (document.exitFullscreen) {
-//                 document.exitFullscreen();
-//             } else if (document.webkitExitFullscreen) { // WebKit Browsers
-//                 document.webkitExitFullscreen();
-//             } else if (document.msExitFullscreen) { // For IE/Edge
-//                 document.msExitFullscreen();
-//             }
-//         }
-//     }
-//     else { console.log('Specify Action') }
-// }
-
 function showPopup(index) {
     // Filter imgs != .hidden
     const visibleImages = Array.from(galleryItems).filter(image => !image.classList.contains('hidden'));
@@ -71,7 +46,6 @@ function showPopup(index) {
         currentIndexGallery = visibleIndex;
         sliderImg.src = visibleImages[visibleIndex].src;
         popup.style.display = 'flex';
-        // toggleFullscreenPopup(true);
     } else {
         console.error('Não há imagens visíveis.');
     }
@@ -79,7 +53,6 @@ function showPopup(index) {
 
 function closePopup() {
     popup.style.display = 'none';
-    // toggleFullscreenPopup(false)
 }
 
 function showNext() {
@@ -142,7 +115,6 @@ document.addEventListener('keydown', (e) => {
         try {
             // Esc key
             if (e.key === 'Escape') {
-                // toggleFullscreenPopup(false)
                 closePopup();
             }
     

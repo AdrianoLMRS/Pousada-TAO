@@ -91,12 +91,8 @@
 
 /* Animação de flutuação */
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0%, 100% {  transform: translateY(0);  }
+  50% {  transform: translateY(-10px); }
 }
 
 .text-with-lines.overlayh1 {
@@ -141,62 +137,92 @@
   background-color: var(--cor-branco);
   padding: 30px;
   width: 90%;
+  max-height: 101px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   gap: 10px;
   align-items: baseline;
   justify-content: center;
   margin-top: -7dvh;
+
+  --_border: 1px solid var(--cor-atencao, yellow);
 }
 
-.booking-form details {
+.booking-form .children {  user-select: none;  }
+
+.booking-form .adult {  --_font-weight: light;  }
+
+.booking-form .children details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  white-space: nowrap;
+}
+
+.booking-form .children details summary {
+  position: relative;
+}
+
+.summary-complete:before {
+  content: "Menores";
+  position: absolute;
+  left: -25%;
+  top: -40%;
+  opacity: 0;
+  font-size: xx-large;
+  cursor: pointer;
+}
+
+.booking-form .children details[open] summary::after {  content: ' ⮛';  }
+.booking-form .children details summary::after {  content: ' ⮙';  }
+
+.booking-form details.help {
   position: absolute;
   top: 0;
   right: 0;
   padding: 5px 5px;
-  background-color: var(--cor-branco); /* Cor de fundo suave */
+  background-color: var(--cor-branco);
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 12px;
   color: #333;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: help;
   transition: background-color 300ms;
 }
 
-.booking-form details summary { display: inline-block; width: 100%; cursor: inherit !important; }
+.booking-form details.help summary { display: inline-block; width: 100%; }
 
-.booking-form details .details-content {
+.booking-form details.help .details-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-details.hide-mobile summary::before {
+details.help.hide-mobile summary::before {
   content: '▼ Faixa etária ';
 }
 
-details[open].hide-mobile summary::before {
+details.help[open].hide-mobile summary::before {
   content: '▲ Faixa etária ';
 }
 
 
-@media (max-width: 990px) {
-  details.hide-mobile summary::before {
+@media (max-width: 1050px) {
+  details.help.hide-mobile summary::before {
     display: none;
   }
-  details[open].hide-mobile summary::after {
+  details.help[open].hide-mobile summary::after {
     content: '                    ▲';
   }
 }
 
 
-.booking-form details:hover {
-  background-color: #f0f0f0;
-}
+.booking-form details.help:hover {  background-color: #f0f0f0;  }
 
-.booking-form details summary {
+.booking-form details.help summary {
   font-weight: bold;
   color: #333;
   cursor: pointer;
@@ -204,26 +230,20 @@ details[open].hide-mobile summary::before {
   white-space: nowrap;
 }
 
-.booking-form details label {
+.booking-form details.help label {
   font-size: 12px;
   color: #555;
   padding-top: 5px;
 }
 
-.booking-form details:hover p {
-  color: #444; 
-}
+.booking-form details.help:hover p {  color: #444;  }
 
 
 .booking-form * { cursor: pointer; }
 
- .desktop-label {
-  white-space: nowrap;
-}
+ .desktop-label { white-space: nowrap; }
 
- .desktop-label > span {
-  color: blue;
-}
+ .desktop-label > span { color: blue; }
 
  .desktop-label::after { content: "Crianças: menores de 13 anos (50% de desconto)\A\A Bebês: menores de 3 anos (100% de desconto)"; }
 #adult-label::after { content: "Adultos: 13 anos ou mais (Paga inteira)"; --_bottom: -55px; }
@@ -231,22 +251,20 @@ details[open].hide-mobile summary::before {
 .desktop-label::after {
   position: absolute;
   white-space: pre-wrap;
-  bottom: var(--_bottom, -75px); /* Espaçamento abaixo do .desktop-label */
-  left: -150%; /* Alinhamento com o .desktop-label */
+  bottom: var(--_bottom, -75px);
+  left: -150%; 
   width: max-content;
-  background-color: #333; /* Cor de fundo da tooltip */
-  color: #fff; /* Cor do texto */
-  padding: 5px 8px; /* Espaçamento interno */
-  border-radius: 4px; /* Cantos arredondados */
-  font-size: 14px; /* Tamanho do texto */
-  opacity: 0; /* Invisível por padrão */
-  pointer-events: none; /* Tooltip não interativa */
-  transition: opacity 0.3s; /* Suaviza a aparição/desaparição */
+  background-color: #333;
+  color: #fff;
+  padding: 5px 8px; 
+  border-radius: 4px; 
+  font-size: 14px; 
+  opacity: 0; 
+  pointer-events: none; 
+  transition: opacity 0.3s; 
 }
 
-.desktop-label:hover::after {
-  opacity: 1;
-}
+.desktop-label:hover::after {  opacity: 1;  }
 
 .booking-dialog {
   top: 50%;
@@ -255,7 +273,6 @@ details[open].hide-mobile summary::before {
   min-height: 200px;
   min-width: 250px;
   width: 20vw;
-
   border-radius: 50px;
   display: flex;
   justify-content: center;
@@ -268,24 +285,27 @@ details[open].hide-mobile summary::before {
 .booking-dialog > button { position: absolute; top: 5%; right: 5%; background-color: var(--cor-branco); 
   width: 15%; display: flex; justify-content: center; align-items: center;}
 
-@media (max-width: 760px) {
-  .booking-form { flex-direction: column; }
+@media (max-width: 830px) {
+  .booking-form { flex-direction: column; max-height: none; }
   .booking-form * { width: 100%; }
   .children label, .adult label { display: none; }
   .booking-form .mobile-label { display: block !important; }
-  .booking-form details {
+  .booking-form details.help {
     width: 25%;
     min-width: max-content;
     top: -8%;
+    text-align: center;
   }
-  .booking-form details[open] { top: -20%; }
-  .booking-form details summary::after { display: none; }
-  .booking-form details summary::before { display: inline-block;}
+  .summary-complete:before { display: none; }
+  .booking-form details.help[open] { top: -20%; }
+  .booking-form details.help summary::after { display: none; }
+  .booking-form details.help summary::before { display: inline-block;}
+  #check-in , #check-out { max-width: none !important; }
 }
 
 .booking-form .mobile-label { text-align: center; }
 
-input, select {
+input, select, details.select {
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;

@@ -277,10 +277,10 @@ main > *:not(:first-child):not(.booking-form) {
   gap: 10px;
 }
 
-.gallery-Btn {
+.custom-btn {
   padding: 10px 20px;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: var(--_font-weight, bold);
   color: var(--cor-txt, black);
   background-color: hsl(0, 0%, 95%);
   border: none;
@@ -290,9 +290,13 @@ main > *:not(:first-child):not(.booking-form) {
   transition: all 300ms;
 }
 
-.gallery-Btn:hover {
+.custom-btn:not(:focus):hover {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: gainsboro;
+  background-color: var(--_ba-color, gainsboro);
+}
+
+.custom-btn:focus, .custom-btn[open] {
+  border: var(--_border, none) !important;
 }
 
 .gallery .img-gallery::-webkit-scrollbar {
@@ -325,9 +329,6 @@ main > *:not(:first-child):not(.booking-form) {
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
-
-  /* scrollbar-color: var(--cor-atencao, orange) #f0f0f0;
-  scrollbar-width: thin; */
   direction: rtl;
 }
 
