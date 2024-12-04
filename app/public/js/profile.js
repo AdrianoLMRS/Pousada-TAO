@@ -34,11 +34,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     } else {
       const error = await response.json();
-      alert(error.message || 'Failed to load profile');
       window.location.href = '/login.html'; // Redirect to login if failed
     }
   } catch (err) {
     console.error('Error fetching profile data:', err);
     alert('Error loading profile');
+    window.location.href = '/login.html'; // Redirect to login if failed
   }
 });

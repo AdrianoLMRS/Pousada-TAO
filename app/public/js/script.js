@@ -88,8 +88,6 @@ const hideSidebar = () => {
   document.querySelector('.sidebar').style.display = 'none';
 };
 
-
-
 const scrollHide = () => {
   if (isMobile()) hideSidebar();
 };

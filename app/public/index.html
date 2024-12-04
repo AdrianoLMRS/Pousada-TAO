@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pousada TAO</title>
+    <title>Pousada TAO Campos do Jordão</title>
     <!-- *STYLES* -->
         <link rel="stylesheet" href="styles/variables.css">
         <link rel="stylesheet" href="style.css">
@@ -43,7 +43,6 @@
                 <li onclick=hideSidebar()><a href="#depoimentos">Acomodações</a></li>
                 <li onclick=hideSidebar()><a href="#fotos">Fotos</a></li>
                 <li onclick=hideSidebar()><a href="#localizacao">Localização</a></li>
-                <li onclick=hideSidebar()><a href="#contato">Contato</a></li>
             </ul>
             
             <ul class="desktop">
@@ -54,10 +53,9 @@
                 <li class="hideOnMobile"><a href="#sobre">A Pousada</a></li>
                 <li class="hideOnMobile"><a href="#acomodacoes">Acomodações</a></li>
                 <li class="hideOnMobile"><a href="#fotos">Fotos</a></li>
-                <li class="hideOnMobile"><a href="#localizacao">Localização</a></li>
-                <li class="hideOnMobile"><a href="#contato">Contato</a></li>
-                <li style="border-radius: 0; border-bottom-left-radius: 15px;" id="nav-reserva" class="hideOnMobile fixed gradient gradient-golden"><a href="#reserva">Reservar</a></li>
-                <li class="menu-button" onclick=showSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
+                <li style="margin-right: 175px;" class="hideOnMobile"><a href="#localizacao">Localização</a></li>
+                <li style="border-radius: 0; border-bottom-left-radius: 15px;" id="nav-reserva" class="hideOnMobile fixed"><a href="#reserva">Reservar</a></li>
+                <li style="cursor: pointer;" class="menu-button" onclick=showSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
             </ul>
         </nav>
     
@@ -85,9 +83,9 @@
 
                 <div class="booking-form">
                     <label style="display: none;" for="check-in">Check-in :</label>
-                    <input onclick="showPicker()" class="custom-btn" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="check-in" placeholder="Check-in &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📆" style="user-select: none; max-width: 175px;" />
+                    <input onclick="showPicker()" class="custom-btn" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="check-in" placeholder="Check-in &emsp;&emsp;&nbsp;📆" style="user-select: none; max-width: 175px;" />
                     <label style="display: none;" for="check-out">Check-out :</label>
-                    <input onclick="showPicker()" class="custom-btn" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="check-out" placeholder="Check-out &nbsp;&nbsp;&nbsp;📆" style="user-select: none; max-width: 175px;" />                 
+                    <input onclick="showPicker()" class="custom-btn" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="check-out" placeholder="Check-out &emsp;&emsp;📆" style="user-select: none; max-width: 175px;" />                 
 
                     <div class="adult">
                         <select class="custom-btn" id="adultos">
@@ -137,7 +135,7 @@
                         </div>
                     </details>
 
-                    <script defer>
+                    <script>
                         // For </dialogs> customer need to know
                         function showDialog(id) {
                             const minorsDialog = document.getElementById(id);
@@ -437,22 +435,22 @@
                 <div class="company-section">
                     <h3><u>EMPRESA</u></h3>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Condition</a></li>
-                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Sobre nós</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">Políticas de Privacidade</a></li>
+                        <li><a href="#">Termos & Condições</a></li>
+                        <li><a href="#">Suporte</a></li>
                     </ul>
                 </div>
         
                 <div class="services-section">
                     <h3><u>SERVIÇOS</u></h3>
                     <ul>
-                        <li><a href="#">Food & Restaurant</a></li>
-                        <li><a href="#">Spa & Fitness</a></li>
-                        <li><a href="#">Sports & Gaming</a></li>
-                        <li><a href="#">Event & Party</a></li>
-                        <li><a href="#">GYM & Yoga</a></li>
+                        <li><a href="#">Comida</a></li>
+                        <li><a href="#">Limpeza</a></li>
+                        <li><a href="#">Festas</a></li>
+                        <li><a href="#">Animais</a></li>
+                        <li><a href="#">Som & barulho</a></li>
                     </ul>
                 </div>
 

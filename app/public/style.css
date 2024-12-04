@@ -55,6 +55,8 @@ body {
   flex-direction: column;
   position: relative;
   max-width: 100vw;
+  min-height: 100vh;
+  background-color: var(--cor-branco, snow);
   z-index: -1;
   font-family: 'Caviar-Dreams', sans-serif;
 }
@@ -93,6 +95,7 @@ body > * {
   --cor-2: var(--cor-laranja);
   --cor-3: var(--cor-laranja);
   --cor-4: #b0802f;  
+
 }
 
 
