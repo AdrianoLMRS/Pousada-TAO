@@ -153,3 +153,27 @@ body > * {
 .hidden {
   display: none !important;
 }
+
+.custom-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: var(--_font-weight, bold);
+  color: var(--cor-txt, black);
+  background-color: hsl(0, 0%, 95%);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 300ms;
+}
+
+.custom-btn:not(:focus):hover {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--_ba-color, gainsboro);
+}
+
+.custom-btn:focus, .custom-btn[open] {  border: var(--_border, none) ;  }
+
+.custom-btn:disabled {  cursor: not-allowed;  }
+
+.custom-btn:disabled:hover { color: red; }

@@ -21,7 +21,7 @@
                 <ul class="sidebar">
                     <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
                     <li onclick=hideSidebar() id="nav-reserva" style="border-radius: 0; margin-bottom: 4vh; margin-top: 4vh;">
-                        <a class="" style="-webkit-text-stroke: 1.5px;" href="#reserva">Reservar</a></li>
+                        <a class="" style="-webkit-text-stroke: 1.5px;" href="#">Reservar</a></li>
                     <li onclick=hideSidebar()><a href="#home">Home</a></li>
                     <li onclick=hideSidebar()><a href="#sobre">A Pousada</a></li>
                     <li onclick=hideSidebar()><a href="#depoimentos">Acomodações</a></li>
@@ -38,7 +38,7 @@
                     <li class="hideOnMobile"><a href="#acomodacoes">Acomodações</a></li>
                     <li class="hideOnMobile"><a href="#fotos">Fotos</a></li>
                     <li style="margin-right: 175px;" class="hideOnMobile"><a href="#localizacao">Localização</a></li>
-                    <li style="border-radius: 0; border-bottom-left-radius: 15px;" id="nav-reserva" class="hideOnMobile fixed gradient gradient-golden"><a href="#reserva">Reservar</a></li>
+                    <li style="border-radius: 0; border-bottom-left-radius: 15px;" id="nav-reserva" class="hideOnMobile fixed gradient gradient-golden"><a href="#">Reservar</a></li>
                     <li style="cursor: pointer;" class="menu-button" onclick=showSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
                 </ul>
             </nav>
@@ -67,23 +67,22 @@
                         <label for="children">Número de Crianças:</label>
                         <input type="number" id="children" name="children" min="0" value="0"><br><br>
 
-                        <!-- Botão de pagamento com Stripe -->
-                        <button type="button" id="checkout-button">
-                            Pagar e Confirmar Reserva
-                        </button>
+                        <button class="reset-btn" type="reset">&#x21bb;</button>
                     </form>
                 </section>
 
                 <section class="step2" id="step2">
                     <h2>Forma de pagamento</h2>
-                    <form id="payment-form">
-                        <label for="payment-method">Método de Pagamento:</label>
-                        <select id="payment-method" name="payment-method" required>
-                            <option value="">Selecione</option>
-                            <option value="credit-card">Cartão de Crédito</option>
-                            <option value="debit-card">Cartão de Débito</option>
-                            <option value="pix">PIX</option>
-                        </select>
+                    <form class="payment" id="payment-form">
+                        <button class="square" onclick="setActive(this)">
+                            <img src="https://via.placeholder.com/80" alt="Image 1">
+                            <p>Option 1</p>
+                        </button>
+                        <button class="square" onclick="setActive(this)">
+                            <img src="https://via.placeholder.com/80" alt="Image 2">
+                            <p>Option 2</p>
+                        </button>
+                        <button class="reset-btn" type="reset">&#x21bb;</button>
                     </form>
                 </section>
 
@@ -97,15 +96,19 @@
                         <p><strong>Check-out:</strong> <span id="confirm-checkout"></span></p>
                         <p><strong>Número de Hóspedes:</strong> <span id="confirm-guests"></span></p>
                         <p><strong>Método de Pagamento:</strong> <span id="confirm-payment-method"></span></p>
+                        <button style="" class="reset-btn" type="reset">&#x21bb;</button>
                     </div>
                 </section>
 
-                <div class="indicators">
-                    <div class="indicator active"></div>
-                    <div class="indicator"></div>
-                    <div class="indicator"></div>
-                </div>            
             </main>
+            <div class="indicators">
+                <button onclick="step(currentStep - 1)" style="left: 40px;" id="prev-arrow" class="arrow" disabled><</button>
+                <div onclick="step(0)" class="indicator active"></div>
+                <div onclick="step(1)" class="indicator"></div>
+                <div onclick="step(2)" class="indicator"></div>
+                <div style="display: none;" onclick="step(3)" class="indicator"></div>
+                <button onclick="step(currentStep + 1)" style="right: 40px;" id="next-arrow" class="arrow">></button>
+            </div>         
 
             <footer class="footer">
                 <div class="footer-content">
@@ -169,6 +172,14 @@
             </footer>
 
     </div>
+    <script>
+        function setActive(element) {
+            // Remove 'active' class from all squares
+            document.querySelectorAll('.square').forEach(square => square.classList.remove('active'));
+            // Add 'active' class to the clicked square
+            element.classList.add('active');
+        }
+    </script>
     <script>
         // Detect mobile devices
         const isMobile = () => /Mobi|Android/i.test(navigator.userAgent);

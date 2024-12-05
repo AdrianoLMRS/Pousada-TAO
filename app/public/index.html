@@ -37,7 +37,7 @@
             <ul class="sidebar">
                 <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
                 <li onclick=hideSidebar() id="nav-reserva" style="border-radius: 0; margin-bottom: 4vh; margin-top: 4vh;">
-                    <a style="-webkit-text-stroke: 1.5px;" href="#reserva">Reservar</a></li>
+                    <a style="-webkit-text-stroke: 1.5px;" href="/reserva">Reservar</a></li>
                 <li onclick=hideSidebar()><a href="#home">Home</a></li>
                 <li onclick=hideSidebar()><a href="#sobre">A Pousada</a></li>
                 <li onclick=hideSidebar()><a href="#depoimentos">Acomodações</a></li>
@@ -54,7 +54,7 @@
                 <li class="hideOnMobile"><a href="#acomodacoes">Acomodações</a></li>
                 <li class="hideOnMobile"><a href="#fotos">Fotos</a></li>
                 <li style="margin-right: 175px;" class="hideOnMobile"><a href="#localizacao">Localização</a></li>
-                <li style="border-radius: 0; border-bottom-left-radius: 15px;" id="nav-reserva" class="hideOnMobile fixed"><a href="#reserva">Reservar</a></li>
+                <li style="border-radius: 0; border-bottom-left-radius: 15px;" id="nav-reserva" class="hideOnMobile fixed gradient gradient-golden"><a href="/reserva">Reservar</a></li>
                 <li style="cursor: pointer;" class="menu-button" onclick=showSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
             </ul>
         </nav>
@@ -83,12 +83,12 @@
 
                 <div class="booking-form">
                     <label style="display: none;" for="check-in">Check-in :</label>
-                    <input onclick="showPicker()" class="custom-btn" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="check-in" placeholder="Check-in &emsp;&emsp;&nbsp;📆" style="user-select: none; max-width: 175px;" />
+                    <input onclick="showPicker()" class="custom-btn" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="check-in" placeholder="Check-in &emsp;&nbsp;📆" style="user-select: none; max-width: 175px;" />
                     <label style="display: none;" for="check-out">Check-out :</label>
-                    <input onclick="showPicker()" class="custom-btn" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="check-out" placeholder="Check-out &emsp;&emsp;📆" style="user-select: none; max-width: 175px;" />                 
+                    <input onclick="showPicker()" class="custom-btn" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="check-out" placeholder="Check-out &emsp;📆" style="user-select: none; max-width: 175px;" />                 
 
                     <div class="adult">
-                        <select class="custom-btn" id="adultos">
+                        <select min="1" class="custom-btn" id="adults">
                             <option value="1">Adultos</option>
                             <option value="2">2 Adultos</option>
                             <option value="3">3 Adultos</option>
@@ -148,20 +148,20 @@
                         }
                     </script>
                     
-                    <button class="gradient gradient-golden" onclick="submitForm()">ENVIAR</button>
+                    <button type="submit" class="gradient gradient-golden" onclick="submitForm()">ENVIAR</button>
                 </div>
                 
                 <div class="sobre" id="sobre">
 
                     <section class="sobre-section">
                         <div class="slider-container">
-                          <button class="slider-btn prev-btn">&#8249;</button>
+                          <button type="button" class="slider-btn prev-btn">&#8249;</button>
                           <div class="slider">
                             <img src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901662/6617f20f5b52f_13quartotriplo940x788_sil8mw.png" alt="Foto 1 da pousada" class="slider-image">
                             <img src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901662/6617f22ad6613_14quarto3940x788_ikimxd.png" alt="Foto 2 da pousada" class="slider-image">
                             <img src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901658/6617f1490e017_8cozinhaconjugada940x788_i5llgz.png" alt="Foto 3 da pousada" class="slider-image">
                           </div>
-                          <button class="slider-btn next-btn">&#8250;</button>
+                          <button type="button" class="slider-btn next-btn">&#8250;</button>
                         </div>
                         <div class="content-container">
                           <h1>Pousada TAO</h1>
@@ -169,7 +169,7 @@
                           <p>
                             Na Pousada Tao, sua família e amigos encontrarão um lar temporário para criar memórias inesquecíveis, vivenciando a magia do Natal em Campos do Jordão e suas atrações encantadoras. Oferecemos um ambiente acolhedor, seguro e autêntico, pensado para tornar sua experiência única e especial.
                           </p>
-                          <button class="btn-reserve">FAZER RESERVA</button>
+                          <button type="button" class="btn-reserve">FAZER RESERVA</button>
                         </div>
                       </section>
 
@@ -288,10 +288,10 @@
                     <header>
                         <h2>Galeria de Fotos</h2>
                         <ul>
-                            <li><button class="gallery-Btn custom-btn active gradient gradient-golden" data-category="all">Todas</button></li>
-                            <li><button class="gallery-Btn custom-btn" data-category="pousadaImg">Pousada</button></li>
-                            <li><button class="gallery-Btn custom-btn" data-category="acomodacoesImg">Acomodações</button></li>
-                            <li><button class="gallery-Btn custom-btn" data-category="campos-do-jordaoImg">Campos do Jordão</button></li>
+                            <li><button type="button" class="gallery-Btn custom-btn active gradient gradient-golden" data-category="all">Todas</button></li>
+                            <li><button type="button" class="gallery-Btn custom-btn" data-category="pousadaImg">Pousada</button></li>
+                            <li><button type="button" class="gallery-Btn custom-btn" data-category="acomodacoesImg">Acomodações</button></li>
+                            <li><button type="button" class="gallery-Btn custom-btn" data-category="campos-do-jordaoImg">Campos do Jordão</button></li>
                         </ul>
                     </header>
                     <section id="img-gallery0" class="img-gallery">
@@ -349,9 +349,9 @@
                         </aside>
                         <div class="slider">
                             <span onclick="closePopup()" class="close">&times;</span>
-                            <button onclick="showPrev()" class="prev">&#10094;</button>
+                            <button type="button" onclick="showPrev()" class="prev">&#10094;</button>
                             <img id="slider-img" src="" alt="Slider Image based on img-gallery">
-                            <button onclick="showNext()" class="next">&#10095;</button>
+                            <button type="button" onclick="showNext()" class="next">&#10095;</button>
                         </div>
                     </div>
 
@@ -367,11 +367,11 @@
 
                             <div class="iframe-buttons">
 
-                                <button onclick="toggleMap('google'), setActiveButton(this)">
+                                <button type="button" onclick="toggleMap('google'), setActiveButton(this)">
                                     <img loading="lazy" src="assets/svg/icons8-google-maps-novo.svg" alt="Icone Google Maps">
                                 </button>
 
-                                <button onclick="toggleMap('waze'), setActiveButton(this)" style="margin-right: 1%;">
+                                <button type="button" onclick="toggleMap('waze'), setActiveButton(this)" style="margin-right: 1%;">
                                     <img loading="lazy" src="assets/svg/waze-icon.svg" alt="Icone Waze">
                                 </button>
                                 
@@ -470,7 +470,7 @@
     </div>
 
     <dialog class="booking-dialog" id="minors">
-        <button onclick="closeDialog('minors')">&times;</button>
+        <button type="button" onclick="closeDialog('minors')">&times;</button>
         <p><strong><em>Crianças</em></strong>: menores de 13 anos (50% de desconto)<br><br><strong><em>Bebês</em></strong>: menores de 3 anos (100% de desconto)</p>
     </dialog>
     <dialog class="booking-dialog" id="adults-dialog">

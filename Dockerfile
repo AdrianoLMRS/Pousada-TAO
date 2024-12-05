@@ -13,3 +13,4 @@ ENV PORT=8080
 EXPOSE 8080
 
 CMD ["npm", "run", "start:docker"]
+# docker build -t adrianolmrs/hostel:1.1 .

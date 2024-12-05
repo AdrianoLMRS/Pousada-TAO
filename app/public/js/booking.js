@@ -2,7 +2,7 @@
 function validateInput() {
     const checkIn = document.getElementById("check-in").value;
     const checkOut = document.getElementById("check-out").value;
-    const adultos = document.getElementById("adultos").value;
+    const adults = document.getElementById("adults").value;
     const children = document.getElementById("children-select").value;
     const babies = document.getElementById("baby-select").value;
 
@@ -26,14 +26,14 @@ function validateInput() {
     }
 
     // Validate that at least one adult is present
-    if (parseInt(adultos, 10) <= 0) {
+    if (parseInt(adults, 10) <= 0) {
         alert("Precisa de pelo menos um adulto");
         return false;
     }
 
     // Max guests
     const maxGuests = 10; // Max guests (10 for now)
-    const totalGuests = parseInt(adultos, 10) + parseInt(children, 10) + parseInt(babies, 10);
+    const totalGuests = parseInt(adults, 10) + parseInt(children, 10) + parseInt(babies, 10);
     if (totalGuests > maxGuests) {
         alert(`Máximo de pessoas não pode passar de ${maxGuests}.`);
         return false;
@@ -51,11 +51,11 @@ function submitForm() {
     // If validation passes, proceed with redirect
     const checkIn = document.getElementById("check-in").value;
     const checkOut = document.getElementById("check-out").value;
-    const adultos = document.getElementById("adultos").value;
+    const adults = document.getElementById("adults").value;
     const children = document.getElementById("children-select").value;
     const babies = document.getElementById("baby-select").value;
 
-    const url = `/reserva?checkIn=${encodeURIComponent(checkIn)}&checkOut=${encodeURIComponent(checkOut)}&adultos=${encodeURIComponent(adultos)}&children=${encodeURIComponent(children)}&babies=${encodeURIComponent(babies)}`;
+    const url = `/reserva?checkIn=${encodeURIComponent(checkIn)}&checkOut=${encodeURIComponent(checkOut)}&adults=${encodeURIComponent(adults)}&children=${encodeURIComponent(children)}&babies=${encodeURIComponent(babies)}`;
 
     window.location.href = url;
 }
