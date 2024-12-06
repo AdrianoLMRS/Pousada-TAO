@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
+    <title>Perfil do Usuário</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background-color: snow;
         }
         .container {
             max-width: 800px;
@@ -39,35 +39,49 @@
         .profile-info {
             margin-bottom: 20px;
         }
+        .btn {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+        }
         button {
-            margin-left: 50%;
-            transform: scale(1.5);
+            padding: 10px 20px;
+            border-radius: 4px;
+            background-color: #fff;
+            color: black;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        button a {
+            all: unset;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>User Profile</h1>
+        <h1>Perfil do Usuário</h1>
 
         <div class="profile-info">
-            <p><strong>Name:</strong> <%= user.name %></p>
+            <p><strong>Nome:</strong> <%= user.name %></p>
             <p><strong>Email:</strong> <%= user.email %></p>
-            <p><strong>Phone:</strong> <%= user.phone %></p>
-            <p><strong>Customer ID:</strong> <%= user.customerId %></p>
-            <p><strong>Address:</strong> <%= user.address || 'N/A' %></p>
+            <p><strong>Telefone:</strong> <%= user.phone %></p>
+            <p><strong>ID do Cliente:</strong> <%= user.customerId %></p>
+            <p><strong>Endereço:</strong> <%= user.address || 'N/A' %></p>
         </div>
 
-        <h2>Your Reservations</h2>
+        <h2>Suas Reservas</h2>
         <% if (reservations.length > 0) { %>
             <table>
                 <thead>
                     <tr>
                         <th>Check-In</th>
                         <th>Check-Out</th>
-                        <th>Adults</th>
-                        <th>Children</th>
-                        <th>Total Amount</th>
-                        <th>Payment Status</th>
+                        <th>Adultos</th>
+                        <th>Menores</th>
+                        <th>Valor Total</th>
+                        <th>Status do Pagamento</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,17 +90,20 @@
                             <td><%= reservation.checkIn %></td>
                             <td><%= reservation.checkOut %></td>
                             <td><%= reservation.adults %></td>
-                            <td><%= reservation.children %></td>
-                            <td>$<%= reservation.totalAmount.toFixed(2) %></td>
+                            <td><%= reservation.children + reservation.babies %></td>
+                            <td>R$<%= reservation.totalAmount.toFixed(2) %></td>
                             <td><%= reservation.paymentStatus %></td>
                         </tr>
                     <% }); %>
                 </tbody>
             </table>
         <% } else { %>
-            <p>No reservations found.</p>
+            <p>Nenhuma reserva encontrada.</p>
         <% } %>
     </div>
-    <button><a href="/reserva">FAZER NOVA RESERVA</a></button>
+    <div class="btn">
+        <button onclick="window.location.href='/reserva'"><a href="/reserva">FAZER NOVA RESERVA</a></button>
+        <button onclick="window.location.href='/'"><a href="/">Home page</a></button>
+    </div>
 </body>
 </html>

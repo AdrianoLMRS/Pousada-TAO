@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-    email: { type: String, required: true, unique: true },
+    email: { type: String, required: true, },
     name: String,
     phone: {
       type: String,
       required: true,
-      unique: true,
     },
     address: String,
     customerId: { 
@@ -14,7 +13,7 @@ const UserSchema = new mongoose.Schema({
       required: true,
       unique: true,
       immutable: true, 
-    }, // Stripe customer ID
+    }, // ! Stripe customer ID (Unique to identify users)
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', UserSchema);

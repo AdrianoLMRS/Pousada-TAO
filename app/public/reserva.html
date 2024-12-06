@@ -22,7 +22,7 @@
                     <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
                     <li onclick=hideSidebar() id="nav-reserva" style="border-radius: 0; margin-bottom: 4vh; margin-top: 4vh;">
                         <a class="" style="-webkit-text-stroke: 1.5px;" href="#">Reservar</a></li>
-                    <li onclick=hideSidebar()><a href="#home">Home</a></li>
+                    <li onclick=hideSidebar()><a href="/">Home</a></li>
                     <li onclick=hideSidebar()><a href="#sobre">A Pousada</a></li>
                     <li onclick=hideSidebar()><a href="#depoimentos">Acomodações</a></li>
                     <li onclick=hideSidebar()><a href="#fotos">Fotos</a></li>
@@ -33,7 +33,7 @@
                     <li style="left: 0; cursor: pointer;" class="fixed"><a href="#">
                         <img style="margin-top: 20%;" class="logo" loading="eager" src="https://res.cloudinary.com/dycnoic1s/image/upload/w_150,h_120,q_100/v1732903554/elemento_flor.fw_2_wr5wtf.png" alt="Logotipo Pousada TAO">
                     </a></li>
-                    <li class="hideOnMobile"><a href="#home">Home</a></li>
+                    <li class="hideOnMobile"><a href="/">Home</a></li>
                     <li class="hideOnMobile"><a href="#sobre">A Pousada</a></li>
                     <li class="hideOnMobile"><a href="#acomodacoes">Acomodações</a></li>
                     <li class="hideOnMobile"><a href="#fotos">Fotos</a></li>
@@ -55,19 +55,19 @@
                     <!-- Formulário de reserva -->
                     <form id="reservation-form">
 
-                        <label for="checkin-date">Data de Check-In:</label>
-                        <input type="date" id="checkin-date" name="checkin-date" required><br><br>
+                        <label for="checkin-date">Check-In:</label>
+                        <input class="gradient" type="date" id="checkin-date" name="checkin-date" required><br><br>
 
-                        <label for="checkout-date">Data de Check-Out:</label>
-                        <input type="date" id="checkout-date" name="checkout-date" required><br><br>
+                        <label for="checkout-date">Check-Out:</label>
+                        <input class="gradient" type="date" id="checkout-date" name="checkout-date" required><br><br>
 
-                        <label for="adults">Número de Adultos:</label>
+                        <label for="adults">Adultos:</label>
                         <input type="number" id="adults" name="adults" min="1" value="1" required><br><br>
 
-                        <label for="children">Número de Crianças:</label>
+                        <label for="children">Crianças:</label>
                         <input type="number" id="children" name="children" min="0" value="0"><br><br>
 
-                        <label for="babies">Número de Bebês:</label>
+                        <label for="babies">Bebês:</label>
                         <input type="number" id="babies" name="babies" min="0" value="0"><br><br>
 
                         <button class="reset-btn" type="reset">&#x21bb;</button>

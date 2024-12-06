@@ -50,22 +50,30 @@ section {
 
 .reset-btn:hover { background-color: rgba(0, 0, 0, 0.2); }
 
-/* Steps Style */
-#step1 {
-  background-color: #f9f9f9;
-}
-
-#step2 {
-  background-color: #e0f7fa;
-}
-
-#step3 {
-  background-color: #ffe0b2;
-}
-
 form {
   width: 100%;
   max-width: 400px;
+}
+
+input[type="date"]{
+
+  padding: 5px;
+  font-family: "Roboto Mono",monospace;
+  color: #ffffff;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+
+  --cor-1: var(--cor-txt, black);
+  --cor-2: hsl(0, 0%, 25%);
+  --cor-3: hsl(0, 0%, 25%);
+  --cor-4: var(--cor-txt, black);
+}
+::-webkit-calendar-picker-indicator{
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 3px;
 }
 
 /* Indicators */

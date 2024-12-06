@@ -42,6 +42,7 @@ const saveReservation = async (session) => {
           checkOut: session.metadata.checkOut,
           adults: parseInt(session.metadata.adultos, 10),
           children: parseInt(session.metadata.criancas, 10),
+          babies: parseInt(session.metadata.bebes, 10), 
           totalAmount: session.amount_total / 100, // Convert from cents to BRL
           stripeSessionId: session.id,
           customerId: session.customer,

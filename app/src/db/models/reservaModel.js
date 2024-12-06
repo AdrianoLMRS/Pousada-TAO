@@ -3,8 +3,13 @@ const mongoose = require('mongoose');
 const ReservationSchema = new mongoose.Schema({
     checkIn: String,
     checkOut: String,
-    adults: Number,
+    adults: {
+      type: Number, 
+      min: 1, 
+      required: true,
+    },
     children: Number,
+    babies: Number,
     totalAmount: Number,
     stripeSessionId: { type: String, required: true }, // Stripe session ID
     customerId: { 
