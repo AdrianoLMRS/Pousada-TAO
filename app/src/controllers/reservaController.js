@@ -6,15 +6,15 @@
     const { decodeJWT } = require('../utils/cookieUtils');
 
 // Function to create a session when customerId exists (using customerId)
-async function sessionWithId(customerId, totalPrice, checkin, checkout, adults, children) {
+async function sessionWithId(customerId, totalPrice, checkin, checkout, adults, children, babies, paymentMethod) {
     return await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
+        payment_method_types: [paymentMethod],
         line_items: [
             {
                 price_data: {
                     currency: 'brl',
                     product_data: {
-                        name: `Reserva para ${adults} adultos e ${children} crianças`,
+                        name: `Reserva para ${adults} adultos, ${children} crianças e ${babies} bebês`,
                         description: `Check-In: ${checkin.toLocaleDateString('pt-BR')}, Check-Out: ${checkout.toLocaleDateString('pt-BR')}`,
                     },
                     unit_amount: totalPrice,
@@ -30,6 +30,8 @@ async function sessionWithId(customerId, totalPrice, checkin, checkout, adults, 
             checkOut: checkout.toLocaleDateString('pt-BR'),
             adultos: adults,
             criancas: children,
+            bebes: babies,
+            paymentMethod: paymentMethod,
         },
         customer: customerId,
         phone_number_collection: {
@@ -45,15 +47,16 @@ async function sessionWithId(customerId, totalPrice, checkin, checkout, adults, 
 }
 
 // Function to create a session without customerId (normal session)
-async function sessionNormal(totalPrice, checkin, checkout, adults, children) {
+// Function to create a session without customerId (normal session)
+async function sessionNormal(totalPrice, checkin, checkout, adults, children, babies, paymentMethod) {
     return await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
+        payment_method_types: [paymentMethod],
         line_items: [
             {
                 price_data: {
                     currency: 'brl',
                     product_data: {
-                        name: `Reserva para ${adults} adultos e ${children} crianças`,
+                        name: `Reserva para ${adults} adultos, ${children} crianças e ${babies} bebês`,
                         description: `Check-In: ${checkin.toLocaleDateString('pt-BR')}, Check-Out: ${checkout.toLocaleDateString('pt-BR')}`,
                     },
                     unit_amount: totalPrice,
@@ -69,6 +72,8 @@ async function sessionNormal(totalPrice, checkin, checkout, adults, children) {
             checkOut: checkout.toLocaleDateString('pt-BR'),
             adultos: adults,
             criancas: children,
+            bebes: babies,
+            paymentMethod: paymentMethod,
         },
         customer_creation: 'always', // Always create a Stripe customer
         phone_number_collection: {
@@ -85,16 +90,16 @@ async function sessionNormal(totalPrice, checkin, checkout, adults, children) {
 
 // Controller function to handle creating a checkout session
 const createCheckoutSession = async (req, res) => {
-    const { checkinDate, checkoutDate, adults, children } = req.body;
+    const { checkinDate, checkoutDate, adults, children, babies, paymentMethod } = req.body;
 
-    if (!checkinDate || !checkoutDate || !adults || !children) {
+    if (!checkinDate || !checkoutDate || !adults) {
         return res.status(400).json({ error: 'Faltam dados obrigatórios.' });
     }
 
     try {
         // Validate and calculate
         const { checkin, checkout, days } = validateDates(checkinDate, checkoutDate);
-        const totalPrice = calculateTotalPrice(days, adults, children);
+        const totalPrice = calculateTotalPrice(days, adults, children, babies);
 
         // Decode JWT and extract customerId
         let customerId = null;
@@ -109,10 +114,10 @@ const createCheckoutSession = async (req, res) => {
 
         // If customerId exists, create session with customerId
         if (customerId) {
-            session = await sessionWithId(customerId, totalPrice, checkin, checkout, adults, children);
+            session = await sessionWithId(customerId, totalPrice, checkin, checkout, adults, children, babies, paymentMethod);
         } else {
             // If no customerId, create session without it
-            session = await sessionNormal(totalPrice, checkin, checkout, adults, children);
+            session = await sessionNormal(totalPrice, checkin, checkout, adults, children, babies, paymentMethod);
         }
 
         res.status(200).json({ sessionId: session.id });
