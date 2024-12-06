@@ -67,6 +67,9 @@
                         <label for="children">Número de Crianças:</label>
                         <input type="number" id="children" name="children" min="0" value="0"><br><br>
 
+                        <label for="babies">Número de Bebês:</label>
+                        <input type="number" id="babies" name="babies" min="0" value="0"><br><br>
+
                         <button class="reset-btn" type="reset">&#x21bb;</button>
                     </form>
                 </section>
@@ -74,13 +77,13 @@
                 <section class="step2" id="step2">
                     <h2>Forma de pagamento</h2>
                     <form class="payment" id="payment-form">
-                        <button class="square" onclick="setActive(this)">
-                            <img src="https://via.placeholder.com/80" alt="Image 1">
-                            <p>Option 1</p>
+                        <button type="button" class="square" onclick="setActive(this)">
+                            <svg class="card-svg" fill="#ccc" height="64px" width="64px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" stroke="#ccc"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="1.024"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M469.526,75.926H111.652c-23.42,0-42.474,19.049-42.474,42.463v26.714H42.463C19.05,145.104,0,164.158,0,187.578v206.032 c0,23.415,19.049,42.463,42.463,42.463h357.874c23.42,0,42.474-19.049,42.474-42.463v-26.714h26.714 c23.42,0,42.474-19.054,42.474-42.474V118.39C512,94.975,492.946,75.926,469.526,75.926z M489.598,324.422 c0,11.068-9.005,20.072-20.072,20.072h-26.715V227.084h46.787V324.422z M489.598,204.682h-46.787v-17.104 c0-7.256-1.833-14.091-5.053-20.072h51.84V204.682z M489.598,145.104h-89.261h-16.085c-6.185,0-11.201,5.015-11.201,11.201 s5.016,11.201,11.201,11.201h16.085c11.068,0,20.072,9.005,20.072,20.072v206.032h0c0,11.061-9.005,20.061-20.072,20.061H42.463 c-11.061,0-20.061-9-20.061-20.061V187.578c0-11.068,8.999-20.072,20.061-20.072h268.982c6.185,0,11.201-5.015,11.201-11.201 s-5.016-11.201-11.201-11.201H91.58V118.39c0-11.061,9.005-20.061,20.072-20.061h357.874c11.068,0,20.072,9,20.072,20.061V145.104 z"></path> </g> </g> <g> <g> <path d="M350.089,145.104h-3.92c-6.185,0-11.201,5.015-11.201,11.201s5.015,11.201,11.201,11.201h3.92 c6.185,0,11.201-5.015,11.201-11.201S356.274,145.104,350.089,145.104z"></path> </g> </g> <g> <g> <path d="M125.698,213.05H93.932c-16.571,0-30.052,13.487-30.052,30.064v8.334c0,16.576,13.482,30.064,30.052,30.064h31.766 c16.571,0,30.052-13.487,30.052-30.064v-8.334C155.751,226.536,142.269,213.05,125.698,213.05z M133.349,251.447 c0,4.224-3.432,7.661-7.65,7.661H93.932c-4.218,0-7.65-3.436-7.65-7.661v-8.334c0-4.225,3.432-7.662,7.65-7.662h31.766 c4.218,0,7.65,3.437,7.65,7.662V251.447z"></path> </g> </g> <g> <g> <path d="M234.068,356.233H69.234c-6.186,0-11.201,5.015-11.201,11.201s5.015,11.201,11.201,11.201h164.835 c6.186,0,11.201-5.015,11.201-11.201S240.255,356.233,234.068,356.233z"></path> </g> </g> <g> <g> <path d="M164.532,316.099H69.234c-6.186,0-11.201,5.015-11.201,11.201s5.015,11.201,11.201,11.201h95.299 c6.186,0,11.201-5.015,11.201-11.201S170.719,316.099,164.532,316.099z"></path> </g> </g> <g> <g> <path d="M390.929,338.62c-1.872-17.153-15.74-30.559-32.986-31.876c-7.457-0.561-14.775,1.147-21.112,4.932 c-0.115,0.069-0.164,0.069-0.253,0.016c-6.361-3.799-13.661-5.508-21.148-4.947c-17.218,1.315-31.086,14.71-32.974,31.843 c-0.904,8.148,0.888,16.106,5.183,23.02c6.628,10.661,18.064,17.027,30.593,17.027c6.506,0,12.88-1.77,18.459-5.12 c5.579,3.35,11.959,5.12,18.471,5.12c12.535,0,23.968-6.367,30.583-17.029C390.026,354.716,391.818,346.767,390.929,338.62z M366.718,349.784c-0.002,0.002-0.004,0.006-0.006,0.009c-2.499,4.032-6.817,6.439-11.549,6.439c-2.483,0-4.916-0.685-7.034-1.983 c-3.475-2.125-7.454-3.189-11.436-3.189c-3.982,0-7.962,1.063-11.436,3.189c-2.119,1.297-4.548,1.983-7.024,1.983 c-4.732,0-9.056-2.412-11.565-6.448c-1.616-2.602-2.288-5.62-1.943-8.735c0.699-6.335,6.035-11.481,12.403-11.967 c2.842-0.215,5.588,0.422,7.989,1.856c7.141,4.24,16.013,4.238,23.179-0.016c2.372-1.419,5.13-2.058,7.953-1.841 c6.385,0.487,11.721,5.632,12.412,11.968C369,344.171,368.329,347.19,366.718,349.784z"></path> </g> </g> </g></svg>
+                            <p>Cartão</p>
                         </button>
-                        <button class="square" onclick="setActive(this)">
-                            <img src="https://via.placeholder.com/80" alt="Image 2">
-                            <p>Option 2</p>
+                        <button type="button" class="square" onclick="setActive(this)">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="60px" height="60px" fill-rule="nonzero"><g fill="#cccccc" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8.53333,8.53333)"><path style="transition: all 300ms;" d="M15,1.09961c-1.025,0 -2.05008,0.38992 -2.83008,1.16992l-4.98047,4.98047h0.15039c1.27,0 2.45938,0.49062 3.35938,1.39063l3.49023,3.49023c0.45,0.44 1.17109,0.44 1.62109,0l3.49023,-3.49023c0.9,-0.9 2.08938,-1.39062 3.35938,-1.39062h0.15039l-4.98047,-4.98047c-0.78,-0.78 -1.80508,-1.16992 -2.83008,-1.16992zM5.68945,8.75l-3.41992,3.41992c-1.56,1.56 -1.56,4.10016 0,5.66016l3.41992,3.41992h1.65039c0.87,0 1.69078,-0.33922 2.30078,-0.94922l3.49023,-3.49023c1.03,-1.03 2.70828,-1.03 3.73828,0l3.49023,3.49023c0.61,0.61 1.43078,0.94922 2.30078,0.94922h1.65039l3.41992,-3.41992c1.56,-1.56 1.56,-4.10016 0,-5.66016l-3.41992,-3.41992h-1.65039c-0.87,0 -1.69078,0.33922 -2.30078,0.94922l-3.49023,3.49023c-0.51,0.51 -1.18914,0.77149 -1.86914,0.77149c-0.68,0 -1.35914,-0.26149 -1.86914,-0.77149l-3.49023,-3.49023c-0.61,-0.61 -1.43078,-0.94922 -2.30078,-0.94922zM15,17.53906c-0.2925,0 -0.58555,0.11008 -0.81055,0.33008l-3.49023,3.49023c-0.9,0.9 -2.08938,1.39063 -3.35938,1.39063h-0.15039l4.98047,4.98047c1.56,1.56 4.10016,1.56 5.66016,0l4.98047,-4.98047h-0.15039c-1.27,0 -2.45938,-0.49063 -3.35937,-1.39062l-3.49023,-3.49023c-0.225,-0.22 -0.51805,-0.33008 -0.81055,-0.33008z"></path></g></g></svg>
+                            <p>Pix</p>
                         </button>
                         <button class="reset-btn" type="reset">&#x21bb;</button>
                     </form>
@@ -88,16 +91,8 @@
 
                 <section class="step3" id="step3">
                     <h3>Confirmação dos dados</h3>
-                    <div id="confirmation-details">
-                        <p><strong>Nome:</strong> <span id="confirm-name"></span></p>
-                        <p><strong>E-mail:</strong> <span id="confirm-email"></span></p>
-                        <p><strong>Telefone:</strong> <span id="confirm-phone"></span></p>
-                        <p><strong>Check-in:</strong> <span id="confirm-checkin"></span></p>
-                        <p><strong>Check-out:</strong> <span id="confirm-checkout"></span></p>
-                        <p><strong>Número de Hóspedes:</strong> <span id="confirm-guests"></span></p>
-                        <p><strong>Método de Pagamento:</strong> <span id="confirm-payment-method"></span></p>
-                        <button style="" class="reset-btn" type="reset">&#x21bb;</button>
-                    </div>
+                    <div id="confirmation-details"></div>
+                    <button class="reset-btn" type="reset">&#x21bb;</button>
                 </section>
 
             </main>
@@ -200,4 +195,65 @@
 <script src="https://js.stripe.com/v3/"></script>
 <script src="./js/stripe.js"></script>
 <script src="./js/reserva.js"></script>
+<script>
+
+function syncData() {
+    const data = {
+        reservationForm: document.getElementById("reservation-form"),
+        paymentForm: document.getElementById("payment-form"),
+        confirmationDetails: document.getElementById("confirmation-details"),
+        checkinInput: document.getElementById("checkin-date"),
+        checkoutInput: document.getElementById("checkout-date"),
+        adultsInput: document.getElementById("adults"),
+        childrenInput: document.getElementById("children"),
+        babiesInput: document.getElementById("babies") 
+    };
+
+    return data;
+}
+
+// Recuperar os dados do DOM
+const {
+    reservationForm,
+    paymentForm,
+    confirmationDetails,
+    checkinInput,
+    checkoutInput,
+    adultsInput,
+    childrenInput,
+    babiesInput
+} = syncData();
+
+// Step 2: Forma de pagamento
+let selectedPaymentMethod = "";
+
+// Step 3: Atualizar os detalhes de confirmação dinamicamente
+function updateConfirmation() {
+    confirmationDetails.innerHTML = `
+        <p>Check-In: ${checkinInput.value || "Não selecionado"}</p>
+        <p>Check-Out: ${checkoutInput.value || "Não selecionado"}</p>
+        <p>Adultos: ${adultsInput.value || 0}</p>
+        <p>Crianças: ${childrenInput.value || 0}</p>
+        <p>Bebês: ${babiesInput.value || 0}</p>
+        <p>Forma de pagamento: ${selectedPaymentMethod || "Não selecionada"}</p>
+    `;
+}
+
+// Adicionar evento de atualização para cada input relevante
+[checkinInput, checkoutInput, adultsInput, childrenInput, babiesInput].forEach(input => {
+    input.addEventListener("change", updateConfirmation);
+});
+
+// Atualizar o método de pagamento ao clicar
+paymentForm.querySelectorAll(".square").forEach(button => {
+    button.addEventListener("click", function () {
+        selectedPaymentMethod = this.querySelector("p").textContent;
+        updateConfirmation();
+    });
+});
+
+// Inicializar a atualização da confirmação
+updateConfirmation();
+
+</script>
 </html>

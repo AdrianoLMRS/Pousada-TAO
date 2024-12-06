@@ -12,8 +12,8 @@ body, .content { overflow-x: hidden; }
 main {
   display: flex;
   /* REMINDER : mudar para row e 300% */
-  flex-direction: column;
-  width: 100%;
+  flex-direction: row;
+  width: 300%;
   transition: transform 0.5s ease-in-out;
 }
 
@@ -127,15 +127,16 @@ form {
 .arrow:active:not(:disabled) { background-color: var(--cor-verde, green); }
 
 .step2 {
-
+  gap: calc(var(--_gap, 50px) + 5vh);
 }
 
 .payment {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 50px;
+  column-gap: 200px;
+  row-gap: 50px;
   min-width: 100%;
 }
 
@@ -149,6 +150,7 @@ form {
   justify-content: center;
   align-items: center;
   background-color: hsl(0, 0%, 90%);
+  color: hsl(0, 0%, 60%);
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   transition: all 0.3s;
@@ -158,19 +160,27 @@ form {
   --_gold: var(--cor-atencao, gold);
   --_light-gold: lightGoldenRodYellow;
 }
-.square img {
+.square svg {
+  position: relative;
+  top: -30px;
   max-width: 80%;
   max-height: 80px;
 }
 
-.square:not(.active):hover {
+
+
+.square:not(.active):hover, .square:not(.active):hover path{
   border-color: var(--_gold, gold);
   color: var(--_gold, gold);
+  fill: var(--_gold, gold) !important;
   background-color: var(--_light-gold, lightyellow);
+  box-shadow: var(--_light-gold) 0px 4px 12px;
 }
 
-.square.active {
-  border-color: var(--_green);
-  color: var(--_green);
+.square.active, .square.active path, .square:not(.active):hover .card-svg path {
+  border-color: var(--_green, green);
+  color: var(--_green, green);
+  fill: var(--_green, green);
   background-color: var(--_light-green, green);
+  box-shadow: var(--_light-green, lightgreen) 0px 54px 55px, rgb(214, 245, 221, 0.87) 0px -12px 30px, rgb(214, 245, 221, 0.88) 0px 4px 6px, rgb(214, 245, 221, 0.83) 0px 12px 13px, rgb(214, 245, 221, 91) 0px -3px 5px;
 }

@@ -21,6 +21,7 @@ function autofillForm() {
     if (params.checkOut) document.getElementById("checkout-date").value = params.checkOut;
     if (params.adults) document.getElementById("adults").value = params.adults;
     if (params.children) document.getElementById("children").value = params.children;
+    if (params.babies) document.getElementById("babies").value = params.babies;
 }
 
 // Run autofillForm when the page loads
@@ -58,6 +59,16 @@ document.addEventListener('DOMContentLoaded', function () {
     function validateCurrentStep() {
         const currentForm = steps[currentStep].querySelector('form');
         if (currentForm) {
+            // Verificar se o formulário tem botões com a classe 'square'
+            const paymentButtons = currentForm.querySelectorAll('.square');
+            const isPaymentSelected = Array.from(paymentButtons).some(button => button.classList.contains('active'));
+    
+            // Caso seja o formulário de pagamento, verificar se há uma seleção
+            if (currentForm.id === 'payment-form' && !isPaymentSelected) {
+                return false;
+            }
+    
+            // Caso não seja um formulário de pagamento, verificar apenas a validade
             return currentForm.checkValidity();
         }
         return true;
