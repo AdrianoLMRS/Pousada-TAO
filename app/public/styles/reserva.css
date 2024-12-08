@@ -260,17 +260,8 @@ input[type="date"]{
   max-height: 80px;
 }
 
-
-
-.square:not(.active):hover, .square:not(.active):hover path{
-  border-color: var(--_gold, gold);
-  color: var(--_gold, gold);
-  fill: var(--_gold, gold) !important;
-  background-color: var(--_light-gold, lightyellow);
-  box-shadow: var(--_light-gold) 0px 4px 12px;
-}
-
-.square.active, .square.active path, .square:not(.active):hover .card-svg path {
+.square.active, .square.active path, .square:not(.active):hover .card-svg path,
+.square:not(.active):hover, .square:not(.active):hover path {
   border-color: var(--_green, green);
   color: var(--_green, green);
   fill: var(--_green, green);
@@ -287,9 +278,9 @@ input[type="date"]{
 .quantity input[type="number"] {
   width: 50px;
   text-align: center;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 4px;
-  margin: 0 5px;
+  background: none;
   font-size: 16px;
 }
 
@@ -300,9 +291,7 @@ input[type="date"]{
 }
 
 /* Firefox */
-.quantity input[type="number"][type=number] {
-  -moz-appearance: textfield;
-}
+.quantity input[type="number"][type=number] { -moz-appearance: textfield; }
 
 .quantity-button {
   width: 32px;
@@ -310,14 +299,13 @@ input[type="date"]{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background: none;
   border: 1px solid #ccc;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
   user-select: none;
 }
+.quantity-down { font-size: 26px; } 
 
-.quantity-button:hover {
-  background-color: #f0f0f0;
-}
+.quantity-button:hover { border: 1px solid hsl(0, 0%, 65%); }

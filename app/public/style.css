@@ -6,7 +6,7 @@
 }
 
 .montserrat-text {
-  font-family: "Montserrat", sans-serif !important;
+  font-family: "Montserrat", sans-serif ;
   font-optical-sizing: auto;
   font-weight: var(--_font-weight, 900);
   font-style: normal;

@@ -122,3 +122,37 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("check-in").addEventListener("change", adjustCheckOut);
     document.getElementById("check-out").addEventListener("change", adjustCheckOut);
 })
+
+// * .quantity
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.quantity').forEach(quantityContainer => {
+        const input = quantityContainer.querySelector('input[type="number"]');
+        const btnUp = quantityContainer.querySelector('.quantity-up');
+        const btnDown = quantityContainer.querySelector('.quantity-down');
+        
+        const min = parseFloat(input.getAttribute('min')) || 0;
+        const max = parseFloat(input.getAttribute('max')) || Infinity;
+      
+        btnUp.addEventListener('click', () => {
+            let value = parseFloat(input.value) || min;
+            if (value < max) {
+                input.value = value + 1;
+                input.dispatchEvent(new Event('change'));
+            }
+        });
+      
+        btnDown.addEventListener('click', () => {
+            let value = parseFloat(input.value) || min;
+            if (value > min) {
+                input.value = value - 1;
+                input.dispatchEvent(new Event('change'));
+            }
+        });
+
+        input.addEventListener('blur', () => {
+            let value = parseFloat(input.value) || min;
+            input.value = Math.max(min, Math.min(value, max));
+        });
+    });
+})

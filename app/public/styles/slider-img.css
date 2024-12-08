@@ -1,4 +1,49 @@
-/* Estilo da imagem de fundo */
+/* @import url(./reserva.css); */
+/* .quantity imported */
+
+.quantity {
+  display: inline-flex;
+  align-items: center;
+  justify-items: center;
+}
+
+.quantity input[type="number"] {
+  width: 50px;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  font-size: 16px;
+}
+
+.quantity input[type="number"]::-webkit-outer-spin-button,
+.quantity input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.quantity input[type="number"][type=number] {  -moz-appearance: textfield; }
+
+.quantity-button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+}
+.quantity-down { font-size: 26px; } 
+
+.quantity-button:hover { border: 1px solid hsl(0, 0%, 65%); }
+
+
+/* .ba-img */
 .ba-img {
   position: relative;
   top: 0;
@@ -35,7 +80,7 @@
 
 .overlay .animated { animation: slideIn 1s forwards ease-in; }
 
-/* Estilo do overlay */
+/* Overlay style */
 .overlay {
   width: 100%;
   height: 100%;
@@ -133,48 +178,136 @@
 
 .booking-section {
   position: relative;
-  margin: 0 !important;
   margin-top: -7dvh !important;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 
+  --_font-weight: 400;
   --min-width-form: 400px;
 }
 
 .form-content {
   background-color: var(--cor-branco, snow);
   border-radius: 8px;
-  height: 45vh;
+  min-height: 400px;
+
   width: clamp(var(--min-width-form, 400px), 40%, 750px);
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 50px;
 }
 
-@media (max-width: 400px) {
-  .form-content { width: 100% !important; }
+.form-content > h2 {
+  font-weight: 900;
+  font-size: calc(var(--header-font-size, xx-large) - 0.5vw);
 }
 
 form.booking-form {
+  max-height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-
-form.booking-form label {
-  display: flex;
-  flex-direction: column;
+  gap: 2rem;
 }
 
 .form-div {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
   width: 100%;
   justify-content: space-between;
+
+  row-gap: var(--_gap, 10px);
+  --_gap: 10px;
+}
+
+.form-div::after {
+  content: "";
+  position: relative;
+  width: 100%;
+  height: 1px;
+  bottom: calc(var(--_gap, 10px) * -1);
+  background-color: hsl(0, 0%, 90%);
+}
+
+.form-div label {
+  white-space: nowrap;
+  font-size: large;
+  cursor: text;
+}
+
+label.date-label { line-height: none; }
+
+input.datepicker-input {
+  text-align: end;
+  width: 130px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.form-btn {
+  position: relative;
+  align-self: end;
+  width: clamp(75px, 25%, 150px);
+  border-radius: 4px;
+  height: 40px;
+  transition: color 300ms;
+}
+
+.form-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.form-btn:disabled:hover { color: red; }
+
+/* .form-btn disabled popup to alert the user */
+.form-btn:disabled::after {
+  content: 'Complete todos os dados';
+  white-space: nowrap;
+  position: absolute;
+  bottom: var(--_bottom, -190%);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 175px;
+  overflow: visible;
+  padding: 10px;
+  background-color: var(--cor-txt, black);
+  border-radius: 8px;
+  color: var(--cor-branco, snow);
+  opacity: 0;
+  transition: opacity 300ms;
+
+  --_bottom: -190%;
+}
+
+.form-btn:disabled::before {
+  content: '';
+  display: inline-block;
+  transform: rotate(180deg) scale(0.75);
+  position: absolute;
+  bottom: -43%;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid var(--cor-txt, black);
+  clear: both;
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+.form-btn:disabled:hover::after, .form-btn:disabled:hover::before { opacity: 1; }
+
+/* MEDIA QUERIES */
+
+@media (max-width: 400px) {
+  .form-content { width: 100%; }
+  .form-content h2, .form-div label, input.datepicker-input { text-align: center; }
+  .form-div { flex-direction: column; justify-content: center; column-gap: 100%; }
+  .form-btn { align-self: center; }
 }
 
 /* Booking Dialog */
