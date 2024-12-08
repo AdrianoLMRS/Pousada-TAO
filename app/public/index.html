@@ -83,7 +83,6 @@
 
                 <section class="booking-section montserrat-text">
 
-                    
                     <div class="form-content">
 
                         <h2>Quem está vindo?</h2>
@@ -92,20 +91,24 @@
 
                             <span class="form-div">
                                 <label class="date-label" for="checkIn"><strong>Check-In:</strong></label>
-                                <input onfocus="this.type='date'; this.showPicker();" onblur="(this.type='text')"
-                                type="text" class="datepicker-input" id="checkIn" placeholder="Check-In">
+                                <input onfocus="this.type='date'; this.showPicker();" required 
+                                onblur="this.type='text'; formatDate(this);"
+                                type="text" name="checkIn" class="datepicker-input" id="checkIn" placeholder="Check-In">
                             </span>
                             <span class="form-div">
                                 <label class="date-label" for="checkOut"><strong>Check-Out:</strong></label>
-                                <input onfocus="this.type='date'; this.showPicker();" onblur="(this.type='text')"
-                                type="text" class="datepicker-input" id="checkOut" placeholder="Check-Out">
+                                <input onfocus="this.type='date'; this.showPicker();" required 
+                                onblur="this.type='text'; formatDate(this);"
+                                type="text" name="checkOut" class="datepicker-input" id="checkOut" placeholder="Check-Out">
                             </span>
+                            
                             
                             <span class="form-div">
                                 <label for="adults"><strong>Adultos:</strong><br><small>13 anos ou mais</small></label>
                                 <div class="quantity">
                                     <button type="button" class="quantity-button quantity-down">-</button>
-                                    <input placeholder="1" min="1" max="10" type="number" id="adults">
+                                    <input required name="adults" value="1" min="1" max="10" 
+                                    type="number" id="adults" placeholder="1">
                                     <button type="button" class="quantity-button quantity-up">+</button>
                                 </div>
                             </span>
@@ -113,7 +116,8 @@
                                 <label for="children"><strong>Crianças:</strong><br><small>De 2 a 12 anos</small></label>
                                 <div class="quantity">
                                     <button type="button" class="quantity-button quantity-down">-</button>
-                                    <input placeholder="0" min="0" max="10" type="number" id="children">
+                                    <input value="0" min="0" max="10" type="number"
+                                    name="children" id="children" placeholder="0">
                                     <button type="button" class="quantity-button quantity-up">+</button>
                                 </div>
                             </span>
@@ -121,14 +125,14 @@
                                 <label for="babies"><strong>Bebês:</strong><br><small>Menor de 2</small></label>
                                 <div class="quantity">
                                     <button type="button" class="quantity-button quantity-down">-</button>
-                                    <input placeholder="0" min="0" max="10" type="number" id="babies">
+                                    <input value="0" min="0" max="10" type="number"
+                                    name="babies" id="babies" placeholder="0">
                                     <button type="button" class="quantity-button quantity-up">+</button>
                                 </div>
                             </span>
 
                             <button id="submitButton" type="submit" 
                             class="form-btn gradient gradient-golden" onclick="submitForm()" disabled>ENVIAR</button>
-                            <div class="triangle"></div>
                         
                         </form>
 
@@ -454,29 +458,8 @@
         
     </div>
 
-    <dialog class="booking-dialog" id="minors">
-        <button type="button" onclick="closeDialog('minors')">&times;</button>
-        <p><strong><em>Crianças</em></strong>: menores de 13 anos (50% de desconto)<br><br><strong><em>Bebês</em></strong>: menores de 3 anos (100% de desconto)</p>
-    </dialog>
-    <dialog class="booking-dialog" id="adults-dialog">
-        <button onclick="closeDialog('adults-dialog')">&times;</button>
-        <p><strong><em>Adultos</em></strong>: 13 anos ou mais (Paga inteira)</p>
-    </dialog>
-
 <!-- *SCRIPTS* -->
 <script src="js/script.js" defer></script>
-<script>
-    // For </dialogs> customer need to know
-    function showDialog(id) {
-        const minorsDialog = document.getElementById(id);
-        minorsDialog.showModal(); // Open
-    }
-    
-    function closeDialog(id) {
-        const minorsDialog = document.getElementById(id);
-        minorsDialog.close(); // Close
-    }
-</script>
 <script>
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {

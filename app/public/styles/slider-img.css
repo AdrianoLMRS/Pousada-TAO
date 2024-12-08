@@ -11,6 +11,7 @@
   width: 50px;
   text-align: center;
   border: none;
+  pointer-events: none;
   border-radius: 4px;
   background: none;
   font-size: 16px;
@@ -191,8 +192,8 @@
 .form-content {
   background-color: var(--cor-branco, snow);
   border-radius: 8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   min-height: 400px;
-
   width: clamp(var(--min-width-form, 400px), 40%, 750px);
   padding: 20px;
   display: flex;
@@ -246,6 +247,7 @@ input.datepicker-input {
   width: 130px;
   padding: 5px;
   border-radius: 5px;
+  font-size: 1rem;
   border: 1px solid #ccc;
 }
 
@@ -255,6 +257,7 @@ input.datepicker-input {
   width: clamp(75px, 25%, 150px);
   border-radius: 4px;
   height: 40px;
+  cursor: pointer;
   transition: color 300ms;
 }
 
@@ -304,30 +307,8 @@ input.datepicker-input {
 /* MEDIA QUERIES */
 
 @media (max-width: 400px) {
-  .form-content { width: 100%; }
+  .form-content { width: 99%; }
   .form-content h2, .form-div label, input.datepicker-input { text-align: center; }
   .form-div { flex-direction: column; justify-content: center; column-gap: 100%; }
   .form-btn { align-self: center; }
 }
-
-/* Booking Dialog */
-
-.booking-dialog {
-  top: 50%;
-  left: 0;
-  height: 15vw;
-  min-height: 200px;
-  min-width: 250px;
-  width: 20vw;
-  border-radius: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: var(--cor-branco);
-  background-color: var(--cor-txt);
-}
-.booking-dialog > p { width: 50%; text-align: center; }
-.booking-dialog > button { position: absolute; top: 5%; right: 5%; background-color: var(--cor-branco); 
-  width: 15%; display: flex; justify-content: center; align-items: center;}
-

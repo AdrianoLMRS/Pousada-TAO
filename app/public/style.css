@@ -142,6 +142,7 @@ body > * {
   z-index: -1;
 }
 
+
 .overlay2 {
   position: absolute;
   z-index: 1;

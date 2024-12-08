@@ -279,6 +279,7 @@ input[type="date"]{
   width: 50px;
   text-align: center;
   border: none;
+  pointer-events: none;
   border-radius: 4px;
   background: none;
   font-size: 16px;

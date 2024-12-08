@@ -1,15 +1,16 @@
-// Function to get URL parameters as an object
+// Function to get URL parameters
 function getURLParams() {
-    const params = {};
-    const queryString = window.location.search.substring(1); // Remove "?"
-    const pairs = queryString.split("&");
+    // Create a new URLSearchParams object from the current window's URL
+    const params = new URLSearchParams(window.location.search);
+    const paramsObject = {};
 
-    pairs.forEach(pair => {
-        const [key, value] = pair.split("=");
-        params[decodeURIComponent(key)] = decodeURIComponent(value || "");
+    // Loop through all the parameters and add them to the object
+    params.forEach((value, key) => {
+        paramsObject[key] = value;
     });
 
-    return params;
+    // Return the object with URL parameters
+    return paramsObject;
 }
 
 // Function to autofill the form with URL parameters

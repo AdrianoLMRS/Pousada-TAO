@@ -1,92 +1,71 @@
 // *Validates the user input + redirects user to /reserva with parameters
-// Check if the button should be enabled
-function updateSubmitButtonState() {
-    const submitButton = document.getElementById("submitButton");
-    submitButton.disabled = !validateInput();
-}
+function checkRequiredFields() {
+    // Select all required input fields
+    const requiredFields = document.querySelectorAll('input[required]');
+    const submitButton = document.getElementById('submitButton');
+    let allFilled = true;
 
-// Add event listeners to inputs to validate and toggle button state
-function setupValidationListeners() {
-    const inputs = [
-        document.getElementById("check-in"),
-        document.getElementById("check-out"),
-        document.getElementById("adults"),
-        document.getElementById("children-select"),
-        document.getElementById("baby-select")
-    ];
-
-    inputs.forEach(input => {
-        input.addEventListener("input", updateSubmitButtonState);
+    // Check if all required fields are filled
+    requiredFields.forEach(field => {
+        if (!field.value) {
+            allFilled = false;
+        }
     });
 
-    // Initialize button state on page load
-    updateSubmitButtonState();
+    // Enable or disable the submit button based on whether all required fields are filled
+    submitButton.disabled = !allFilled;
 }
+window.onload = checkRequiredFields();
 
-// Call this function after the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", setupValidationListeners);
+// Add event listeners to check fields whenever their value changes
+document.querySelectorAll('input[required]').forEach(input => {
+    input.addEventListener('input', checkRequiredFields);
+    input.addEventListener('change', checkRequiredFields);
+    input.addEventListener('focus', checkRequiredFields);
+    input.addEventListener('blur', checkRequiredFields);
+});
+
 
 
 function validateInput() {
-    const checkIn = document.getElementById("check-in").value;
-    const checkOut = document.getElementById("check-out").value;
-    const adults = document.getElementById("adults").value;
-    const children = document.getElementById("children-select").value;
-    const babies = document.getElementById("baby-select").value;
+    const checkIn = document.getElementById("checkIn").value;
+    const checkOut = document.getElementById("checkOut").value;
+    const adults = parseInt(document.getElementById("adults").value);
+    const children = parseInt(document.getElementById("children").value);
+    const babies = parseInt(document.getElementById("babies").value);
 
-    // Check if check-in and check-out dates are filled
-    if (!checkIn || !checkOut) {
-        alert("Check-in e Check-out precisam de um valor");
+    // Validate check-in and check-out dates
+    if (checkIn === "" || checkOut === "" || checkIn >= checkOut) {
         return false;
     }
 
-    // Validate that check-in date is in the future
-    const today = new Date().toISOString().split("T")[0];
-    if (checkIn < today) {
-        alert("Data de Check-in precisa estar no futuro.");
+    // Validate number of adults, children, and babies
+    if (isNaN(adults) || isNaN(children) || isNaN(babies) || adults <= 0 || children < 0 || babies < 0) {
         return false;
     }
 
-    // Validate that check-out date is after check-in date
-    if (checkOut <= checkIn) {
-        alert("Data de Check-out precisa estar depois do Check-in");
-        return false;
-    }
-
-    // Validate that at least one adult is present
-    if (parseInt(adults, 10) <= 0) {
-        alert("Precisa de pelo menos um adulto");
-        return false;
-    }
-
-    // Max guests
-    const maxGuests = 10; // Max guests (10 for now)
-    const totalGuests = parseInt(adults, 10) + parseInt(children, 10) + parseInt(babies, 10);
-    if (totalGuests > maxGuests) {
-        alert(`Máximo de pessoas não pode passar de ${maxGuests}.`);
-        return false;
-    }
-
-    return true; // Validation successful
+    return true;
 }
 
-function submitForm() {
-    // Call validateInput to check all inputs before submission
-    if (!validateInput()) {
-        return; // Stop submission if validation fails
-    }
+// Function to handle form submission
+function submitForm(event) {
+    // Prevent the default form submission
+    event.preventDefault();
 
-    // If validation passes, proceed with redirect
-    const checkIn = document.getElementById("check-in").value;
-    const checkOut = document.getElementById("check-out").value;
-    const adults = document.getElementById("adults").value;
-    const children = document.getElementById("children-select").value;
-    const babies = document.getElementById("baby-select").value;
+    // Get form data
+    const form = document.getElementById('bookingForm');
+    const formData = new FormData(form);
 
-    const url = `/reserva?checkIn=${encodeURIComponent(checkIn)}&checkOut=${encodeURIComponent(checkOut)}&adults=${encodeURIComponent(adults)}&children=${encodeURIComponent(children)}&babies=${encodeURIComponent(babies)}`;
+    // Create the query string from the form data
+    const params = new URLSearchParams();
+    formData.forEach((value, key) => {
+        params.append(key, value);
+    });
 
-    window.location.href = url;
+    // Redirect to /reserva with the parameters
+    window.location.href = '/reserva?' + params.toString();
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // Função para formatar a data no formato yyyy-mm-dd
@@ -156,3 +135,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 })
+
+// Format Input Dates
+function formatDate(input) {
+    let value = input.value;
+    // Datye in ISO format (yyyy-mm-dd)
+    if (value) {
+        let date = new Date(value);
+        let day = String(date.getDate() + 1).padStart(2, '0');
+        let month = String(date.getMonth() + 1).padStart(2, '0');
+        let year = date.getFullYear();
+        // dd/mm/yyyy format (Brazil 🇧🇷)
+        input.value = `${day}-${month}-${year}`;
+    }
+}
