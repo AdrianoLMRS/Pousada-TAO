@@ -81,75 +81,15 @@
 
                 </header>
 
-                <div class="booking-form">
-                    <label style="display: none;" for="check-in">Check-in :</label>
-                    <input onclick="showPicker()" class="custom-btn" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="check-in" placeholder="Check-in &emsp;&nbsp;📆" style="user-select: none; max-width: 175px;" />
-                    <label style="display: none;" for="check-out">Check-out :</label>
-                    <input onclick="showPicker()" class="custom-btn" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="check-out" placeholder="Check-out &emsp;📆" style="user-select: none; max-width: 175px;" />                 
-
-                    <div class="adult">
-                        <select min="1" class="custom-btn" id="adults">
-                            <option value="1">Adultos</option>
-                            <option value="2">2 Adultos</option>
-                            <option value="3">3 Adultos</option>
-                            <option value="4">4 Adultos</option>
-                            <option value="4">5 Adultos</option>
-                            <option value="4">6 Adultos</option>
-                            <option value="custom">Outro</option>
-                        </select>
-                    </div>
+                <form class="booking-form">
                     
-                    <div class="children">
-                        <details class="custom-btn" class="select">
-                            <summary class="summary-complete">Menores </summary>
-                            <div style="margin-top: 10%;" >
-                                <label style="display: none;" for="children-select">Crianças:</label>
-                                <select style="max-width: 90px;" name="children" id="children-select">
-                                    <option value="0">Crianças</option>
-                                    <option value="1">1 Criança</option>
-                                    <option value="2">2 Crianças</option>
-                                    <option value="3">3 Crianças</option>
-                                    <option value="4">4 Crianças</option>
-                                    <option value="5">5 Crianças</option>
-                                </select>
-                            </div>
-                            <div style="margin-top: 10%;" >
-                                <label style="display: none;" for="baby-select">Bebês:</label>
-                                <select style="max-width: 90px;" name="baby" id="baby-select">
-                                    <option value="0">Bebês</option>
-                                    <option value="1">1 Bebê</option>
-                                    <option value="2">2 Bebês</option>
-                                    <option value="3">3 Bebês</option>
-                                    <option value="4">4 Bebês</option>
-                                </select>
-                            </div>
-                        </details>
-                    </div>
                     
 
-                    <details class="hide-mobile help">
-                        <summary>&#9432;</summary>
-                        <div class="details-content">
-                            <label class="desktop-label" onclick="showDialog('minors')" for="children"><u>Menores <span>&#9432;</span></u></label>
-                            <label id="adult-label" class="desktop-label" onclick="showDialog('adults-dialog')" for="adultos"><u>Adultos <span>&#9432;</span></u></label>
-                        </div>
-                    </details>
 
-                    <script>
-                        // For </dialogs> customer need to know
-                        function showDialog(id) {
-                            const minorsDialog = document.getElementById(id);
-                            minorsDialog.showModal(); // Open
-                        }
-                        
-                        function closeDialog(id) {
-                            const minorsDialog = document.getElementById(id);
-                            minorsDialog.close(); // Close
-                        }
-                    </script>
+
                     
                     <button type="submit" class="gradient gradient-golden" onclick="submitForm()">ENVIAR</button>
-                </div>
+                </form>
                 
                 <div class="sobre" id="sobre">
 
@@ -480,6 +420,18 @@
 
 <!-- *SCRIPTS* -->
 <script src="js/script.js" defer></script>
+<script>
+    // For </dialogs> customer need to know
+    function showDialog(id) {
+        const minorsDialog = document.getElementById(id);
+        minorsDialog.showModal(); // Open
+    }
+    
+    function closeDialog(id) {
+        const minorsDialog = document.getElementById(id);
+        minorsDialog.close(); // Close
+    }
+</script>
 <script>
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
