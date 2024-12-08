@@ -1,4 +1,32 @@
 // *Validates the user input + redirects user to /reserva with parameters
+// Check if the button should be enabled
+function updateSubmitButtonState() {
+    const submitButton = document.getElementById("submitButton");
+    submitButton.disabled = !validateInput();
+}
+
+// Add event listeners to inputs to validate and toggle button state
+function setupValidationListeners() {
+    const inputs = [
+        document.getElementById("check-in"),
+        document.getElementById("check-out"),
+        document.getElementById("adults"),
+        document.getElementById("children-select"),
+        document.getElementById("baby-select")
+    ];
+
+    inputs.forEach(input => {
+        input.addEventListener("input", updateSubmitButtonState);
+    });
+
+    // Initialize button state on page load
+    updateSubmitButtonState();
+}
+
+// Call this function after the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", setupValidationListeners);
+
+
 function validateInput() {
     const checkIn = document.getElementById("check-in").value;
     const checkOut = document.getElementById("check-out").value;

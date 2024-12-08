@@ -81,15 +81,43 @@
 
                 </header>
 
-                <form class="booking-form">
-                    
-                    
-
-
+                <section class="booking-section">
 
                     
-                    <button type="submit" class="gradient gradient-golden" onclick="submitForm()">ENVIAR</button>
-                </form>
+                    <div class="form-content">
+
+                        <h2>Reserve Já</h2>
+
+                        <form class="booking-form" action="/reserva" method="get">
+
+                            <div class="form-div">
+                                <label for="checkIn">Check-In:</label>
+                                <input type="date" id="checkIn">
+                            </div>
+                            <div class="form-div">
+                                <label for="checkOut">Check-Out:</label>
+                                <input type="date" id="checkOut">
+                            </div>
+                            <div class="form-div">
+                                <label for="adults">Adultos: <small>13 anos ou mais</small></label>
+                                <input type="number" id="adults">
+                            </div>
+                            <div class="form-div">
+                                <label for="children">Crianças: <small>De 2 a 12 anos</small></label>
+                                <input type="number" id="children">
+                            </div>
+                            <div class="form-div">
+                                <label for="babies">Bebês: <small>Menor de 2</small></label>
+                                <input type="number" id="babies">
+                            </div>
+
+                            <button id="submitButton" type="submit" class="gradient gradient-golden" onclick="submitForm()" disabled>ENVIAR</button>
+                        
+                        </form>
+
+                    </div>
+
+                </section>
                 
                 <div class="sobre" id="sobre">
 
