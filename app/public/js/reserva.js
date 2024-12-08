@@ -55,21 +55,21 @@ document.addEventListener('DOMContentLoaded', function () {
         nextArrow.disabled = currentStep === totalSteps - 1;
     }
 
-    // Função para validar os campos do formulário atual
-    function validateCurrentStep() {
-        const currentForm = steps[currentStep].querySelector('form');
-        if (currentForm) {
+    // Função para validar os campos de um passo específico
+    function validateStep(stepIndex) {
+        const stepForm = steps[stepIndex]?.querySelector('form');
+        if (stepForm) {
             // Verificar se o formulário tem botões com a classe 'square'
-            const paymentButtons = currentForm.querySelectorAll('.square');
+            const paymentButtons = stepForm.querySelectorAll('.square');
             const isPaymentSelected = Array.from(paymentButtons).some(button => button.classList.contains('active'));
-    
+
             // Caso seja o formulário de pagamento, verificar se há uma seleção
-            if (currentForm.id === 'payment-form' && !isPaymentSelected) {
+            if (stepForm.id === 'payment-form' && !isPaymentSelected) {
                 return false;
             }
-    
+
             // Caso não seja um formulário de pagamento, verificar apenas a validade
-            return currentForm.checkValidity();
+            return stepForm.checkValidity();
         }
         return true;
     }
@@ -78,23 +78,54 @@ document.addEventListener('DOMContentLoaded', function () {
     window.step = function (targetStep = null) {
         if (targetStep === null) return; // Garantia de evitar navegação indesejada
 
-        // Navegação para frente requer validação
+        // Caso esteja avançando, validar todos os passos intermediários
         if (targetStep > currentStep) {
-            if (!validateCurrentStep()) {
-                alert("Por favor, preencha todos os campos obrigatórios antes de continuar.");
-                return;
+            for (let i = currentStep; i < targetStep; i++) {
+                if (!validateStep(i)) {
+                    alert("Por favor, preencha todos os campos obrigatórios antes de continuar.");
+                    return;
+                }
             }
         }
 
         // Atualiza para o step desejado
         updateStep(targetStep);
     };
-
-    // Configuração inicial
-    updateStep(0);
 });
 
 
 
+// JavaScript to handle the increment and decrement functionality
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.quantity').forEach(quantityContainer => {
+        const input = quantityContainer.querySelector('input[type="number"]');
+        const btnUp = quantityContainer.querySelector('.quantity-up');
+        const btnDown = quantityContainer.querySelector('.quantity-down');
+        
+        const min = parseFloat(input.getAttribute('min')) || 0;
+        const max = parseFloat(input.getAttribute('max')) || Infinity;
+      
+        btnUp.addEventListener('click', () => {
+            let value = parseFloat(input.value) || min;
+            if (value < max) {
+                input.value = value + 1;
+                input.dispatchEvent(new Event('change'));
+            }
+        });
+      
+        btnDown.addEventListener('click', () => {
+            let value = parseFloat(input.value) || min;
+            if (value > min) {
+                input.value = value - 1;
+                input.dispatchEvent(new Event('change'));
+            }
+        });
 
+        input.addEventListener('blur', () => {
+            let value = parseFloat(input.value) || min;
+            input.value = Math.max(min, Math.min(value, max));
+        });
+    });
+})
+  
 

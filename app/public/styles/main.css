@@ -147,7 +147,7 @@ main > *:not(:first-child):not(.booking-form) {
 
 .card {
   background-color: var(--cor-branco);
-  width: 300px;
+  width: var(--_width, 300px);
   min-height: var(--card-height, 500px);
   display: flex;
   flex-direction: column;
