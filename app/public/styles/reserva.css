@@ -41,6 +41,12 @@ section[class^="step"] {
   white-space: nowrap !important;
 }
 
+.back-btn {
+  position: relative;
+  top: -125%;
+  left: -25%;
+}
+
 /* Indicators */
 .indicators {
   display: flex;
@@ -127,6 +133,8 @@ section[class^="step"] {
   --_green: var(--cor-verde, green);
   --_light-green: hsl(134, 61%, 90%);
 }
+
+.square:disabled { opacity: 0.4; cursor: not-allowed; }
 
 .square svg {
   position: relative;

@@ -1,8 +1,5 @@
 // *Validates the user input + redirects user to /reserva with parameters
-function checkRequiredFields() {
-    // Select all required input fields
-    const requiredFields = document.querySelectorAll('input[required]');
-    const submitButton = document.getElementById('submitButton');
+function checkRequiredFields(buttons, requiredFields) {
     let allFilled = true;
 
     // Check if all required fields are filled
@@ -12,18 +9,48 @@ function checkRequiredFields() {
         }
     });
 
-    // Enable or disable the submit button based on whether all required fields are filled
-    submitButton.disabled = !allFilled;
+    // Enable or disable each button based on whether all required fields are filled
+    buttons.forEach(button => {
+        button.disabled = !allFilled;
+    });
 }
-window.onload = checkRequiredFields();
+// Add event listener for window.onload to ensure initial validation
+window.onload = () => {
+    // For a single button, wrap it in an array-like object
+    checkRequiredFields(
+        [document.getElementById('submitButton')],  // Single button wrapped in an array
+        document.querySelectorAll('#booking-form input[required]')
+    );
+};
 
 // Add event listeners to check fields whenever their value changes
-document.querySelectorAll('input[required]').forEach(input => {
-    input.addEventListener('input', checkRequiredFields);
-    input.addEventListener('change', checkRequiredFields);
-    input.addEventListener('focus', checkRequiredFields);
-    input.addEventListener('blur', checkRequiredFields);
+document.querySelectorAll('#booking-form input[required]').forEach(input => {
+    input.addEventListener('input', () => {
+        checkRequiredFields(
+            Array.from(document.querySelectorAll('#submitButton')), // Buttons by class
+            document.querySelectorAll('#booking-form input[required]')
+        );
+    });
+    input.addEventListener('change', () => {
+        checkRequiredFields(
+            Array.from(document.querySelectorAll('#submitButton')), // Buttons by class
+            document.querySelectorAll('#booking-form input[required]')
+        );
+    });
+    input.addEventListener('focus', () => {
+        checkRequiredFields(
+            Array.from(document.querySelectorAll('#submitButton')), // Buttons by class
+            document.querySelectorAll('#booking-form input[required]')
+        );
+    });
+    input.addEventListener('blur', () => {
+        checkRequiredFields(
+            Array.from(document.querySelectorAll('#submitButton')), // Buttons by class
+            document.querySelectorAll('#booking-form input[required]')
+        );
+    });
 });
+
 
 // Function to handle form submission
 function submitForm(event) {

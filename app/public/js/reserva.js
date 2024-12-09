@@ -1,3 +1,4 @@
+// TODO : enables/disables .stripeBtn
 // Steps logic
 const stepMultiplier = 50;
 let currentStep = 0;
@@ -42,17 +43,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Onclick buttons to change steps
     window.step = function (targetStep = null) {
-        if (targetStep === null) return; // Need to specify targetStep
-
-        // If continues, validate every step before
+        if (targetStep === null) return;
+    
         if (targetStep > currentStep) {
-            for (let i = currentStep; i < targetStep; i++) {
-                if (!validateStep(i)) {
-                    alert("Por favor, preencha todos os campos obrigatórios antes de continuar.");
-                    return;
-                }
-            }
+            if (!validateStep(currentStep)) return;
+            
+
+            // transferDataToStep2();
+            
         }
+    
         updateStep(targetStep);
     };
 });
@@ -127,3 +127,5 @@ document.addEventListener("DOMContentLoaded", () => {
     checkRequiredFields(); // Verify the values are valid, if is : enable button
 
 });
+
+
