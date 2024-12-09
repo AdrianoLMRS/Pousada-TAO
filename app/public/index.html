@@ -93,16 +93,15 @@
                             <span class="form-div">
                                 <label class="date-label" for="checkIn"><strong>Check-In:</strong></label>
                                 <input onfocus="this.type='date'; this.showPicker();" required 
-                                onblur="this.type='text'; formatDate(this);"
+                                onblur="this.type='text'; formatDate(this);" onclick="showPicker();" onchange="updateCheckout();"
                                 type="text" name="checkIn" class="datepicker-input" id="checkIn" placeholder="Check-In">
                             </span>
                             <span class="form-div">
                                 <label class="date-label" for="checkOut"><strong>Check-Out:</strong></label>
                                 <input onfocus="this.type='date'; this.showPicker();" required 
-                                onblur="this.type='text'; formatDate(this);"
+                                onblur="this.type='text'; formatDate(this);" onclick="showPicker();"
                                 type="text" name="checkOut" class="datepicker-input" id="checkOut" placeholder="Check-Out">
-                            </span>
-                            
+                            </span>                            
                             
                             <span class="form-div">
                                 <label for="adults"><strong>Adultos:</strong><br><small>13 anos ou mais</small></label>
@@ -512,4 +511,5 @@ function setActiveButton(button) {
 <script src="js/slider.js" defer></script>
 <script src="js/iframe.js" defer></script>
 </body>
+<script async>  document.addEventListener('DOMContentLoaded', () => {  formatDates();  })   </script>
 </html>

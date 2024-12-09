@@ -1,7 +1,7 @@
 // Calculate total price for the reservation
 const calculateTotalPrice = (days, adults, children) => {
-  const pricePerAdult = 10000; // R$ 100,00 (in cents)
-  const pricePerChild = 5000;  // R$ 50,00 (in cents)
+  const pricePerAdult = 15000; // R$ 150,00 (in BRL cents)
+  const pricePerChild = 7500;  // R$ 75,00 (in BRL cents)
   return (adults * pricePerAdult + children * pricePerChild) * days;
 };
 

@@ -25,28 +25,6 @@ document.querySelectorAll('input[required]').forEach(input => {
     input.addEventListener('blur', checkRequiredFields);
 });
 
-
-
-function validateInput() {
-    const checkIn = document.getElementById("checkIn").value;
-    const checkOut = document.getElementById("checkOut").value;
-    const adults = parseInt(document.getElementById("adults").value);
-    const children = parseInt(document.getElementById("children").value);
-    const babies = parseInt(document.getElementById("babies").value);
-
-    // Validate check-in and check-out dates
-    if (checkIn === "" || checkOut === "" || checkIn >= checkOut) {
-        return false;
-    }
-
-    // Validate number of adults, children, and babies
-    if (isNaN(adults) || isNaN(children) || isNaN(babies) || adults <= 0 || children < 0 || babies < 0) {
-        return false;
-    }
-
-    return true;
-}
-
 // Function to handle form submission
 function submitForm(event) {
     // Prevent the default form submission
@@ -67,42 +45,38 @@ function submitForm(event) {
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Função para formatar a data no formato yyyy-mm-dd
-    function formatDate(date) {
-        return date.toISOString().split('T')[0];
-    }
-    
-    // Função para ajustar o checkout caso seja no mesmo dia do check-in
-    function adjustCheckOut() {
-        const checkInDate = new Date(document.getElementById("check-in").value);
-        const checkOutDate = new Date(document.getElementById("check-out").value);
-    
-        // Se o check-out for igual ou anterior ao check-in, ajusta o check-out para o dia seguinte
-        if (checkOutDate <= checkInDate) {
-            checkOutDate.setDate(checkInDate.getDate() + 1);
-            document.getElementById("check-out").value = formatDate(checkOutDate);
-        }
-    }
-    
-    // Definindo a data de hoje e amanhã para a validação mínima
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-    
-    const todayFormatted = formatDate(today);
-    const tomorrowFormatted = formatDate(tomorrow);
-    
-    // Definindo as datas mínimas para os inputs
-    document.getElementById("check-in").setAttribute("min", todayFormatted);
-    document.getElementById("check-out").setAttribute("min", tomorrowFormatted);
-    
-    // Adicionando evento para garantir que o checkout seja sempre após o check-in
-    document.getElementById("check-in").addEventListener("change", adjustCheckOut);
-    document.getElementById("check-out").addEventListener("change", adjustCheckOut);
-})
+document.addEventListener("DOMContentLoaded", () => {
+    const checkInInput = document.getElementById("checkIn");
+    const checkOutInput = document.getElementById("checkOut");
 
-// * .quantity
+    // Get today's date in YYYY-MM-DD format
+    const today = new Date();
+    const todayStr = today.toISOString().split("T")[0];
+    const tomorrow = new Date(today); // tommorrow for checkOut
+    tomorrow.setDate(today.getDate() + 1);
+    const tomorrowStr = tomorrow.toISOString().split("T")[0];
+
+    // Get the date one month from today
+    const nextMonth = new Date(today);
+    nextMonth.setMonth(today.getMonth() + 1);
+    const nextMonthStr = nextMonth.toISOString().split("T")[0];
+
+    // Set min and max attributes for the check-in input
+    checkInInput.setAttribute("min", todayStr);
+    checkInInput.setAttribute("max", nextMonthStr);
+
+    // Set min and max attributes for the check-out input
+    checkOutInput.setAttribute("min", tomorrowStr);
+    checkOutInput.setAttribute("max", nextMonthStr);
+
+    // Set initial values for check-in and check-out
+    checkInInput.value = todayStr;
+    checkOutInput.value = tomorrowStr;
+
+});
+
+
+// * .quantity inputs logic
 
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.quantity').forEach(quantityContainer => {
@@ -139,13 +113,60 @@ document.addEventListener('DOMContentLoaded', () => {
 // Format Input Dates
 function formatDate(input) {
     let value = input.value;
-    // Datye in ISO format (yyyy-mm-dd)
+    // Date in ISO format (yyyy-mm-dd)
     if (value) {
         let date = new Date(value);
-        let day = String(date.getDate() + 1).padStart(2, '0');
-        let month = String(date.getMonth() + 1).padStart(2, '0');
-        let year = date.getFullYear();
-        // dd/mm/yyyy format (Brazil 🇧🇷)
-        input.value = `${day}-${month}-${year}`;
+        // Check if the date is valid
+        if (!isNaN(date.getTime())) {
+            let day = String(date.getDate() + 1).padStart(2, '0');
+            let month = String(date.getMonth() + 1).padStart(2, '0');
+            let year = date.getFullYear();
+            // Format to dd/mm/yyyy (Brazil 🇧🇷)
+            input.value = `${day}-${month}-${year}`;
+        } else {
+            console.error("Invalid date:", value); // Handle invalid date
+        }
     }
+}
+
+async function formatDates() {
+    // Wait 1 second before formatting the dates
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    // Format dates after 1 second delay
+    formatDate(document.getElementById("checkIn")); // Format checkIn to Brazilian date (dd-mm-aaaa)
+    formatDate(document.getElementById("checkOut")); // Format checkOut to Brazilian date (dd-mm-aaaa)
+}
+
+function validateInput() {
+    const checkIn = document.getElementById("checkIn").value;
+    const checkOut = document.getElementById("checkOut").value;
+    const adults = parseInt(document.getElementById("adults").value);
+    const children = parseInt(document.getElementById("children").value);
+    const babies = parseInt(document.getElementById("babies").value);
+
+    // Validate check-in and check-out dates
+    if (checkIn === "" || checkOut === "" || checkIn >= checkOut) {
+        return false;
+    }
+
+    // Validate number of adults, children, and babies
+    if (isNaN(adults) || isNaN(children) || isNaN(babies) || adults <= 0 || children < 0 || babies < 0) {
+        return false;
+    }
+
+    return true;
+}
+
+function updateCheckout() {
+    const checkInInput = document.getElementById("checkIn");
+    const checkOutInput = document.getElementById("checkOut");
+
+    if (checkInInput.value) {
+        const checkInDate = new Date(checkInInput.value);
+        const checkOutDate = new Date(checkInDate);
+        checkOutDate.setDate(checkInDate.getDate() + 1); // Add 1 day to the check-in date
+        checkOutInput.value = checkOutDate.toISOString().split("T")[0];
+        formatDate(checkOutInput);
+    };
 }

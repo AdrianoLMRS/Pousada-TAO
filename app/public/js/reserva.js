@@ -1,34 +1,19 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Obter os parâmetros da URL
-    const params = new URLSearchParams(window.location.search);
-
-    // Função para preencher os campos do formulário
-    const autofillForm = () => {
-        document.getElementById("checkIn").value = params.get("checkIn") || "";
-        document.getElementById("checkOut").value = params.get("checkOut") || "";
-        document.getElementById("adults").value = params.get("adults") || 1;
-        document.getElementById("children").value = params.get("children") || 0;
-        document.getElementById("babies").value = params.get("babies") || 0;
-
-    };
-
-    autofillForm();
-});
-
+// Steps logic
+const stepMultiplier = 50;
 let currentStep = 0;
 document.addEventListener('DOMContentLoaded', function () {
     const main = document.querySelector('main');
     const indicators = document.querySelectorAll('.indicator');
-    const steps = document.querySelectorAll('section');
+    const steps = document.querySelectorAll('section[class^="step"]');
     const totalSteps = steps.length;
 
     const prevArrow = document.querySelector('#prev-arrow');
     const nextArrow = document.querySelector('#next-arrow');
 
-    // Função para atualizar slider, indicadores e setas
+    // Updates slider with x-transform onclick of a button
     function updateStep(step) {
         currentStep = step;
-        main.style.transform = `translateX(-${step * 33.33}%)`;
+        main.style.transform = `translateX(-${step * stepMultiplier}%)`;
 
         indicators.forEach((indicator, index) => {
             indicator.classList.toggle('active', index === step);
@@ -39,30 +24,27 @@ document.addEventListener('DOMContentLoaded', function () {
         nextArrow.disabled = currentStep === totalSteps - 1;
     }
 
-    // Função para validar os campos de um passo específico
+    // Validate steps input to see if can updateStep()
     function validateStep(stepIndex) {
         const stepForm = steps[stepIndex]?.querySelector('form');
         if (stepForm) {
-            // Verificar se o formulário tem botões com a classe 'square'
-            const paymentButtons = stepForm.querySelectorAll('.square');
+
+            const paymentButtons = stepForm.querySelectorAll('.square'); // .square class buttons
             const isPaymentSelected = Array.from(paymentButtons).some(button => button.classList.contains('active'));
 
-            // Caso seja o formulário de pagamento, verificar se há uma seleção
-            if (stepForm.id === 'payment-form' && !isPaymentSelected) {
-                return false;
-            }
+            // Validates form
+            if (stepForm.id === 'payment-form' && !isPaymentSelected) {    return false;   }
 
-            // Caso não seja um formulário de pagamento, verificar apenas a validade
             return stepForm.checkValidity();
         }
         return true;
     }
 
-    // Função chamada no onclick dos botões de cada step
+    // Onclick buttons to change steps
     window.step = function (targetStep = null) {
-        if (targetStep === null) return; // Garantia de evitar navegação indesejada
+        if (targetStep === null) return; // Need to specify targetStep
 
-        // Caso esteja avançando, validar todos os passos intermediários
+        // If continues, validate every step before
         if (targetStep > currentStep) {
             for (let i = currentStep; i < targetStep; i++) {
                 if (!validateStep(i)) {
@@ -71,8 +53,77 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         }
-
-        // Atualiza para o step desejado
         updateStep(targetStep);
     };
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    // URL params
+    const params = new URLSearchParams(window.location.search);
+
+    const autofillForm = () => {       
+        // Get inputs
+        const adultsInput = document.getElementById("adults");
+        const childrenInput = document.getElementById("children");
+        const babiesInput = document.getElementById("babies");
+        const checkinInput = document.getElementById("checkIn");
+        const checkoutInput = document.getElementById("checkOut");
+
+        // Inputs minimum values
+        const adultsMin = parseInt(adultsInput.getAttribute("min"), 10);
+        const childrenMin = parseInt(childrenInput.getAttribute("min"), 10);
+        const babiesMin = parseInt(babiesInput.getAttribute("min"), 10);
+        const checkinMin = checkinInput.getAttribute("min");
+        const checkinMax = checkinInput.getAttribute("max");
+
+        // inputs maximum values
+        const adultsMax = parseInt(adultsInput.getAttribute("max"), 10);
+        const childrenMax = parseInt(childrenInput.getAttribute("max"), 10);
+        const babiesMax = parseInt(babiesInput.getAttribute("max"), 10);
+        const checkoutMin = checkoutInput.getAttribute("min");
+        const checkoutMax = checkoutInput.getAttribute("max");
+
+        // Inputs minimum & maximum calculations + params
+        const adults = Math.min(adultsMax, Math.max(adultsMin, parseInt(params.get("adults") || "1", 10)));
+        const children = Math.min(childrenMax, Math.max(childrenMin, parseInt(params.get("children") || "0", 10)));
+        const babies = Math.min(babiesMax, Math.max(babiesMin, parseInt(params.get("babies") || "0", 10)));
+
+        // checkIn & checkOut params
+        let checkInValue = params.get("checkIn") || "";
+        let checkOutValue = params.get("checkOut") || "";
+
+        // checkIn & checkOut validation min and max values
+        if (checkinMin && new Date(checkInValue) < new Date(checkinMin)) {
+            checkInValue = checkinMin; // Set to min if it's before the allowed range
+        }
+        if (checkinMax && new Date(checkInValue) > new Date(checkinMax)) {
+            checkInValue = checkinMax; // Set to max if it's after the allowed range
+        }
+        if (checkoutMin && new Date(checkOutValue) < new Date(checkoutMin)) {
+            checkOutValue = checkoutMin; // Set to min if it's before the allowed range
+        }
+        if (checkoutMax && new Date(checkOutValue) > new Date(checkoutMax)) {
+            checkOutValue = checkoutMax; // Set to max if it's after the allowed range
+        }
+        // Ensure checkOut is at least one day after checkIn
+        const checkInDate = new Date(checkInValue);
+        const checkOutDate = new Date(checkOutValue);
+
+        if (checkOutDate <= checkInDate) {
+            checkInDate.setDate(checkInDate.getDate() + 1); // Add one day to checkIn
+            checkOutValue = checkInDate.toISOString().split("T")[0];
+        }
+
+        // Insert inputs values
+        adultsInput.value = adults;
+        childrenInput.value = children;
+        babiesInput.value = babies;
+        checkinInput.value = checkInValue;
+        checkoutInput.value = checkOutValue;
+    };
+
+    autofillForm(); // Fills .booking-form inputs
+    checkRequiredFields(); // Verify the values are valid, if is : enable button
+
 });

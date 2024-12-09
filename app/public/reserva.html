@@ -45,7 +45,7 @@
             </nav>
             <div class="main-div">
                 <header>
-                    <h1>Faça sua reserva</h1>
+                    <h1>Reserve já</h1>
                 </header>
 
                 <main>
@@ -62,16 +62,15 @@
                                     <span class="form-div">
                                         <label class="date-label" for="checkIn"><strong>Check-In:</strong></label>
                                         <input onfocus="this.type='date'; this.showPicker();" required 
-                                        onblur="this.type='text'; formatDate(this);"
+                                        onblur="this.type='text'; formatDate(this);" onclick="showPicker();" onchange="updateCheckout();"
                                         type="text" name="checkIn" class="datepicker-input" id="checkIn" placeholder="Check-In">
                                     </span>
                                     <span class="form-div">
                                         <label class="date-label" for="checkOut"><strong>Check-Out:</strong></label>
                                         <input onfocus="this.type='date'; this.showPicker();" required 
-                                        onblur="this.type='text'; formatDate(this);"
+                                        onblur="this.type='text'; formatDate(this);" onclick="showPicker();"
                                         type="text" name="checkOut" class="datepicker-input" id="checkOut" placeholder="Check-Out">
                                     </span>
-                                    
                                     
                                     <span class="form-div">
                                         <label for="adults"><strong>Adultos:</strong><br><small>13 anos ou mais</small></label>
@@ -101,8 +100,8 @@
                                         </div>
                                     </span>
         
-                                    <button id="submitButton" type="submit" 
-                                    class="form-btn gradient gradient-golden" onclick="submitForm()" disabled>ENVIAR</button>
+                                    <button id="submitButton" type="button" class="form-btn gradient gradient-golden"
+                                    onclick="step(currentStep + 1)" disabled>Forma de pagamento</button>
                                 
                                 </form>
         
@@ -125,21 +124,11 @@
                         </form>
                     </section>
 
-                    <section class="step3" id="step3">
-                        <div>
-                            <h2>Confirmação dos dados</h2>
-                            <div id="confirmation-details"></div>
-                            <button id="pagarBtn" class="custom-btn" type="submit">Pagar agora</button>
-                        </div>
-                    </section>
-
                 </main>
                 <div class="indicators">
                     <button onclick="step(currentStep - 1)" style="left: 40px;" id="prev-arrow" class="arrow" disabled><</button>
-                    <div onclick="step(0)" class="indicator active"></div>
-                    <div onclick="step(1)" class="indicator"></div>
-                    <div onclick="step(2)" class="indicator"></div>
-                    <div style="display: none;" onclick="step(3)" class="indicator"></div>
+                    <div onclick="step(0)" class="indicator active"></div> <!-- step 1 -->
+                    <div onclick="step(1)" class="indicator"></div> <!-- step 2 -->
                     <button onclick="step(currentStep + 1)" style="right: 40px;" id="next-arrow" class="arrow">></button>
                 </div>     
             </div>    
@@ -232,67 +221,7 @@
 </body>
 <script src="https://js.stripe.com/v3/"></script>
 <script src="./js/stripe.js"></script>
-<script src="./js/reserva.js"></script>
 <script src="./js/booking.js"></script>
-<script>
-
-function syncData() {
-    const data = {
-        reservationForm: document.getElementById("reservation-form"),
-        paymentForm: document.getElementById("payment-form"),
-        confirmationDetails: document.getElementById("confirmation-details"),
-        checkinInput: document.getElementById("checkin-date"),
-        checkoutInput: document.getElementById("checkout-date"),
-        adultsInput: document.getElementById("adults"),
-        childrenInput: document.getElementById("children"),
-        babiesInput: document.getElementById("babies") 
-    };
-
-    return data;
-}
-
-// Recuperar os dados do DOM
-const {
-    reservationForm,
-    paymentForm,
-    confirmationDetails,
-    checkinInput,
-    checkoutInput,
-    adultsInput,
-    childrenInput,
-    babiesInput
-} = syncData();
-
-// Step 2: Forma de pagamento
-let selectedPaymentMethod = "";
-
-// Step 3: Atualizar os detalhes de confirmação dinamicamente
-function updateConfirmation() {
-    confirmationDetails.innerHTML = `
-        <p><strong>Check-In:</strong> ${checkinInput.value || "Não selecionado"}</p>
-        <p><strong>Check-Out:</strong> ${checkoutInput.value || "Não selecionado"}</p>
-        <p><strong>Adultos:</strong> ${adultsInput.value || 0}</p>
-        <p><strong>Crianças:</strong> ${childrenInput.value || 0}</p>
-        <p><strong>Bebês:</strong> ${babiesInput.value || 0}</p>
-        <p><strong>Forma de pagamento:</strong> ${selectedPaymentMethod || "Não selecionada"}</p>
-    `;
-}
-
-// Adicionar evento de atualização para cada input relevante
-[checkinInput, checkoutInput, adultsInput, childrenInput, babiesInput].forEach(input => {
-    input.addEventListener("change", updateConfirmation);
-});
-
-// Atualizar o método de pagamento ao clicar
-paymentForm.querySelectorAll(".square").forEach(button => {
-    button.addEventListener("click", function () {
-        selectedPaymentMethod = this.querySelector("p").textContent;
-        updateConfirmation();
-    });
-});
-
-// Inicializar a atualização da confirmação
-updateConfirmation();
-
-</script>
+<script src="./js/reserva.js"></script>
+<script async>  document.addEventListener('DOMContentLoaded', () => {  formatDates();  })   </script>
 </html>

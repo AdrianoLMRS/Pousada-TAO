@@ -121,6 +121,7 @@ label.date-label {
 
 input.datepicker-input {
   text-align: end;
+  cursor: pointer;
   width: 130px;
   padding: 5px;
   border-radius: 5px;
@@ -135,22 +136,17 @@ input.datepicker-input {
   border-radius: 4px;
   height: 40px;
   cursor: pointer;
-  transition: color 300ms, border 300ms;
+  transition: all 300ms;
 }
 
-.form-btn:not(:disabled):hover { 
-  border: 1px solid var(--cor-verde, #28a745); 
-  color: hsl(134, 61%, 51%); 
-}
+.form-btn:not(:disabled):hover { border: 1px solid var(--cor-verde, #28a745); }
 
 .form-btn:disabled {
   opacity: 0.7;
   cursor: not-allowed;
 }
 
-.form-btn:disabled:hover { 
-  color: red; 
-}
+.form-btn:disabled:hover {  color: red; }
 
 /* .form-btn disabled popup to alert the user */
 .form-btn:disabled::after {
