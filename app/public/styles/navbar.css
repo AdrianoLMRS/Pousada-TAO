@@ -7,7 +7,7 @@ nav {
   top: 0;
   left: auto;
   text-transform: uppercase;
-  transition: top 0.3s ease-in, background-color 0.5s ease-in-out
+  transition: top 300ms ease, background-color 500ms ease-in-out
 }
 
 nav .logo {
@@ -15,9 +15,7 @@ nav .logo {
   height: 80px;
 }
 
-nav .fixed {
-  position: fixed;
-}
+nav .fixed {  position: fixed;  }
 
 nav ul {
   width: 100%;

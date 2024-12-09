@@ -1,36 +1,19 @@
-// Function to get URL parameters
-function getURLParams() {
-    // Create a new URLSearchParams object from the current window's URL
+document.addEventListener("DOMContentLoaded", () => {
+    // Obter os parâmetros da URL
     const params = new URLSearchParams(window.location.search);
-    const paramsObject = {};
 
-    // Loop through all the parameters and add them to the object
-    params.forEach((value, key) => {
-        paramsObject[key] = value;
-    });
+    // Função para preencher os campos do formulário
+    const autofillForm = () => {
+        document.getElementById("checkIn").value = params.get("checkIn") || "";
+        document.getElementById("checkOut").value = params.get("checkOut") || "";
+        document.getElementById("adults").value = params.get("adults") || 1;
+        document.getElementById("children").value = params.get("children") || 0;
+        document.getElementById("babies").value = params.get("babies") || 0;
 
-    // Return the object with URL parameters
-    return paramsObject;
-}
+    };
 
-// Function to autofill the form with URL parameters
-function autofillForm() {
-    const params = getURLParams();
-
-    // Autofill each form field
-    if (params.checkIn) document.getElementById("checkin-date").value = params.checkIn;
-    if (params.checkOut) document.getElementById("checkout-date").value = params.checkOut;
-    if (params.adults) document.getElementById("adults").value = params.adults;
-    if (params.children) document.getElementById("children").value = params.children;
-    if (params.babies) document.getElementById("babies").value = params.babies;
-}
-
-// Run autofillForm when the page loads
-window.onload = autofillForm; 
-
-
-
-
+    autofillForm();
+});
 
 let currentStep = 0;
 document.addEventListener('DOMContentLoaded', function () {
@@ -93,40 +76,3 @@ document.addEventListener('DOMContentLoaded', function () {
         updateStep(targetStep);
     };
 });
-
-
-
-// JavaScript to handle the increment and decrement functionality
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.quantity').forEach(quantityContainer => {
-        const input = quantityContainer.querySelector('input[type="number"]');
-        const btnUp = quantityContainer.querySelector('.quantity-up');
-        const btnDown = quantityContainer.querySelector('.quantity-down');
-        
-        const min = parseFloat(input.getAttribute('min')) || 0;
-        const max = parseFloat(input.getAttribute('max')) || Infinity;
-      
-        btnUp.addEventListener('click', () => {
-            let value = parseFloat(input.value) || min;
-            if (value < max) {
-                input.value = value + 1;
-                input.dispatchEvent(new Event('change'));
-            }
-        });
-      
-        btnDown.addEventListener('click', () => {
-            let value = parseFloat(input.value) || min;
-            if (value > min) {
-                input.value = value - 1;
-                input.dispatchEvent(new Event('change'));
-            }
-        });
-
-        input.addEventListener('blur', () => {
-            let value = parseFloat(input.value) || min;
-            input.value = Math.max(min, Math.min(value, max));
-        });
-    });
-})
-  
-

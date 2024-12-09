@@ -53,6 +53,7 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+  align-items: center;
   position: relative;
   max-width: 100vw;
   min-height: 100vh;
@@ -151,8 +152,17 @@ body > * {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.hidden {
-  display: none !important;
+.hidden {  display: none !important;  }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 .custom-btn {

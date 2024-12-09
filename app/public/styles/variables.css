@@ -8,6 +8,7 @@
   --cor-laranja: #debc47;
   --cor-atencao: gold;
   --cor-txt: #191516;
+  --cor-verde: #28a745;
   --gradient-1: linear-gradient(to right, var(var(--cor-azul-escuro)), var(--cor-branco));
   --gradient-2: linear-gradient(to right, var(var(--cor-roxo)), var(--cor-branco));
   --gradient-3: linear-gradient(to right, var(var(--cor-roxo)), var(--cor-laranja));

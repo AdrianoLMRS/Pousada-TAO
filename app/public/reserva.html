@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="styles/variables.css">
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="styles/reserva.css">
+        <link rel="stylesheet" href="styles/booking.css">
         <link rel="stylesheet" href="styles/navbar.css">
         <link rel="stylesheet" href="styles/footer.css">
 
@@ -50,49 +51,64 @@
                 <main>
                     
                     <section class="step1" id="step1">
-                        <div class="form-container">
-                            <h2>Reserva de Quarto</h2>
-                            <!-- Formulário de reserva -->
-                            <form  id="reservation-form">
-                                <div class="form-div">
-                                    <label for="checkin-date">Check-In:</label>
-                                    <input  class="gradient" type="date" id="checkin-date" name="checkin-date" required><br><br>
-                                </div>
+                        <section class="booking-section montserrat-text">
 
-                                <div class="form-div">
-                                    <label for="checkout-date">Check-Out:</label>
-                                    <input  class="gradient" type="date" id="checkout-date" name="checkout-date" required><br><br>
-                                </div>
-
-                                <div class="number-input form-div">
-                                    <label for="adults">Adultos:</label>
-                                    <div class="quantity">
-                                        <button type="button" class="quantity-button quantity-down">-</button>
-                                        <input type="number" id="adults" name="adults" min="1" max="10" value="1" required>
-                                        <button type="button" class="quantity-button quantity-up">+</button>
-                                    </div>
-                                </div>
-
-                                <div class="number-input form-div">
-                                    <label for="children">Crianças:</label>
-                                    <div class="quantity">
-                                        <button type="button" class="quantity-button quantity-down">-</button>
-                                        <input type="number" id="children" name="children" min="0" max="10" value="0"><br><br>
-                                        <button type="button" class="quantity-button quantity-up">+</button>
-                                    </div>
-                                </div>   
-
-                                <div class="number-input form-div">
-                                    <label for="babies">Bebês:</label>
-                                    <div class="quantity">
-                                        <button type="button" class="quantity-button quantity-down">-</button>
-                                        <input type="number" id="babies" name="babies" min="0" max="10" value="0"><br><br>
-                                        <button type="button" class="quantity-button quantity-up">+</button>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
+                            <div class="form-content">
+        
+                                <h2 class="sr-only">Quem está vindo?</h2>
+        
+                                <form class="booking-form" action="javascript:void(0);" method="javascript:void(0);">
+        
+                                    <span class="form-div">
+                                        <label class="date-label" for="checkIn"><strong>Check-In:</strong></label>
+                                        <input onfocus="this.type='date'; this.showPicker();" required 
+                                        onblur="this.type='text'; formatDate(this);"
+                                        type="text" name="checkIn" class="datepicker-input" id="checkIn" placeholder="Check-In">
+                                    </span>
+                                    <span class="form-div">
+                                        <label class="date-label" for="checkOut"><strong>Check-Out:</strong></label>
+                                        <input onfocus="this.type='date'; this.showPicker();" required 
+                                        onblur="this.type='text'; formatDate(this);"
+                                        type="text" name="checkOut" class="datepicker-input" id="checkOut" placeholder="Check-Out">
+                                    </span>
+                                    
+                                    
+                                    <span class="form-div">
+                                        <label for="adults"><strong>Adultos:</strong><br><small>13 anos ou mais</small></label>
+                                        <div class="quantity">
+                                            <button type="button" class="quantity-button quantity-down">-</button>
+                                            <input required name="adults" value="1" min="1" max="10" 
+                                            type="number" id="adults" placeholder="1">
+                                            <button type="button" class="quantity-button quantity-up">+</button>
+                                        </div>
+                                    </span>
+                                    <span class="form-div">
+                                        <label for="children"><strong>Crianças:</strong><br><small>De 2 a 12 anos</small></label>
+                                        <div class="quantity">
+                                            <button type="button" class="quantity-button quantity-down">-</button>
+                                            <input value="0" min="0" max="10" type="number"
+                                            name="children" id="children" placeholder="0">
+                                            <button type="button" class="quantity-button quantity-up">+</button>
+                                        </div>
+                                    </span>
+                                    <span class="form-div">
+                                        <label for="babies"><strong>Bebês:</strong><br><small>Menor de 2</small></label>
+                                        <div class="quantity">
+                                            <button type="button" class="quantity-button quantity-down">-</button>
+                                            <input value="0" min="0" max="10" type="number"
+                                            name="babies" id="babies" placeholder="0">
+                                            <button type="button" class="quantity-button quantity-up">+</button>
+                                        </div>
+                                    </span>
+        
+                                    <button id="submitButton" type="submit" 
+                                    class="form-btn gradient gradient-golden" onclick="submitForm()" disabled>ENVIAR</button>
+                                
+                                </form>
+        
+                            </div>
+        
+                        </section>
                     </section>
 
                     <section class="step2" id="step2">
@@ -217,6 +233,7 @@
 <script src="https://js.stripe.com/v3/"></script>
 <script src="./js/stripe.js"></script>
 <script src="./js/reserva.js"></script>
+<script src="./js/booking.js"></script>
 <script>
 
 function syncData() {
