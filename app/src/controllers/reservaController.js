@@ -7,16 +7,28 @@
 
 // Function to create a session when customerId exists (using customerId)
 async function sessionWithId(customerId, totalPrice, checkin, checkout, adults, children, babies, paymentMethod) {
+    let productName = `Reserva: ${adults} adulto(s)`;
+
+    if (children > 0) {
+        productName += `, ${children} criança(s)`;
+    }
+
+    if (babies > 0) {
+        productName += `, ${babies} bebê(s);`;
+    }
+
+    const productData = {
+        name: productName,
+        description: `Check-In: ${checkin.toLocaleDateString('pt-BR')} || Check-Out: ${checkout.toLocaleDateString('pt-BR')}`,
+    };
+    
     return await stripe.checkout.sessions.create({
         payment_method_types: [paymentMethod],
         line_items: [
             {
                 price_data: {
                     currency: 'brl',
-                    product_data: {
-                        name: `Reserva para ${adults} adultos, ${children} crianças e ${babies} bebês`,
-                        description: `Check-In: ${checkin.toLocaleDateString('pt-BR')}, Check-Out: ${checkout.toLocaleDateString('pt-BR')}`,
-                    },
+                    product_data: productData,
                     unit_amount: totalPrice,
                 },
                 quantity: 1,
@@ -40,25 +52,36 @@ async function sessionWithId(customerId, totalPrice, checkin, checkout, adults, 
         locale: 'pt', 
         custom_text: {
             submit: {
-            message: 'Pagar Agora',
+                message: `Dados : ${adults} adultos, ${children} crianças e ${babies} bebês. Check-In: ${checkin.toLocaleDateString('pt-BR')} Check-Out: ${checkout.toLocaleDateString('pt-BR')}`,
             },
         },
     });
 }
 
 // Function to create a session without customerId (normal session)
-// Function to create a session without customerId (normal session)
 async function sessionNormal(totalPrice, checkin, checkout, adults, children, babies, paymentMethod) {
+    let productName = `Reserva: ${adults} adulto(s)`;
+
+    if (children > 0) {
+        productName += `, ${children} criança(s)`;
+    }
+
+    if (babies > 0) {
+        productName += `, ${babies} bebê(s);`;
+    }
+
+    const productData = {
+        name: productName,
+        description: `Check-In: ${checkin.toLocaleDateString('pt-BR')} || Check-Out: ${checkout.toLocaleDateString('pt-BR')}`,
+    };
+
     return await stripe.checkout.sessions.create({
         payment_method_types: [paymentMethod],
         line_items: [
             {
                 price_data: {
                     currency: 'brl',
-                    product_data: {
-                        name: `Reserva para ${adults} adultos, ${children} crianças e ${babies} bebês`,
-                        description: `Check-In: ${checkin.toLocaleDateString('pt-BR')}, Check-Out: ${checkout.toLocaleDateString('pt-BR')}`,
-                    },
+                    product_data: productData,
                     unit_amount: totalPrice,
                 },
                 quantity: 1,
@@ -82,9 +105,10 @@ async function sessionNormal(totalPrice, checkin, checkout, adults, children, ba
         locale: 'pt', // Idioma português
         custom_text: {
             submit: {
-            message: 'Pagar Agora',
+                message: `Dados : ${adults} adultos, ${children} crianças e ${babies} bebês. Check-In: ${checkin.toLocaleDateString('pt-BR')} Check-Out: ${checkout.toLocaleDateString('pt-BR')}`,
             },
         },
+        
     });
 }
 

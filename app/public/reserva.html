@@ -62,17 +62,19 @@
         
                                     <span class="form-div">
                                         <label class="date-label" for="checkIn"><strong>Check-In:</strong></label>
-                                        <input onfocus="this.type='date'; this.showPicker();" required 
-                                        onblur="this.type='text'; formatDate(this);" onclick="showPicker();" onchange="updateCheckout();"
+                                        <input onfocus="this.type='date'; this.showPicker();" required onchange="updateCheckOutMin();"
+                                        onblur="this.type='text'; formatDate(this); updateTotalLiveValues();" onclick="showPicker();" 
                                         type="text" name="checkIn" class="datepicker-input" id="checkIn" placeholder="Check-In">
                                     </span>
                                     <span class="form-div">
                                         <label class="date-label" for="checkOut"><strong>Check-Out:</strong></label>
                                         <input onfocus="this.type='date'; this.showPicker();" required 
-                                        onblur="this.type='text'; formatDate(this);" onclick="showPicker();"
+                                        onblur="this.type='text'; formatDate(this); updateTotalLiveValues();" onclick="showPicker();"
                                         type="text" name="checkOut" class="datepicker-input" id="checkOut" placeholder="Check-Out">
                                     </span>
-                                    
+
+
+
                                     <span class="form-div">
                                         <label for="adults"><strong>Adultos:</strong><br><small>13 anos ou mais</small></label>
                                         <span class="liveValue" id="adultsLive"></span> <!-- For calculating value per adult in real time -->

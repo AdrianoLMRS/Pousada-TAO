@@ -156,6 +156,59 @@ function formatDate(input) {
     }
 }
 
+
+/**
+ * Updates the minimum check-out date based on the selected check-in date.
+ * This function ensures that the check-out date is always at least one day after the check-in date.
+ * It also adjusts the check-out date if it's before or equal to the new minimum date.
+ * 
+ * @function
+ * @name updateCheckOutMin
+ * @description Updates the minimum check-out date and adjusts the check-out date if necessary.
+ * @returns {void} This function returns nothing.
+ */
+function updateCheckOutMin() {
+    const checkInDate = new Date(document.getElementById('checkIn').value); // CheckIn date
+    const checkOutInput = document.getElementById('checkOut');
+
+    if (!checkInDate) return; // CheckIn date validation
+
+    // Min value for checkOut date is one day after checkIn date
+    checkInDate.setDate(checkInDate.getDate() + 1);
+    const minCheckOutDate = checkInDate.toISOString().split('T')[0]; // YYYY-MM-DD (ISO format)
+    checkOutInput.setAttribute('min', minCheckOutDate);
+
+    // If checkOut date is before checkIn date
+    if (checkOutInput.value && new Date(checkOutInput.value) <= checkInDate) {
+        checkOutInput.value = minCheckOutDate; // checkOut value
+    }
+
+        const checkIn = document.getElementById('checkIn');
+        const checkOut = document.getElementById('checkOut');
+
+        if (checkIn.value) {
+            const checkInDate = new Date(checkIn.value);
+            checkInDate.setDate(checkInDate.getDate() + 1); // Add one more day
+
+            // Formats date to ISO format : YYYY-MM-DD
+            const year = checkInDate.getFullYear();
+            const month = (checkInDate.getMonth() + 1).toString().padStart(2, '0');
+            const day = (checkInDate.getDate() + 1).toString().padStart(2, '0');
+            const nextDay = `${year}-${month}-${day}`;
+
+            // Verify if checkin value is > checkOut value
+            if (new Date(checkIn.value) > new Date(checkOut.value)) {
+                checkOut.value = nextDay; // Checkout to tommorow
+                formatDate(checkOut); // Formats date to brazilian format DD-MM-YYYY
+            }
+
+            checkOut.setAttribute('min', nextDay); // CheckOut minimum date is one day tomorrow checkIn date
+        }
+        formatDate(checkOut); // Formats date to brazilian format DD-MM-YYYY 
+}
+
+
+// Function executed onload to format the booking-form dates to brazilian format DD-MM-YYYY
 async function formatDates() {
     // Wait 1 second before formatting the dates
     await new Promise(resolve => setTimeout(resolve, 1000));

@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 });
 
-
+// Get parameters from url and fill </form>
 document.addEventListener("DOMContentLoaded", () => {
     // URL params
     const params = new URLSearchParams(window.location.search);
