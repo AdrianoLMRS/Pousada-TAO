@@ -44,7 +44,7 @@
                 </ul>
             </nav>
             <div class="main-div">
-                <header>
+                <header style="margin-top: 15px;">
                     <h1>Reserve já</h1>
                 </header>
 
@@ -114,7 +114,7 @@
                     <section class="step2" id="step2">
                         <div style="position: relative;">
                             <h2>Forma de pagamento</h2>
-                            <button class="back-btn custom-btn" type="button">&#8592; Voltar</button>
+                            <button onclick="step(currentStep - 1)" class="back-btn" type="button"><span>&#8678;</span><u>Voltar</u></button>
                         </div>
                         <form action="/reserva/checkout" method="POST"
                         class="payment" id="payment-form">
