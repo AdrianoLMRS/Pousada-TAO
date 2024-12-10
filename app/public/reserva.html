@@ -75,22 +75,25 @@
                                     
                                     <span class="form-div">
                                         <label for="adults"><strong>Adultos:</strong><br><small>13 anos ou mais</small></label>
+                                        <span class="liveValue" id="adultsLive"></span> <!-- For calculating value per adult in real time -->
                                         <div class="quantity">
                                             <button type="button" class="quantity-button quantity-down">-</button>
-                                            <input required name="adults" value="1" min="1" max="10" 
+                                            <input required name="adults" value="1" min="1" max="10" onchange="updateLiveValues(this); updateTotalLiveValues()" 
                                             type="number" id="adults" placeholder="1">
                                             <button type="button" class="quantity-button quantity-up">+</button>
                                         </div>
                                     </span>
                                     <span class="form-div">
                                         <label for="children"><strong>Crianças:</strong><br><small>De 2 a 12 anos</small></label>
+                                        <span class="liveValue" id="childrenLive"></span> <!-- For calculating value per children in real time -->
                                         <div class="quantity">
                                             <button type="button" class="quantity-button quantity-down">-</button>
-                                            <input value="0" min="0" max="10" type="number"
+                                            <input value="0" min="0" max="10" type="number" onchange="updateLiveValues(this); updateTotalLiveValues()"
                                             name="children" id="children" placeholder="0">
                                             <button type="button" class="quantity-button quantity-up">+</button>
                                         </div>
-                                    </span>
+                                    </span>                                      
+                                        
                                     <span class="form-div">
                                         <label for="babies"><strong>Bebês:</strong><br><small>Menor de 2</small></label>
                                         <div class="quantity">
@@ -100,9 +103,12 @@
                                             <button type="button" class="quantity-button quantity-up">+</button>
                                         </div>
                                     </span>
-        
-                                    <button id="submitButton" type="button" class="form-btn gradient gradient-golden"
-                                    onclick="step(currentStep + 1);" disabled>Forma de pagamento</button>
+                                    <div class="flex-submit">
+                                        <span for="submitButton" class="totalValue" id="totalValue"></span>
+                                        <button id="submitButton" type="button" class="form-btn gradient gradient-golden"
+                                        onclick="step(currentStep + 1);" disabled>Forma de pagamento</button>
+                                        <label class="sr-only" for="submitButton">Ir para o formulário forma de pagamento</label>
+                                    </div>
                                 
                                 </form>
         
@@ -231,6 +237,12 @@
         const scrollHide = () => {
         if (isMobile()) hideSidebar();
         };
+    </script>
+    <script>
+        function convertToISO(dateStr) {
+            const [day, month, year] = dateStr.split('-');
+            return `${year}-${month}-${day}`;
+        }
     </script>
 </body>
 <script src="https://js.stripe.com/v3/"></script>

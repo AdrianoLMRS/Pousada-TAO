@@ -2,11 +2,6 @@ const TEST_KEY = 'pk_test_51QL7dYH40HYEkt7KrSCog4qpidBop00Nj8wYTSk8HIlPvoSWonn5F
 const BASE_URL = `${window.location.protocol}//${window.location.host}`;
 const stripe = Stripe(TEST_KEY);
 
-function convertToISO(dateStr) {
-    const [day, month, year] = dateStr.split('-');
-    return `${year}-${month}-${day}`;
-  }
-
 // Função para capturar os dados do formulário e criar a sessão de checkout
 document.querySelectorAll(".stripeBtn").forEach(button => {
     button.addEventListener("click", async (event) => {

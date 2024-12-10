@@ -128,4 +128,107 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+// * BOOKING-FORM LIVEVALUES
+
+// Price per person in BRL (R$)
+const adultPrice = 150; // BRL
+const childPrice = 75; // BRL
+
+// Function to update the values in #adults & #children HTML elements
+function updateLiveValues(inputElement) {
+    const inputId = inputElement.id; // ID of the input that was changed
+  
+    // Identifies the corresponding live value element
+    let liveValueElement;
+    let pricePerPerson;
+  
+    if (inputId === "adults") {
+        // Adults element
+      liveValueElement = document.getElementById("adultsLive");
+      pricePerPerson = adultPrice;
+    } else if (inputId === "children") {
+        // Children element
+      liveValueElement = document.getElementById("childrenLive");
+      pricePerPerson = childPrice;
+    }
+  
+    if (liveValueElement && pricePerPerson) {
+      const quantity = parseInt(inputElement.value) || 0;
+  
+      // If the quantity is greater than 0, calculate the total; otherwise, leave it empty
+      if (quantity > 0) {
+        const total = quantity * pricePerPerson;
+        liveValueElement.innerHTML = `${total},00<small>/noite</small>`;
+        liveValueElement.style.opacity = '1'
+      } else {
+        liveValueElement.style.opacity = '0'
+        // setTimeout() here because of opacity css animation
+        setTimeout(() => {
+            liveValueElement.textContent = ""; // Clears the text if the quantity is 0 or invalid
+        }, '500')
+      }
+    }
+}  
+
+// Returns the difference between checkIn & checkOut in days
+// Used in updateTotalLiveValues()
+function calculateDaysBetweenDates() {
+  const checkInInput = document.getElementById("checkIn");
+  const checkOutInput = document.getElementById("checkOut");
+
+  const checkInDate = new Date(convertToISO(checkInInput.value)); // Converts dates to ISO format
+  const checkOutDate = new Date(convertToISO(checkOutInput.value)); // Converts dates to ISO format
+
+  // Validation
+  if (!isNaN(checkInDate) && !isNaN(checkOutDate) && checkOutDate > checkInDate) {
+    // Difference in miliseconds
+    const timeDifference = checkOutDate.getTime() - checkInDate.getTime();
+    // Convert to days
+    const days = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+    return days;
+  }
+
+  return 0; // If no dates
+}
+
+// Updates #totalValueElement based on .liveValues HTML elements
+// TODO : Verify why only works after 1001 miliseconds
+function updateTotalLiveValues() {
+    const liveValueElements = document.querySelectorAll(".liveValue");
+    const totalValueElement = document.getElementById("totalValue");
+  
+    const days = calculateDaysBetweenDates(); // returns the days difference between checkIn & checkOut
+    let total = 0;
+  
+    liveValueElements.forEach((element) => {
+      const valueText = element.textContent.replace("R$", "").replace(",", ".").trim();
+      const value = parseFloat(valueText) || 0;
+      total += value;
+    });
+  
+    total *= days; // Multioplies per day difference (good to reserva logic)
+  
+    // total value in #totalValueElement
+    totalValueElement.textContent = total > 0 ? `Total: R$${total.toFixed(2)}` : "";
+}
+
+// Initial functions calls
+document.addEventListener("DOMContentLoaded", () => {
+    const adultsInput = document.getElementById("adults");
+    const childrenInput = document.getElementById("children");
+
+    updateLiveValues(adultsInput);
+    updateLiveValues(childrenInput);
+
+    /* 
+        * updateTotalLiveValues(); Does not work for some reason...
+        * Need to simulate user click the buttom in #adults...
+    */
+    setTimeout(() => {
+        document.querySelector('.quantity #adults + button').click();
+        document.querySelector('.quantity-down').click();
+    }, '1001');
+});
+
+
 
