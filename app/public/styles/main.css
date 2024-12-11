@@ -461,7 +461,9 @@ main > *:not(:first-child):not(.booking-form) {
 
 .localizacao h2 + div {
   height: 70vh;
-  width: 100%;
+  max-height: 800px;
+  width: 80vw;
+  max-width: 1000px;
   display: flex;
   flex-direction: row;
 }
@@ -492,7 +494,7 @@ main > *:not(:first-child):not(.booking-form) {
   transition: background 200ms;
 }
 
-.iframe-buttons button img {  width: 3vw;  height: auto;  }
+.iframe-buttons button img {  width: 32px;  height: auto;  }
 
 .iframe-buttons button.active {  background: #237c95;  }
 

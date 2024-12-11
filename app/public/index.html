@@ -34,7 +34,7 @@
 
     <div class="content">
     
-        <nav id="navbar" style="max-width: 3500px;">
+        <nav tabindex="0" id="navbar" style="max-width: 3500px;">
             <ul class="sidebar">
                 <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
                 <li onclick=hideSidebar() id="nav-reserva" style="border-radius: 0; margin-bottom: 4vh; margin-top: 4vh;">
@@ -283,7 +283,7 @@
                             <li translate="no"><button type="button" class="gallery-Btn custom-btn" data-category="campos-do-jordaoImg">Campos do Jordão</button></li>
                         </ul>
                     </header>
-                    <section id="img-gallery0" class="img-gallery">
+                    <section id="img-gallery0" class="img-gallery" tabindex="0">
                         <img class="gallery-item pousadaImg" src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901670/fachada-da-pousada_r0hpto.png" alt="Fachada da Pousada TAO">
                         <img class="gallery-item pousadaImg" src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901662/6617f251dd019_2fachadalocao_q5kdtk.jpg" alt="Local fachada Pousada TAO">
                         <img class="gallery-item pousadaImg" src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901663/6617f2890836e_3Varandaromeiros940x788_wkzdfe.png" alt="Varanda Pousada TAO">
@@ -456,12 +456,21 @@
             </div>
         </footer>
         
-        <!-- Translations with GTranslate -->
-        <div id="gtranslate"  class="gtranslate_wrapper"></div>
-        <script>window.gtranslateSettings = {"default_language":"pt","detect_browser_language":true,"languages":["pt","es","en"],"wrapper_selector":".gtranslate_wrapper","alt_flags":{"pt":"brazil"}}</script>
-        <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
-        <style>  @media (hover: hover) {  #gtranslate { opacity: 0.4; transition: opacity 200ms; }  #gtranslate:hover { opacity: 1; }  }  </style>
-        
+        <div class="widgets" id="widgets" style="display: contents;">
+            <!-- Translations with GTranslate -->
+            <div id="gtranslate"  class="gtranslate_wrapper"></div>
+            <script>window.gtranslateSettings = {"default_language":"pt","detect_browser_language":true,"languages":["pt","es","en"],"wrapper_selector":".gtranslate_wrapper","alt_flags":{"pt":"brazil"}}</script>
+            <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+            <style> #gtranslate { white-space: nowrap; }  @media (hover: hover) {  #gtranslate { opacity: 0.4; transition: opacity 200ms; }  #gtranslate:hover { opacity: 1; }  }  </style>
+            
+            <!-- Whatsapp floating button -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+            <a href="https://api.whatsapp.com/send?phone=5511991369956&text=Ol%C3%A1%21%20Gostaria%20de%20saber%20mais%20sobre%20a%20pousada" class="float" target="_blank">
+            <i class="fa fa-whatsapp my-float"></i>
+            </a>
+        </div>
+
+
     </div>
 
 <!-- *SCRIPTS* -->
