@@ -1,7 +1,7 @@
-// *Dependecies
+// *Dependencies
     const Reservation = require('../db/models/reservaModel'); // Imports Reservation Model
     const User = require('../db/models/User'); // Imports User model
-    const { decrypt } = require('./bcryptUtils');
+    const { encrypt } = require('./bcryptUtils');
 
 // Utility function to create or update a user in the database
 const createOrUpdateUser = async (customer) => {
@@ -29,10 +29,15 @@ const createOrUpdateUser = async (customer) => {
       await user.save();
       console.log('User saved or updated successfully:', user);
 
-  } catch (err) {
-      console.error('Error saving user to MongoDB:', err);
-      throw new Error('User creation or update failed');
-  }
+    } catch (err) {
+        if (err.code === 11000) { // Check for duplicate key error (probaly e-mail)
+            console.warn(`\nDuplicate key , proceding without creating user in DB\n: ${err.message}`);
+            // TODO : Handle duplicate error (e.g., inform the user that the email already exists)
+        } else {
+            console.error('Error saving user to MongoDB:', err);
+            throw err; // Program breaks
+        }
+    }
 };
 
 // Utility function to save a reservation in the database
@@ -60,21 +65,22 @@ const saveReservation = async (session) => {
   }
 };
 
-
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // Mongoose for cacheSchema
 
 const CacheSchema = new mongoose.Schema({
-    customerId: { type: String, required: true },
-    sessionId: { type: String, required: true },
-}, { timestamps: true }); // Timestamps no formato correto
+    customerId: { type: String, required: true }, // STRIPE customerId
+    sessionId: { type: String, required: true }, // cs_ sessionId STRIPE
+    hash: {type: String, required: true}, // Hash of STRIPE customerId
+}, { timestamps: true }); // Timestamps
 
-// Modelo baseado no esquema
+// Model based on the schema
 const Cache = mongoose.model('Cache', CacheSchema);
 
-// Função para salvar ou atualizar os dados na coleção "cache"
+// Function to save or update data in the "cache" collection
 const saveCacheData = async (customerId, sessionId) => {
     try {
-        const newCache = new Cache({ customerId, sessionId });
+        const hash = await encrypt(sessionId);
+        const newCache = new Cache({ customerId, sessionId, hash }); // Saves sessionId 2 times (normal & hash)
         await newCache.save();
 
         console.log('Cache data saved/updated.');
@@ -83,6 +89,7 @@ const saveCacheData = async (customerId, sessionId) => {
     }
 };
 
+// Exports all functions || schemas
 module.exports = {
   createOrUpdateUser,
   saveReservation,

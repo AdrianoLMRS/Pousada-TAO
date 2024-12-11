@@ -33,7 +33,7 @@ router.get('/set-cookies', async (req, res) => {
 
     try {
         // returns cache
-        const cacheEntry = await validateCs(cs)
+        const cacheEntry = await validateCs(cs);
 
         // Extrair o customerId do documento encontrado
         const { customerId } = cacheEntry;
@@ -54,6 +54,11 @@ router.get('/set-cookies', async (req, res) => {
         res.redirect('/profile'); // Redirects user to /profile after cookie
     } catch (error) {
         console.error('Error setting cookie:', error.message);
+        // Customize the response based on the error
+        if (error.message === 'Session ID not found in cache.') {
+            return res.status(404).json({ message: 'Session ID not found.' }); // Specific error for cache miss
+        }
+        // Default error message for other issues
         res.status(500).json({ message: 'Internal server error.' });
     }
 });

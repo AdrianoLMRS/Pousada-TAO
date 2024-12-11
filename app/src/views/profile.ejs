@@ -5,24 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil do Usuário</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: snow;
+        body { font-size: large; }
+        .mega-wrapper { 
+            min-height: 90dvh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         .container {
             max-width: 800px;
             margin: 20px auto;
-            background: #fff;
+            margin-top: 50px;
+            background: snow;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        h1 {
+        h1, h2 {
             text-align: center;
             color: #333;
         }
+        h2 { margin-top: 5%; margin-bottom: 5%; }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -38,6 +42,9 @@
         }
         .profile-info {
             margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
         .btn {
             display: flex;
@@ -58,52 +65,162 @@
             all: unset;
         }
     </style>
+    <link rel="stylesheet" href="styles/variables.css">""
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Perfil do Usuário</h1>
+    <div class="content">
 
-        <div class="profile-info">
-            <p><strong>Nome:</strong> <%= user.name %></p>
-            <p><strong>Email:</strong> <%= user.email %></p>
-            <p><strong>Telefone:</strong> <%= user.phone %></p>
-            <p><strong>ID do Cliente:</strong> <%= user.customerId %></p>
-            <p><strong>Endereço:</strong> <%= user.address || 'N/A' %></p>
+        <nav tabindex="0" id="navbar" style="max-width: 3500px; background-color: var(--cor-txt, black);">
+            <ul class="sidebar">
+                <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
+                <li onclick=hideSidebar() id="nav-reserva" style="border-radius: 0; margin-bottom: 4vh; margin-top: 4vh;">
+                    <a class="" style="-webkit-text-stroke: 1.5px;" href="#">Reservar</a></li>
+                <li onclick=hideSidebar()><a href="/">Home</a></li>
+                <li onclick=hideSidebar()><a href="#sobre">A Pousada</a></li>
+                <li onclick=hideSidebar()><a href="#depoimentos">Acomodações</a></li>
+                <li onclick=hideSidebar()><a href="#fotos">Fotos</a></li>
+                <li onclick=hideSidebar()><a href="#localizacao">Localização</a></li>
+            </ul>
+            
+            <ul class="desktop">
+                <li style="left: 0; cursor: pointer;" class="fixed"><a href="#">
+                    <img style="margin-top: 20%;" class="logo" loading="eager" src="https://res.cloudinary.com/dycnoic1s/image/upload/w_150,h_120,q_100/v1732903554/elemento_flor.fw_2_wr5wtf.png" alt="Logotipo Pousada TAO">
+                </a></li>
+                <li class="hideOnMobile"><a href="/">Home</a></li>
+                <li class="hideOnMobile"><a href="#sobre">A Pousada</a></li>
+                <li class="hideOnMobile"><a href="#acomodacoes">Acomodações</a></li>
+                <li class="hideOnMobile"><a href="#fotos">Fotos</a></li>
+                <li style="margin-right: 175px;" class="hideOnMobile"><a href="#localizacao">Localização</a></li>
+                <li style="border-radius: 0; border-bottom-left-radius: 15px;" id="nav-reserva" class="hideOnMobile fixed gradient gradient-golden"><a href="#">Reservar</a></li>
+                <li style="cursor: pointer;" class="menu-button" onclick=showSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
+            </ul>
+        </nav>
+
+        <div class="mega-wrapper">
+            <div class="container">
+                <h1>Perfil do Usuário</h1>
+
+                <div class="profile-info">
+                    <p><strong>Nome:</strong> <%= user.name %></p>
+                    <p><strong>Email:</strong> <%= user.email %></p>
+                    <p><strong>Telefone:</strong> <%= user.phone %></p>
+                    <p><strong>ID do Cliente:</strong> <%= user.customerId %></p>
+                    <p><strong>Endereço:</strong> <%= user.address || 'N/A' %></p>
+                </div>
+
+                <h2>Suas Reservas</h2>
+                <% if (reservations.length > 0) { %>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Check-In</th>
+                                <th>Check-Out</th>
+                                <th>Adultos</th>
+                                <th>Menores</th>
+                                <th>Valor Total</th>
+                                <th>Status do Pagamento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% reservations.forEach(reservation => { %>
+                                <tr>
+                                    <td><%= reservation.checkIn %></td>
+                                    <td><%= reservation.checkOut %></td>
+                                    <td><%= reservation.adults %></td>
+                                    <td><%= reservation.children + reservation.babies %></td>
+                                    <td>R$<%= reservation.totalAmount.toFixed(2) %></td>
+                                    <td><%= reservation.paymentStatus %></td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                <% } else { %>
+                    <p>Nenhuma reserva encontrada.</p>
+                <% } %>
+            </div>
+            <div class="btn">
+                <button onclick="window.location.href='/reserva'"><a href="/reserva">FAZER NOVA RESERVA</a></button>
+                <button onclick="window.location.href='/'"><a href="/">Home page</a></button>
+            </div>
         </div>
 
-        <h2>Suas Reservas</h2>
-        <% if (reservations.length > 0) { %>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Check-In</th>
-                        <th>Check-Out</th>
-                        <th>Adultos</th>
-                        <th>Menores</th>
-                        <th>Valor Total</th>
-                        <th>Status do Pagamento</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% reservations.forEach(reservation => { %>
-                        <tr>
-                            <td><%= reservation.checkIn %></td>
-                            <td><%= reservation.checkOut %></td>
-                            <td><%= reservation.adults %></td>
-                            <td><%= reservation.children + reservation.babies %></td>
-                            <td>R$<%= reservation.totalAmount.toFixed(2) %></td>
-                            <td><%= reservation.paymentStatus %></td>
-                        </tr>
-                    <% }); %>
-                </tbody>
-            </table>
-        <% } else { %>
-            <p>Nenhuma reserva encontrada.</p>
-        <% } %>
-    </div>
-    <div class="btn">
-        <button onclick="window.location.href='/reserva'"><a href="/reserva">FAZER NOVA RESERVA</a></button>
-        <button onclick="window.location.href='/'"><a href="/">Home page</a></button>
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="brand-section">
+                    <h2 class="gradient gradient-golden" style="border-radius: 5px;" >Pousada TAO</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Autem quasi distinctio consectetur temporibus molestiae, 
+                        cupiditate doloremque itaque aliquid aut fuga!
+                    </p>
+                </div>
+                
+                <div class="contact-section">
+                    <h3><u>CONTATO</u></h3>
+                    <ul>
+                        <li>Endereço, Número, Brasil</li>
+                        <li>+55 12 99732-1039</li>
+                        <li>PousadaTAO@example.com</li>
+                    </ul>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+        
+                <div class="company-section">
+                    <h3><u>EMPRESA</u></h3>
+                    <ul>
+                        <li><a href="#">Sobre nós</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">Políticas de Privacidade</a></li>
+                        <li><a href="#">Termos & Condições</a></li>
+                        <li><a href="#">Suporte</a></li>
+                    </ul>
+                </div>
+        
+                <div class="services-section">
+                    <h3><u>SERVIÇOS</u></h3>
+                    <ul>
+                        <li><a href="#">Comida</a></li>
+                        <li><a href="#">Limpeza</a></li>
+                        <li><a href="#">Festas</a></li>
+                        <li><a href="#">Animais</a></li>
+                        <li><a href="#">Som & Barulho</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        
+            <div class="footer-bottom">
+                <div>© Pousada TAO, Todos os direitos reservados. Designed By <a href="https://github.com/AdrianoLMRS">Adriano</a></div>
+                <div class="footer-bottom-links">
+                    <a href="#">Home</a>
+                    <a href="#">Cookies</a>
+                    <a href="#">Ajuda</a>
+                    <a href="#">FAQs</a>
+                </div>
+            </div>
+        </footer>
+
+        <div class="widgets" id="widgets" style="display: contents;">
+            <!-- Translations with GTranslate -->
+            <div id="gtranslate"  class="gtranslate_wrapper"></div>
+            <script>window.gtranslateSettings = {"default_language":"pt","detect_browser_language":true,"languages":["pt","es","en"],"wrapper_selector":".gtranslate_wrapper","alt_flags":{"pt":"brazil"}}</script>
+            <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+            <style> #gtranslate { white-space: nowrap; }  @media (hover: hover) {  #gtranslate { opacity: 0.4; transition: opacity 200ms; }  #gtranslate:hover { opacity: 1; }  }  </style>
+            
+            <!-- Whatsapp floating button -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+            <a style="margin-right: 20px;"  href="https://api.whatsapp.com/send?phone=5511991369956&text=Ol%C3%A1%21%20Gostaria%20de%20saber%20mais%20sobre%20a%20pousada" class="float" target="_blank">
+            <i class="fa fa-whatsapp my-float"></i>
+            </a>
+        </div>
     </div>
 </body>
 </html>
