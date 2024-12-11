@@ -69,7 +69,7 @@
                     <div class="overlay">
                         
                         <div class="animated flex-center">
-                            <h1 class="gradient-txt gradient-golden no-selection animated montserrat-text text-with-lines overlayh1">Pousada
+                            <h1 translate="no" class="gradient-txt gradient-golden no-selection animated montserrat-text text-with-lines overlayh1">Pousada
                                 <span class="gradient-txt gradient-golden no-selection">TAO</span></h1>
                             <p class="subtitle animated montserrat-text">
                                 Festas em família? <br> A Pousada Tao é a pousada em Campos do Jordão <br> perfeita para viver a magia do Natal <br>
@@ -91,13 +91,13 @@
                         <form id="booking-form" class="booking-form" action="/reserva" method="get" target='_blank'>
 
                             <span class="form-div">
-                                <label class="date-label" for="checkIn"><strong>Check-In:</strong></label>
+                                <label translate="no" class="date-label" for="checkIn"><strong>Check-In:</strong></label>
                                 <input onfocus="this.type='date'; this.showPicker();" required 
                                 onblur="this.type='text'; formatDate(this);" onclick="showPicker();" onchange="updateCheckOutMin();"
                                 type="text" name="checkIn" class="datepicker-input" id="checkIn" placeholder="Check-In">
                             </span>
                             <span class="form-div">
-                                <label class="date-label" for="checkOut"><strong>Check-Out:</strong></label>
+                                <label translate="no" class="date-label" for="checkOut"><strong>Check-Out:</strong></label>
                                 <input onfocus="this.type='date'; this.showPicker();" required 
                                 onblur="this.type='text'; formatDate(this);" onclick="showPicker();"
                                 type="text" name="checkOut" class="datepicker-input" id="checkOut" placeholder="Check-Out">
@@ -153,7 +153,7 @@
                           <button type="button" class="slider-btn next-btn">&#8250;</button>
                         </div>
                         <div class="content-container">
-                          <h1>Pousada TAO</h1>
+                          <h1 translate="no">Pousada TAO</h1>
                           <h2>Conforto e Praticidade em Campos do Jordão</h2>
                           <p>
                             Na Pousada Tao, sua família e amigos encontrarão um lar temporário para criar memórias inesquecíveis, vivenciando a magia do Natal em Campos do Jordão e suas atrações encantadoras. Oferecemos um ambiente acolhedor, seguro e autêntico, pensado para tornar sua experiência única e especial.
@@ -280,7 +280,7 @@
                             <li><button type="button" class="gallery-Btn custom-btn active gradient gradient-golden" data-category="all">Todas</button></li>
                             <li><button type="button" class="gallery-Btn custom-btn" data-category="pousadaImg">Pousada</button></li>
                             <li><button type="button" class="gallery-Btn custom-btn" data-category="acomodacoesImg">Acomodações</button></li>
-                            <li><button type="button" class="gallery-Btn custom-btn" data-category="campos-do-jordaoImg">Campos do Jordão</button></li>
+                            <li translate="no"><button type="button" class="gallery-Btn custom-btn" data-category="campos-do-jordaoImg">Campos do Jordão</button></li>
                         </ul>
                     </header>
                     <section id="img-gallery0" class="img-gallery">
@@ -456,6 +456,12 @@
             </div>
         </footer>
         
+        <!-- Translations with GTranslate -->
+        <div id="gtranslate"  class="gtranslate_wrapper"></div>
+        <script>window.gtranslateSettings = {"default_language":"pt","detect_browser_language":true,"languages":["pt","es","en"],"wrapper_selector":".gtranslate_wrapper","alt_flags":{"pt":"brazil"}}</script>
+        <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+        <style>  @media (hover: hover) {  #gtranslate { opacity: 0.4; transition: opacity 200ms; }  #gtranslate:hover { opacity: 1; }  }  </style>
+        
     </div>
 
 <!-- *SCRIPTS* -->
@@ -510,6 +516,6 @@ function setActiveButton(button) {
 <script src="js/tinySlider.js" defer></script>
 <script src="js/slider.js" defer></script>
 <script src="js/iframe.js" defer></script>
+<script async>  document.addEventListener('DOMContentLoaded', () => {  formatDates();  })   </script> 
 </body>
-<script async>  document.addEventListener('DOMContentLoaded', () => {  formatDates();  })   </script>
 </html>

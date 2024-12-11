@@ -61,19 +61,17 @@
                                 action="javascript:void(0);" method="javascript:void(0);">
         
                                     <span class="form-div">
-                                        <label class="date-label" for="checkIn"><strong>Check-In:</strong></label>
+                                        <label translate="no" class="date-label" for="checkIn"><strong>Check-In:</strong></label>
                                         <input onfocus="this.type='date'; this.showPicker();" required onchange="updateCheckOutMin();"
                                         onblur="this.type='text'; formatDate(this); updateTotalLiveValues();" onclick="showPicker();" 
                                         type="text" name="checkIn" class="datepicker-input" id="checkIn" placeholder="Check-In">
                                     </span>
                                     <span class="form-div">
-                                        <label class="date-label" for="checkOut"><strong>Check-Out:</strong></label>
+                                        <label translate="no" class="date-label" for="checkOut"><strong>Check-Out:</strong></label>
                                         <input onfocus="this.type='date'; this.showPicker();" required 
                                         onblur="this.type='text'; formatDate(this); updateTotalLiveValues();" onclick="showPicker();"
                                         type="text" name="checkOut" class="datepicker-input" id="checkOut" placeholder="Check-Out">
                                     </span>
-
-
 
                                     <span class="form-div">
                                         <label for="adults"><strong>Adultos:</strong><br><small>13 anos ou mais</small></label>
@@ -215,6 +213,12 @@
                     </div>
                 </div>
             </footer>
+
+             <!-- Translations with GTranslate -->
+        <div id="gtranslate"  class="gtranslate_wrapper"></div>
+        <script>window.gtranslateSettings = {"default_language":"pt","detect_browser_language":true,"languages":["pt","es","en"],"wrapper_selector":".gtranslate_wrapper","alt_flags":{"pt":"brazil"}}</script>
+        <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+        <style>  @media (hover: hover) {  #gtranslate { opacity: 0.4; transition: opacity 200ms; }  #gtranslate:hover { opacity: 1; }  }  </style>
 
     </div>
     <script>

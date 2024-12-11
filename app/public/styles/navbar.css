@@ -20,6 +20,7 @@ nav .fixed {  position: fixed;  }
 nav ul {
   width: 100%;
   list-style: none;
+  white-space: nowrap;
   display: flex;
   justify-content: flex-end;
   align-items: center;
