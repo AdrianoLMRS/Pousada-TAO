@@ -461,13 +461,14 @@
             <div id="gtranslate"  class="gtranslate_wrapper"></div>
             <script>window.gtranslateSettings = {"default_language":"pt","detect_browser_language":true,"languages":["pt","es","en"],"wrapper_selector":".gtranslate_wrapper","alt_flags":{"pt":"brazil"}}</script>
             <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
-            <style> #gtranslate { white-space: nowrap; }  @media (hover: hover) {  #gtranslate { opacity: 0.4; transition: opacity 200ms; }  #gtranslate:hover { opacity: 1; }  }  </style>
+            <style> #gtranslate { white-space: nowrap; } #gt_float_wrapper { bottom: 20px; }  @media (hover: hover) {  #gtranslate { opacity: 0.4; transition: opacity 200ms; }  #gtranslate:hover { opacity: 1; }  }  </style>
             
             <!-- Whatsapp floating button -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
             <a href="https://api.whatsapp.com/send?phone=5511991369956&text=Ol%C3%A1%21%20Gostaria%20de%20saber%20mais%20sobre%20a%20pousada" class="float" target="_blank">
             <i class="fa fa-whatsapp my-float"></i>
             </a>
+            <style> /* Widgets scroll transition */  #gt_float_wrapper, .float { transition: bottom 300ms ease; }  </style>
         </div>
 
 
@@ -480,13 +481,22 @@ var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
   var currentScrollPos = window.pageYOffset;
   var navbar = document.getElementById("navbar");
+  var widgets = document.querySelectorAll("#widgets > *, #gt_float_wrapper");
   var fixedElements = navbar.querySelectorAll('.fixed');
 
-  // Move navbar
+  // Move navbar & widgets
   if (prevScrollpos > currentScrollPos) {
     navbar.style.top = "0";
+    // WhatsApp floating button & GTranslate widget
+    widgets.forEach(function(widget) {
+      widget.style.bottom = "";
+    });
   } else {
     navbar.style.top = "-100px";
+    // WhatsApp floating button & GTranslate widget
+    widgets.forEach(function(widget) {
+      widget.style.bottom = "-100px";
+    });
   }
 
   // .fixed in nav elements do not move
@@ -498,27 +508,12 @@ window.onscroll = function() {
 };
 
 function setActiveButton(button) {
-    const buttons = document.querySelectorAll('.iframe-buttons button');
+    const buttons = document.querySelectorAll('.iframe-buttons button'); // For Google maps and Waze buttons
     
-    // Remove a classe 'active' de todos os botões
-    buttons.forEach(btn => btn.classList.remove('active'));
+    buttons.forEach(btn => btn.classList.remove('active')); // Remove class .active of all buttons
     
-    // Adiciona a classe 'active' ao botão clicado
-    button.classList.add('active');
+    button.classList.add('active'); // Adiciona class .active in button clicked
 }
-</script>
-<script>
-    // Formsubmit.co API - alert user
-    // Alert user on form submit
-    if (sessionStorage.getItem('formSent') === 'true') {
-        alert("Formulário enviado");
-        sessionStorage.removeItem('formSent');
-    }
-    // Define _next to the actual URL
-    document.getElementById('next-url').value = (window.location.href + '#contato');
-    
-    const email = 'adriano.limarossi@gmail.com'
-    document.getElementById("contact-form").action = `https://formsubmit.co/${email}`;
 </script>
 <script src="js/fullScreen.js" defer></script>
 <script src="js/booking.js" defer></script>
