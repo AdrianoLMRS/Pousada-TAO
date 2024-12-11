@@ -1,45 +1,53 @@
+/*
+ * Create & exports email transporter constant
+ * 
+ * This file creates a transporter using Gmail SMTP, configures the email details
+ * 
+ */
+
 // *DEPENDECIES
-  require('dotenv').config(); // Carregar variáveis de ambiente
-  const nodemailer = require("nodemailer");
+  // ! Does not work without path
+  const path = require('path'); // Path for .env
+  require('dotenv').config({ path: path.join(__dirname, './.env') }); // Loads .env
+  const nodemailer = require("nodemailer"); // For GMAIL
 
 // *CONSTANTS
-  const EMAIL = 'test.adm2002@gmail.com'; // TEST EMAIL --- change later
+  global.EMAIL = 'test.adm2002@gmail.com'; // TEST EMAIL --- change later
+  const PASS = process.env.TEST_EMAIL_PASS;
+
 
 /**
- * Sends a test email using Nodemailer.
+ * Creates and configures an email transporter using Gmail SMTP.
  * 
- * This function creates a transporter using Gmail SMTP, configures the email
- * details, and sends a test email. It then logs the message ID of the sent email.
+ * This function sets up a nodemailer transporter with Gmail SMTP settings,
+ * using the predefined EMAIL constant and the TEST_EMAIL_PASS environment variable
+ * for authentication.
  * 
  * @async
- * @function main
- * @throws {Error} If there's an issue with sending the email.
- * @returns {Promise<void>} A promise that resolves when the email is sent successfully.
+ * @function createTransporter
+ * @throws {Error} If there's an issue creating the transporter
+ * @returns {Promise<nodemailer.Transporter>} A configured nodemailer transporter object
  */
-async function main() {
-  // *TRANSPORTER CONSTANT
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-        user: EMAIL,
-        pass: process.env.TEST_EMAIL_PASS
-    },
-  });
+function createTransporter() {
+  try {
+    // Create transporter using Gmail SMTP & authenticate
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: global.EMAIL,
+        pass: PASS,
+      },
+    });
 
-  // Suvmits a test e-mail
-  let info = await transporter.sendMail({
-    from: EMAIL,
-    to: "adriano.limarossi@gmail.com",
-    subject: "Testing, testing, 123",
-    html: `
-    <h1>Hello World!</h1>
-    <p>Test succesfull!</p>
-    `,
-  });
-
-  console.log(info.messageId); // ID gerado após envio bem-sucedido
+    return transporter; // returns created transport
+  } catch (err) {
+    console.log('Error creating GMAIL transporter:', err);
+    throw err; 
+  }
 }
 
-main().catch(err => console.log(err));
+// Create & exports GMAIL transporter
+const transporter = createTransporter();
+module.exports = transporter;

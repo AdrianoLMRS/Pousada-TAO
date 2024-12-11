@@ -20,15 +20,18 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon app/src/index.js --host 127.0.0.1",
+    "start:node": "node app/src/index.js",
     "start:docker": "node src/index.js",
     "start:dev": "nodemon --watch src/logSetup.js --watch app/src/index.js",
     "start0": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:index": "jest app/src/__tests__/.test.js"
   },
   "keywords": [],
   "author": "Adriano",
   "license": "ISC",
   "devDependencies": {
+    "jest": "^29.7.0",
     "nodemon": "^3.1.7"
   }
 }

@@ -14,6 +14,7 @@
   const userRoutes = require('./routes/userRoutes'); // Import User Routes
 
 // *CONSTANTS
+  require('./email') // For sending E-MAILS with nodemailer
   require('./logSetup') // For logs (optional)
 
 // *GLOBAL MIDDLEWARES
