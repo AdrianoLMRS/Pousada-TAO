@@ -13,7 +13,7 @@
 
 // *CONSTANTS
   global.EMAIL = 'test.adm2002@gmail.com'; // TEST EMAIL --- change later
-  const PASS = process.env.TEST_EMAIL_PASS;
+  const PASS = process.env.TEST_EMAIL_PASS; // TEST PASS --- change later
 
 
 /**

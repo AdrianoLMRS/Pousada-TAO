@@ -17,7 +17,7 @@ async function encrypt(pass, secret = process.env.SECRET_HASH, saltRounds = 10) 
         // Hash the password with the salt
         const hashedPass= await bcrypt.hash(combinedPass, salt);
 
-        console.log('Encrypted password:', hashedPass);
+        console.log('Encrypted password: ', hashedPass);
         return hashedPass;
     } catch (error) {
         console.error('Error encrypting password:', error);

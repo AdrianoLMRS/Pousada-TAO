@@ -1,6 +1,7 @@
 // *Dependecies
     const Reservation = require('../db/models/reservaModel'); // Imports Reservation Model
     const User = require('../db/models/User'); // Imports User model
+    const { decrypt } = require('./bcryptUtils');
 
 // Utility function to create or update a user in the database
 const createOrUpdateUser = async (customer) => {
