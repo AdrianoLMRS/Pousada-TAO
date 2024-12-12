@@ -139,6 +139,8 @@ input.datepicker-input {
   height: 40px;
   cursor: pointer;
   transition: all 300ms;
+
+  --_content: 'Complete todos os dados';
 }
 
 .form-btn:not(:disabled):hover { border: 1px solid var(--cor-verde, #28a745); }
@@ -149,45 +151,6 @@ input.datepicker-input {
 }
 
 .form-btn:disabled:hover {  color: red; }
-
-/* .form-btn disabled popup to alert the user */
-.form-btn:disabled::after {
-  content: 'Complete todos os dados';
-  white-space: nowrap;
-  position: absolute;
-  bottom: var(--_bottom, -190%);
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 175px;
-  overflow: visible;
-  padding: 10px;
-  background-color: var(--cor-txt, black);
-  border-radius: 8px;
-  color: var(--cor-branco, snow);
-  opacity: 0;
-  transition: opacity 300ms;
-
-  --_bottom: -190%;
-}
-
-.form-btn:disabled::before {
-  content: '';
-  display: inline-block;
-  transform: rotate(180deg) scale(0.75);
-  position: absolute;
-  bottom: -43%;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-top: 20px solid var(--cor-txt, black);
-  clear: both;
-  opacity: 0;
-  transition: opacity 300ms;
-}
-
-.form-btn:disabled:hover::after, 
-.form-btn:disabled:hover::before { 
-  opacity: 1; 
-}
 
 /* MEDIA QUERIES */
 

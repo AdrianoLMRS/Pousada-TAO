@@ -214,3 +214,40 @@ body > * {
 .my-float {	margin-top:16px;  }
 
 @media (max-width: 240px) {  .float { bottom: 80px; }  }
+
+/* .afterElement disabled popup to alert the user */
+.afterElement:disabled::after {
+  content: var(--_content, '');
+  white-space: nowrap;
+  position: absolute;
+  bottom: var(--_bottom, -190%);
+  left: var(--_left, 50%);
+  transform: translate(-50%, -50%);
+  width: 175px;
+  overflow: visible;
+  padding: 10px;
+  background-color: var(--cor-txt, black);
+  border-radius: 8px;
+  color: var(--cor-branco, snow);
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+.afterElement:disabled::before {
+  content: '';
+  display: inline-block;
+  transform: rotate(180deg) scale(0.75);
+  position: absolute;
+  bottom: var(--_bf-bottom, -43%);
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid var(--cor-txt, black);
+  clear: both;
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+.afterElement:disabled:hover::after, 
+.afterElement:disabled:hover::before { 
+  opacity: 1; 
+}
