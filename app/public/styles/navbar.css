@@ -78,6 +78,17 @@ nav .sidebar a:hover {
   -webkit-text-stroke: 0.2px;
 }
 
+nav .mobileLink {
+  display: none;
+  color: var(--cor-branco, snow);
+  -webkit-text-stroke: 0.5px;
+  letter-spacing: 5px;
+  position: absolute;
+  border-bottom-left-radius: 15px;
+  right: 0;
+  transition: margin-top 300ms ease
+}
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -116,10 +127,7 @@ nav .sidebar a:hover {
 }
 
 @media(max-width: 1000px) {
-  .hideOnMobile {
-    display: none;
-  }
-  .menu-button {
-    display: flex;
-  }
+  .hideOnMobile {  display: none;  }
+  .menu-button {  display: flex;  }
+  .mobileLink { display: inline-flex !important; }
 }

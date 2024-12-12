@@ -35,7 +35,6 @@
     <div class="content">
     
         <nav tabindex="0" id="navbar" style="max-width: 3500px;">
-            <!-- <a href="/reserva" target="_blank">RESERVAR</a> -->
             <ul class="sidebar">
                 <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
                 <li onclick=hideSidebar() id="nav-reserva" style="border-radius: 0; margin-bottom: 4vh; margin-top: 4vh;">
@@ -59,6 +58,7 @@
                 <li style="border-radius: 0; border-bottom-left-radius: 15px;" id="nav-reserva" class="hideOnMobile fixed gradient gradient-golden"><a href="/reserva">Reservar</a></li>
                 <li style="cursor: pointer;" class="menu-button" onclick=showSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
             </ul>
+            <a class="mobileLink gradient gradient-golden" id="mobileLink" href="/reserva" target="_blank">RESERVAR</a>
         </nav>
     
 
@@ -486,43 +486,46 @@
     <!-- *SCRIPTS* -->
     <script src="js/script.js" defer></script>
     <script>
-    var prevScrollpos = window.pageYOffset;
-    window.onscroll = function() {
-    var currentScrollPos = window.pageYOffset;
-    var navbar = document.getElementById("navbar");
-    var widgets = document.querySelectorAll("#widgets > *, #gt_float_wrapper");
-    var fixedElements = navbar.querySelectorAll('.fixed');
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function() {
+        var currentScrollPos = window.pageYOffset;
+        var navbar = document.getElementById("navbar");
+        var mobileLink = document.getElementById('mobileLink');
+        var widgets = document.querySelectorAll("#widgets > *, #gt_float_wrapper");
+        var fixedElements = navbar.querySelectorAll('.fixed');
 
-    // Move navbar & widgets
-    if (prevScrollpos > currentScrollPos) {
-        navbar.style.top = "0";
-        // WhatsApp floating button & GTranslate widget
-        widgets.forEach(function(widget) {
-        widget.style.bottom = "";
+        // Move navbar & widgets
+        if (prevScrollpos > currentScrollPos) {
+            mobileLink.style.marginTop = "0";
+            navbar.style.top = "0";
+            // WhatsApp floating button & GTranslate widget
+            widgets.forEach(function(widget) {
+            widget.style.bottom = "";
+            });
+        } else {
+            mobileLink.style.marginTop = "50px";
+            navbar.style.top = "-100px";
+            // WhatsApp floating button & GTranslate widget
+            widgets.forEach(function(widget) {
+            widget.style.bottom = "-100px";
+            });
+        }
+
+        // .fixed in nav elements do not move
+        fixedElements.forEach(function(element) {
+            element.style.top = "0";
         });
-    } else {
-        navbar.style.top = "-100px";
-        // WhatsApp floating button & GTranslate widget
-        widgets.forEach(function(widget) {
-        widget.style.bottom = "-100px";
-        });
-    }
 
-    // .fixed in nav elements do not move
-    fixedElements.forEach(function(element) {
-        element.style.top = "0";
-    });
+        prevScrollpos = currentScrollPos;
+        };
 
-    prevScrollpos = currentScrollPos;
-    };
-
-    function setActiveButton(button) {
-        const buttons = document.querySelectorAll('.iframe-buttons button'); // For Google maps and Waze buttons
-        
-        buttons.forEach(btn => btn.classList.remove('active')); // Remove class .active of all buttons
-        
-        button.classList.add('active'); // Adiciona class .active in button clicked
-    }
+        function setActiveButton(button) {
+            const buttons = document.querySelectorAll('.iframe-buttons button'); // For Google maps and Waze buttons
+            
+            buttons.forEach(btn => btn.classList.remove('active')); // Remove class .active of all buttons
+            
+            button.classList.add('active'); // Adiciona class .active in button clicked
+        }
     </script>
     <script>
         function convertToISO(dateStr) {
