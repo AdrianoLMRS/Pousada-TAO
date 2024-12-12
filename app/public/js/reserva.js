@@ -121,113 +121,59 @@ document.addEventListener("DOMContentLoaded", () => {
         babiesInput.value = babies;
         checkinInput.value = checkInValue;
         checkoutInput.value = checkOutValue;
+
+        /**
+         * Checks if the input values in the booking form match the default values.
+         * If all inputs match the default, it triggers the step function to go to the payment form.
+         * This function is specifically designed for the home page booking form.
+         *
+         * @returns {void}
+         */
+        const checkDefaults = () => {
+            // Default values of #booking-from in home page
+            const defaultValues = {
+                adults: [1, null],
+                children: [0, null],
+                babies: [0, null],
+                checkIn: ["", null],
+                checkOut: ["", null],
+            };
+
+            // Helper function to check if a value matches the default
+            const matchesDefault = (value, defaultOptions) => {
+                if (defaultOptions.includes(null)) return defaultOptions.includes(value);
+                if (defaultOptions.includes(Date)) {
+                    return value === "" || isNaN(new Date(value).getTime());
+                }
+                return defaultOptions.includes(value);
+            };
+
+            // Check each input against its default
+            const isDefault =
+                matchesDefault(adults, defaultValues.adults) ||
+                matchesDefault(children, defaultValues.children) ||
+                matchesDefault(babies, defaultValues.babies) ||
+                matchesDefault(checkInValue, defaultValues.checkIn) ||
+                matchesDefault(checkOutValue, defaultValues.checkOut);
+
+            // If all inputs match the default, go to step 1 (payment form)
+            // (Only trigger when user completed booking-form in home page)
+            if (isDefault) {
+                console.log("Default value detected.");
+                step(1); // Go to payment-form
+            }
+            
+        };
+
+        checkDefaults();
+            
     };
 
     autofillForm(); // Fills .booking-form inputs
     checkRequiredFields(); // Verify the values are valid, if is : enable button
 
-});
+    if (!document.getElementById('submitButton').disabled) { document.getElementById('submitButton').click() }
 
-// * BOOKING-FORM LIVEVALUES
-
-// Price per person in BRL (R$)
-const adultPrice = 150; // BRL
-const childPrice = 75; // BRL
-
-// Function to update the values in #adults & #children HTML elements
-function updateLiveValues(inputElement) {
-    const inputId = inputElement.id; // ID of the input that was changed
-  
-    // Identifies the corresponding live value element
-    let liveValueElement;
-    let pricePerPerson;
-  
-    if (inputId === "adults") {
-        // Adults element
-      liveValueElement = document.getElementById("adultsLive");
-      pricePerPerson = adultPrice;
-    } else if (inputId === "children") {
-        // Children element
-      liveValueElement = document.getElementById("childrenLive");
-      pricePerPerson = childPrice;
-    }
-  
-    if (liveValueElement && pricePerPerson) {
-      const quantity = parseInt(inputElement.value) || 0;
-  
-      // If the quantity is greater than 0, calculate the total; otherwise, leave it empty
-      if (quantity > 0) {
-        const total = quantity * pricePerPerson;
-        liveValueElement.innerHTML = `${total},00<small>/noite</small>`;
-        liveValueElement.style.opacity = '1'
-      } else {
-        liveValueElement.style.opacity = '0'
-        // setTimeout() here because of opacity css animation
-        setTimeout(() => {
-            liveValueElement.textContent = ""; // Clears the text if the quantity is 0 or invalid
-        }, '500')
-      }
-    }
-}  
-
-// Returns the difference between checkIn & checkOut in days
-// Used in updateTotalLiveValues()
-function calculateDaysBetweenDates() {
-  const checkInInput = document.getElementById("checkIn");
-  const checkOutInput = document.getElementById("checkOut");
-
-  const checkInDate = new Date(convertToISO(checkInInput.value)); // Converts dates to ISO format
-  const checkOutDate = new Date(convertToISO(checkOutInput.value)); // Converts dates to ISO format
-
-  // Validation
-  if (!isNaN(checkInDate) && !isNaN(checkOutDate) && checkOutDate > checkInDate) {
-    // Difference in miliseconds
-    const timeDifference = checkOutDate.getTime() - checkInDate.getTime();
-    // Convert to days
-    const days = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-    return days;
-  }
-
-  return 0; // If no dates
-}
-
-// Updates #totalValueElement based on .liveValues HTML elements
-// TODO : Verify why only works after 1001 miliseconds
-function updateTotalLiveValues() {
-    const liveValueElements = document.querySelectorAll(".liveValue");
-    const totalValueElement = document.getElementById("totalValue");
-  
-    const days = calculateDaysBetweenDates(); // returns the days difference between checkIn & checkOut
-    let total = 0;
-  
-    liveValueElements.forEach((element) => {
-      const valueText = element.textContent.replace("R$", "").replace(",", ".").trim();
-      const value = parseFloat(valueText) || 0;
-      total += value;
-    });
-  
-    total *= days; // Multioplies per day difference (good to reserva logic)
-  
-    // total value in #totalValueElement
-    totalValueElement.textContent = total > 0 ? `Total: R$${total.toFixed(2)}` : "";
-}
-
-// Initial functions calls
-document.addEventListener("DOMContentLoaded", () => {
-    const adultsInput = document.getElementById("adults");
-    const childrenInput = document.getElementById("children");
-
-    updateLiveValues(adultsInput);
-    updateLiveValues(childrenInput);
-
-    /* 
-        * updateTotalLiveValues(); Does not work for some reason...
-        * Need to simulate user click the buttom in #adults...
-    */
-    setTimeout(() => {
-        document.querySelector('.quantity #adults + button').click();
-        document.querySelector('.quantity-down').click();
-    }, '1001');
 });
 
 

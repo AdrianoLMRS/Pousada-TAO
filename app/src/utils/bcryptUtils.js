@@ -1,7 +1,7 @@
 // *Dependencies
     const path = require('path'); // Path for folders
     require('dotenv').config({ path: path.join(__dirname, '../.env') }); // Loads .env
-    const bcrypt = require('bcrypt');
+    const bcrypt = require('bcryptjs');
 
 // Function to hash a password using bcrypt
 async function encrypt(pass, secret = process.env.SECRET_HASH, saltRounds = 10) {
@@ -17,7 +17,7 @@ async function encrypt(pass, secret = process.env.SECRET_HASH, saltRounds = 10) 
         // Hash the password with the salt
         const hashedPass= await bcrypt.hash(combinedPass, salt);
 
-        console.log('Encrypted password: ', hashedPass);
+        console.log('Encrypted password:', hashedPass);
         return hashedPass;
     } catch (error) {
         console.error('Error encrypting password:', error);

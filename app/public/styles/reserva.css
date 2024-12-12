@@ -47,11 +47,12 @@ section[class^="step"] {
   text-transform: uppercase;
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(10px, calc(0.75rem + 0.25vw), 15px);
   border: 1px solid rgba(204, 204, 204, 0.2);
+  background-color: antiquewhite;
   letter-spacing: 2px;
   min-height: 40px;
   min-width: 100px;
-  font-size: clamp(10px, calc(0.75rem + 0.25vw), 15px);
   cursor: pointer;
   position: relative;
   top: -125%;
@@ -210,44 +211,4 @@ section[class^="step"] {
   fill: var(--_green, green);
   background-color: var(--_light-green, green);
   box-shadow: var(--_light-green, lightgreen) 0px 54px 55px, rgb(214, 245, 221, 0.87) 0px -12px 30px, rgb(214, 245, 221, 0.88) 0px 4px 6px, rgb(214, 245, 221, 0.83) 0px 12px 13px, rgb(214, 245, 221, 91) 0px -3px 5px;
-}
-
-/* .liveValue </div> */
-
-.liveValue {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  z-index: 1;
-  transition: all 500ms ease;
-}
-
-.liveValue small {
-  margin-top: 2px;
-  font-size: 12px;
-  opacity: 0.6;
-}
-
-.totalValue {
-  font-size: 1rem;
-  font-weight: bold;
-
-}
-
-.flex-submit {
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  row-gap: 20px;
-  width: 100%;
-}
-
-/* MEDIA QUERIES */
-
-@media (max-width: 400px) {
-  .flex-submit { column-gap: 100%; justify-content: center; }
-  .liveValue { display: none; }
 }

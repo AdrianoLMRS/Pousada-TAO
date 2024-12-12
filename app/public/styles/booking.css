@@ -65,7 +65,7 @@
 }
 
 .form-content {
-  background-color: var(--cor-branco, snow);
+  background-color: antiquewhite;
   border-radius: 25px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   min-height: 400px;
@@ -127,12 +127,15 @@ input.datepicker-input {
   border-radius: 5px;
   font-size: 1rem;
   border: 1px solid #ccc;
+  background: none;
 }
 
 .form-btn {
   position: relative;
+  white-space: nowrap;
   align-self: end;
-  width: clamp(75px, 25%, 150px);
+  width: auto !important;
+  padding: 0 10px 0 10px !important;
   border-radius: 4px;
   height: 40px;
   cursor: pointer;
@@ -206,4 +209,47 @@ input.datepicker-input {
   .form-btn { 
     align-self: center; 
   }
+}
+
+.quantity-button, input.datepicker-input { transition: background-color 300ms ease; }
+.quantity-button:hover, input.datepicker-input:hover {  background-color: hsl(34, 78%, 86%);  }
+
+/* .liveValue </div> */
+
+.liveValue {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+  transition: all 500ms ease;
+}
+
+.liveValue small {
+  margin-top: 2px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.totalValue {
+  font-size: 1rem;
+  font-weight: bold;
+
+}
+
+.flex-submit {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  width: 100%;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 400px) {
+  .flex-submit { column-gap: 100%; justify-content: center; }
+  .liveValue { display: none; }
 }

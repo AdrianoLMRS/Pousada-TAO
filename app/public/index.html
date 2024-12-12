@@ -86,41 +86,44 @@
 
                     <div class="form-content">
 
-                        <h2>Quem está vindo?</h2>
+                        <h2 class="sr-only" >Quem está vindo?</h2>
 
                         <form id="booking-form" class="booking-form" action="/reserva" method="get" target='_blank'>
 
                             <span class="form-div">
                                 <label translate="no" class="date-label" for="checkIn"><strong>Check-In:</strong></label>
-                                <input onfocus="this.type='date'; this.showPicker();" required 
-                                onblur="this.type='text'; formatDate(this);" onclick="showPicker();" onchange="updateCheckOutMin();"
+                                <input onfocus="this.type='date'; this.showPicker();" required onchange="updateCheckOutMin();"
+                                onblur="this.type='text'; formatDate(this); updateTotalLiveValues();" onclick="showPicker();" 
                                 type="text" name="checkIn" class="datepicker-input" id="checkIn" placeholder="Check-In">
                             </span>
                             <span class="form-div">
                                 <label translate="no" class="date-label" for="checkOut"><strong>Check-Out:</strong></label>
                                 <input onfocus="this.type='date'; this.showPicker();" required 
-                                onblur="this.type='text'; formatDate(this);" onclick="showPicker();"
+                                onblur="this.type='text'; formatDate(this); updateTotalLiveValues();" onclick="showPicker();"
                                 type="text" name="checkOut" class="datepicker-input" id="checkOut" placeholder="Check-Out">
-                            </span>                            
+                            </span>                      
                             
                             <span class="form-div">
                                 <label for="adults"><strong>Adultos:</strong><br><small>13 anos ou mais</small></label>
+                                <span class="liveValue" id="adultsLive"></span> <!-- For calculating value per adult in real time -->
                                 <div class="quantity">
                                     <button type="button" class="quantity-button quantity-down">-</button>
-                                    <input required name="adults" value="1" min="1" max="10" 
+                                    <input required name="adults" value="1" min="1" max="10" onchange="updateLiveValues(this); updateTotalLiveValues()" 
                                     type="number" id="adults" placeholder="1">
                                     <button type="button" class="quantity-button quantity-up">+</button>
                                 </div>
                             </span>
                             <span class="form-div">
                                 <label for="children"><strong>Crianças:</strong><br><small>De 2 a 12 anos</small></label>
+                                <span class="liveValue" id="childrenLive"></span> <!-- For calculating value per children in real time -->
                                 <div class="quantity">
                                     <button type="button" class="quantity-button quantity-down">-</button>
-                                    <input value="0" min="0" max="10" type="number"
+                                    <input value="0" min="0" max="10" type="number" onchange="updateLiveValues(this); updateTotalLiveValues()"
                                     name="children" id="children" placeholder="0">
                                     <button type="button" class="quantity-button quantity-up">+</button>
                                 </div>
-                            </span>
+                            </span>         
+
                             <span class="form-div">
                                 <label for="babies"><strong>Bebês:</strong><br><small>Menor de 2</small></label>
                                 <div class="quantity">
@@ -130,9 +133,13 @@
                                     <button type="button" class="quantity-button quantity-up">+</button>
                                 </div>
                             </span>
-
-                            <button id="submitButton" type="submit" 
-                            class="form-btn gradient gradient-golden" onclick="submitForm()" disabled>ENVIAR</button>
+                            
+                            <div class="flex-submit">
+                                <span for="submitButton" class="totalValue" id="totalValue"></span>
+                                <button id="submitButton" type="submit" class="form-btn gradient gradient-golden"
+                                disabled>Forma de pagamento</button>
+                                <label class="sr-only" for="submitButton">Ir para o formulário forma de pagamento</label>
+                            </div>
                         
                         </form>
 
@@ -474,52 +481,58 @@
 
     </div>
 
-<!-- *SCRIPTS* -->
-<script src="js/script.js" defer></script>
-<script>
-var prevScrollpos = window.pageYOffset;
-window.onscroll = function() {
-  var currentScrollPos = window.pageYOffset;
-  var navbar = document.getElementById("navbar");
-  var widgets = document.querySelectorAll("#widgets > *, #gt_float_wrapper");
-  var fixedElements = navbar.querySelectorAll('.fixed');
+    <!-- *SCRIPTS* -->
+    <script src="js/script.js" defer></script>
+    <script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    var navbar = document.getElementById("navbar");
+    var widgets = document.querySelectorAll("#widgets > *, #gt_float_wrapper");
+    var fixedElements = navbar.querySelectorAll('.fixed');
 
-  // Move navbar & widgets
-  if (prevScrollpos > currentScrollPos) {
-    navbar.style.top = "0";
-    // WhatsApp floating button & GTranslate widget
-    widgets.forEach(function(widget) {
-      widget.style.bottom = "";
+    // Move navbar & widgets
+    if (prevScrollpos > currentScrollPos) {
+        navbar.style.top = "0";
+        // WhatsApp floating button & GTranslate widget
+        widgets.forEach(function(widget) {
+        widget.style.bottom = "";
+        });
+    } else {
+        navbar.style.top = "-100px";
+        // WhatsApp floating button & GTranslate widget
+        widgets.forEach(function(widget) {
+        widget.style.bottom = "-100px";
+        });
+    }
+
+    // .fixed in nav elements do not move
+    fixedElements.forEach(function(element) {
+        element.style.top = "0";
     });
-  } else {
-    navbar.style.top = "-100px";
-    // WhatsApp floating button & GTranslate widget
-    widgets.forEach(function(widget) {
-      widget.style.bottom = "-100px";
-    });
-  }
 
-  // .fixed in nav elements do not move
-  fixedElements.forEach(function(element) {
-    element.style.top = "0";
-  });
+    prevScrollpos = currentScrollPos;
+    };
 
-  prevScrollpos = currentScrollPos;
-};
-
-function setActiveButton(button) {
-    const buttons = document.querySelectorAll('.iframe-buttons button'); // For Google maps and Waze buttons
-    
-    buttons.forEach(btn => btn.classList.remove('active')); // Remove class .active of all buttons
-    
-    button.classList.add('active'); // Adiciona class .active in button clicked
-}
-</script>
-<script src="js/fullScreen.js" defer></script>
-<script src="js/booking.js" defer></script>
-<script src="js/tinySlider.js" defer></script>
-<script src="js/slider.js" defer></script>
-<script src="js/iframe.js" defer></script>
-<script async>  document.addEventListener('DOMContentLoaded', () => {  formatDates();  })   </script> 
+    function setActiveButton(button) {
+        const buttons = document.querySelectorAll('.iframe-buttons button'); // For Google maps and Waze buttons
+        
+        buttons.forEach(btn => btn.classList.remove('active')); // Remove class .active of all buttons
+        
+        button.classList.add('active'); // Adiciona class .active in button clicked
+    }
+    </script>
+    <script>
+        function convertToISO(dateStr) {
+            const [day, month, year] = dateStr.split('-');
+            return `${year}-${month}-${day}`;
+        }
+    </script>
+    <script src="js/fullScreen.js" defer></script>
+    <script src="js/booking.js" defer></script>
+    <script src="js/tinySlider.js" defer></script>
+    <script src="js/slider.js" defer></script>
+    <script src="js/iframe.js" defer></script>
+    <script async>  document.addEventListener('DOMContentLoaded', () => {  formatDates();  })   </script> 
 </body>
 </html>
