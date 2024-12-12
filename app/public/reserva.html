@@ -69,11 +69,12 @@
                                         type="text" name="checkIn" class="datepicker-input" id="checkIn" placeholder="Check-In">
                                     </span>
                                     <span class="form-div">
-                                        <label translate="no" class="date-label" for="checkOut"><strong>Check-Out:</strong></label>
+                                        <label translate="no" class="date-label" for="checkOut"><strong>Check-Out:</strong><br>
+                                        <small id="nightLiveValue"></small></label>
                                         <input onfocus="this.type='date'; this.showPicker();" required 
                                         onblur="this.type='text'; formatDate(this); updateTotalLiveValues();" onclick="showPicker();"
                                         type="text" name="checkOut" class="datepicker-input" id="checkOut" placeholder="Check-Out">
-                                    </span>
+                                    </span>    
 
                                     <span class="form-div">
                                         <label for="adults"><strong>Adultos:</strong><br><small>13 anos ou mais</small></label>

@@ -133,7 +133,6 @@ input.datepicker-input {
 .form-btn {
   position: relative;
   white-space: nowrap;
-  align-self: end;
   width: auto !important;
   padding: 0 10px 0 10px !important;
   border-radius: 4px;
@@ -233,9 +232,15 @@ input.datepicker-input {
 }
 
 .totalValue {
+  display: inline-flex;
+  justify-self: center;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  flex-grow: 0.6; /* For </strong> to be in the middle */
+  white-space: nowrap;
   font-size: 1rem;
   font-weight: bold;
-
 }
 
 .flex-submit {
@@ -252,4 +257,5 @@ input.datepicker-input {
 @media (max-width: 400px) {
   .flex-submit { column-gap: 100%; justify-content: center; }
   .liveValue { display: none; }
+  .totalValue { flex-grow: unset; }
 }

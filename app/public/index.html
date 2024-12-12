@@ -35,6 +35,7 @@
     <div class="content">
     
         <nav tabindex="0" id="navbar" style="max-width: 3500px;">
+            <!-- <a href="/reserva" target="_blank">RESERVAR</a> -->
             <ul class="sidebar">
                 <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
                 <li onclick=hideSidebar() id="nav-reserva" style="border-radius: 0; margin-bottom: 4vh; margin-top: 4vh;">
@@ -97,7 +98,8 @@
                                 type="text" name="checkIn" class="datepicker-input" id="checkIn" placeholder="Check-In">
                             </span>
                             <span class="form-div">
-                                <label translate="no" class="date-label" for="checkOut"><strong>Check-Out:</strong></label>
+                                <label translate="no" class="date-label" for="checkOut"><strong>Check-Out:</strong><br>
+                                <small id="nightLiveValue"></small></label>
                                 <input onfocus="this.type='date'; this.showPicker();" required 
                                 onblur="this.type='text'; formatDate(this); updateTotalLiveValues();" onclick="showPicker();"
                                 type="text" name="checkOut" class="datepicker-input" id="checkOut" placeholder="Check-Out">

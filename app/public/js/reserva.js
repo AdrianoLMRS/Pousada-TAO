@@ -132,20 +132,26 @@ document.addEventListener("DOMContentLoaded", () => {
         const checkDefaults = () => {
             // Default values of #booking-from in home page
             const defaultValues = {
-                adults: [1, null],
-                children: [0, null],
-                babies: [0, null],
+                adults: [1, "1", null],
+                children: [0, "0", null],
+                babies: [0, "0", null],
                 checkIn: ["", null],
                 checkOut: ["", null],
             };
 
             // Helper function to check if a value matches the default
             const matchesDefault = (value, defaultOptions) => {
-                if (defaultOptions.includes(null)) return defaultOptions.includes(value);
-                if (defaultOptions.includes(Date)) {
-                    return value === "" || isNaN(new Date(value).getTime());
-                }
-                return defaultOptions.includes(value);
+                return defaultOptions.some((defaultValue) => {
+                    // Handle null and empty string as direct matches
+                    if (defaultValue === null || defaultValue === "") {
+                        return value === defaultValue;
+                    }
+                    // Check for numeric and string equality
+                    if (typeof defaultValue === "number") {
+                        return parseInt(value, 10) === defaultValue;
+                    }
+                    return value === defaultValue;
+                });
             };
 
             // Check each input against its default

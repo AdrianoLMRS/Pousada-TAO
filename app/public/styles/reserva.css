@@ -141,6 +141,7 @@ section[class^="step"] {
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  margin-bottom: clamp(950px, 50%, 50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -149,6 +150,7 @@ section[class^="step"] {
   opacity: 0.8;
   transition: opacity 0.3s, background-color 0.3s;
 }
+@media (max-width: 560px) { .arrow { margin-bottom: unset; } }
 
 @media (max-width: 300px) {
   #prev-arrow {  left: 5px !important;  }

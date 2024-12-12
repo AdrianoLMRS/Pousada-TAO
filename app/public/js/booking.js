@@ -270,8 +270,10 @@ function updateLiveValues(inputElement) {
         // setTimeout() here because of opacity css animation
         setTimeout(() => {
             liveValueElement.textContent = ""; // Clears the text if the quantity is 0 or invalid
+            updateTotalLiveValues(); // Need to handle timeout correctly
         }, '500')
       }
+
     }
 }  
 
@@ -297,13 +299,23 @@ function calculateDaysBetweenDates() {
 }
 
 // Updates #totalValueElement based on .liveValues HTML elements
-// TODO : Verify why only works after 1001 miliseconds
 function updateTotalLiveValues() {
     const liveValueElements = document.querySelectorAll(".liveValue");
     const totalValueElement = document.getElementById("totalValue");
+    const nightLiveValueElement = document.getElementById("nightLiveValue");
   
     const days = calculateDaysBetweenDates(); // returns the days difference between checkIn & checkOut
     let total = 0;
+
+    // Updates the nights the user is gona take
+    if (days) {
+        nightLiveValueElement.style.display = "inline-block";
+        nightLiveValueElement.innerHTML = `Noites: <span>${days}</span>`;
+    }
+    else {
+        nightLiveValueElement.innerHTML = "";
+        nightLiveValueElement.style.display = "none";
+    };
   
     liveValueElements.forEach((element) => {
       const valueText = element.textContent.replace("R$", "").replace(",", ".").trim();
@@ -314,10 +326,11 @@ function updateTotalLiveValues() {
     total *= days; // Multioplies per day difference (good to reserva logic)
   
     // total value in #totalValueElement
-    totalValueElement.textContent = total > 0 ? `Total: R$${total.toFixed(2)}` : "";
+    totalValueElement.innerHTML = total > 0 ? `Total: <strong>R$${total.toFixed(2)}</strong>` : "";
 }
 
 // Initial functions calls
+// TODO : Verify why only works after 1001 miliseconds
 document.addEventListener("DOMContentLoaded", () => {
     const adultsInput = document.getElementById("adults");
     const childrenInput = document.getElementById("children");
