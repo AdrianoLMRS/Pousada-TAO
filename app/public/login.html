@@ -8,58 +8,9 @@
 
     <link rel="stylesheet" href="styles/variables.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/footer.css">
-    <style>
-        body {
-            max-height: 200vh !important;
-            overflow-y: auto;
-        }
-        main {  height: 100dvh;  }
-        main h1 { font-size: xx-large; font-weight: 900; }
-        .form-login { 
-            text-align: center;
-            position: absolute; 
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); 
-            padding: 50px;
-            background-color: antiquewhite;
-            border-radius: 25px;
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            --_content: 'Complete o formulário\AMínimo de 15 caracteres';
-            --_left: 50%;
-            --_bottom: -16%;
-            --_bf-bottom: 7.5%;
-        }
-        form {
-            font-size: larger;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 50px;
-        }
-        form textarea {
-            font-size: larger;
-            padding: 10px;
-            border-radius: 5px;
-            border: 2px solid #ccc;
-            width: 100%;
-            min-width: 500px;
-            min-height: 100px;
-            max-height: 200px;
-            resize: vertical; /* Permite redimensionar apenas verticalmente */
-        }
-        @media (max-width: 500px) { form textarea { min-width: 250px; min-height: 200px; max-height: 300px; } }
-        @media (max-width: 250px) { form textarea { min-width: 150px; min-height: 300px; max-height: 400px; } }
-        .custom-btn:disabled { opacity: 0.7  !important; }
-        .custom-btn::after { font-size: small !important; white-space: normal !important; }
-    </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -71,7 +22,7 @@
             <ul class="sidebar">
                 <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
                 <li onclick=hideSidebar() id="nav-reserva" style="border-radius: 0; margin-bottom: 4vh; margin-top: 4vh;">
-                    <a class="" style="-webkit-text-stroke: 1.5px;" href="#">Reservar</a></li>
+                    <a class="" style="-webkit-text-stroke: 1.5px;" href="/reserva">Reservar</a></li>
                 <li onclick=hideSidebar()><a href="/">Home</a></li>
                 <li onclick=hideSidebar()><a href="#sobre">A Pousada</a></li>
                 <li onclick=hideSidebar()><a href="#depoimentos">Acomodações</a></li>
@@ -88,20 +39,35 @@
                 <li class="hideOnMobile"><a href="#acomodacoes">Acomodações</a></li>
                 <li class="hideOnMobile"><a href="#fotos">Fotos</a></li>
                 <li style="margin-right: 175px;" class="hideOnMobile"><a href="#localizacao">Localização</a></li>
-                <li style="border-radius: 0; border-bottom-left-radius: 15px;" id="nav-reserva" class="hideOnMobile fixed gradient gradient-golden"><a href="#">Reservar</a></li>
+                <li style="border-radius: 0; border-bottom-left-radius: 15px;" id="nav-reserva" class="hideOnMobile fixed gradient gradient-golden"><a href="/reserva">Reservar</a></li>
                 <li style="cursor: pointer;" class="menu-button" onclick=showSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
             </ul>
         </nav>
 
         <main>
-            <div class="form-login">
+            <section class="info">
+                <h2>Insira aqui seu <strong>ID</strong></h2>
+                <br><br>
+                <p>
+                    Insira seu id que foi mandado por 
+                    SMS <i style="color: var(--cor-azul-escuro, blue);" alt="SMS icon" class='fa'>&#xf7cd;</i> ou 
+                    Email <i style="color: #de5347;" alt="Email emoji">✉</i>
+                </p>
+            </section>
+            <section class="form-login">
                 <h1>Login</h1>
                 <form action="/login" method="POST">
                     <label style="cursor: text; font-weight: 600; letter-spacing: 2px;" for="customerId">Id de usuário:</label>
-                    <textarea maxlength="50" id="customerId" name="customerId" required></textarea>
+                    <textarea placeholder="Id de usuário" maxlength="50" id="customerId" name="customerId" required></textarea>
                     <button class="custom-btn afterElement" type="submit" id="submitButton" disabled>Entrar</button>
                 </form>
-            </div>
+            </section>
+            <section class="help">
+                <h3>Caso esteja com problemas entre em contato com nosso 
+                    <strong><a href="https://api.whatsapp.com/send?phone=5511991369956&text=Ol%C3%A1%21%20Não%20estou%20conseguindo%20fazer%20login.%20%20%20Poderia%20me%20ajudar?"
+                        target="_blank" rel="">WhatsApp <u><i class="fa-brands fa-whatsapp" alt="WhatsApp icon"></u></i></a></strong>
+                </h3>
+            </section>
         </main>
 
         <footer class="footer">
@@ -164,6 +130,20 @@
                 </div>
             </div>
         </footer>
+
+        <div class="widgets" id="widgets" style="display: contents;">
+            <!-- Translations with GTranslate -->
+            <div id="gtranslate"  class="gtranslate_wrapper"></div>
+            <script>window.gtranslateSettings = {"default_language":"pt","detect_browser_language":true,"languages":["pt","es","en"],"wrapper_selector":".gtranslate_wrapper","alt_flags":{"pt":"brazil"}}</script>
+            <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+            <style> #gtranslate { white-space: nowrap; }  @media (hover: hover) {  #gtranslate { opacity: 0.4; transition: opacity 200ms; }  #gtranslate:hover { opacity: 1; }  }  </style>
+            
+            <!-- Whatsapp floating button -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+            <a style="margin-right: 20px;"  href="https://api.whatsapp.com/send?phone=5511991369956&text=Ol%C3%A1%21%20Gostaria%20de%20saber%20mais%20sobre%20a%20pousada" class="float" target="_blank">
+            <i class="fa fa-whatsapp my-float"></i>
+            </a>
+        </div>
 
     </div>
 
