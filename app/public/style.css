@@ -211,9 +211,9 @@ body > * {
 }
 .float:hover { transform: scale(1.05); color: hsl(142, 70%, 95%); border: 1px solid #ccc; opacity: 1; }
 
-.my-float {	margin-top:16px;  }
+.my-float {	margin-top: 16px;  }
 
-@media (max-width: 240px) {  .float { bottom: 80px; }  }
+@media (max-width: 240px) {  .float { bottom: 80px; left: 20px; right: initial; }  }
 
 /* .afterElement disabled popup to alert the user */
 .afterElement:disabled::after {
