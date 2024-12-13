@@ -5,7 +5,7 @@
     const jwt = require('jsonwebtoken');
     const router = express.Router();
 
-const { Cache } = require('../utils/dbUtils'); // Cache model
+const Cache = require('../db/models/cacheModel'); // Cache model
 
 
 const JWT_SECRET = process.env.JWT_SECRET;

@@ -1,5 +1,4 @@
 const TEST_KEY = 'pk_test_51QL7dYH40HYEkt7KrSCog4qpidBop00Nj8wYTSk8HIlPvoSWonn5FebisZkqCYn8QjYvCoDAgqQIMzQdHF3huyqr00kYLsDV9B';
-const BASE_URL = `${window.location.protocol}//${window.location.host}`;
 const stripe = Stripe(TEST_KEY);
 
 // Função para capturar os dados do formulário e criar a sessão de checkout
@@ -57,7 +56,7 @@ document.querySelectorAll(".stripeBtn").forEach(button => {
 
         try {
             // Enviar os dados da reserva para o servidor
-            const response = await fetch(`${BASE_URL}/reserva/checkout`, {
+            const response = await fetch(`/reserva/checkout`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -251,3 +251,5 @@ body > * {
 .afterElement:disabled:hover::before { 
   opacity: 1; 
 }
+
+.disableHover:hover { transform: initial !important; font-weight: initial !important; font-size: initial !important; }

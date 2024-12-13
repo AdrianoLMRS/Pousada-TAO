@@ -49,6 +49,7 @@
                 </details></li>
                 <li style="border-radius: 0; border-bottom-left-radius: 15px;" id="nav-reserva" class="hideOnMobile fixed gradient gradient-golden"><a href="/reserva" target="_blank">Reservar</a></li>
                 <li style="cursor: pointer;" class="menu-button" onclick=showSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
+                <a style="margin-top: 100px !important;" class="mobileLink gradient gradient-golden disableHover" id="mobileLink" href="/reserva" target="_blank">RESERVAR</a>
             </ul>
         </nav>
 
@@ -68,9 +69,9 @@
                 </section>
                 <section class="form-login">
                     <h1>Login</h1>
-                    <form action="/login" method="POST">
+                    <form action="/profile/dataHash" method="POST" id="loginForm" name="loginForm">
                         <label style="cursor: text; font-weight: 600; letter-spacing: 2px;" for="customerId">Id de usuário:</label>
-                        <textarea placeholder="Id de usuário" maxlength="50" id="customerId" name="customerId" required></textarea>
+                        <textarea placeholder="Id de usuário" maxlength="100" id="customerIdHash" name="customerIdHash" required></textarea>
                         <button class="custom-btn afterElement" type="submit" id="submitButton" disabled>Entrar</button>
                     </form>
                 </section>
@@ -163,7 +164,7 @@
     <script>
         // Enable submit button when input is 15 characters or more and remove spaces before checking
         document.addEventListener('DOMContentLoaded', () => {
-            const input = document.getElementById('customerId');
+            const input = document.getElementById('customerIdHash');
             const button = document.getElementById('submitButton');
 
             input.addEventListener('input', () => {
@@ -176,6 +177,60 @@
                 }
             });
         });
+    </script>
+    <script>
+        const tryAgain = '\nTente novamente, caso o erro persista entre em contato conosco'
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Previne o envio padrão do formulário
+
+        const customerIdHash = document.getElementById('customerIdHash').value;
+
+        // Desabilita o botão de submit enquanto a requisição está sendo feita
+        document.getElementById('submitButton').disabled = true;
+
+        try {
+            // Envia a requisição usando o método fetch
+            const response = await fetch(this.action, {
+                method: this.method,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ customerIdHash }) // Envia o conteúdo como JSON
+            });
+
+            if (response.ok) {
+                // Login bem-sucedido, redireciona para a página de perfil
+                window.location.href = '/profile'; // Redireciona para /profile
+            } else {
+                alert('Erro ao fazer login!' + tryAgain);
+            }
+        } catch (error) {
+            console.error('Erro na requisição:', error);
+            alert('Erro na requisição!' + tryAgain);
+        } finally {
+            // Habilita o botão novamente
+            document.getElementById('submitButton').disabled = false;
+        }
+    });
+        
+    </script>
+    <!-- For navbar -->
+    <script>
+        // * FOR NAV-BAR
+        // Detect mobile devices
+        const isMobile = () => /Mobi|Android/i.test(navigator.userAgent);
+
+        const showSidebar = () => {
+        document.querySelector('.sidebar').style.display = 'flex'; // ou 'flex', conforme necessário
+        };
+
+        const hideSidebar = () => {
+        document.querySelector('.sidebar').style.display = 'none';
+        };
+
+        const scrollHide = () => {
+        if (isMobile()) hideSidebar();
+        };
     </script>
 </body>
 </html>

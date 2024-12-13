@@ -1,6 +1,7 @@
 // *Dependencies
     const Reservation = require('../db/models/reservaModel'); // Imports Reservation Model
-    const User = require('../db/models/User'); // Imports User model
+    const User = require('../db/models/userModel'); // Imports User model
+    const Cache = require('../db/models/cacheModel'); // Imports Cache model
     const { encrypt } = require('./bcryptUtils');
 
 // Utility function to create or update a user in the database
@@ -65,16 +66,6 @@ const saveReservation = async (session) => {
   }
 };
 
-const mongoose = require('mongoose'); // Mongoose for cacheSchema
-
-const CacheSchema = new mongoose.Schema({
-    customerId: { type: String, required: true }, // STRIPE customerId
-    sessionId: { type: String, required: true }, // cs_ sessionId STRIPE
-    hash: {type: String, required: true}, // Hash of STRIPE customerId
-}, { timestamps: true }); // Timestamps
-
-// Model based on the schema
-const Cache = mongoose.model('Cache', CacheSchema);
 
 // Function to save or update data in the "cache" collection
 const saveCacheData = async (customerId, sessionId) => {
@@ -89,10 +80,10 @@ const saveCacheData = async (customerId, sessionId) => {
     }
 };
 
+
 // Exports all functions || schemas
 module.exports = {
   createOrUpdateUser,
   saveReservation,
   saveCacheData,
-  Cache,
 }

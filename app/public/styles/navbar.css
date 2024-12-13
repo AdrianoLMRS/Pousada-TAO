@@ -90,15 +90,12 @@ nav .more summary {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 1s ease, font-weight 300ms ease;
 }
+nav .more summary:hover { transform: scale(1.2, 1); font-weight: bolder; }
 
-nav .more[open] summary {
-  /* top: 25%;
-  margin-left: 10%; */
-}
-
-nav .more summary::after { content: '◁'; display: inline-block; transform: rotate( -180deg ); transition: all 600ms; }
-nav .more[open] summary::after { content: '◁'; display: inline-block; transform: rotate( -90deg ); }
+nav .more summary::after { content: '◁'; display: inline-block; transform: rotate( -180deg ) scale(0.8); transition: all 600ms; }
+nav .more[open] summary::after { content: '◁'; display: inline-block; transform: rotate( -90deg ) scale(0.8); }
 
 nav .desktop a:not(nav details a):hover {
   font-size: 17.6px;

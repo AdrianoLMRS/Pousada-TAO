@@ -7,7 +7,7 @@ main {
   height: 100dvh;  
   text-align: center;
 }
-.content { min-height: 950px; }
+.content { min-height: 950px; height: 100vh; max-height: unset !important; }
 main h1, h2 { font-size: xx-large; font-weight: 900; }
 main h3 { font-size: larger; font-weight: 700; }
 .info {
@@ -56,7 +56,7 @@ form textarea {
   min-width: 500px;
   min-height: 100px;
   max-height: 200px;
-  resize: vertical; /* Permite redimensionar apenas verticalmente */
+  resize: vertical;
 }
 
 /* MEDIA QUERIES */
@@ -72,13 +72,9 @@ form textarea {
     row-gap: 20px;
   }
 }
-@media (max-width: 500px) { form textarea { min-width: 250px; min-height: 150px; max-height: 200px; }
+@media (max-width: 500px) { form textarea { min-width: 250px; min-height: 150px; max-height: 200px; } 
 .form-login { --_bottom: 39.5%; --_bf-bottom: 50.25%; } }
-@media (max-width: 250px) { form textarea { min-width: 150px; } main, .content { height: 120dvh; } 
+@media (max-width: 250px) { form textarea { min-width: 150px; } main, .content { min-height: 120dvh !important; } 
 .form-login { --_bottom: 36.25%; --_bf-bottom: 47%; } }
-/* @media (max-width: 1200px) {
-  main, .content { height: 120dvh; }
-  .main-content > * { margin-top: 50px; }
-} */
 .custom-btn:disabled { opacity: 0.7  !important; }
 .custom-btn::after { font-size: small !important; white-space: normal !important; }

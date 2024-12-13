@@ -1,4 +1,4 @@
-const User = require('../db/models/User'); // Altere o caminho para o modelo User conforme necessário
+const User = require('../db/models/userModel'); // Altere o caminho para o modelo User conforme necessário
 
 const getProfile = async (req, res) => {
     try {
