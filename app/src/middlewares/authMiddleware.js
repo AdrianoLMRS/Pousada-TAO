@@ -10,7 +10,7 @@ const auth = (req, res, next) => {
 
     if (!token) {
         // If no token, redirect user to /login page
-        return res.redirect('/login');
+        return res.redirect('/profile/login');
     }
 
     try {

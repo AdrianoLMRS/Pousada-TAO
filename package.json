@@ -18,7 +18,7 @@
   "description": "**DEMO**",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon app/src/index.js --host 127.0.0.1",
+    "start": "nodemon app/src/index.js -L --host 127.0.0.1",
     "start:node": "node app/src/index.js",
     "start:docker": "node src/index.js",
     "start:dev": "nodemon --watch src/logSetup.js --watch app/src/index.js",

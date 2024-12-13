@@ -57,4 +57,8 @@ router.get('/data', auth, async (req, res) => {
     }
 });
 
+router.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/login.html')); // Send Login static HTML
+});
+
 module.exports = router;
