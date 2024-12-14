@@ -26,6 +26,7 @@
 /* Firefox */
 .quantity input[type="number"][type=number] {  
   -moz-appearance: textfield; 
+  appearance: textfield;
 }
 
 .quantity-button {
@@ -39,7 +40,7 @@
   border-radius: 50%;
   cursor: pointer;
   font-size: 18px;
-  user-select: none;
+
 }
 
 .quantity-down { 

@@ -3,9 +3,7 @@ main > *:not(:first-child):not(.booking-form) {
   margin-bottom: 200px;
 }
 
-.flex {
-  display: flex;
-}
+.flex {  display: flex;  }
 
 /** SOBRE **/
 .sobre-section {
@@ -72,7 +70,7 @@ main > *:not(:first-child):not(.booking-form) {
   flex: 1 1 400px;
 }
 
-.content-container h1 {
+.content-container h3 {
   color: var(--_primary);
   font-size: 2rem;
   margin: 0;
@@ -126,7 +124,7 @@ main > *:not(:first-child):not(.booking-form) {
   line-height: 1.5;
 }
 
-.acomodacoes > h2 {
+.acomodacoes > h3 {
   font-size: var(--header-font-size);
   text-align: center;
 }
@@ -141,9 +139,7 @@ main > *:not(:first-child):not(.booking-form) {
   gap: 20px;
 }
 
-@media (max-width: 645px) {
-  .card { flex-grow: 0.2; }
-}
+@media (max-width: 645px) {  .card { flex-grow: 0.2; }  }
 
 .card {
   background-color: var(--cor-branco);
@@ -223,9 +219,7 @@ main > *:not(:first-child):not(.booking-form) {
   --img-width: 50%;
 }
 
-.great > h2 {
-  font-size: var(--header-font-size);
-}
+.great > h4 {  font-size: var(--header-font-size);  }
 
 .great .flex {
   width: 100%;
@@ -237,6 +231,7 @@ main > *:not(:first-child):not(.booking-form) {
 
 .great .card .img-container {
   width: 100%;
+  min-height: 130px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -251,9 +246,7 @@ main > *:not(:first-child):not(.booking-form) {
   height: 100px;
 }
 
-.great .card .card-content h2 {
-  text-align: center;
-}
+.great .card .card-content h3 {  text-align: center;  }
 
 /**  GALLERY  **/
 
@@ -265,7 +258,7 @@ main > *:not(:first-child):not(.booking-form) {
   gap: 25px;
 }
 
-.gallery header h2 { font-size: var(--header-font-size); white-space: nowrap; }
+.gallery header h4 { font-size: var(--header-font-size); white-space: nowrap; }
 
 .gallery header ul {
   list-style: none;
@@ -451,7 +444,7 @@ main > *:not(:first-child):not(.booking-form) {
   gap: 25px;
 }
 
-.localizacao h2 {
+.localizacao h4 {
   font-size: var(--header-font-size, calc(2rem + 2vw));   
   --cor-1: var(--cor-roxo);     
   --cor-2: var(--cor-roxo);     

@@ -4,71 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil do Usuário</title>
-    <style>
-        body { font-size: large; }
-        .mega-wrapper { 
-            min-height: 90dvh; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            margin-top: 50px;
-            background: snow;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2 {
-            text-align: center;
-            color: #333;
-        }
-        h2 { margin-top: 5%; margin-bottom: 5%; }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table th, table td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-        table th {
-            background-color: #f4f4f9;
-        }
-        .profile-info {
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .btn {
-            display: flex;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-        }
-        button {
-            padding: 10px 20px;
-            border-radius: 4px;
-            background-color: #fff;
-            color: black;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-        button a {
-            all: unset;
-        }
-    </style>
     <link rel="stylesheet" href="styles/variables.css">""
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/profile.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -79,26 +19,34 @@
             <ul class="sidebar">
                 <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
                 <li onclick=hideSidebar() id="nav-reserva" style="border-radius: 0; margin-bottom: 4vh; margin-top: 4vh;">
-                    <a class="" style="-webkit-text-stroke: 1.5px;" href="#">Reservar</a></li>
-                <li onclick=hideSidebar()><a href="/">Home</a></li>
-                <li onclick=hideSidebar()><a href="#sobre">A Pousada</a></li>
-                <li onclick=hideSidebar()><a href="#depoimentos">Acomodações</a></li>
-                <li onclick=hideSidebar()><a href="#fotos">Fotos</a></li>
-                <li onclick=hideSidebar()><a href="#localizacao">Localização</a></li>
+                    <a class="" style="-webkit-text-stroke: 1.5px;" target="_blank" href="/reserva">Reservar</a></li>
+                <li onclick=hideSidebar()><a href="/#home">Home</a></li>
+                <li onclick=hideSidebar()><a href="/#sobre">A Pousada</a></li>
+                <li onclick=hideSidebar()><a href="/#depoimentos">Acomodações</a></li>
+                <li onclick=hideSidebar()><a href="/#fotos">Fotos</a></li>
+                <li onclick=hideSidebar()><a href="/#localizacao">Localização</a></li>
+                <li onclick=hideSidebar()><a href="/profile/login">login</a></li>
+                <li onclick=hideSidebar()><a href="/profile">Suas reservas</a></li>
             </ul>
             
             <ul class="desktop">
                 <li style="left: 0; cursor: pointer;" class="fixed"><a href="#">
-                    <img style="margin-top: 20%;" class="logo" loading="eager" src="https://res.cloudinary.com/dycnoic1s/image/upload/w_150,h_120,q_100/v1732903554/elemento_flor.fw_2_wr5wtf.png" alt="Logotipo Pousada TAO">
+                    <img style="margin-top: 20%;" class="logo" loading="eager" src="https://res.cloudinary.com/dycnoic1s/image/upload/w_180,h_150,q_auto/v1732903554/elemento_flor.fw_2_wr5wtf.png" alt="Logotipo Pousada TAO">
                 </a></li>
-                <li class="hideOnMobile"><a href="/">Home</a></li>
-                <li class="hideOnMobile"><a href="#sobre">A Pousada</a></li>
-                <li class="hideOnMobile"><a href="#acomodacoes">Acomodações</a></li>
-                <li class="hideOnMobile"><a href="#fotos">Fotos</a></li>
-                <li style="margin-right: 175px;" class="hideOnMobile"><a href="#localizacao">Localização</a></li>
-                <li style="border-radius: 0; border-bottom-left-radius: 15px;" id="nav-reserva" class="hideOnMobile fixed gradient gradient-golden"><a href="#">Reservar</a></li>
+                <li class="hideOnMobile"><a href="/#home">Home</a></li>
+                <li class="hideOnMobile"><a href="/#sobre">A Pousada</a></li>
+                <li class="hideOnMobile"><a href="/#acomodacoes">Acomodações</a></li>
+                <li class="hideOnMobile"><a href="/#fotos">Fotos</a></li>
+                <li class="hideOnMobile"><a href="/#localizacao">Localização</a></li>
+                <li style="margin-right: 175px;" class="hideOnMobile"><details class="more" ><summary>Mais&emsp;</summary>
+                    <a href="/profile/login" target="_blank">Login</a>
+                    <a href="/profile" target="_blank">Suas reservas</a>
+                </details></li>
+                <li style="border-radius: 0; border-bottom-left-radius: 15px;" id="nav-reserva" class="hideOnMobile fixed gradient gradient-golden"><a href="/reserva" target="_blank">Reservar</a></li>
                 <li style="cursor: pointer;" class="menu-button" onclick=showSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
+                <a style="margin-top: 100px !important;" tabindex="0" class="mobileLink gradient gradient-golden disableHover" id="mobileLink" href="/reserva" target="_blank">RESERVAR</a>
             </ul>
+            <a class="home-link" href="/#home"></a>
         </nav>
 
         <div class="mega-wrapper">
@@ -107,34 +55,43 @@
 
                 <div class="profile-info">
                     <p><strong>Nome:</strong> <%= user.name %></p>
-                    <p><strong>Email:</strong> <%= user.email %></p>
+                    <p><strong>Email:</strong> 
+                        <%- user.email.replace('@', '<wbr>@').replace('.', '<wbr>.') %> <!-- For breaking after @ -->
+                    </p>
                     <p><strong>Telefone:</strong> <%= user.phone %></p>
                     <p><strong>ID do Cliente:</strong> <%= user.customerId %></p>
                     <p><strong>Endereço:</strong> <%= user.address || 'N/A' %></p>
                 </div>
 
-                <h2>Suas Reservas</h2>
+                <h2 class="sr-only">Suas Reservas</h2>
                 <% if (reservations.length > 0) { %>
                     <table>
-                        <thead>
+                        <caption>Reservas</caption>
+                        <thead class="">
                             <tr>
-                                <th>Check-In</th>
-                                <th>Check-Out</th>
-                                <th>Adultos</th>
-                                <th>Menores</th>
-                                <th>Valor Total</th>
-                                <th>Status do Pagamento</th>
+                                <th scope="col">Check-In</th>
+                                <th scope="col">Check-Out</th>
+                                <th scope="col">Adultos</th>
+                                <th scope="col">Menores</th>
+                                <th scope="col">Valor Total</th>
+                                <th scope="col">Status do Pagamento</th>
                             </tr>
                         </thead>
                         <tbody>
                             <% reservations.forEach(reservation => { %>
                                 <tr>
-                                    <td><%= reservation.checkIn %></td>
-                                    <td><%= reservation.checkOut %></td>
-                                    <td><%= reservation.adults %></td>
-                                    <td><%= reservation.children + reservation.babies %></td>
-                                    <td>R$<%= reservation.totalAmount.toFixed(2) %></td>
-                                    <td><%= reservation.paymentStatus %></td>
+                                    <td data-label="CheckIn" data-label-visual="Check-In" data-column="1"
+                                    ><%= reservation.checkIn %></td>
+                                    <td data-label="checkOut" data-label-visual="check-Out" data-column="2"
+                                    ><%= reservation.checkOut %></td>
+                                    <td data-label="adults" data-label-visual="Adultos" data-column="3"
+                                    ><%= reservation.adults %></td>
+                                    <td data-label="Minors" data-label-visual="Menores" data-column="4"
+                                    ><%= reservation.children + reservation.babies %></td>
+                                    <td data-label="Total" data-label-visual="Total" data-column="5"
+                                    >R$<%= reservation.totalAmount.toFixed(2) %></td>
+                                    <td data-label="Status" data-label-visual="Status" data-column="6"
+                                    ><%= reservation.paymentStatus %></td>
                                 </tr>
                             <% }); %>
                         </tbody>
@@ -144,8 +101,8 @@
                 <% } %>
             </div>
             <div class="btn">
-                <button onclick="window.location.href='/reserva'"><a href="/reserva">FAZER NOVA RESERVA</a></button>
-                <button onclick="window.location.href='/'"><a href="/">Home page</a></button>
+                <button onclick="window.location.href='/reserva'" class="custom-btn"><a href="/reserva">FAZER NOVA RESERVA</a></button>
+                <button onclick="window.location.href='/'" class="custom-btn"><a href="/">Home page</a></button>
             </div>
         </div>
 

@@ -93,7 +93,7 @@
 	padding: 20px;
 }
 
-.footer-bottom a { text-decoration: none; }
+.footer-bottom a { text-decoration: none; }	 .footer-bottom a:hover { text-decoration: underline;  }
 
 .footer-bottom-links {
 	flex-grow: 0.7;

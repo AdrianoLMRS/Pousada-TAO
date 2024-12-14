@@ -74,6 +74,7 @@ body > * {
 .gradient-txt {
   background-image: linear-gradient(var(--direction, to right), var(--cor-1, black), var(--cor-2, black), var(--cor-3, black), var(--cor-4, black)); /* Define variáveis com fallback */
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent; 
   --cor-1: black; /* Default color if not defined by the user */
   --cor-2: black; /* Default color if not defined by the user */
@@ -98,7 +99,6 @@ body > * {
   --cor-4: #b0802f;  
 
 }
-
 
 .no-selection::selection {
   color: default;
@@ -161,7 +161,6 @@ body > * {
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
   border: 0;
 }
 

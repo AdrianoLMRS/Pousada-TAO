@@ -1,0 +1,135 @@
+body { font-size: large; }
+.content { height: initial !important; min-height: initial !important; }
+.mega-wrapper { 
+    min-height: 100dvh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    max-width: 800px;
+    padding: 20px;
+    margin-top: 50px;
+    background: antiquewhite;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+@media (max-width: 280px) {
+  .container { align-items: center; text-align: center !important;     word-wrap: break-word; hyphens: none;
+    overflow-wrap: break-word;  }
+}
+h1, caption {
+    text-align: center;
+    color: #333;
+}
+caption { margin-top: 5%; margin-bottom: 5%; }
+caption { font-size: calc(var(--header-font-size, 2rem) - 0.5vw); }
+.profile-info {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    font-size: large;
+    gap: 15px;
+}
+button a {
+    all: unset;
+}
+.btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 100%;
+    max-width: 1200px;
+}
+/* Responsive Table */
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+
+table tr {
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+table thead {
+  background-image: linear-gradient(45deg, #b0802f, var(--cor-laranja), var(--cor-laranja),
+  var(--cor-laranja), var(--cor-laranja), var(--cor-laranja), var(--cor-laranja), #b0802f); 
+}
+
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 751px) {
+    table {
+        border: 0;
+    }
+
+    table caption {
+        font-size: 1.3em;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+    
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+    
+    table td::before {
+        content: attr(data-label-visual);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
+}

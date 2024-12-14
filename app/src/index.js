@@ -30,12 +30,12 @@
 
     next(); 
   }); 
-  app.set('view engine', 'ejs'); // Define o EJS como motor de templates
-  app.set('views', path.join(__dirname, 'views')); // Pasta onde os templates serão armazenados
+  app.set('view engine', 'ejs'); // For redenring .ejs files
+  app.set('views', path.join(__dirname, 'views')); // Templates folder
 
   
 // *FUNCTIONS
-    // connectDB();
+    connectDB();
 
 // *Routes uses
     app.use('/api', express.json(), apiRoutes); // routes/stripe.js
@@ -48,7 +48,7 @@
 const start = (port) => {
     try {
         app.listen(port, () => {
-        console.log(`Api up and running at: http://localhost:${port}`);
+        console.log(`\nApi up and running at: http://localhost:${port}\n`);
         });
     } catch (error) {
         console.error(error);

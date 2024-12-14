@@ -26,7 +26,7 @@
                 <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
                 <li onclick=hideSidebar() id="nav-reserva" style="border-radius: 0; margin-bottom: 4vh; margin-top: 4vh;">
                     <a class="" style="-webkit-text-stroke: 1.5px;" target="_blank" href="/reserva">Reservar</a></li>
-                <li onclick=hideSidebar()><a href="/">Home</a></li>
+                <li onclick=hideSidebar()><a href="/#home">Home</a></li>
                 <li onclick=hideSidebar()><a href="/#sobre">A Pousada</a></li>
                 <li onclick=hideSidebar()><a href="/#depoimentos">Acomodações</a></li>
                 <li onclick=hideSidebar()><a href="/#fotos">Fotos</a></li>
@@ -39,18 +39,19 @@
                 <li style="left: 0; cursor: pointer;" class="fixed"><a href="#">
                     <img style="margin-top: 20%;" class="logo" loading="eager" src="https://res.cloudinary.com/dycnoic1s/image/upload/w_180,h_150,q_auto/v1732903554/elemento_flor.fw_2_wr5wtf.png" alt="Logotipo Pousada TAO">
                 </a></li>
-                <li class="hideOnMobile"><a href="/">Home</a></li>
+                <li class="hideOnMobile"><a href="/#home">Home</a></li>
                 <li class="hideOnMobile"><a href="/#sobre">A Pousada</a></li>
                 <li class="hideOnMobile"><a href="/#acomodacoes">Acomodações</a></li>
                 <li class="hideOnMobile"><a href="/#fotos">Fotos</a></li>
                 <li class="hideOnMobile"><a href="/#localizacao">Localização</a></li>
                 <li style="margin-right: 175px;" class="hideOnMobile"><details class="more" ><summary>Mais&emsp;</summary>
-                    <a href="/profile/login">Login</a>
-                    <a href="/profile">Suas reservas</a>
+                    <a href="/profile/login" target="_blank">Login</a>
+                    <a href="/profile" target="_blank">Suas reservas</a>
                 </details></li>
                 <li style="border-radius: 0; border-bottom-left-radius: 15px;" id="nav-reserva" class="hideOnMobile fixed gradient gradient-golden"><a href="/reserva" target="_blank">Reservar</a></li>
-                <li style="cursor: pointer;" class="menu-button" onclick=showSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
+                <li style="cursor: pointer;" class="menu-button" tabindex="0" onclick=showSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
             </ul>
+            <a class="home-link" href="/#home"></a>
         </nav>
         <div class="main-div">
             <header style="margin-top: 15px;">

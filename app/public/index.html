@@ -51,8 +51,8 @@
             </ul>
             
             <ul class="desktop">
-                <li style="left: 0; position: relative; cursor: pointer;" class="fixed"><a href="#home">
-                    <img style="margin-top: 20%;" class="logo" loading="eager" src="https://res.cloudinary.com/dycnoic1s/image/upload/w_150,h_120,q_100/v1732903554/elemento_flor.fw_2_wr5wtf.png" alt="Logotipo Pousada TAO">
+                <li onclick="window.location.href='/#home'" style="left: 0; position: relative; cursor: pointer;" class="fixed"><a href="/#home">
+                    <img  style="margin-top: 20%;" class="logo" loading="eager" src="https://res.cloudinary.com/dycnoic1s/image/upload/w_180,h_150,q_auto/v1732903554/elemento_flor.fw_2_wr5wtf.png" alt="Logotipo Pousada TAO">
                 </a></li>
                 <li class="hideOnMobile"><a href="/#home">Home</a></li>
                 <li class="hideOnMobile"><a href="/#sobre">A Pousada</a></li>
@@ -60,13 +60,14 @@
                 <li class="hideOnMobile"><a href="/#fotos">Fotos</a></li>
                 <li class="hideOnMobile"><a href="/#localizacao">Localização</a></li>
                 <li style="margin-right: 175px;" class="hideOnMobile"><details class="more" ><summary>Mais&emsp;</summary>
-                    <a href="/profile/login">Login</a>
-                    <a href="/profile">Suas reservas</a>
+                    <a href="/profile/login" target="_blank">Login</a>
+                    <a href="/profile" target="_blank">Suas reservas</a>
                 </details></li>
                 <li style="border-radius: 0; border-bottom-left-radius: 15px;" id="nav-reserva" class="hideOnMobile fixed gradient gradient-golden"><a href="/reserva" target="_blank">Reservar</a></li>
-                <li style="cursor: pointer;" class="menu-button" onclick=showSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
+                <li style="cursor: pointer;" class="menu-button" tabindex="0" onclick=showSidebar()><a><svg alt="menu-icon for mobile" xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
             </ul>
             <a class="mobileLink gradient gradient-golden" id="mobileLink" href="/reserva" target="_blank">RESERVAR</a>
+            <a class="home-link" href="/#home"></a>
         </nav>
     
 
@@ -80,7 +81,9 @@
                         <div class="animated flex-center">
                             <h1 translate="no" class="gradient-txt gradient-golden no-selection animated montserrat-text text-with-lines overlayh1"><div class="pseudo"></div>
                                 Pousada
-                                <span class="gradient-txt gradient-golden no-selection">TAO</span></h1>
+                                <span class="gradient-txt gradient-golden no-selection">TAO</span>
+                                <span class="sr-only" >Campos do Jordão</span>
+                            </h1>
                             <p class="subtitle animated montserrat-text">
                                 Festas em família? <br> A Pousada Tao é a pousada em Campos do Jordão <br> perfeita para viver a magia do Natal <br>
                                 e criar memórias inesquecíveis. <strong>Reserve já!</strong>
@@ -96,7 +99,7 @@
 
                     <div class="form-content">
 
-                        <h2 class="sr-only" >Quem está vindo?</h2>
+                        <h4 class="sr-only" >Quem está vindo?</h4>
 
                         <form id="booking-form" class="booking-form" action="/reserva" method="get" target='_blank'>
 
@@ -176,7 +179,7 @@
 
                 </section>
                 
-                <div class="sobre" id="sobre">
+                <section class="sobre" id="sobre">
 
                     <section class="sobre-section">
                         <div class="slider-container">
@@ -189,7 +192,7 @@
                           <button type="button" class="slider-btn next-btn">&#8250;</button>
                         </div>
                         <div class="content-container">
-                          <h1 translate="no">Pousada TAO</h1>
+                          <h3 translate="no">Pousada TAO</h3>
                           <h2>Conforto e Praticidade em Campos do Jordão</h2>
                           <p>
                             Na Pousada Tao, sua família e amigos encontrarão um lar temporário para criar memórias inesquecíveis, vivenciando a magia do Natal em Campos do Jordão e suas atrações encantadoras. Oferecemos um ambiente acolhedor, seguro e autêntico, pensado para tornar sua experiência única e especial.
@@ -198,19 +201,19 @@
                         </div>
                       </section>
 
-                </div>    
+                </section>    
 
-                <div class="great" id="great">
+                <section class="great" id="great">
 
-                    <h2>Por que nos escolher ?</h2>
+                    <h4>Por que nos escolher ?</h4>
 
                     <div class="flex">
                         <div class="card">
                             <div class="img-container">
-                                <img src="./assets/svg/home-heart-svgrepo-com.svg" alt="Card Image" class="card-image">
+                                <img src="./assets/svg/home-heart-svgrepo-com.svg" alt="Card Image" class="Casa com coração (SVG)">
                             </div>
                             <div class="card-content">
-                                <h2 class="card-title">Acomodações Aconchegantes para Famílias e Grupos</h2>
+                                <h3 class="card-title">Acomodações Aconchegantes para Famílias e Grupos</h3>
                                 <p class="card-description">
                                     Perfeita para grupos de 6 a 10 pessoas, a Pousada Tao oferece espaços amplos, roupas de cama e banho de alta qualidade e um atendimento humanizado que garante conforto e acolhimento durante sua estadia.
                                 </p>
@@ -218,10 +221,10 @@
                         </div>
                         <div class="card">
                             <div class="img-container">
-                                <img style="margin-bottom: 10%;" src="./assets/svg/tea-cup-svgrepo-com.svg" alt="Card Image" class="card-image">
+                                <img src="./assets/svg/tea-cup-svgrepo-com.svg" alt="Xícara de chá  (SVG)" class="card-image">
                             </div>
                             <div class="card-content">
-                                <h2 class="card-title">Cozinha Completa para Sua Comodidade</h2>
+                                <h3 class="card-title">Cozinha Completa para Sua Comodidade</h3>
                                 <p class="card-description">
                                     Nossa cozinha equipada é perfeita para famílias e grupos que preferem preparar refeições rápidas e práticas, aproveitando o conforto da pousada.
                                 </p>
@@ -229,10 +232,10 @@
                         </div>
                         <div class="card">
                             <div class="img-container">
-                                <img src="./assets/svg/family-charity-svgrepo-com.svg" alt="Card Image" class="card-image">
+                                <img src="./assets/svg/family-charity-svgrepo-com.svg" alt="Card Image" class="Família felíz (SVG)">
                             </div>
                             <div class="card-content">
-                                <h2 class="card-title">Ambiente Familiar e Seguro</h2>
+                                <h3 class="card-title">Ambiente Familiar e Seguro</h3>
                                 <p class="card-description">
                                     A Pousada Tao é um espaço familiar, com foco na segurança e tranquilidade de nossos hóspedes. É o lugar perfeito para quem busca uma estadia acolhedora, especialmente para famílias que desejam um ambiente calmo para descanso durante as festas de fim de ano.
                                 </p>
@@ -240,10 +243,10 @@
                         </div>
                         <div class="card">
                             <div class="img-container">
-                                <img src="./assets/svg/pin-location-svgrepo-com.svg" alt="Card Image" class="card-image">
+                                <img src="./assets/svg/pin-location-svgrepo-com.svg" alt="Card Image" class="Marcação de mapa (SVG)">
                             </div>
                             <div class="card-content">
-                                <h2 class="card-title">Localização Estratégica em Campos do Jordão</h2>
+                                <h3 class="card-title">Localização Estratégica em Campos do Jordão</h3>
                                 <p class="card-description">
                                     A apenas 500 metros do portal de entrada da cidade, a Pousada Tao oferece acesso rápido às atrações, ao centro comercial e aos serviços locais. Explore Campos do Jordão e volte ao nosso conforto para o descanso que você merece.
                                 </p>
@@ -251,11 +254,11 @@
                         </div>
                     </div>
 
-                </div>
+                </section>
 
-                <div class="acomodacoes" id="acomodacoes">
+                <section class="acomodacoes" id="acomodacoes">
 
-                    <h2>Acomodações Aconchegantes e Versáteis na Pousada Tao</h2>
+                    <h3>Acomodações Aconchegantes e Versáteis na Pousada Tao</h3>
 
                     <p>
                         Na Pousada Tao, nossos quartos de madeira oferecem um ambiente acolhedor e quentinho, ideal para as noites frias de Campos do Jordão. Com colchões confortáveis e roupas de cama macias, nossas acomodações são adaptáveis, com opções flexíveis para atender às suas necessidades:
@@ -265,7 +268,7 @@
                         <div class="card">
                             <img src="https://res.cloudinary.com/dycnoic1s/image/upload/w_300,h_300,q_100/v1732901662/6617f22ad6613_14quarto3940x788_ikimxd.png" alt="Quarto Individual" class="card-image">
                             <div class="card-content">
-                                <h2 class="card-title">Individual</h2>
+                                <h5 class="card-title">Individual</h5>
                                 <p class="card-description">
                                     Uma cama de solteiro confortável em um espaço acolhedor.
                                 </p>
@@ -275,7 +278,7 @@
                         <div class="card">
                             <img src="https://res.cloudinary.com/dycnoic1s/image/upload/w_300,h_300,q_100/v1732901659/6617f1be33c11_12quarto1940x788_gyvfeu.png" alt="Quarto com beliche" class="card-image">
                             <div class="card-content">
-                                <h2 class="card-title">Dupla Beliche</h2>
+                                <h5 class="card-title">Dupla Beliche</h5>
                                 <p class="card-description">
                                     Um quarto com beliche, perfeito para grupos menores.
                                 </p>
@@ -285,7 +288,7 @@
                         <div class="card">
                             <img src="https://res.cloudinary.com/dycnoic1s/image/upload/w_300,h_300,q_100/v1732901660/6617f1d5d810b_11quartoduploromeiros940x788_lytmiv.png" alt="Quarto duplo perfeito para casais" class="card-image">
                             <div class="card-content">
-                                <h2 class="card-title">Dupla/Casal</h2>
+                                <h5 class="card-title">Dupla/Casal</h5>
                                 <p class="card-description">
                                     Duas camas de solteiro que podem se transformar em uma cama grande de casal em um quarto espaçoso.
                                 </p>
@@ -295,7 +298,7 @@
                         <div class="card">
                             <img src="https://res.cloudinary.com/dycnoic1s/image/upload/w_300,h_300,q_100/v1732901662/6617f20f5b52f_13quartotriplo940x788_sil8mw.png" alt="Quarto triplo perfeito para casais" class="card-image">
                             <div class="card-content">
-                                <h2 class="card-title">Tripla/Casal</h2>
+                                <h5 class="card-title">Tripla/Casal</h5>
                                 <p class="card-description">
                                     Três camas de solteiro que podem ser ajustadas para uma cama grande de casal e uma de solteiro em um ambiente espaçoso.
                                 </p>
@@ -307,17 +310,19 @@
                         Cada detalhe foi planejado para tornar sua estadia especial. Seja para momentos de descanso ou celebrações em família, nossas acomodações garantem conforto, praticidade e um toque de charme.
                     </p>
 
-                </div>
+                </section>
 
                 <section id="fotos" class="gallery">
                     <header>
-                        <h2>Galeria de Fotos</h2>
-                        <ul>
-                            <li><button type="button" class="gallery-Btn custom-btn active gradient gradient-golden" data-category="all">Todas</button></li>
-                            <li><button type="button" class="gallery-Btn custom-btn" data-category="pousadaImg">Pousada</button></li>
-                            <li><button type="button" class="gallery-Btn custom-btn" data-category="acomodacoesImg">Acomodações</button></li>
-                            <li translate="no"><button type="button" class="gallery-Btn custom-btn" data-category="campos-do-jordaoImg">Campos do Jordão</button></li>
-                        </ul>
+                        <h4>Galeria de Fotos</h4>
+                        <nav style="all: unset !important;">
+                            <ul>
+                                <li><button type="button" class="gallery-Btn custom-btn active gradient gradient-golden" data-category="all">Todas</button></li>
+                                <li><button type="button" class="gallery-Btn custom-btn" data-category="pousadaImg">Pousada</button></li>
+                                <li><button type="button" class="gallery-Btn custom-btn" data-category="acomodacoesImg">Acomodações</button></li>
+                                <li translate="no"><button type="button" class="gallery-Btn custom-btn" data-category="campos-do-jordaoImg">Campos do Jordão</button></li>
+                            </ul>
+                        </nav>
                     </header>
                     <section id="img-gallery0" class="img-gallery" tabindex="0">
                         <img class="gallery-item pousadaImg" src="https://res.cloudinary.com/dycnoic1s/image/upload/v1732901670/fachada-da-pousada_r0hpto.png" alt="Fachada da Pousada TAO">
@@ -382,9 +387,9 @@
 
                 </section>
 
-                <div class="localizacao" id="localizacao">
+                <section class="localizacao" id="localizacao">
                 
-                    <h2 style="margin-bottom: 3%;">Localização</h2>
+                    <h4 style="margin-bottom: 3%;">Localização</h4>
                     
                                        
 
@@ -427,14 +432,14 @@
                         </div>
                         
                 
-                </div>
+                </section>
             
         </main>
         
         <footer class="footer">
             <div class="footer-content">
                 <div class="brand-section">
-                    <h2 class="gradient gradient-golden" style="border-radius: 5px;" >Pousada TAO</h2>
+                    <h2 class="gradient gradient-golden" style="border-radius: 5px; cursor:crosshair;" >Pousada TAO</h2>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                         Autem quasi distinctio consectetur temporibus molestiae, 
