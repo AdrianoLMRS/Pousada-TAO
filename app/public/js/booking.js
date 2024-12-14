@@ -71,7 +71,7 @@ function submitForm(event) {
     window.location.href = '/reserva?' + params.toString();
 }
 
-
+// chekIn minimum set to today & checkOut minimum set to tomorrow
 document.addEventListener("DOMContentLoaded", () => {
     const checkInInput = document.getElementById("checkIn");
     const checkOutInput = document.getElementById("checkOut");

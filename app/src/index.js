@@ -35,7 +35,7 @@
 
   
 // *FUNCTIONS
-    connectDB();
+    // connectDB();
 
 // *Routes uses
     app.use('/api', express.json(), apiRoutes); // routes/stripe.js

@@ -1,8 +1,6 @@
-const baseURL = "http://localhost:3000";
-
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    const response = await fetch(`${baseURL}/profile/data`, { credentials: 'include' }); // Include cookies
+    const response = await fetch('/profile/data', { credentials: 'include' }); // Include cookies
     if (response.ok) {
       const { user, reservas } = await response.json();
 

@@ -128,3 +128,27 @@
 .text-with-lines::after {
   right: var(--_line-right, -40%);
 }
+
+.pseudo {
+  position: absolute;
+  right: -1px;
+  height: 150%;
+  width: 100%;
+  display: block;
+}
+
+.pseudo:hover:after { transform: scale(1); }
+
+.pseudo::after { 
+  content: '';
+  position: relative;
+  display: block;
+  bottom: -90%;
+  margin-left: 2%;
+  width: 90%;
+  height: 1px;
+  background-color: var(--cor-atencao, gold);
+  transform-origin: center;
+  transform: scale(0);
+  transition: all 200ms ease-in-out;
+}

@@ -44,6 +44,7 @@ nav .more {
   min-width: 135px;
   max-width: 150px;
   display: flex;
+  flex-direction: column;
   text-align: center;
   padding: 0;
   cursor: pointer;

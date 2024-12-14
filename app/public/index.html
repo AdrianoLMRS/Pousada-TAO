@@ -51,7 +51,7 @@
             </ul>
             
             <ul class="desktop">
-                <li style="left: 0; position: relative; cursor: pointer;" class="fixed"><a href="#">
+                <li style="left: 0; position: relative; cursor: pointer;" class="fixed"><a href="#home">
                     <img style="margin-top: 20%;" class="logo" loading="eager" src="https://res.cloudinary.com/dycnoic1s/image/upload/w_150,h_120,q_100/v1732903554/elemento_flor.fw_2_wr5wtf.png" alt="Logotipo Pousada TAO">
                 </a></li>
                 <li class="hideOnMobile"><a href="/#home">Home</a></li>
@@ -78,7 +78,8 @@
                     <div class="overlay">
                         
                         <div class="animated flex-center">
-                            <h1 translate="no" class="gradient-txt gradient-golden no-selection animated montserrat-text text-with-lines overlayh1">Pousada
+                            <h1 translate="no" class="gradient-txt gradient-golden no-selection animated montserrat-text text-with-lines overlayh1"><div class="pseudo"></div>
+                                Pousada
                                 <span class="gradient-txt gradient-golden no-selection">TAO</span></h1>
                             <p class="subtitle animated montserrat-text">
                                 Festas em família? <br> A Pousada Tao é a pousada em Campos do Jordão <br> perfeita para viver a magia do Natal <br>
@@ -101,17 +102,35 @@
 
                             <span class="form-div">
                                 <label translate="no" class="date-label" for="checkIn"><strong>Check-In:</strong></label>
-                                <input onfocus="this.type='date'; this.showPicker();" required onchange="updateCheckOutMin();"
-                                onblur="this.type='text'; formatDate(this); updateTotalLiveValues();" onclick="showPicker();" 
-                                type="text" name="checkIn" class="datepicker-input" id="checkIn" placeholder="Check-In">
-                            </span>
+                                <input 
+                                    onfocus="this.type='date'; this.showPicker();" 
+                                    required 
+                                    onchange="updateCheckOutMin(); this.blur();" 
+                                    onblur="this.type='text'; formatDate(this); updateTotalLiveValues();" 
+                                    onclick="showPicker();" 
+                                    type="text" 
+                                    name="checkIn" 
+                                    class="datepicker-input" 
+                                    id="checkIn" 
+                                    placeholder="Check-In">
+                            </span>                            
                             <span class="form-div">
-                                <label translate="no" class="date-label" for="checkOut"><strong>Check-Out:</strong><br>
-                                <small id="nightLiveValue"></small></label>
-                                <input onfocus="this.type='date'; this.showPicker();" required 
-                                onblur="this.type='text'; formatDate(this); updateTotalLiveValues();" onclick="showPicker();"
-                                type="text" name="checkOut" class="datepicker-input" id="checkOut" placeholder="Check-Out">
-                            </span>                      
+                                <label translate="no" class="date-label" for="checkOut">
+                                    <strong>Check-Out:</strong><br>
+                                    <small id="nightLiveValue"></small>
+                                </label>
+                                <input 
+                                    onfocus="this.type='date'; this.showPicker();" 
+                                    required 
+                                    onchange="this.blur();" 
+                                    onblur="this.type='text'; formatDate(this); updateTotalLiveValues();" 
+                                    onclick="showPicker();" 
+                                    type="text" 
+                                    name="checkOut" 
+                                    class="datepicker-input" 
+                                    id="checkOut" 
+                                    placeholder="Check-Out">
+                            </span>                                               
                             
                             <span class="form-div">
                                 <label for="adults"><strong>Adultos:</strong><br><small>13 anos ou mais</small></label>
@@ -493,7 +512,26 @@
 
     <!-- *SCRIPTS* -->
     <script src="js/script.js" defer></script>
+    <!-- For navbar -->
     <script>
+        // * FOR NAV-BAR
+        // Detect mobile devices
+        const isMobile = () => /Mobi|Android/i.test(navigator.userAgent);
+
+        const showSidebar = () => {
+        document.querySelector('.sidebar').style.display = 'flex'; // ou 'flex', conforme necessário
+        };
+
+        const hideSidebar = () => {
+        document.querySelector('.sidebar').style.display = 'none';
+        };
+
+        const scrollHide = () => {
+        if (isMobile()) hideSidebar();
+        };
+    </script>
+    <script>
+        // SCRIPT for navbar, navbar Details & widgets scrolling
         var prevScrollpos = window.pageYOffset;
         window.onscroll = function() {
         var currentScrollPos = window.pageYOffset;
@@ -501,6 +539,7 @@
         var mobileLink = document.getElementById('mobileLink');
         var widgets = document.querySelectorAll("#widgets > *, #gt_float_wrapper");
         var fixedElements = navbar.querySelectorAll('.fixed');
+        var details = document.querySelector('.more');
 
         // Move navbar & widgets
         if (prevScrollpos > currentScrollPos) {
@@ -513,6 +552,7 @@
         } else {
             mobileLink.style.marginTop = "50px";
             navbar.style.top = "-100px";
+            details.open = false;
             // WhatsApp floating button & GTranslate widget
             widgets.forEach(function(widget) {
             widget.style.bottom = "-100px";
@@ -541,9 +581,7 @@
             return `${year}-${month}-${day}`;
         }
     </script>
-    <script src="js/fullScreen.js" defer></script>
     <script src="js/booking.js" defer></script>
-    <script src="js/tinySlider.js" defer></script>
     <script src="js/slider.js" defer></script>
     <script src="js/iframe.js" defer></script>
     <script async>  document.addEventListener('DOMContentLoaded', () => {  formatDates();  })   </script> 
