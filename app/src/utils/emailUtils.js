@@ -1,6 +1,5 @@
 // *Dependecies
     const transporter = require('../email');
-    const { encrypt } = require('./bcryptUtils');
 
 const EMAIL = global.EMAIL; // Email (maybe change later)
 
@@ -14,10 +13,8 @@ const EMAIL = global.EMAIL; // Email (maybe change later)
  * @returns {Promise<Object>} - A promise that resolves to the information about the sent email.
  * @throws {Error} - Throws an error if the email sending process fails.
  */
-async function sendEmail(customerId, userEmail) {
+async function sendEmail(hash, userEmail) {
     try {
-
-        const hash = await encrypt(customerId);
 
         const emailMessage = `
         <div style="font-family: Arial, sans-serif; line-height: 1.6;">

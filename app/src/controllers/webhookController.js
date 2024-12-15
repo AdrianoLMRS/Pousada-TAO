@@ -9,6 +9,7 @@
     // Utils
         const { createOrUpdateUser, saveReservation, saveCacheData } = require('../utils/dbUtils');
         const sendEmail = require('../utils/emailUtils');
+        const { encrypt } = require('../utils/bcryptUtils');
 
 // Secret key for validating Stripe webhook signature
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -51,7 +52,9 @@ const handleStripeWebhook = async (req, res) => {
             // Handle checkout.session.completed event
             const session = event.data.object; // Data for saving in mongoDB
 
-            await saveCacheData(session.customer, session.id);  // Save in collection "cache"
+            const hashedSessionId = await encrypt(session.id);
+
+            await saveCacheData(session.customer, session.id, hashedSessionId);  // Save in collection "cache"
 
             await saveReservation(session); // Save reservation in collection "reservations"
 
@@ -69,7 +72,7 @@ const handleStripeWebhook = async (req, res) => {
             }
 
             // Sends to user an email with STRIPE customerId hash
-            await sendEmail(session.customer, session.customer_details.email); 
+            await sendEmail(hashedSessionId, session.customer_details.email); 
             break;
 
         default:

@@ -68,9 +68,8 @@ const saveReservation = async (session) => {
 
 
 // Function to save or update data in the "cache" collection
-const saveCacheData = async (customerId, sessionId) => {
+const saveCacheData = async (customerId, sessionId, hash) => {
     try {
-        const hash = await encrypt(sessionId);
         const newCache = new Cache({ customerId, sessionId, hash }); // Saves sessionId 2 times (normal & hash)
         await newCache.save();
 
