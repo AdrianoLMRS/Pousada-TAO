@@ -1,0 +1,19 @@
+<!-- index.html no frontend -->
+<button id="testButton">Fazer Requisição</button>
+<p id="responseMessage"></p>
+
+<script>
+  document.getElementById('testButton').addEventListener('click', () => {
+    fetch('https://pousada-tao.onrender.com/', {  // Substitua com o seu backend real
+      method: 'GET',
+      credentials: 'include',  // Enviar cookies ou credenciais se necessário
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('responseMessage').textContent = data.message;
+    })
+    .catch(error => {
+      document.getElementById('responseMessage').textContent = 'Erro na requisição: ' + error;
+    });
+  });
+</script>

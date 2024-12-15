@@ -20,12 +20,19 @@
 // *GLOBAL MIDDLEWARES
     // app.use(express.json()); // JSON GLOBAL MIDDLEWARE
     // CORS GLOBAL MIDDLEWARE
+    const allowedOrigins = ['https://pousada-tao.onrender.com']; // Allowed CORS origins
     app.use(cors({
-        origin: 'https://pousada-tao.onrender.com',
-        methods: ['GET', 'POST'],
-        allowedHeaders: ['Content-Type', 'Authorization'],
-        credentials: true
-    }));      
+    origin: (origin, callback) => {
+        if (allowedOrigins.includes(origin) || !origin) { // Permit valid origins (e.g., Postman, insomnia)
+        callback(null, true);
+        } else {
+        callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+    }));
     app.use(cookieParser()); // COOKIES GLOBAL MIDDLEWARE
     app.use(express.static(path.join(__dirname, '..', 'public'))); // SET PUBLIC FOLDER STATIC
     app.use((req, res, next) => { // logs
