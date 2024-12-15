@@ -19,7 +19,13 @@
 
 // *GLOBAL MIDDLEWARES
     // app.use(express.json()); // JSON GLOBAL MIDDLEWARE
-    app.use(cors()); // CORS GLOBAL MIDDLEWARE
+    // CORS GLOBAL MIDDLEWARE
+    app.use(cors({
+        origin: 'https://pousada-tao.onrender.com',
+        methods: ['GET', 'POST'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
+        credentials: true
+    }));      
     app.use(cookieParser()); // COOKIES GLOBAL MIDDLEWARE
     app.use(express.static(path.join(__dirname, '..', 'public'))); // SET PUBLIC FOLDER STATIC
     app.use((req, res, next) => { // logs

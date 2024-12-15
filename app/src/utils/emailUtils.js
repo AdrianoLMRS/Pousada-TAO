@@ -27,6 +27,7 @@ async function sendEmail(customerId, userEmail) {
             flex-direction: row; justify-content: center; max-width: 50vw">
                 ${hash}
             </pre>
+            <small>Pedimos para que não compartilhe este código com ninguém.</small>
             <p>Se você tiver alguma dúvida, fique à vontade para entrar em contato conosco.</p>
             <p>Atenciosamente,</p><br>
             <h3>POUSADA TAO</h3>
@@ -37,7 +38,7 @@ async function sendEmail(customerId, userEmail) {
         const mailOptions = {
             from: EMAIL,
             to: String(userEmail),                 
-            subject: 'Your Secret Hash',   // Subject line
+            subject: 'Seu Login',   // Subject line
             // HTML with hashed password
             html: emailMessage
         };
