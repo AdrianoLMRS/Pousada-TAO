@@ -8,7 +8,8 @@
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     // Utils
         const { createOrUpdateUser, saveReservation, saveCacheData } = require('../utils/dbUtils');
-        const sendEmail = require('../utils/emailUtils');
+        const sendEmail = require('../utils/emailUtils'); // For sending Email with user hash (login)
+        const sendSMS = require('../utils/smsUtils'); // For sending SMS with user hash (login)
         const { encrypt } = require('../utils/bcryptUtils');
 
 // Secret key for validating Stripe webhook signature
@@ -50,29 +51,37 @@ const handleStripeWebhook = async (req, res) => {
 
         case 'checkout.session.completed':
             // Handle checkout.session.completed event
-            const session = event.data.object; // Data for saving in mongoDB
-
-            const hashedSessionId = await encrypt(session.id);
-
-            await saveCacheData(session.customer, session.id, hashedSessionId);  // Save in collection "cache"
-
-            await saveReservation(session); // Save reservation in collection "reservations"
-
-            // Create or update user if session includes customer details
-            if (session.customer_details) {
-                await createOrUpdateUser({
-                    id: session.customer,
-                    email: session.customer_details.email,
-                    name: session.customer_details.name,
-                    phone: session.customer_details.phone,
-                    address: session.customer_details.address
-                        ? `${session.customer_details.address.line1}, ${session.customer_details.address.city}, ${session.customer_details.address.country}`
-                        : '',
-                });
+            try {
+                const session = event.data.object; // Data for saving in mongoDB
+    
+                const hashedSessionId = await encrypt(session.id);
+    
+                await saveCacheData(session.customer, session.id, hashedSessionId);  // Save in collection "cache"
+    
+                await saveReservation(session); // Save reservation in collection "reservations"
+    
+                // Create or update user if session includes customer details
+                if (session.customer_details) {
+                    await createOrUpdateUser({
+                        id: session.customer,
+                        email: session.customer_details.email,
+                        name: session.customer_details.name,
+                        phone: session.customer_details.phone,
+                        address: session.customer_details.address
+                            ? `${session.customer_details.address.line1}, ${session.customer_details.address.city}, ${session.customer_details.address.country}`
+                            : '',
+                    });
+                }
+    
+                // Sends to user an email with STRIPE customerId hash
+                await sendEmail(hashedSessionId, session.customer_details.email); 
+                // Sends to user an SMS with STRIPE customerId hash
+                await sendSMS(hashedSessionId, session.customer_details.phone, session.customer_details.name); 
+            } catch (err) {
+                console.error('Error handling checkout.session.completed:', err.message);
+                return res.status(500).send('Error handling checkout.session.completed event.');
             }
 
-            // Sends to user an email with STRIPE customerId hash
-            await sendEmail(hashedSessionId, session.customer_details.email); 
             break;
 
         default:

@@ -1,22 +1,30 @@
-// * Dependecies
-    const path = require('path'); // Path for folders
-    require('dotenv').config({ path: path.join(__dirname, '../../.env') }); // Loads .env
-    const twilio = require('twilio');
+// * DEPENDECIES
+    const { twilioClient } = require('../../messages');
+    const { accountPhoneTwilio } = require('../../messages');
+    const myPhone = global.MY_PHONE;
 
-const accountSid = process.env.TWILIO_SID; // TWILIO SID
-const authToken = process.env.TWILIO_AUTH; // TWILIO AUTH
-const accountPhoneTwilio = process.env.TWILIO_NUMBER; // TWILIO Phone number
-const myPhone = process.env.MY_PHONE_NUMBER; // My personal phone number (for testing)
 
-// Creates Twilio client with SID & authToken
-const client = new twilio(accountSid, authToken);
+/**
+ * This function sends a test SMS message using Twilio client.
+ *
+ * @function sendTestSMS
+ * @returns {Promise<void>} - A promise that resolves when the SMS is sent successfully or rejects with an error.
+ * @log - console.log the message ID
+ * @example
+ * await sendTestSMS();
+ * @throws Will throw an error if there's a problem sending the SMS.
+ */
+async function sendTestSMS() {
+    try {
+      const message = await twilioClient.messages.create({
+        body: 'Test Message\nHello world!\nTwilio Client is running correctly!', // Message body
+        from: accountPhoneTwilio, // Twilio phone number
+        to: myPhone, // Destination phone number
+      });
+      console.log('SMS sent with success! ID:\n', message.sid); // Message ID
+    } catch (error) {
+      console.error('Error trying to send SMS: ', error);
+    }
+  }
 
-// Send test SMS
-client.messages
-  .create({
-    body: 'Test Message\nTwilio Client is running correctly!', // Message body
-    from: accountPhoneTwilio, // Messeger number
-    to: myPhone, // Destiny phone
-  })
-  .then((message) => console.log('SMS send with success! ID:\n', message.sid))
-  .catch((error) => console.error('Error trying to send SMS: ', error));
+module.exports = { sendTestSMS }; // Exports test function to .test.js

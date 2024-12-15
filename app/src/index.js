@@ -14,13 +14,18 @@
     const userRoutes = require('./routes/userRoutes'); // Import User Routes
 
 // *CONSTANTS
-    require('./email') // For sending E-MAILS with nodemailer
-    require('./logSetup') // For logs (optional)
+    const fs = require('fs');
+    const logsPath = './logSetup.js'; // path for logs
+    if (fs.existsSync(logsPath)) {
+        require(logsPath) // For logs (optional)
+    } else {
+        console.log('File logSetup.js not found.  Ignoring...');
+    }
 
 // *GLOBAL MIDDLEWARES
     // app.use(express.json()); // JSON GLOBAL MIDDLEWARE
     // CORS GLOBAL MIDDLEWARE
-    const allowedOrigins = ['https://pousada-tao.onrender.com']; // Allowed CORS origins
+    const allowedOrigins = ['https://pousada-tao.onrender.com', 'http://localhost:3000']; // Allowed CORS origins
     app.use(cors({
     origin: (origin, callback) => {
         if (allowedOrigins.includes(origin) || !origin) { // Permit valid origins (e.g., Postman, insomnia)

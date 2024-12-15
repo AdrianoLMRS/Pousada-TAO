@@ -1,14 +1,13 @@
-// *Dependecies
-    const transporter = require('../email');
+// * DEPENDECIES
+    const { transporter } = require('../messages');
 
 const EMAIL = global.EMAIL; // Email (maybe change later)
 
-// Function to send email
 /**
  * Sends an email containing a secure hash to the specified user email.
  *
- * @param {string} customerId - The unique identifier for the customer, used to generate the hash.
- * @param {string} userEmail - The email address of the user to whom the email will be sent.
+ * @param {string} hash - The unique identifier for the customer, used to generate the hash.
+ * @param {string} userEmail - The email address of the user to who the email will be sent.
  * @log - console.log the message ID
  * @returns {Promise<Object>} - A promise that resolves to the information about the sent email.
  * @throws {Error} - Throws an error if the email sending process fails.

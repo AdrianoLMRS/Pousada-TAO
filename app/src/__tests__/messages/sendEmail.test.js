@@ -1,5 +1,5 @@
-// *DEPENDECIES
-    const transporter = require('../../email');  // Imports nodemailer GMAIL transporter in email.js file
+// * DEPENDECIES
+    const { transporter } = require('../../messages');  // Imports nodemailer GMAIL transporter in email.js file
 
 /**
  * Sends a test email using Nodemailer.
@@ -17,11 +17,11 @@ async function sendTestEmail() {
     subject: "Testing, testing, 123",
     html: `
     <h1>Hello World!</h1>
-    <p>Test succesfull!</p>
+    <p>&emsp;&emsp;Test succesfull!</p>
     `,
   });
 
   console.log(info.messageId); // Generated messageID after sending message
 }
 
-module.exports = { sendTestEmail }; // Exports test function to tests.js
+module.exports = { sendTestEmail }; // Exports test function to .test.js
