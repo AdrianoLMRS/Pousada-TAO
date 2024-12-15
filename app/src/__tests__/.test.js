@@ -1,6 +1,6 @@
 // *DEPENDECIES
     // EMAIL :
-    const { sendTestEmail } = require('./email/sendEmail.test');  // Importa a função de teste
+    const { sendTestEmail } = require('./messages/sendEmail.test');  // Importa a função de teste
 
 
 //* -------    TESTS    --------- *//
