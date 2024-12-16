@@ -9,7 +9,7 @@
     // Utils
         const { createOrUpdateUser, saveReservation, saveCacheData } = require('../utils/dbUtils');
         const sendEmail = require('../utils/emailUtils'); // For sending Email with user hash (login)
-        const sendSMS = require('../utils/smsUtils'); // For sending SMS with user hash (login)
+        // const sendSMS = require('../utils/smsUtils'); // For sending SMS with user hash (login)
         const { encrypt } = require('../utils/bcryptUtils');
 
 // Secret key for validating Stripe webhook signature
@@ -76,7 +76,8 @@ const handleStripeWebhook = async (req, res) => {
                 // Sends to user an email with STRIPE customerId hash
                 await sendEmail(hashedSessionId, session.customer_details.email); 
                 // Sends to user an SMS with STRIPE customerId hash
-                await sendSMS(hashedSessionId, session.customer_details.phone, session.customer_details.name); 
+                // DISABLED BECAUSE TWILLIO PRICES...  MAYBE IN THE FUTURE
+                // await sendSMS(hashedSessionId, session.customer_details.phone, session.customer_details.name); 
             } catch (err) {
                 console.error('Error handling checkout.session.completed:', err.message);
                 return res.status(500).send('Error handling checkout.session.completed event.');

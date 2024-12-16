@@ -5,7 +5,8 @@
     const app = express(); // Aplication
     const cors = require('cors'); // Enable CORS
     const { connectDB } = require('./db/index'); // Conect Database MongoDB
-    const cookieParser = require('cookie-parser');
+    const cookieParser = require('cookie-parser'); // For coookie setting with JWT
+    const fs = require('fs'); // For logSetup
 
 // *ROUTES
     const apiRoutes = require('./routes/apiRoutes'); // Import Stripe Check routes
@@ -14,13 +15,7 @@
     const userRoutes = require('./routes/userRoutes'); // Import User Routes
 
 // *CONSTANTS
-    const fs = require('fs');
-    const logsPath = './logSetup.js'; // path for logs
-    if (fs.existsSync(logsPath)) {
-        require(logsPath) // For logs (optional)
-    } else {
-        console.log('File logSetup.js not found.  Ignoring...');
-    }
+    fs.existsSync('./logSetup.js') && require('./logSetup'); // For logs.log file (optional)
 
 // *GLOBAL MIDDLEWARES
     // app.use(express.json()); // JSON GLOBAL MIDDLEWARE
@@ -62,11 +57,10 @@
     app.use('/webhooks', express.raw({ type: 'application/json' }), webhookRoutes); // Use express.raw for webhook
 
 
-
 const start = (port) => {
     try {
         app.listen(port, () => {
-        console.log(`\nApi up and running at: http://localhost:${port}\n`);
+            console.log(`\nApi up and running at: http://localhost:${port}\n`);
         });
     } catch (error) {
         console.error(error);

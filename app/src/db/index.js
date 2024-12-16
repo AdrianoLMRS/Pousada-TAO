@@ -8,10 +8,7 @@ require('dotenv').config({ path: path.resolve(__dirname, '../.env') }); // Envir
 const connectDB = async () => {
   // Mongoose connect to the DB
   try {
-    const db = await mongoose.connect(URI, {
-      useNewUrlParser: true, // Ensures you are using the new URL parser
-      useUnifiedTopology: true, // Uses the new unified topology engine
-    });
+    const db = await mongoose.connect(URI);
 
     console.log('MongoDB connected:', db.connection.host);
   } catch (error) {
