@@ -219,7 +219,7 @@ main > *:not(:first-child):not(.booking-form) {
   --img-width: 50%;
 }
 
-.great > h4 {  font-size: var(--header-font-size);  }
+.great > h3 {  font-size: var(--header-font-size);  }
 
 .great .flex {
   width: 100%;
