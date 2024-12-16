@@ -40,11 +40,16 @@
         REQ METHOD : ${req.method} \n
         REQ URL : ${req.url} \n
         REQ/USER IP : ${req.ip} \n\n`);
-
-    next(); 
-  }); 
-  app.set('view engine', 'ejs'); // For redenring .ejs files
-  app.set('views', path.join(__dirname, 'views')); // Templates folder
+        next(); 
+    }); 
+    app.use((req, res, next) => {
+        if (req.accepts('html')) {
+            res.setHeader('Content-Type', 'text/html; charset=UTF-8');
+        }
+        next();
+    });    
+    app.set('view engine', 'ejs'); // For redenring .ejs files
+    app.set('views', path.join(__dirname, 'views')); // Templates folder
 
   
 // *FUNCTIONS
