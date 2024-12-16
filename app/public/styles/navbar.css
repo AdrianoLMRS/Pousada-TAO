@@ -11,9 +11,12 @@ nav {
 }
 
 nav .logo {
-  width: 100px;
-  height: 80px;
+  width: 120px;
+  height: 92px;
+  margin-bottom: -45px;
 }
+
+@media (min-width: 1151px) and (max-width: 1215px) { nav .logo { margin-right: -75px; } }
 
 /* For .logo link work */
 nav .home-link {
