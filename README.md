@@ -36,7 +36,10 @@ Acesse a aplicação em produção:
 <br><br><br>
 
 ## Rode localmente
-*Cerca de 2 minutos 🕒
+**Cerca de 2 minutos* 🕒
+
+### Dependências :
+- **node.js** &nbsp;>= &nbsp;v18.19.1&emsp;([Instale aqui](https://nodejs.org/pt/download/package-manager))
 <br>
 
 #### De uma vez :
@@ -44,23 +47,23 @@ Acesse a aplicação em produção:
 
 -  **Código inteiro:**  
 ```
-git clone https://github.com/AdrianoLMRS/Pousada-TAO  
-cd Pousada-TAO  
-npm run local  
-npm start
+git clone https://github.com/AdrianoLMRS/Pousada-TAO  # Clona o repositório
+cd Pousada-TAO  # Navegua até a pasta
+npm run local  # Instala as dependências
+npm start # Inicia o servidor no http://localhost:3000
 ```
 <br>
 
 - **Vá para o link:**&nbsp;[Local:host](http://localhost:3000) (Porta 3000)
 <br>
 
-### Passo à passo :
+#### Passo à passo :
 <br>
 
 1.  **Clone o repositório:**&emsp;`git clone https://github.com/AdrianoLMRS/Pousada-TAO`
 <br>
 
-2. **Navegue até o projeto:**&emsp;`cd Pousada-TAO`
+2. **Navegue até a pasta:**&emsp;`cd Pousada-TAO`
 <br>
 
 3. **Instale as dependências:**&emsp;`npm run local`
@@ -69,11 +72,14 @@ npm start
 4. **Execute o programa:**&emsp;`npm start`
 <br>
 
-5. **Vá para o link:**&nbsp;[Local:host](http://localhost:3000) (Porta 3000)
+5. **Vá para o link:**&nbsp;[Localhost](http://localhost:3000) (Porta 3000)
 <br>
 
 
-<br><br><br>
+<br><br>
+
+---
+<br>
 
 ## Contato
 
