@@ -92,4 +92,4 @@ npm start # Inicia o servidor no http://localhost:3000
 ## Licença
 <br>
 
-MIT License com cláusulas adicionais.  [Vija aqui](https://github.com/AdrianoLMRS/Pousada-TAO/tree/main?tab=License-1-ov-file)
+MIT License com cláusulas adicionais.  [Vija aqui](https://github.com/AdrianoLMRS/Pousada-TAO/tree/main?tab=License-1-ov-file#readme)

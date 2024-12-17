@@ -31,7 +31,7 @@
 <br><br><br>
 
 ## Demo
-Access the production application:
+Access the application:
 [🔗 Pousada TAO - Campos do Jordão](https://pousada-tao.onrender.com/)
 <br><br><br>
 
@@ -92,4 +92,4 @@ npm start # Start the server at http://localhost:3000
 ## License
 <br>
 
-MIT License with additional clausules.  [View here](https://github.com/AdrianoLMRS/Pousada-TAO/tree/main?tab=License.en-1-ov-file)
+MIT License with additional clausules.  [View here](https://github.com/AdrianoLMRS/Pousada-TAO/tree/main?tab=License.en-1-ov-file#readme)
