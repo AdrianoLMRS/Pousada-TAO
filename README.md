@@ -36,6 +36,25 @@ Acesse a aplicação em produção:
 <br><br><br>
 
 ## Rode localmente
+*Cerca de 2 minutos 🕒
+<br>
+
+#### De uma vez :
+<br>
+
+-  **Código inteiro:**  
+```
+git clone https://github.com/AdrianoLMRS/Pousada-TAO  
+cd Pousada-TAO  
+npm run local  
+npm start
+```
+<br>
+
+- **Vá para o link:**&nbsp;[Local:host](http://localhost:3000) (Porta 3000)
+<br>
+
+### Passo à passo :
 <br>
 
 1.  **Clone o repositório:**&emsp;`git clone https://github.com/AdrianoLMRS/Pousada-TAO`
@@ -65,4 +84,4 @@ Acesse a aplicação em produção:
 <br><br><br>
 
 ## Licença
-WIP
+#WIP

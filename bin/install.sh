@@ -13,6 +13,8 @@ echo "NPM packages instaled."
 
 echo "Environment variables created."
 
+echo -e "\n"
 echo -e "ALL SET !\n Now you can start the server running 'npm start'"
 echo -e "\n"
 echo -e "TUDO PRONTO !\n Agora você pode iniciar o servidor com 'npm start'"
+echo -e "\n"

@@ -37,7 +37,7 @@ function main() {
 
         child.on("exit", (code) => {
             if (code === 0) {
-                console.log("install.sh executed successfully ✅");
+                console.log("install.sh executed successfully! ✅");
             } else {
                 console.error(`install.sh failed with exit code ${code} ❌`);
                 process.exit(code);
