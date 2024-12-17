@@ -40,12 +40,16 @@ Acesse a aplicação em produção:
 
 1.  **Clone o repositório:**&emsp;`git clone https://github.com/AdrianoLMRS/Pousada-TAO`
 <br>
+
 2. **Navegue até o projeto:**&emsp;`cd Pousada-TAO`
-<br>
+<br>npm
+
 3. **Instale as dependências:**&emsp;`npm install`
 <br>
+
 4. **Configure as variáveis de ambiente:**&emsp;`bin/install.sh`
 <br>
+
 
 <br><br><br>
 

@@ -2,7 +2,8 @@
 
 echo "Criando o arquivo .env..."
 
-echo "STRIPE_SECRET_KEY=sk_test_4eC39HqLyjWDarjtT1zdp7dc
+echo "NODE_ENV='test'
+STRIPE_SECRET_KEY=sk_test_4eC39HqLyjWDarjtT1zdp7dc
 STRIPE_TEST_KEY=pk_test_TYooMQauvdEDq54NiTphc6z8JtX0H6KqX2zH64p7J8E4x9gJbC
 STRIPE_WEBHOOK_SECRET=whsec_77d4f33db34638b0ef4ad4699e4fa5ea4e01ef266ecf0845b036c9f4359da10e
 DB_PASS=mydbpassword
