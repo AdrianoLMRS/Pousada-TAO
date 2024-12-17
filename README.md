@@ -44,7 +44,7 @@ Acesse a aplicação em produção:
 **Cerca de 2 minutos* 🕒
 
 ### Dependências :
-- **node.js** &nbsp;>= &nbsp;v18.19.1&emsp;([Instale aqui](https://nodejs.org/pt/download/package-manager))
+- **node.js** &nbsp;>= &nbsp;v18.19.1&emsp;([Instale aqui](https://nodejs.org/en/download/package-manager))
 <br>
 
 #### De uma vez :
