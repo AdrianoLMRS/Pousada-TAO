@@ -44,7 +44,7 @@ Acesse a aplicação em produção:
 2. **Navegue até o projeto:**&emsp;`cd Pousada-TAO`
 <br>
 
-3. **Instale as dependências:**&emsp;`npm local`
+3. **Instale as dependências:**&emsp;`npm run local`
 <br>
 
 4. **Execute o programa:**&emsp;`npm start`
