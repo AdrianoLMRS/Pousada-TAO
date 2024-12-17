@@ -19,10 +19,10 @@ async function sendEmail(hash, userEmail) {
         <div style="font-family: Arial, sans-serif; line-height: 1.6;">
             <h2 style="color: #333;">Bem-vindo!</h2>
             <p>Geramos um hash seguro para sua conta. Por favor, mantenha esta informação em segurança:</p>
-            <pre style="background: #f4f4f4; padding: 10px; border-radius: 5px; overflow: auto; text-align: start; display inline-flex;
-            flex-direction: row; justify-content: center; max-width: 50vw">
+            <p style="background: #f4f4f4; padding: 10px; border-radius: 5px; overflow: auto; text-align: start; display inline-flex;
+            flex-direction: row; justify-content: baseline; max-width: 50vw">
                 ${hash}
-            </pre>
+            </p>
             <small>Pedimos para que não compartilhe este código com ninguém.</small>
             <p>Se você tiver alguma dúvida, fique à vontade para entrar em contato conosco.</p>
             <p>Atenciosamente,</p><br>
