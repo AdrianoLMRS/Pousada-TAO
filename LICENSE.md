@@ -1,3 +1,8 @@
+<!-- Languages options -->
+[![Static Badge](https://img.shields.io/badge/lang-en_%F0%9F%87%BA%F0%9F%87%B8-blue?style=for-the-badge&logo=%F0%9F%87%BA%F0%9F%87%B8&logoSize=auto&link=https%3A%2F%2Fgithub.com%2FAdrianoLMRS%2FPousada-TAO%3Ftab%3DLicense-1-ov-file%23readme)](https://github.com/AdrianoLMRS/Pousada-TAO/blob/main/.github/LICENSE.en.md)&emsp;&emsp;[![Static Badge](https://img.shields.io/badge/lang-pt--BR_%F0%9F%87%A7%F0%9F%87%B7-lightgreen?style=for-the-badge&logo=%F0%9F%87%A7%F0%9F%87%B7&logoSize=auto&link=https%3A%2F%2Fgithub.com%2FAdrianoLMRS%2FPousada-TAO%3Ftab%3DLicense-1-ov-file%23readme)](https://github.com/AdrianoLMRS/Pousada-TAO?tab=License-1-ov-file#readme)
+
+---
+
 Licença MIT
 
 Copyright (c) [2024] [Adriano Lima Rossi]

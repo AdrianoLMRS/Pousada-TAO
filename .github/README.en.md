@@ -1,3 +1,8 @@
+<!-- Languages options -->
+[![Static Badge](https://img.shields.io/badge/lang-en_%F0%9F%87%BA%F0%9F%87%B8-blue?style=for-the-badge&logo=%F0%9F%87%BA%F0%9F%87%B8&logoSize=auto&link=https%3A%2F%2Fgithub.com%2FAdrianoLMRS%2FPousada-TAO%2Fblob%2Fmain%2F.github%2FREADME.en.md)](https://github.com/AdrianoLMRS/Pousada-TAO/blob/main/.github/README.en.md#pousada-tao)&emsp;&emsp;[![Static Badge](https://img.shields.io/badge/lang-pt--BR_%F0%9F%87%A7%F0%9F%87%B7-lightgreen?style=for-the-badge&logo=%F0%9F%87%A7%F0%9F%87%B7&logoSize=auto&link=https%3A%2F%2Fgithub.com%2FAdrianoLMRS%2FPousada-TAO%3Ftab%3Dreadme-ov-file%23readme)](https://github.com/AdrianoLMRS/Pousada-TAO?tab=readme-ov-file#pousada-tao)
+
+---
+
 # Pousada TAO
 [Pousada TAO](https://github.com/AdrianoLMRS/Pousada-TAO "Pousada TAO") is a web app for a real hostel in [Campos do Jordão](https://www.google.com/maps?ll=-22.73301,-45.58613&z=13&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Campos+do+Jord%C3%A3o+SP+12460-000 "Campos do Jordão")<br>Access the website [here](https://pousada-tao.onrender.com/ "here") <br><br><br><br>
 ## Features
@@ -92,4 +97,4 @@ npm start # Start the server at http://localhost:3000
 ## License
 <br>
 
-MIT License with additional clausules.  [View here](https://github.com/AdrianoLMRS/Pousada-TAO/tree/main?tab=License.en-1-ov-file#readme)
+MIT License with additional clausules.  [View here](https://github.com/AdrianoLMRS/Pousada-TAO/blob/main/.github/LICENSE.en.md)

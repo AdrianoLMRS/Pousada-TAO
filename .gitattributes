@@ -1,9 +1,0 @@
-# Defining versions of README & LICENSE for pt-BR & English
-
-README.md text
-README.en.md text working-tree-encoding=UTF-8
-LICENSE.md text
-LICENSE.en.md text working-tree-encoding=UTF-8
-
-# Configuring the files
-*.md text
