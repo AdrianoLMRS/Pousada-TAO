@@ -9,6 +9,8 @@ const Cache = require('../db/models/cacheModel'); // Cache model
 
 
 const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_EXPIRATION = '72h'
+const COOKIE_EXPIRATION = 3 * 24 * 60 * 60 * 1000 // 3 days in milliseconds
 
 
 // Validate cs STRIPE
@@ -35,20 +37,20 @@ router.get('/set-cookies', async (req, res) => {
         // returns cache
         const cacheEntry = await validateCs(cs);
 
-        // Extrair o customerId do documento encontrado
+        // Extract customerId of document find
         const { customerId } = cacheEntry;
 
         // Create payload
         const payload = { customerId };
 
-        // Gerar o JWT
-        const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
+        // JWT
+        const token = jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRATION });
 
-        // Definir o cookie com o JWT
+        // Define the cookie with the JWT
         res.cookie('authToken', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            maxAge: 3600000, // 1 hour
+            maxAge: COOKIE_EXPIRATION,
         });
 
         res.redirect('/profile'); // Redirects user to /profile after cookie
