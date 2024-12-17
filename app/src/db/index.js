@@ -20,7 +20,7 @@ const connectDB = async () => {
             console.log('\nProgram failed to connect to MongoDB, crashing...\n');
             process.exit(1); // Exit failure
         } else {
-            console.log('Connecting without MongoDB Database')
+            console.log('Proceding without MongoDB Database')
         }
     }
 };

@@ -1,7 +1,8 @@
 #!/bin/bash
 
-echo "Criando o arquivo .env..."
+echo "Creating .env example file..."
 
+# Creates a .env file with example variables in app/src/.env
 echo "NODE_ENV='test'
 STRIPE_SECRET_KEY=sk_test_4eC39HqLyjWDarjtT1zdp7dc
 STRIPE_TEST_KEY=pk_test_TYooMQauvdEDq54NiTphc6z8JtX0H6KqX2zH64p7J8E4x9gJbC
@@ -17,6 +18,11 @@ MONGO_URI=mongodb+srv://user:password@cluster.mongodb.net/mydatabase?retryWrites
 SECRET_HASH=mysecretkey
 JWT_SECRET=myjwtsecretkey
 PORT=3000
-BASE_URL=http://localhost:3000" > ../app/src/.env.example
+BASE_URL=http://localhost:3000" > ../app/src/.env
 
-echo ".env com váriaveis de exemplo criado com sucesso em app/src/.env"
+# If program returned 0
+if [ $? -eq 0 ]; then
+    echo ".env with example variables created successfully in app/src/.env.example"
+else
+    echo "Error: Failed to create .env.example file" >&2
+fi

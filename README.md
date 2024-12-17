@@ -42,12 +42,15 @@ Acesse a aplicação em produção:
 <br>
 
 2. **Navegue até o projeto:**&emsp;`cd Pousada-TAO`
-<br>npm
-
-3. **Instale as dependências:**&emsp;`npm install`
 <br>
 
-4. **Configure as variáveis de ambiente:**&emsp;`bin/install.sh`
+3. **Instale as dependências:**&emsp;`npm local`
+<br>
+
+4. **Execute o programa:**&emsp;`npm start`
+<br>
+
+5. **Vá para o link:**&nbsp;[Local:host](http://localhost:3000) (Porta 3000)
 <br>
 
 
