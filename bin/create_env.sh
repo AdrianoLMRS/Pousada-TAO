@@ -2,6 +2,9 @@
 
 echo "Creating .env example file..."
 
+# Get the current working directory
+current_dir=$(pwd)
+
 # Creates a .env file with example variables in app/src/.env
 echo "NODE_ENV='test'
 STRIPE_SECRET_KEY=sk_test_4eC39HqLyjWDarjtT1zdp7dc
@@ -18,9 +21,9 @@ MONGO_URI=mongodb+srv://user:password@cluster.mongodb.net/mydatabase?retryWrites
 SECRET_HASH=mysecretkey
 JWT_SECRET=myjwtsecretkey
 PORT=3000
-BASE_URL=http://localhost:3000" > ../app/src/.env
+BASE_URL=http://localhost:3000" > "${current_dir}/app/src/.env"
 
-# If program returned 0
+# Check if the file was created successfully
 if [ $? -eq 0 ]; then
     echo ".env with example variables created successfully in app/src/.env.example"
 else
