@@ -53,7 +53,13 @@
 
   
 // *FUNCTIONS
-    connectDB();
+    connectDB(); // Connect MongoDB with MongoDB Atlas
+    // Because of SIGINT errors...
+    async function closeGracefully(signal) {
+        await fastify.close();
+        process.exit();
+    }
+    process.on('SIGINT', closeGracefully);
 
 // *Routes uses
     app.use('/api', express.json(), apiRoutes); // routes/stripe.js

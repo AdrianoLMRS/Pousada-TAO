@@ -21,7 +21,7 @@
   "scripts": {
     "start": "node app/src/index.js",
     "start:nodemon": "nodemon app/src/index.js -L --host 127.0.0.1", 
-    "start:docker": "node src/index.js",
+    "start:docker": "node src/index.js --signal SIGINT",
     "start:dev": "nodemon --watch src/logSetup.js --watch app/src/index.js",
     "start0": "nodemon index.js",
     "local": "node ./bin/install.js",
