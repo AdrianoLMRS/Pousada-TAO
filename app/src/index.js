@@ -36,16 +36,54 @@
     app.use(cookieParser()); // COOKIES GLOBAL MIDDLEWARE
     app.use(express.static(path.join(__dirname, '..', 'public'))); // SET PUBLIC FOLDER STATIC
     app.use((req, res, next) => { // logs
-        console.log(`\n\nNova request: \n
-        REQ METHOD : ${req.method} \n
-        REQ URL : ${req.url} \n
-        REQ/USER IP : ${req.ip} \n\n`);
+        console.log(`\nNew request: \n
+        REQ METHOD : ${req.method}
+        REQ URL : ${req.url}
+        REQ/USER IP : ${req.ip}\n`);
         next(); 
     }); 
     app.use((req, res, next) => {
         if (req.accepts('html')) {
             res.setHeader('Content-Type', 'text/html; charset=UTF-8');
         }
+        next();
+    });    
+    app.use((req, res, next) => {
+        let isCanceled = false;
+    
+        // Detecta se a requisição foi cancelada
+        req.on('close', () => {
+            isCanceled = true;
+            console.log(`Request to ${req.originalUrl} was canceled.`);
+        });
+    
+        res.on('finish', () => {
+            if (!isCanceled) {
+                console.log(`Request to ${req.originalUrl} completed successfully.`);
+            }
+        });
+    
+        next();
+    });    
+    app.get('/', (req, res) => {
+        if (req.get('Accept') && req.get('Accept').includes('text/html')) {
+            console.log('Main document loading...');
+            res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+            res.setHeader('Content-Type', 'text/html; charset=UTF-8');
+            res.sendFile(path.join(__dirname, '../../public/index.html')); // Send Profile static HTML
+        } else {
+            console.log("Request ignored (not for main document).");
+            res.status(400).send('Bad Request');
+        }
+    });
+    app.use((req, res, next) => {
+        const startTime = Date.now();
+    
+        req.on('close', () => {
+            const duration = Date.now() - startTime;
+            console.log(`Request to ${req.originalUrl} was canceled after ${duration}ms.`);
+        });
+    
         next();
     });    
     app.set('view engine', 'ejs'); // For redenring .ejs files
@@ -60,6 +98,7 @@
         process.exit();
     }
     process.on('SIGINT', closeGracefully);
+    process.on('SIGTERM', closeGracefully);
 
 // *Routes uses
     app.use('/api', express.json(), apiRoutes); // routes/stripe.js
