@@ -15,11 +15,11 @@
 - Interface responsiva e intuitiva desenvolvida com HTML, CSS e JavaScript puro. <br><br><br>
 
 ## Stack
-- **Frontend:** HTML, CSS, JavaScript (puro)
-- **Backend:** Node.js, Express.js
-- **Banco de Dados:** MongoDB com Mongoose ([MongoDB Atlas](https://www.mongodb.com/resources/products/platform/mongodb-atlas-tutorial))
-- **Deploy:** Docker hopedado no [Render](https://render.com/about)
-- **Pagamentos:** [Stripe](https://www.nerdwallet.com/article/small-business/what-is-stripe)<div>
+- **Frontend:** HTML, CSS, JavaScript (puro).
+- **Backend:** Node.js, Express.js.
+- **Banco de Dados:** MongoDB com Mongoose ([MongoDB Atlas](https://www.mongodb.com/resources/products/platform/mongodb-atlas-tutorial)).
+- **Deploy:** Docker hopedado no [Render](https://render.com/about).
+- **Pagamentos:** [Stripe](https://www.nerdwallet.com/article/small-business/what-is-stripe).<div>
 - <details>
   <summary><strong>Mensagens</strong></summary>
   
@@ -33,6 +33,9 @@
   - **Stripe**  
   - **Auth0 com MongoDB** (desativado pois não é mais necessário [Commit](https://github.com/AdrianoLMRS/Website/commit/961443c099e786a387a5444cd0e4d5208955daaf), [Issue](https://github.com/AdrianoLMRS/Website/issues/6))
 </details></div>
+
+- MVC (Model View Controller) design pattern.
+- All the code was written by me (no templates).
 <br><br><br>
 
 ## Demo
