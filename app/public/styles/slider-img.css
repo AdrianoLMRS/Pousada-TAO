@@ -14,11 +14,11 @@
 }
 
 @keyframes ba-change {
-  0%, 10%, 100% { background-image: url(https://res.cloudinary.com/dycnoic1s/image/upload/v1734377595/img-0461-largejpg_LE_upscale_balanced_x4_zalao8-1_ti0y3w.webp);  }
-  20%, 30% { background-image: url(https://res.cloudinary.com/dycnoic1s/image/upload/v1734379155/fachada_da_pousada_-1-1_ahatpa.webp);  }
-  40%, 50% { background-image: url(https://res.cloudinary.com/dycnoic1s/image/upload/v1734374268/661d7dd5e13df_ruaphoto940x788_pspyjw-1_anjdso.webp); }
-  60%, 70% { background-image: url(https://res.cloudinary.com/dycnoic1s/image/upload/v1734377522/20170831_164121-EFFECTS-1_tnn20j-1_b5say8.webp); }
-  80%, 90% { background-image: url(https://res.cloudinary.com/dycnoic1s/image/upload/v1734372708/6617f1490e017_8cozinhaconjugada940x788_i5llgz-1_u7tjb1.webp);  }
+  0%, 10%, 100% { background-image: url(https://iili.io/2S0yw1n.webp);  }
+  20%, 30% { background-image: url(https://iili.io/2S0yjqX.webp);  }
+  40%, 50% { background-image: url(https://iili.io/2S0yFxS.webp); }
+  60%, 70% { background-image: url(https://iili.io/2S0yVzN.webp); }
+  80%, 90% { background-image: url(https://iili.io/2S0y5s1.webp);  }
 }
 
 @keyframes slideIn {
