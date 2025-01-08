@@ -88,7 +88,7 @@ npm start # Start the server at http://localhost:3000
 
 ## Contact
 
-- **✉ Email:** adriano.limarossi@gmail.com
+- **✉ Email:** adriano.lmrs1@gmail.com
 - **🕻 Phone:** +55 12 99732-1039
 - **<img width="14" height="14"  src="https://img.icons8.com/fluency-systems-filled/50/whatsapp.png" alt="whatsapp-icon"/> WhatsApp:** [Click here to chat](https://wa.me/5512997321039)
 - **<img width="14" height="14" src="https://img.icons8.com/material-outlined/14/github.png" alt="github-icon"/> Github:** [AdrianoLMRS](https://github.com/AdrianoLMRS)
