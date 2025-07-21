@@ -1,0 +1,97 @@
+name: Main CI
+
+on:
+  push:
+    branches:
+      - main
+      - internationalization
+  workflow_dispatch:
+  workflow_call:  # Allow calling from another workflow (daily-deploy.yml)
+  pull_request:
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+    secrets: inherit
+
+  clear-artifacts:
+    needs: build
+    uses: ./.github/workflows/clear-artifacts.yml
+    secrets: inherit
+
+  trigger-render:
+    needs: build
+    uses: ./.github/workflows/trigger-render.yml
+    secrets: inherit
+
+  deploy-pages:
+    uses: ./.github/workflows/deploy-pages.yml
+    # Permissions for Deploy Pages
+    permissions:
+      id-token: write
+      contents: read
+      pages: write
+    secrets: inherit
+
+  notify-build:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: discord
+    steps:
+    - uses: stegzilla/discord-notify@v4
+      with:
+        webhook_url: ${{ secrets.BUILD }}
+        username: "GHA build-artifact"
+        title: "Build & Upload Artifact Success"
+        message: |
+          ✅ Build and artifact upload succeeded for **${{ github.repository }}**
+          GHA run: #${{ github.run_number }}
+          Artifact ID: ${{ needs.build.outputs.artifact-id }}
+          Artifact URL: ${{ needs.build.outputs.artifact-url }}
+          Artifact SHA: ${{ needs.build.outputs.artifact-digest }}
+
+  notify-clear:
+    needs: clear-artifacts
+    runs-on: ubuntu-latest
+    environment: discord
+    steps:
+    - uses: stegzilla/discord-notify@v4
+      with:
+        webhook_url: ${{ secrets.CLEAR_ARTIFACTS }}
+        title: "GHA Clear Old Artifacts"
+        username: "GHA clear-artifacts"
+        message: |
+          ✅ Old artifacts cleared successfully.
+          ${{ needs.clear-artifacts.outputs.result }}
+
+  notify-render:
+    needs: trigger-render
+    runs-on: ubuntu-latest
+    environment: discord
+    steps:
+    - uses: stegzilla/discord-notify@v4
+      with:
+        webhook_url: ${{ secrets.DEPLOY_RENDER }}
+        title: "Render Deploy Triggered with API"
+        username: "GHA trigger-render"
+        message: |
+          🚀 Render deploy triggered successfully for **${{ github.repository }}**  
+          • Commit: `${{ github.sha }}`  
+          • Run: #${{ github.run_number }}
+
+  notify-pages:
+    needs: deploy-pages
+    runs-on: ubuntu-latest
+    environment: discord
+    steps:
+    - uses: stegzilla/discord-notify@v4
+      with:
+        webhook_url: ${{ secrets.DEPLOY_PAGES }}
+        username: "GHA deploy-pages"
+        title: "Deploy Pages Success"
+        message: |
+          ✅ Deploy to Github Pages succeeded for **${{ github.repository }}**
+          - GHA run: #${{ github.run_number }}
+          - Artifact Name: `${{ needs.deploy-pages.outputs.artifact-name }}`
+          - Download Path: `${{ needs.deploy-pages.outputs.download-path }}`
+          - **Pages URL: ${{ needs.deploy-pages.outputs.pages-url }}**

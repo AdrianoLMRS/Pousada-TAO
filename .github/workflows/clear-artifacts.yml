@@ -1,0 +1,54 @@
+name: Clear old artifacts
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    outputs:
+      result:
+        description: "Result of the cleanup job"
+        value: ${{ jobs.cleanup.outputs.result }}
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    environment: artifacts
+    outputs:
+      result: ${{ steps.cleanup-script.outputs.result }}
+
+    steps:
+      - uses: actions/github-script@v7
+        id: cleanup-script
+        with:
+          github-token: ${{ secrets.GH_PAT }}
+          script: |
+            const perPage = parseInt(process.env.PER_PAGE) || 100; // Default 100
+            const keepCount = parseInt(process.env.LAST_ARTIFACTS) || 10; // Default 10
+            const rawPrefixes = process.env.ARTIFACT_PREFIX;
+            let prefixes = [];
+            prefixes = rawPrefixes.startsWith('[') ? JSON.parse(rawPrefixes) : rawPrefixes.split(',').map(s => s.trim());
+
+            // * Get the 100 latest artifacts in https://github.com/AdrianoLMRS/AndreValerio
+            const res = await github.rest.actions.listArtifactsForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                per_page: perPage // num of artifacts in response
+            });
+            // Store in variable sorted by date & prefix
+            const artifacts = res.data.artifacts
+                .filter(a => prefixes.some(prefix => a.name.startsWith(prefix))) // Filter artifacts by prefix array[]
+                .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+            const toDelete = artifacts.slice(keepCount); // Maintain the last 10 artifacts
+            for (const a of toDelete) {
+                await github.rest.actions.deleteArtifact({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    artifact_id: a.id
+                });
+                console.log(`deleted ${a.name} (${a.id})`);
+            };
+            return `Deleted ${toDelete.length} artifacts, kept the last ${keepCount} artifacts.`;
+          result-encoding: string
+        env:
+          PER_PAGE: ${{ vars.PER_PAGE }}
+          LAST_ARTIFACTS: ${{ vars.LAST_ARTIFACTS }}
+          ARTIFACT_PREFIX: ${{ vars.PREFIX }} # TODO : change environment scope in Github

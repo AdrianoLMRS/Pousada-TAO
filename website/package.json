@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:pages": "astro build --site https://adrianolmrs.github.io --base /Pousada-TAO",
     "preview": "astro preview",
     "astro": "astro",
     "render": "./render.sh"

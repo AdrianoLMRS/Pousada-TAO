@@ -1,0 +1,63 @@
+name: Deploy Pages
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    outputs:
+      artifact-name:
+        description: "Artifact name used for deployment"
+        value: ${{ jobs.deploy-pages.outputs.artifact-name }}
+      download-path:
+        description: "Path where the artifact was downloaded"
+        value: ${{ jobs.deploy-pages.outputs.download-path }}
+      pages-url:
+        description: "Github Pages complete URL"
+        value: ${{ jobs.deploy-pages.outputs.pages-url }}
+
+env:
+  PAGES_ARTIFACT_NAME: 'pages-artifact'
+  NEXT_PAGES_ARTIFACT_NAME: 'prod-pages-artifact'
+
+jobs:
+  # Build & Upload artifact for Pages
+  build-pages:
+    uses: ./.github/workflows/build.yml
+    with:
+      build-command: 'npm run build:pages'
+      artifact-name: 'pages-artifact'
+    secrets: inherit
+
+  deploy-pages:
+    needs: build-pages
+    runs-on: ubuntu-latest
+    environment: deploy
+    outputs:
+      artifact-name: ${{ env.PAGES_ARTIFACT_NAME }}
+      download-path: ${{ needs.build-pages.outputs.artifact-url }}
+      pages-url: ${{ steps.deploy.outputs.page_url}}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.PAGES_ARTIFACT_NAME }}
+          path: ./dist
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: ${{ env.NEXT_PAGES_ARTIFACT_NAME }}
+          path: ./dist
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ env.NEXT_PAGES_ARTIFACT_NAME }}
+
+      - run: echo "Pages URL = ${{ steps.deploy.outputs.page_url }}"

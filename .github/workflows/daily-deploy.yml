@@ -1,0 +1,45 @@
+name: Daily Deploy to Render.com
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at 00:00 UTC
+  workflow_dispatch:     # Allows manual triggering of the workflow
+
+# Need this for ci.yml
+permissions:
+  contents: read
+  id-token: write
+  pages: write
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+    secrets: inherit
+
+  notify-success:
+    needs: ci
+    if: needs.ci.result == 'success'
+    runs-on: ubuntu-latest
+    environment: discord
+    steps:
+      - name: Notify success on Discord
+        uses: stegzilla/discord-notify@v4
+        with:
+          webhook_url: ${{ secrets.DEPLOY_DAILY }}
+          title: "✅ Daily Render Deploy"
+          username: "GHA daily-deploy"
+          message: "Render deploy completed successfully."
+
+  notify-failure:
+    needs: ci
+    if: needs.ci.result == 'failure'
+    runs-on: ubuntu-latest
+    environment: discord
+    steps:
+      - name: Notify failure on Discord
+        uses: stegzilla/discord-notify@v4
+        with:
+          webhook_url: ${{ secrets.DEPLOY_DAILY }}
+          title: "❌ Daily Render Deploy Failed"
+          username: "GHA daily-deploy"
+          message: "Render deploy failed. Check logs."
