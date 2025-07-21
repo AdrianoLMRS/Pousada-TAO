@@ -34,17 +34,6 @@ on:
         description: 'Name of the artifact to be uploaded'
         type: string
         required: false
-    secrets:
-      YOUTUBE_API_KEY:
-        required: true
-      SPOTIFY_REFRESH_TOKEN:
-        required: true
-      SPOTIFY_CLIENT_ID:
-        required: true
-      SPOTIFY_CLIENT_SECRET:
-        required: true
-      GOOGLE_ANALYTICS_ID:
-        required: true
     outputs:
       artifact-id:
         description: "ID of the uploaded artifact"
@@ -90,13 +79,6 @@ jobs:
 
     - name: Build with Astro
       run: ${{ inputs.build-command }}
-      env:
-        PUBLIC_BASE_URL: ${{ vars.PUBLIC_BASE_URL }}
-        YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-        SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-        SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
-        SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
-        GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
 
     - name: Upload artifact
       id: upload
