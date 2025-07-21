@@ -27,7 +27,7 @@ RUN_ID=$(curl -s -H "Authorization: token $GITHUB_PAT" \
 
 
 if [ -z "$RUN_ID" ]; then
-    echo "❌ No success run found in 'internationalization'."
+    echo "❌ No success run found..."
     exit 1
 fi
 
