@@ -1,0 +1,20 @@
+version: "1"
+
+services:
+  - type: web
+    name: Pousada TAO
+    runtime: static
+    repo: https://github.com/AdrianoLMRS/Pousada-TAO
+    branch: rewrite/2025-astro
+    rootDir: website
+    buildCommand: npm run render # Get GHA /dist artifact
+    staticPublishPath: dist
+    autoDeployTrigger: off
+    buildFilter:
+      paths:
+        - ignore_all
+    envVars:
+      - key: GITHUB_PAT
+        sync: false
+      - key: SKIP_INSTALL_DEPS # Skip installing node_modules
+        value: true

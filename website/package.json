@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "render": "./render.sh"
   },
   "dependencies": {
     "astro": "^5.12.1"
