@@ -23,8 +23,9 @@ jobs:
   build-pages:
     uses: ./.github/workflows/build.yml
     with:
-      build-command: 'npm run build:pages'
+      build-command: 'npm run build'
       artifact-name: 'pages-artifact'
+      GH_PAGES: true
     secrets: inherit
 
   deploy-pages:
