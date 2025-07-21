@@ -11,6 +11,8 @@
     "render": "./render.sh"
   },
   "dependencies": {
-    "astro": "^5.12.1"
+    "@astrojs/sitemap": "^3.4.1",
+    "astro": "^5.12.1",
+    "astro-robots-txt": "^1.0.0"
   }
 }
