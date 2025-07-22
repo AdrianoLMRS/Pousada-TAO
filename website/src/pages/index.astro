@@ -1,7 +1,10 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '@/layouts/Layout.astro';
+import Carousel from '@/components/Carousel.tsx';
 ---
 
 <Layout>
-	<main><h1 class="text-center text-blue-800 font-bold text-3xl mt-[50dvh]">Hello world!!!</h1></main>
+	<main>
+		<Carousel client:load />
+	</main>
 </Layout>
