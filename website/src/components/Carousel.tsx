@@ -3,7 +3,11 @@
 import React, { useEffect, useCallback } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 
-export default function EmblaCarousel( children: React.PropsWithChildren<{}> ) {
+type CarouselProps = {
+    children: React.ReactNode[]
+}
+
+export default function EmblaCarousel( {children}: CarouselProps ) {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
 
     useEffect(() => {
@@ -16,12 +20,19 @@ export default function EmblaCarousel( children: React.PropsWithChildren<{}> ) {
     const scrollPrev = useCallback(() => { if (emblaApi) emblaApi.scrollPrev() }, [emblaApi])
     const scrollNext = useCallback(() => { if (emblaApi) emblaApi.scrollNext() }, [emblaApi])
 
+    const slides = React.Children.toArray(children)
     return (
         <div className="embla overflow-hidden" ref={emblaRef}>
             <div className="embla__container flex">
-                <div className="embla__slide flex-[0_0_80%] bg-amber-300">Slide 1</div>
-                <div className="embla__slide flex-[0_0_80%] bg-amber-300">Slide 2</div>
-                <div className="embla__slide flex-[0_0_80%] bg-amber-300">Slide 3</div>
+            {slides.map((child, index) => (
+                <div
+                    key={index}
+                    className="embla__slide flex-[0_0_80%]"
+                    data-index={index}
+                >
+                    {child}
+                </div>
+            ))}
             </div>
             <button className="embla__prev" onClick={scrollPrev} type="button">
                 Prev
