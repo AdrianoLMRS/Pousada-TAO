@@ -9,6 +9,7 @@ const isGhPages = PUBLIC_IS_GH_PAGES === 'true';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 import tailwindcss from '@tailwindcss/vite';
+import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,5 +27,5 @@ export default defineConfig({
   image: {
       responsiveStyles: true,
   },
-  integrations: [sitemap(), robotsTxt()],
+  integrations: [react(), sitemap(), robotsTxt()],
 });
