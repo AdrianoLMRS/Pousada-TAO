@@ -9,16 +9,20 @@ const isGhPages = PUBLIC_IS_GH_PAGES === 'true';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 
+import tailwindcss from '@tailwindcss/vite';
+
 // https://astro.build/config
 export default defineConfig({
   site: isGhPages ? 'https://adrianolmrs.github.io' : 'https://pousada-tao.onrender.com',
   base: isGhPages ? '/Pousada-TAO' : undefined,
   vite: {
-      resolve: {
-          alias: {
-              '@': String(new URL('./src', import.meta.url)),
-          },
-      },
+    resolve: {
+        alias: {
+            '@': String(new URL('./src', import.meta.url)),
+        },
+    },
+
+    plugins: [tailwindcss()],
   },
   image: {
       responsiveStyles: true,
