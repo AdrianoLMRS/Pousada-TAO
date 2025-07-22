@@ -11,6 +11,8 @@ import robotsTxt from 'astro-robots-txt';
 
 import tailwindcss from '@tailwindcss/vite';
 
+import react from '@astrojs/react';
+
 // https://astro.build/config
 export default defineConfig({
   site: isGhPages ? 'https://adrianolmrs.github.io' : 'https://pousada-tao.onrender.com',
@@ -27,5 +29,5 @@ export default defineConfig({
   image: {
       responsiveStyles: true,
   },
-  integrations: [sitemap(), robotsTxt()],
+  integrations: [react(), sitemap(), robotsTxt()],
 });
